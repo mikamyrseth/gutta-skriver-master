@@ -10,39 +10,62 @@ class Columns(Enum):
     DATE = "Date"
     USDNOK = "TWI NKSP Index  (R1)"
     OIL = "CO1 Comdty  (L1)"
-    STOCKS = "MXWO Index  (R2)"
-
-df = pd.read_excel ("div data.xlsx", sheet_name="2000-2019")
+    STOCKS = "MXWO Index -  on 9/8/22  (R2)"
 
 
-# date_column = df[Columns.DATE.value]
+def regression(df: pd.DataFrame):
+    
 
-# first order diff
-df = df.diff()
-df = df.dropna()
+    X = df[[Columns.OIL.value, Columns.STOCKS.value]]
+    Y = df[Columns.USDNOK.value]
+    X_train, X_test, Y_train, Y_test = train_test_split(X,Y, test_size=0.01,random_state=101)
 
-# Undo date differencing
-# df[Columns.DATE.value] = date_column
+    lm = LinearRegression()
+    lm.fit(X_train,Y_train)
 
-# Show
-# df.plot.scatter(x=Columns.STOCKS.value, y=Columns.USDEUR.value)
-# plt.sh-
+    return lm.coef_
 
-# Remove EUR correlation
-print(df)
+    print(lm.coef_)
 
-X = df[[Columns.OIL.value, Columns.STOCKS.value]]
-Y = df[Columns.USDNOK.value]
-X_train, X_test, Y_train, Y_test = train_test_split(X,Y, test_size=0.3,random_state=101)
+    prediction = lm.predict(X_test)
+    plt.scatter(Y_test,prediction)
+    plt.show()
 
-lm = LinearRegression()
-lm.fit(X_train,Y_train)
+if __name__ == "__main__":
+    # Load data from excel
+    df = pd.read_excel ("regression data.xlsx", sheet_name="2000-2022")
 
-print(lm.coef_)
+    # date_column = df[Columns.DATE.value]
 
-prediction = lm.predict(X_test)
-plt.scatter(Y_test,prediction)
-plt.show()
+    df['Date'] = pd.to_datetime(df['Date'])
+    df.set_index('Date', inplace=True)
 
+    # first order differencing
+    df = df.diff()
+    df = df.dropna()
 
+    # Undo date differencing
+    # df[Columns.DATE.value] = date_column
+
+    # Show
+    # df.plot.scatter(x=Columns.STOCKS.value, y=Columns.USDEUR.value)
+    # plt.sh-
+
+    stocks = []
+    oil = []
+
+    coefs = regression(df)
+    print("coeffs full data: ", coefs)
+
+    #split data into years
+    for i in range(2000, 2023):
+        # year_df = df[f"{i}-01-01":f"{i}-12-31"]
+        year_df = df.sort_index().loc[f"{i}-01-01":f"{i}-12-31", :] 
+        print(year_df)
+        coefs = regression(year_df)
+        oil.append(coefs[0])
+        stocks.append(coefs[1])
+
+    print(oil)
+    print(stocks)
 
