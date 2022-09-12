@@ -57,15 +57,18 @@ if __name__ == "__main__":
     coefs = regression(df)
     print("coeffs full data: ", coefs)
 
+    # set to 1 means two year intervals, 2 is 3 etc. 
+    interval = 5
+
     #split data into years
-    for i in range(2000, 2023):
+    for i in range(2000, 2023, interval):
         # year_df = df[f"{i}-01-01":f"{i}-12-31"]
-        year_df = df.sort_index().loc[f"{i}-01-01":f"{i}-12-31", :] 
-        print(year_df)
+        year_df = df.sort_index().loc[f"{i}-01-01":f"{i+(interval-1)}-12-31", :] 
         coefs = regression(year_df)
+        print(f"{i}-{i+(interval-1)}, {coefs[0]}, {coefs[1]}")
         oil.append(coefs[0])
         stocks.append(coefs[1])
 
-    print(oil)
-    print(stocks)
+    #print(oil)
+    #print(stocks)
 
