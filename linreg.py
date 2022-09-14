@@ -23,7 +23,10 @@ def regression(df: pd.DataFrame):
     lm = LinearRegression()
     lm.fit(X_train,Y_train)
 
-    return lm.coef_
+    print("STD", X_train.std(axis=0))
+    print("coef.", lm.coef_)
+    print("norm. coef ", lm.coef_* X_train.std(axis=0))
+    return lm.coef_* X_train.std(axis=0)
 
     print(lm.coef_)
 
@@ -65,6 +68,7 @@ if __name__ == "__main__":
         coefs = regression(year_df)
         oil.append(coefs[0])
         stocks.append(coefs[1])
+        break
 
     print(oil)
     print(stocks)
