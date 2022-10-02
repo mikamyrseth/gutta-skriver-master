@@ -1,0 +1,66 @@
+[
+  {
+    "name": "SW-GB-12M",
+    "description": "Great Britain 12-month nominal money market (swap)",
+    "frequency": "DAILY",
+    "publisher": "Bloomberg?",
+    "bbg_ticker": "BPSW1 curncy",
+    "link": "NA"
+  },
+  {
+    "name": "SW-CA-12M",
+    "description": "Canadian 12-month nominal money market (swap)",
+    "frequency": "DAILY",
+    "publisher": "Bloomberg?",
+    "bbg_ticker": "CDSW1 curncy",
+    "link": "NA"
+  },
+  {
+    "name": "SW-EU-12M",
+    "description": "Euro area 12-month nominal money market interest (swap)",
+    "frequency": "DAILY",
+    "publisher": "Bloomberg?",
+    "bbg_ticker": "EUSA1 curncy",
+    "link": "NA"
+  },
+  {
+    "name": "SW-JP-12M",
+    "description": "Japan 12-month nominal money market interest (swap)",
+    "frequency": "DAILY",
+    "publisher": "Bloomberg?",
+    "bbg_ticker": "JYSW1 curncy",
+    "link": "NA"
+  },
+  {
+    "name": "SW-NO-12M",
+    "description": "Norwegian 12-month nominal money market (swap)",
+    "frequency": "DAILY",
+    "publisher": "Bloomberg?",
+    "bbg_ticker": "NKSW1V3 curncy",
+    "link": "NA"
+  },
+  {
+    "name": "SW-PL-12M",
+    "description": "Polish 12-month nominal money market (swap)",
+    "frequency": "DAILY",
+    "publisher": "Bloomberg?",
+    "bbg_ticker": "PZSW1 curncy",
+    "link": "NA"
+  },
+  {
+    "name": "SW-SE-12M",
+    "description": "Sweden 12-month nominal money market (swap)",
+    "frequency": "DAILY",
+    "publisher": "Bloomberg?",
+    "bbg_ticker": "SKSW1 curncy",
+    "link": "NA"
+  },
+  {
+    "name": "SW-US-12M",
+    "description": "USA 12-month nominal money market (swap)",
+    "frequency": "DAILY",
+    "publisher": "Bloomberg?",
+    "bbg_ticker": "USSW1 curncy",
+    "link": "NA"
+  }
+]

@@ -1,0 +1,34 @@
+[
+  {
+    "name": "NB-KKI",
+    "description": "Trade weighted NOK index with 25 trade partners",
+    "frequency": "DAILY",
+    "publisher": "Norges Bank",
+    "bbg_ticker": "NOIWTOT Index",
+    "link": "https://www.norges-bank.no/tema/Statistikk/Valutakurser/?tab=currency&id=TWI"
+  },
+  {
+    "name": "ICE-BRENT",
+    "description": "Brent crude oil spot price",
+    "frequency": "DAILY",
+    "publisher": "Intercontinental Exchange (ICE)",
+    "bbg_ticker": "CO1 Comdty",
+    "link": "https://www.theice.com/products/219/Brent-Crude-Futures/data?marketId=5166947"
+  },
+  {
+    "name": "S&P-500",
+    "description": "S&P 500 Index",
+    "frequency": "DAILY",
+    "publisher": "Standard and Poor's",
+    "bbg_ticker": "SPX Index",
+    "link": "https://www.spglobal.com/spdji/en/indices/equity/sp-500/#overview"
+  },
+  {
+    "name": "DB-CVIX",
+    "description": "Currency volatility index",
+    "frequency": "DAILY",
+    "publisher": "Deutsche Bank",
+    "bbg_ticker": "CVIX Index",
+    "link": "NA"
+  }
+]
