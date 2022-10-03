@@ -30,5 +30,13 @@
     "publisher": "Deutsche Bank",
     "bbg_ticker": "CVIX Index",
     "link": "NA"
+  },
+  {
+    "name": "NOKEUR",
+    "description": "NOK to EUR currency pair",
+    "frequency": "DAILY",
+    "publisher": "??",
+    "bbg_ticker": "NOKEUR Curncy",
+    "link": "??"
   }
 ]
