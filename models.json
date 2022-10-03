@@ -23,7 +23,7 @@
     }
   },
   {
-    "name": "Bjørnstad korttidsmodeell",
+    "name": "Bjørnstad modell",
     "authors": "Roger Bjørnstad, Eilev Jansen",
     "publish_year": 2006,
     "page": "46",
@@ -35,7 +35,7 @@
       "LAGGED-DELTA-2-LOG-NOKEUR": -0.24,
       "DELTA-LOG-CUSTOM-PRICE-DIFFERENCE***": 0.89,
       "DELTA-LOG-CUSTOM-PRICE-DIFFERENCE-ALT***": -0.47,
-      "DELTA-4--LOG-ICE-BRENT": -0.024,
+      "DELTA-4-LOG-ICE-BRENT": -0.024,
       "DELTA-LOG-CUSTOM-PRICE-JAE": -1.7,
       "DELTA-3-NORSK-RENTE***": -9.69,
       "LAGGED-DELTA-3-EURO-RENTE***": 16.33,
