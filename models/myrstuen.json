@@ -1,0 +1,23 @@
+{
+  "name": "Myrstuen korttidsmodell",
+  "authors": ["Lars Myrstuen, Didrik Sylte, Jan Tore Klovland"],
+  "publish_year": 2021,
+  "page": "69 (5.5)",
+  "model_start_date": "2022-01-01",
+  "model_end_date": "2022-01-01",
+  "dependent_variable": "DELTA-NB-KKI",
+  "frequency": "MONTHLY",
+  "coeffs": {
+    "ALPHA": 0.0002,
+    "DELTA-LAGGED-NB-KKI": 0.1985,
+    "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": -2.7891,
+    "DELTA-ICE-BRENT": -0.0574,
+    "LAGGED-CUSTOM-MYRSTUEN-EQULIBIRUM": -0.1556
+  },
+  "stds": {
+    "DELTA-ICE-BRENT": 0.0089
+  },
+  "stats": {
+    "adjustedR2": 0.358
+  }
+}
