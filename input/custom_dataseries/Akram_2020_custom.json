@@ -1,0 +1,44 @@
+[
+  {
+    "name": "CUSTOM-AKRAM2020-FOREIGN-INTEREST-12M",
+    "page": "23", <PAGE?
+    "weights": {
+      "SW-GB-12M": 0.067,
+      "SW-CA-12M": 0.0272,
+      "SW-EU-12M": 0.5301,
+      "SW-JP-12M": 0.0235,
+      "SW-PL-12M": 0.0334,
+      "SW-SE-12M": 0.1273,
+      "SW-US-12M": 0.1916
+    }
+  },
+  {
+    "name": "CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M",
+    "page": "23", <PAGE?
+    "weights": {
+      "SW-NO-12M": 1,
+      "CUSTOM-AKRAM2020-FOREIGN-INTEREST-12M": -1
+    }
+  },
+  {
+    "name": "CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-10YR",
+    "page": "23", <PAGE?
+    "weights": {
+      "GBY-GB-10YR": 0.067,
+      "GBY-CA-10YR": 0.0272,
+      "GBY-EU-10YR": 0.5301,
+      "GBY-JP-10YR": 0.0235,
+      "GBY-PL-10YR": 0.0334,
+      "GBY-SE-10YR": 0.1273,
+      "GBY-US-10YR": 0.1916
+    }
+  },
+  {
+    "name": "CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR",
+    "page": "23", <PAGE?
+    "weights": {
+      "SW-NO-10YR": 1,
+      "CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-10YR": -1
+    }
+  }
+]
