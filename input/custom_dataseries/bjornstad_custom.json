@@ -1,1 +1,37 @@
-{}
+[
+  {
+    "name": "CUSTOM-BJORNSTAD-PRICE-DIFFERENCE",
+    "page": "46",
+    "weights": {
+      "DELTA-LOG-ES-HICP-NO": 1,
+      "DELTA-LOG-ES-HICP-EU": -1
+    }
+  },
+  {
+    "name": "CUSTOM-BJORNSTAD-PRICE-DIFFERENCE-LAG",
+    "page": "46",
+    "weights": {
+      "LAGGED-DELTA-LOG-ES-HICP-NO": 1,
+      "LAGGED-2-DELTA-LOG-ES-HICP-EU": -1
+    }
+  },
+  {
+    "name": "CUSTOM-BJORNSTAD-PPP-EQUILIBRIUM",
+    "page": "46",
+    "weights": {
+      "LAGGED-LOG-NOKEUR": 1,
+      "LAGGED-LOG-ES-HICP-NO": -1,
+      "LOG-ES-HICP-EU": 1
+    }
+  },
+  {
+    "name": "CUSTOM-BJØRNSTAD-RATE-DIFFERENCE",
+    "page": "46",
+    "weights": {
+      "LAGGED-NIBOR": 1,
+      "LAGGED-DELTA-LOG-ES-HICP-NO": -1,
+      "LAGGED-EURIBOR": -1,
+      "LAGGED-DELTA-LOG-ES-HICP-EU": 1
+    }
+  }
+]

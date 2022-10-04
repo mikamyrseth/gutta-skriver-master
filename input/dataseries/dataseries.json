@@ -38,5 +38,21 @@
     "publisher": "??",
     "bbg_ticker": "NOKEUR Curncy",
     "link": "??"
+  },
+  {
+    "name": "NIBOR",
+    "description": "Norwegian Interbank Offered Rate 3MND",
+    "frequency": "DAILY",
+    "publisher": "??",
+    "bbg_ticker": "NIBOR",
+    "link": "??"
+  },
+  {
+    "name": "EURIBOR",
+    "description": "European Interbank Offered Rate 3MND",
+    "frequency": "DAILY",
+    "publisher": "??",
+    "bbg_ticker": "EUR03M",
+    "link": "??"
   }
 ]
