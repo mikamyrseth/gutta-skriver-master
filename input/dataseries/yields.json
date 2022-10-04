@@ -1,0 +1,66 @@
+[
+  {
+    "name": "GBY-GB-10YR",
+    "description": "Great Britain 10-year nominal government bond yields",
+    "frequency": "DAILY",
+    "publisher": "Bloomberg",
+    "bbg_ticker": "ICGBP10",
+    "link": "NA"
+  },
+  {
+    "name": "GBY-CA-10YR",
+    "description": "Canada 10-year nominal government bond yields",
+    "frequency": "DAILY",
+    "publisher": "Bloomberg",
+    "bbg_ticker": "ICCAD10",
+    "link": "NA"
+  },
+  {
+    "name": "GBY-EU-10YR",
+    "description": "Euro area 10-year nominal government bond yields",
+    "frequency": "DAILY",
+    "publisher": "Bloomberg",
+    "bbg_ticker": "ICEIB10",
+    "link": "NA"
+  },
+  {
+    "name": "GBY-JP-10YR",
+    "description": "Japan 10-year nominal government bond yields",
+    "frequency": "DAILY",
+    "publisher": "Bloomberg",
+    "bbg_ticker": "ICJPY10",
+    "link": "NA"
+  },
+  {
+    "name": "GBY-PL-10YR",
+    "description": "Poland 10-year nominal government bond yields",
+    "frequency": "DAILY",
+    "publisher": "Bloomberg",
+    "bbg_ticker": "ICPLN10",
+    "link": "NA"
+  },
+  {
+    "name": "GBY-SE-10YR",
+    "description": "Sweden 10-year nominal government bond yields",
+    "frequency": "DAILY",
+    "publisher": "Bloomberg",
+    "bbg_ticker": "ICSEK10",
+    "link": "NA"
+  },
+  {
+    "name": "GBY-US-10YR",
+    "description": "USA 10-year nominal government bond yields",
+    "frequency": "DAILY",
+    "publisher": "Bloomberg",
+    "bbg_ticker": "ICUSD10",
+    "link": "NA"
+  },
+  {
+    "name": "SW-NO-10YR",
+    "description": "Norwegian 10-year nominal swap rates",
+    "frequency": "DAILY",
+    "publisher": "Bloomberg",
+    "bbg_ticker": "NKSW10 curncy",
+    "link": "NA"
+  }
+]
