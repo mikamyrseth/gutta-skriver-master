@@ -2,7 +2,7 @@
   "name": "Akram (2022) Aggregate oil prices",
   "authors": ["Q. Farooq Akram"],
   "publish_year": 2020,
-  "page": "69 (5.5)", > hva mener du med page mika?
+  "page": "3",
   "model_start_date": "2010-01-15",
   "model_end_date": "2018-12-31",
   "dependent_variable": "LOG-NB-I44",
@@ -13,10 +13,8 @@
     "CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR": 0.125,
     "LOG-ICE-BRENT": 0.077
   },
-  "stds": { <STANDARDerrors <hva legger jeg inn her? modellen har ikke standard deviations men standard feil
-    "DELTA-ICE-BRENT": 0.0089
+  "stds": { <STANDARDdeviations <modellen har ikke standard deviations men standard feil
   },
   "stats": {
-    "adjustedR2": 0.358 < ingen R2 i Akram 
   }
 }
