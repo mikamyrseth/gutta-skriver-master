@@ -1,5 +1,7 @@
 from ast import List
 from typing import Dict
+from CustomTypes.Dataseries import CustomDataseries, Dataseries
+from CustomTypes.Prefixes import Prefixes
 
 
 class Model(object):
@@ -29,3 +31,19 @@ class Model(object):
 
     def __str__(self):
         return '   '.join("%s: %s\n" % item for item in vars(self).items())
+
+    def get_dataseries(self) -> list[Dataseries]:
+        dataseries = set()
+        for coeff in self.coeffs:
+            prefixes, name = Prefixes.process_prefixes(coeff)
+            if Prefixes.CUSTOM in prefixes:
+                custom_dataseries = CustomDataseries.getCustomDataseries(name)
+                custom_source = custom_dataseries.get_dataseries()
+                dataseries = dataseries.union(custom_source)
+            else:
+                dataseries_ = Dataseries.get_dataseries(name)
+                dataseries.add(dataseries_)
+        return dataseries
+
+    def get_data(self):
+        return
