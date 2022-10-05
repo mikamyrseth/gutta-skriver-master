@@ -1,0 +1,20 @@
+{
+  "name": "Akram (2022) Aggregate oil prices",
+  "authors": ["Q. Farooq Akram"],
+  "publish_year": 2020,
+  "page": "3",
+  "model_start_date": "2010-01-15",
+  "model_end_date": "2018-12-31",
+  "dependent_variable": "LOG-NB-I44",
+  "frequency": "WEEKLY",
+  "coeffs": {
+    "ALPHA": 4.513,
+    "CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M": 0.102,
+    "CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR": 0.125,
+    "LOG-ICE-BRENT": 0.077
+  },
+  "stds": { <STANDARDdeviations <modellen har ikke standard deviations men standard feil
+  },
+  "stats": {
+  }
+}

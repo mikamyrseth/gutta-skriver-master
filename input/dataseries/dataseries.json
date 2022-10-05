@@ -54,5 +54,53 @@
     "publisher": "??",
     "bbg_ticker": "EUR03M",
     "link": "??"
+  },
+  {
+    "name": "NB-I-44",
+    "description": "Norwegian nominal effective exchange rate",
+    "frequency": "DAILY",
+    "publisher": "Norges Bank",
+    "bbg_ticker": "??", < mangler ticker
+    "link": "https://www.norges-bank.no/tema/Statistikk/Valutakurser/?tab=currency&id=I44"
+  },
+  {
+    "name": "NYFED-OIL-DEMAND",
+    "description": "Oil price resulting of demand",
+    "frequency": "WEEKLY",
+    "publisher": "Federal Reserve Bank of New York",
+    "bbg_ticker": "USOPWDEM Index",
+    "link": "https://www.newyorkfed.org/research/policy/oil_price_dynamics_report"
+  },
+  {
+    "name": "NYFED-OIL-SUPPLY",
+    "description": "Oil price resulting of supply",
+    "frequency": "WEEKLY",
+    "publisher": "Federal Reserve Bank of New York",
+    "bbg_ticker": "USOPWDEM Index",
+    "link": "https://www.newyorkfed.org/research/policy/oil_price_dynamics_report"
+  },
+  {
+    "name": "NYFED-OIL-RESIDUAL",
+    "description": "Oil price not explained by supply or demand factors",
+    "frequency": "WEEKLY",
+    "publisher": "Federal Reserve Bank of New York",
+    "bbg_ticker": "USOPWRES Index",
+    "link": "https://www.newyorkfed.org/research/policy/oil_price_dynamics_report"
+  },
+  {
+    "name": "GPR-NARROW",
+    "description": "Geopolitical Risk Index. A monthly index of geopolitical risk developed and updated by D. Caldara and M. Iacoviello",
+    "frequency": "WEEKLY",
+    "publisher": "Matteo Iacoviello",
+    "bbg_ticker": "??", < mangler ticker
+    "link": "https://www.matteoiacoviello.com/gpr.htm"
+  },
+  {
+    "name": "FVX-EM",
+    "description": "Barclays' emerging economies currency volatility index",
+    "frequency": "DAILY",
+    "publisher": "Barclays",
+    "bbg_ticker": "BXIIVEMG",
+    "link": "??"
   }
 ]
