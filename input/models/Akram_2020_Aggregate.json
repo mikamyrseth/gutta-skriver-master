@@ -13,8 +13,6 @@
     "CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR": 0.125,
     "LOG-ICE-BRENT": 0.077
   },
-  "stds": { <STANDARDdeviations <modellen har ikke standard deviations men standard feil
-  },
-  "stats": {
-  }
+  "stds": {},
+  "stats": {}
 }

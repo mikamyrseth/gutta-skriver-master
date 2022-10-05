@@ -60,7 +60,7 @@
     "description": "Norwegian nominal effective exchange rate",
     "frequency": "DAILY",
     "publisher": "Norges Bank",
-    "bbg_ticker": "??", < mangler ticker
+    "bbg_ticker": "??",
     "link": "https://www.norges-bank.no/tema/Statistikk/Valutakurser/?tab=currency&id=I44"
   },
   {
@@ -92,7 +92,7 @@
     "description": "Geopolitical Risk Index. A monthly index of geopolitical risk developed and updated by D. Caldara and M. Iacoviello",
     "frequency": "WEEKLY",
     "publisher": "Matteo Iacoviello",
-    "bbg_ticker": "??", < mangler ticker
+    "bbg_ticker": "??",
     "link": "https://www.matteoiacoviello.com/gpr.htm"
   },
   {
