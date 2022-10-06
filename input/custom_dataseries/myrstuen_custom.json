@@ -2,6 +2,7 @@
   {
     "name": "CUSTOM-MYRSTUEN-EQULIBIRUM",
     "page": "63 (5.3)",
+    "type": "ADD",
     "weights": {
       "LAGGED-NB-KKI": 1,
       "ALPHA": -3.4869,
@@ -14,6 +15,7 @@
   {
     "name": "CUSTOM-MYRSTUEN-FOREIGN-INTEREST-12M",
     "page": "23",
+    "type": "ADD",
     "weights": {
       "SW-GB-12M": 0.142,
       "SW-CA-12M": 0.02,
@@ -27,6 +29,7 @@
   {
     "name": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M",
     "page": "23",
+    "type": "ADD",
     "weights": {
       "SW-NO-12M": 1,
       "CUSTOM-MYRSTUEN-FOREIGN-INTEREST-12M": -1
@@ -35,6 +38,7 @@
   {
     "name": "CUSTOM-MYRSTUEN-FOREIGN-PRICE",
     "page": "XX?",
+    "type": "ADD",
     "weights": {
       "ES-HICP-GB": 0.142,
       "SLFED-ICP-CA": 0.02,
@@ -48,6 +52,7 @@
   {
     "name": "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE",
     "page": "XX?",
+    "type": "ADD",
     "weights": {
       "ES-HICP-NO": 1,
       "CUSTOM-MYRSTUEN-FOREIGN-PRICE": -1

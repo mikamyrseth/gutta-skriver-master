@@ -30,13 +30,19 @@ class Dataseries(object):
         raise Exception("Could not get dataseries with name ", name)
 
 
+class CustomSeriesType(Enum):
+    ADD = "ADD"
+    MULTIPLY = "MULTIPLY"
+
+
 class CustomDataseries(object):
     data = []
 
-    def __init__(self, name: str, page: str, weights: dict):
+    def __init__(self, name: str, page: str, weights: dict, type: CustomSeriesType):
         self.name = name
         self.page = page
         self.weights = weights
+        self.type = CustomSeriesType
 
     def __str__(self) -> str:
         return '   '.join("%s: %s\n" % item for item in vars(self).items())
