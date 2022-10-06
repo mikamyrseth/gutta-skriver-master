@@ -1,0 +1,30 @@
+{
+    "name": "Ellen asymmetric",
+    "authors": "Saskia Ter Ellen",
+    "publish_year": 2016,
+    "page": "5",
+    "model_start_date": "2001-01-01",
+    "model_end_date": "2015-08-01",
+    "dependent_variable": "DELTA-LOG-NB-I44", 
+    "frequency": "MONTHLY",
+    "coeffs": {
+      "ALPHA": 0.0018,
+      "DELTA_LOG_ICE_BRENT_POSITIVE": -0.0776,
+      "DELTA_LOG_ICE_BRENT_NEGATIVE": -0.0562,
+      "LAGGED_INTEREST_DIFFERENTIAL": -0.0015,
+      "CHANGE_INTEREST_DIFFERENTIAL": -0.0275,
+      "CRISIS_CONTROL_DUMMY": -0.0219
+    },
+    "stds": {
+        "CONSTANT": 1.3992,
+        "DELTA_LOG_ICE_BRENT_POSITIVE": -3.1713,
+        "DELTA_LOG_ICE_BRENT_NEGATIVE": -2.2304,
+        "LAGGED_INTEREST_DIFFERENTIAL": -1.9094,
+        "CHANGE_INTEREST_DIFFERENTIAL": -6.3554,
+        "CRISIS_CONTROL_DUMMY": -0.0219
+    },
+    "stats": {
+      "adjustedR2":0.3339
+    }
+  }
+  

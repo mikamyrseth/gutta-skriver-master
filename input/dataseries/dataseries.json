@@ -102,5 +102,22 @@
     "publisher": "Barclays",
     "bbg_ticker": "BXIIVEMG",
     "link": "??"
+  },
+
+  {
+    "name": "NO-MONEY-MARKET-12",
+    "description": "12-month Norwegian money market rate",
+    "frequency": "MONTHLY",
+    "publisher": "Norges Bank",
+    "bbg_ticker": "??",
+    "link": "??"
+  },
+  {
+    "name": "FOREIGN-MONEY-MARKET-12",
+    "description": "12-month foreign money market rate",
+    "frequency": "MONTHLY",
+    "publisher": "Norges Bank",
+    "bbg_ticker": "??",
+    "link": "??"
   }
 ]
