@@ -61,7 +61,7 @@ class CustomDataseries(object):
                 return series
         raise Exception("Could not get custom series with name ", name)
 
-    def get_dataseries(self) -> list[Dataseries]:
+    def get_dataseries(self) -> "list[Dataseries]":
         dataseries = set()
         for weight in self.weights:
             prefixes, name = Prefixes.process_prefixes(weight)

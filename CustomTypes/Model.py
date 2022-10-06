@@ -6,7 +6,7 @@ from CustomTypes.Prefixes import Prefixes
 
 class Model(object):
     def __init__(self, name: str,
-                 authors: list[str],
+                 authors: "list[str]",
                  publish_year: int,
                  page: str,
                  coeffs: dict,
@@ -32,7 +32,7 @@ class Model(object):
     def __str__(self):
         return '   '.join("%s: %s\n" % item for item in vars(self).items())
 
-    def get_dataseries(self) -> list[Dataseries]:
+    def get_dataseries(self) -> "list[Dataseries]":
         dataseries = set()
         for coeff in self.coeffs:
             prefixes, name = Prefixes.process_prefixes(coeff)

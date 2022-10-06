@@ -7,7 +7,7 @@ class Prefixes(Enum):
     DELTA = "DELTA"
     LAGGED = "LAGGED"
 
-    def process_prefixes(name: str) -> tuple[list, str]:
+    def process_prefixes(name: str) -> "tuple[list, str]":
         prefixes_in_name = []
         term_list = name.split("-")
 
