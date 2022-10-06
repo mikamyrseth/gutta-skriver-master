@@ -76,7 +76,7 @@
     "description": "Oil price resulting of supply",
     "frequency": "WEEKLY",
     "publisher": "Federal Reserve Bank of New York",
-    "bbg_ticker": "USOPWDEM Index",
+    "bbg_ticker": "USOPWSUP Index",
     "link": "https://www.newyorkfed.org/research/policy/oil_price_dynamics_report"
   },
   {
