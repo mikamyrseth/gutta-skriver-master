@@ -1,5 +1,7 @@
 from enum import Enum
 from typing import Dict
+
+from pandas import DataFrame
 from CustomTypes.Prefixes import Prefixes
 
 
@@ -7,6 +9,7 @@ class DataFrequency(Enum):
     DAILY = "Daily"
     WEEKLY = "Weekly"
     MONTHLY = "Monthly"
+    QUARTERLY = "QUARTERLY"
 
 
 class Dataseries(object):
@@ -28,6 +31,11 @@ class Dataseries(object):
             if series.name == name:
                 return series
         raise Exception("Could not get dataseries with name ", name)
+
+    def get_df(self, frequency: DataFrequency) -> DataFrame:
+        # if større frequcny ---> agreggering, men hvordan???
+        # if mindre frequency --> split data lineært elns...
+        raise Exception("Not implemented")
 
 
 class CustomSeriesType(Enum):
