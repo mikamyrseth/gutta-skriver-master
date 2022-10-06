@@ -1,10 +1,11 @@
 [
-    {
-        "name": "CUSTOM-ELLEN-INTEREST-DIFFERENCE",
-        "page": "3",
-        "weights": {
-            "NO-MONEY-MARKET-12": 1,
-            "FOREIGN-MONEY-MARKET-12": -1
-        }
+  {
+    "name": "CUSTOM-ELLEN-INTEREST-DIFFERENCE",
+    "page": "3",
+    "type": "ADD",
+    "weights": {
+      "NO-MONEY-MARKET-12": 1,
+      "FOREIGN-MONEY-MARKET-12": -1
     }
+  }
 ]
