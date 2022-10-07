@@ -1,0 +1,22 @@
+{
+  "name": "Akram (2022) Decomposed oil prices and uncertainty measures",
+  "authors": ["Q. Farooq Akram"],
+  "publish_year": 2020,
+  "page": "3&7",
+  "model_start_date": "2010-01-15",
+  "model_end_date": "2018-12-31",
+  "dependent_variable": "LOG-NB-I44",
+  "frequency": "WEEKLY",
+  "coeffs": {
+    "ALPHA": 4.513,
+    "CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M": 0.027,
+    "CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR": 0.105,
+    "LOG-GPR-NARROW": 0.015,
+    "LOG-FVX-EM": 0.026,
+    "LOG-NYFED-OIL-DEMAND": 0.116,
+    "LOG-NYFED-OIL-SUPPLY": 0.116,
+    "LOG-NYFED-OIL-RESIDUAL": 0.094
+  },
+  "stds": {},
+  "stats": {}
+}

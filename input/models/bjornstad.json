@@ -1,0 +1,24 @@
+{
+  "name": "Bjørnstad korttidsmodell",
+  "authors": "Roger Bjørnstad, Eilev Jansen",
+  "publish_year": 2006,
+  "page": "46",
+  "model_start_date": "",
+  "model_end_date": "",
+  "dependent_variable": "DELTA-LOG-NOKEUR",
+  "frequency": "QUARTERLY",
+  "coeffs": {
+    "LAGGED-DELTA-2-LOG-NOKEUR": -0.24,
+    "CUSTOM-BJORNSTAD-PRICE-DIFFERENCE": 0.89,
+    "CUSTOM-BJORNSTAD-PRICE-DIFFERENCE-LAG": -0.47,
+    "DELTA-4-LOG-ICE-BRENT": -0.024,
+    "DELTA-2-LOG-SSB-KPI-JAE": -1.7,
+    "DELTA-3-NIBOR": -9.69,
+    "LAGGED-DELTA-3-EURIBOR": 16.33,
+    "LAGGED-LOG-ICE-BRENT": -0.06,
+    "CUSTOM-BJORNSTAD-PPP-EQUILIBRIUM": -0.11,
+    "CUSTOM-BJØRNSTAD-RATE-DIFFERENCE": -0.79
+  },
+  "stds": {},
+  "stats": {}
+}

@@ -1,0 +1,61 @@
+[
+  {
+    "name": "CUSTOM-MYRSTUEN-EQULIBIRUM",
+    "page": "63 (5.3)",
+    "type": "ADD",
+    "weights": {
+      "LAGGED-NB-KKI": 1,
+      "ALPHA": -3.4869,
+      "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": 1.5347,
+      "ICE-BRENT": 0.059,
+      "DB-CVIX": -0.0878,
+      "S&P-500": -0.1637
+    }
+  },
+  {
+    "name": "CUSTOM-MYRSTUEN-FOREIGN-INTEREST-12M",
+    "page": "23",
+    "type": "ADD",
+    "weights": {
+      "SW-GB-12M": 0.142,
+      "SW-CA-12M": 0.02,
+      "SW-EU-12M": 0.522,
+      "SW-JP-12M": 0.022,
+      "SW-PL-12M": 0.044,
+      "SW-SE-12M": 0.16,
+      "SW-US-12M": 0.087
+    }
+  },
+  {
+    "name": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M",
+    "page": "23",
+    "type": "ADD",
+    "weights": {
+      "SW-NO-12M": 1,
+      "CUSTOM-MYRSTUEN-FOREIGN-INTEREST-12M": -1
+    }
+  },
+  {
+    "name": "CUSTOM-MYRSTUEN-FOREIGN-PRICE",
+    "page": "XX?",
+    "type": "ADD",
+    "weights": {
+      "ES-HICP-GB": 0.142,
+      "SLFED-ICP-CA": 0.02,
+      "ES-HICP-EU": 0.522,
+      "SLFED-ICP-JP": 0.022,
+      "ES-HICP-PL": 0.044,
+      "ES-HICP-SE": 0.16,
+      "ES-HICP-US": 0.087
+    }
+  },
+  {
+    "name": "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE",
+    "page": "XX?",
+    "type": "ADD",
+    "weights": {
+      "ES-HICP-NO": 1,
+      "CUSTOM-MYRSTUEN-FOREIGN-PRICE": -1
+    }
+  }
+]
