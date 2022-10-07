@@ -23,9 +23,9 @@ def regression(df: pd.DataFrame):
     lm = LinearRegression()
     lm.fit(X_train,Y_train)
 
-    print("STD", X_train.std(axis=0))
-    print("coef.", lm.coef_)
-    print("norm. coef ", lm.coef_* X_train.std(axis=0))
+    #print("STD", X_train.std(axis=0))
+    #print("coef.", lm.coef_)
+    #print("norm. coef ", lm.coef_* X_train.std(axis=0))
     return lm.coef_* X_train.std(axis=0)
 
     print(lm.coef_)
@@ -63,6 +63,8 @@ if __name__ == "__main__":
     # set to 1 means two year intervals, 2 is 3 etc. 
     interval = 5
 
+    print("Date, Brent Crude, MSCI World")
+
     #split data into years
     for i in range(2000, 2023, interval):
         # year_df = df[f"{i}-01-01":f"{i}-12-31"]
@@ -71,7 +73,6 @@ if __name__ == "__main__":
         print(f"{i}-{i+(interval-1)}, {coefs[0]}, {coefs[1]}")
         oil.append(coefs[0])
         stocks.append(coefs[1])
-        break
 
     #print(oil)
     #print(stocks)
