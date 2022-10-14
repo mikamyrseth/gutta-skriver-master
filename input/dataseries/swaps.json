@@ -4,7 +4,7 @@
     "description": "Great Britain 12-month nominal money market (swap)",
     "frequency": "DAILY",
     "publisher": "Bloomberg?",
-    "bbg_ticker": "BPSW1 curncy",
+    "bbg_ticker": "BPSW1 Curncy",
     "link": "NA"
   },
   {
@@ -12,7 +12,7 @@
     "description": "Canadian 12-month nominal money market (swap)",
     "frequency": "DAILY",
     "publisher": "Bloomberg?",
-    "bbg_ticker": "CDSW1 curncy",
+    "bbg_ticker": "CDSW1 Curncy",
     "link": "NA"
   },
   {
@@ -20,7 +20,7 @@
     "description": "Euro area 12-month nominal money market interest (swap)",
     "frequency": "DAILY",
     "publisher": "Bloomberg?",
-    "bbg_ticker": "EUSA1 curncy",
+    "bbg_ticker": "EUSA1 Curncy",
     "link": "NA"
   },
   {
@@ -28,7 +28,7 @@
     "description": "Japan 12-month nominal money market interest (swap)",
     "frequency": "DAILY",
     "publisher": "Bloomberg?",
-    "bbg_ticker": "JYSW1 curncy",
+    "bbg_ticker": "JYSW1 Curncy",
     "link": "NA"
   },
   {
@@ -36,7 +36,7 @@
     "description": "Norwegian 12-month nominal money market (swap)",
     "frequency": "DAILY",
     "publisher": "Bloomberg?",
-    "bbg_ticker": "NKSW1V3 curncy",
+    "bbg_ticker": "NKSW1V3 Curncy",
     "link": "NA"
   },
   {
@@ -44,7 +44,7 @@
     "description": "Polish 12-month nominal money market (swap)",
     "frequency": "DAILY",
     "publisher": "Bloomberg?",
-    "bbg_ticker": "PZSW1 curncy",
+    "bbg_ticker": "PZSW1 Curncy",
     "link": "NA"
   },
   {
@@ -52,7 +52,7 @@
     "description": "Sweden 12-month nominal money market (swap)",
     "frequency": "DAILY",
     "publisher": "Bloomberg?",
-    "bbg_ticker": "SKSW1 curncy",
+    "bbg_ticker": "SKSW1 Curncy",
     "link": "NA"
   },
   {
@@ -60,7 +60,7 @@
     "description": "USA 12-month nominal money market (swap)",
     "frequency": "DAILY",
     "publisher": "Bloomberg?",
-    "bbg_ticker": "USSW1 curncy",
+    "bbg_ticker": "USSW1 Curncy",
     "link": "NA"
   }
 ]

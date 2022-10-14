@@ -4,7 +4,7 @@
     "description": "Great Britain 10-year nominal government bond yields",
     "frequency": "DAILY",
     "publisher": "Bloomberg",
-    "bbg_ticker": "ICGBP10",
+    "bbg_ticker": "GUKG10 Index",
     "link": "NA"
   },
   {
@@ -12,7 +12,7 @@
     "description": "Canada 10-year nominal government bond yields",
     "frequency": "DAILY",
     "publisher": "Bloomberg",
-    "bbg_ticker": "ICCAD10",
+    "bbg_ticker": "GTCAD10Y Govt",
     "link": "NA"
   },
   {
@@ -36,7 +36,7 @@
     "description": "Poland 10-year nominal government bond yields",
     "frequency": "DAILY",
     "publisher": "Bloomberg",
-    "bbg_ticker": "ICPLN10",
+    "bbg_ticker": "GTPLN10Y Govt",
     "link": "NA"
   },
   {
@@ -44,7 +44,7 @@
     "description": "Sweden 10-year nominal government bond yields",
     "frequency": "DAILY",
     "publisher": "Bloomberg",
-    "bbg_ticker": "ICSEK10",
+    "bbg_ticker": "GTSEK10Y Govt",
     "link": "NA"
   },
   {
@@ -52,7 +52,7 @@
     "description": "USA 10-year nominal government bond yields",
     "frequency": "DAILY",
     "publisher": "Bloomberg",
-    "bbg_ticker": "ICUSD10",
+    "bbg_ticker": "USGG10YR Index",
     "link": "NA"
   },
   {
