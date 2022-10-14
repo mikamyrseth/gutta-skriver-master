@@ -1,8 +1,11 @@
+from datetime import datetime
+from pandas import DatetimeIndex
 from CustomTypes.Dataseries import *
 from CustomTypes.Model import *
 from CustomTypes.Prefixes import *
 import json
 import os
+from datetime import datetime
 
 
 def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]] ":
@@ -49,9 +52,9 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
             all_models.append(model)
 
     for model in all_models:
-        print(model.name, ":")
-        for ds in model.get_dataseries():
-            print(ds.name, ":", ds.bbg_ticker)
+        if model.name == "Myrstuen korttidsmodell":
+            print("Running Myrstuen korttidsmodell")
+            model.run_model(date(2001, 8, 31), date(2021, 12, 31))
 
 
 load_json()
