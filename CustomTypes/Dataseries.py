@@ -6,6 +6,8 @@ import numpy as np
 from pandas import DataFrame
 import pandas as pd
 from CustomTypes.Prefixes import Prefixes
+import warnings
+import logging
 
 
 class DataFrequency(str, Enum):
@@ -57,7 +59,6 @@ class Dataseries(object):
             ones = np.ones(len(date_index))
             df = pd.DataFrame({'Date': date_index, 'ALPHA': ones})
             df = df.set_index('Date')
-            print(df)
             return df
 
         print(
@@ -67,9 +68,12 @@ class Dataseries(object):
 
         df["Date"] = pd.to_datetime(df['Date'], unit='D', origin='1899-12-30')
         df = df.set_index(['Date'])
-        df = df.resample(frequency.value).ffill()
+        df = df.resample(frequency.value).interpolate()
         df = df.loc[from_date:to_date]
-        print(df)
+        if df.loc[from_date:from_date].empty:
+            warnings.warn(f"Series {self.name} does not have data from {to_date}. First data is {df.iloc[0]}")
+        if df.loc[to_date:to_date].empty:
+            warnings.warn(f"Series {self.name} does not have data to {to_date}. Last data is {df.iloc[-1]}")
         return df
 
 
@@ -148,4 +152,6 @@ class CustomDataseries(object):
 
             df.loc[index, 'OUTPUT'] = prediction
 
+        print("Calculated custom dataseries ", self.name)
+        print(df)
         return df['OUTPUT']

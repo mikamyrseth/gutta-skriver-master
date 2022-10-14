@@ -1,3 +1,4 @@
+from CustomTypes.Dataseries import Dataseries
 
 
 class Dataspecification(object):
@@ -5,3 +6,5 @@ class Dataspecification(object):
         self.dataseries = dataseries
         self.coefficients = coefficients
         self.transormations = transformations
+
+    def get_data():

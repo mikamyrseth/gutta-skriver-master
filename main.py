@@ -54,7 +54,7 @@ def load_json() -> tuple[list[Dataseries], list[CustomDataseries], list[Model]]:
     for model in all_models:
         if model.name == "Myrstuen korttidsmodell":
             print("Running Myrstuen korttidsmodell")
-            model.run_model(date(2001, 1, 1), date(2022, 1, 1))
+            model.run_model(date(2001, 8, 31), date(2021, 12, 31))
 
 
 load_json()

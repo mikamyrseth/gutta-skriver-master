@@ -30,14 +30,21 @@ class Prefixes(Enum):
         return prefixes_in_name, dataseries_name
 
     def process_df(prefix, df, column_name: str, step=1):
+        print(f"Processed prefix for {column_name}, {prefix} with step {step}")
+        print("Before:", df)
         match prefix:
             case Prefixes.CUSTOM:
+                print("After:", df)
                 return df
             case Prefixes.LOG:
                 df[column_name] = np.log(df[column_name])
+                print("After:", df)
                 return df
             case Prefixes.DELTA:
-                return df.diff(step)
+                df = df.diff(step)
+                print("After:", df)
+                return df
             case Prefixes.LAGGED:
                 df[column_name] = df[column_name].shift(step)
+                print("After:", df)
                 return df

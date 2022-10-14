@@ -2,6 +2,7 @@ from ast import List
 from datetime import date
 import datetime
 from typing import Dict
+import pandas as pd
 
 from pandas import DataFrame
 from CustomTypes.Dataseries import CustomDataseries, DataFrequency, Dataseries
@@ -92,6 +93,15 @@ class Model(object):
 
             df.loc[index, 'OUTPUT'] = prediction
 
-        print("PROCESSED MODEL!!!: ")
+        # AD hoc fasit
+        dep_series = Dataseries.get_dataseries("NB-KKI")
+        dep_df = dep_series.get_df(self.frequency, from_date, to_date)
+        #dep_df = Prefixes.process_df("DELTA", dep_df, "NOIWTOT Index")
+        df["FASIT"] = dep_df
+
+        print("PROCESSED MODEL!: ")
         print(df)
+        # pd.set_option('display.max_columns', None)
+        # pd.reset_option(“max_columns”)
+        # print(df.head())
         return df['OUTPUT']
