@@ -28,7 +28,7 @@
     "description": "Japan 10-year nominal government bond yields",
     "frequency": "DAILY",
     "publisher": "Bloomberg",
-    "bbg_ticker": "ICJPY10",
+    "bbg_ticker": "GJGB10 Index",
     "link": "NA"
   },
   {

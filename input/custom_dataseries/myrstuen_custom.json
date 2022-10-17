@@ -1,15 +1,16 @@
 [
   {
     "name": "CUSTOM-MYRSTUEN-EQULIBIRUM",
-    "page": "63 (5.3)",
+    "page": "63 (5.3) CUSTOM-MYRSTUEN-PRICE-DIFFERENCE: -1.038",
     "type": "ADD",
+    "recalculate": true,
+    "dependent_variable": "NB-KKI",
     "weights": {
-      "LAGGED-NB-KKI": 1,
       "ALPHA": -3.4869,
       "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": 1.5347,
-      "ICE-BRENT": 0.059,
-      "DB-CVIX": -0.0878,
-      "S&P-500": -0.1637
+      "LOG-ICE-BRENT": 0.059,
+      "LOG-DB-CVIX": -0.0878,
+      "LOG-S&P-500": -0.1637
     }
   },
   {
@@ -31,8 +32,8 @@
     "page": "23",
     "type": "ADD",
     "weights": {
-      "SW-NO-12M": 1,
-      "CUSTOM-MYRSTUEN-FOREIGN-INTEREST-12M": -1
+      "LOG-SW-NO-12M": 1,
+      "LOG-CUSTOM-MYRSTUEN-FOREIGN-INTEREST-12M": -1
     }
   },
   {
