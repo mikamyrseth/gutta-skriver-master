@@ -8,7 +8,7 @@ import os
 from datetime import datetime
 
 
-def load_json() -> tuple[list[Dataseries], list[CustomDataseries], list[Model]]:
+def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]] ":
     all_dataseries = []
     directory = "input/dataseries"
     for filename in os.listdir(directory):
