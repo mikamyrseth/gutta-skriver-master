@@ -88,7 +88,7 @@
     "link": "https://www.newyorkfed.org/research/policy/oil_price_dynamics_report"
   },
   {
-    "name": "GPR-NARROW",
+    "name": "GPR",
     "description": "Geopolitical Risk Index. A monthly index of geopolitical risk developed and updated by D. Caldara and M. Iacoviello",
     "frequency": "WEEKLY",
     "publisher": "Matteo Iacoviello",
