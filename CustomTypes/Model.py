@@ -2,6 +2,7 @@ from ast import List
 from datetime import date
 import datetime
 from typing import Dict
+from numpy import inner
 import pandas as pd
 
 from pandas import DataFrame
@@ -56,6 +57,7 @@ class Model(object):
     def run_model(self, from_date: datetime, to_date: datetime):
         self.frequency = DataFrequency.get_frequency_enum(self.frequency)
         df = DataFrame()
+        self.coeffs[self.dependent_variable] = 0
         for series, weight in self.coeffs.items():
             prefixes, source_series_name = Prefixes.process_prefixes(series)
 
@@ -67,23 +69,9 @@ class Model(object):
 
             inner_df = dataseries.get_df(self.frequency, from_date, to_date)
 
-            # Process prefixes in correct order
-            prev_prefix = None
-            for prefix in prefixes:
-                if prev_prefix != None:
-                    if prefix.isdigit():
-                        inner_df = Prefixes.process_df(
-                            prev_prefix, inner_df, source_series_name, prefix)
-                        prev_prefix = None
-                    else:
-                        inner_df = Prefixes.process_df(
-                            prev_prefix, inner_df, source_series_name
-                        )
-                        prev_prefix = prefix
-            if prev_prefix != None:
-                inner_df = Prefixes.process_df(
-                    prev_prefix, inner_df, source_series_name
-                )
+            inner_df = Prefixes.apply_prefixes(
+                prefixes, inner_df, source_series_name)
+
             df[series] = inner_df
 
         for index, row in df.iterrows():
@@ -94,10 +82,10 @@ class Model(object):
             df.loc[index, 'OUTPUT'] = prediction
 
         # AD hoc fasit
-        dep_series = Dataseries.get_dataseries("NB-KKI")
-        dep_df = dep_series.get_df(self.frequency, from_date, to_date)
+        # dep_series = Dataseries.get_dataseries("NB-KKI")
+        #dep_df = dep_series.get_df(self.frequency, from_date, to_date)
         #dep_df = Prefixes.process_df("DELTA", dep_df, "NOIWTOT Index")
-        df["FASIT"] = dep_df
+        #df["FASIT"] = dep_df
 
         print("PROCESSED MODEL!: ")
         print(df)
@@ -105,3 +93,16 @@ class Model(object):
         # pd.reset_option(“max_columns”)
         # print(df.head())
         return df['OUTPUT']
+
+    def reestimate(self, from_date: datetime, to_date: datetime):
+        # recalculate relevant dataseries
+        for series, weight in self.coeffs.items():
+            prefixes, source_series_name = Prefixes.process_prefixes(series)
+            if Prefixes.CUSTOM in prefixes:
+                dataseries = CustomDataseries.getCustomDataseries(
+                    source_series_name)
+            else:
+                dataseries = Dataseries.get_dataseries(source_series_name)
+            dataseries.reestimate(from_date, to_date)
+
+        # df = self.get_df()
