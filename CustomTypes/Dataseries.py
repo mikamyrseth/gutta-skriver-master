@@ -160,8 +160,6 @@ class CustomDataseries(object):
             prediction = 0
             for series, weight in self.weights.items():
                 prediction += row[series]*weight
-            if math.isnan(prediction):
-                raise Exception("VALUE NOT NUMERIC :(")
 
             df.loc[index, self.name] = prediction
 
