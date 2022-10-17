@@ -62,14 +62,23 @@ class Dataseries(object):
             df = df.set_index('Date')
             return df
 
-        print(
-            f"Attempting to find data {self.name} with ticker {self.bbg_ticker}")
-        df = pd.read_excel("IFOE1_DATA_221010.xlsx",
-                           sheet_name=self.bbg_ticker, header=None, names=["Date", self.name])
+        #Load
+        if self.bbg_ticker == "NA":
+            print(f"Attempting to find non-BBG data with name {self.name}")
+            df = pd.read_excel("NON_BLOOMBERG_DATA.xls", sheet_name=self.name)
+            df["Date"] = pd.to_datetime(df['Date'], unit='D')
+            print(df)
+        else:
+            print(
+                f"Attempting to find data {self.name} with ticker {self.bbg_ticker}")
+            df = pd.read_excel("IFOE1_DATA_221010.xlsx",
+                            sheet_name=self.bbg_ticker, header=None, names=["Date", self.name])
 
-        df["Date"] = pd.to_datetime(df['Date'], unit='D', origin='1899-12-30')
+            df["Date"] = pd.to_datetime(df['Date'], unit='D', origin='1899-12-30')
+        
+        # Process and cut
         df = df.set_index(['Date'])
-        df = df.resample(frequency.value).interpolate()
+        df = df.resample(frequency.value).ffill()
         df = df.loc[from_date:to_date]
         if df.loc[from_date:from_date].empty:
             warnings.warn(
@@ -77,6 +86,11 @@ class Dataseries(object):
         if df.loc[to_date:to_date].empty:
             warnings.warn(
                 f"Series {self.name} does not have data to {to_date}. Last data is {df.iloc[-1]}")
+
+        if df.isnull().values.any():
+            print(f"WARNING: {self.name} has NAN")
+            print(df)
+
         return df
 
     def reestimate(self, from_date: datetime, to_date: datetime):
