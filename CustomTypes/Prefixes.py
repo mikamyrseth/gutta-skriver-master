@@ -45,6 +45,9 @@ class Prefixes(Enum):
             case Prefixes.LOG:
                 df[column_name] = np.log(df[column_name])
                 print("After:", df)
+                if df.isnull().values.any():
+                    print(f"WARNING: Series has NAN")
+                    print(df)
                 return df
             case Prefixes.DELTA:
                 df = df.diff(step)

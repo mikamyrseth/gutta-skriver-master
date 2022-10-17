@@ -8,12 +8,12 @@
     "dependent_variable": "LOG-NB-KKI",
     "frequency": "MONTHLY",
     "coeffs": {
-        "ALPHA": -3.4869,
-        "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": 1.5347,
-        "CUSTOM-MYRSTUEN-FOREIGN-PRICE": -1.0238,
-        "LOG-ICE-BRENT": 0.059,
-        "LOG-DB-CVIX": -0.0878,
-        "LOG-S&P-500": -0.1637
+        "ALPHA": 3.4869,
+        "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": -1.5347,
+        "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE": 1.0238,
+        "LOG-ICE-BRENT": -0.059,
+        "LOG-DB-CVIX": 0.0878,
+        "LOG-S&P-500": 0.1637
     },
     "stds": {
       "DELTA-ICE-BRENT": 0.0089

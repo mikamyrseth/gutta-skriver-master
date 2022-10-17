@@ -16,8 +16,8 @@
     "dependent_variable": "LOG-NB-KKI",
     "weights": {
       "ALPHA": -3.4869,
-      "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": 1.5347,
-      "CUSTOM-MYRSTUEN-FOREIGN-PRICE": -1.0238,
+      "LOG-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": 1.5347,
+      "LOG-CUSTOM-MYRSTUEN-FOREIGN-PRICE": -1.0238,
       "LOG-ICE-BRENT": 0.059,
       "LOG-DB-CVIX": -0.0878,
       "LOG-S&P-500": -0.1637
@@ -55,7 +55,7 @@
       "SLFED-ICP-CA": 0.02,
       "ES-HICP-EU": 0.522,
       "SLFED-ICP-JP": 0.022,
-      "ES-HICP-PL": 0.044,
+      "ES-HICP-PO": 0.044,
       "ES-HICP-SE": 0.16,
       "ES-HICP-US": 0.087
     }
@@ -65,8 +65,8 @@
     "page": "XX?",
     "type": "ADD",
     "weights": {
-      "ES-HICP-NO": 1,
-      "CUSTOM-MYRSTUEN-FOREIGN-PRICE": -1
+      "LOG-ES-HICP-NO": 1,
+      "LOG-CUSTOM-MYRSTUEN-FOREIGN-PRICE": -1
     }
   }
 ]

@@ -2,6 +2,7 @@ import datetime
 from enum import Enum
 from typing import Dict
 import numpy as np
+import math
 
 from pandas import DataFrame
 import pandas as pd
@@ -36,7 +37,7 @@ class Dataseries(object):
         self.name = name
         self.description = description
         self.publisher = publisher
-        self.frequency = frequency
+        self.frequency = DataFrequency.get_frequency_enum(frequency)
         self.bbg_ticker = bbg_ticker
         self.link = link
 
@@ -62,11 +63,13 @@ class Dataseries(object):
             df = df.set_index('Date')
             return df
 
+        
+
         #Load
         if self.bbg_ticker == "NA":
             print(f"Attempting to find non-BBG data with name {self.name}")
             df = pd.read_excel("NON_BLOOMBERG_DATA.xls", sheet_name=self.name)
-            df["Date"] = pd.to_datetime(df['Date'], unit='D')
+            df["Date"] = pd.to_datetime(df['Date'], infer_datetime_format=True)
             print(df)
         else:
             print(
@@ -157,8 +160,11 @@ class CustomDataseries(object):
             prediction = 0
             for series, weight in self.weights.items():
                 prediction += row[series]*weight
+            if math.isnan(prediction):
+                raise Exception("VALUE NOT NUMERIC :(")
 
             df.loc[index, self.name] = prediction
+
 
         print("PROCESSED MODEL!: ")
         print(df)
@@ -206,6 +212,7 @@ class CustomDataseries(object):
         print(df)
         print(list(self.weights.keys()))
         regression(df, list(self.weights.keys()), self.dependent_variable)
+        return
 
 
 def regression(df: pd.DataFrame, X_names: list[str], Y_name: str):

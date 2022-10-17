@@ -34,7 +34,7 @@ class Model(object):
         self.model_start_date = model_start_date
         self.model_end_date = model_end_date
         self.dependent_variable = dependent_variable
-        self.frequency = frequency
+        self.frequency = DataFrequency.get_frequency_enum(frequency)
         self.stds = stds
         self.stats = stats
 
@@ -58,7 +58,6 @@ class Model(object):
         return
 
     def run_model(self, from_date: datetime, to_date: datetime):
-        self.frequency = DataFrequency.get_frequency_enum(self.frequency)
         df = DataFrame()
         self.coeffs[self.dependent_variable] = 0
         for series, weight in self.coeffs.items():
@@ -119,7 +118,6 @@ class Model(object):
 
 
     def reestimate(self, from_date: datetime, to_date: datetime):
-        self.frequency = DataFrequency.get_frequency_enum(self.frequency)
         # recalculate relevant dataseries
         for series, weight in self.coeffs.items():
             prefixes, source_series_name = Prefixes.process_prefixes(series)
@@ -152,6 +150,10 @@ class Model(object):
         df[self.dependent_variable] = dep_series_df
         print(df)
         print(list(self.coeffs.keys()))
+        if df.isnull().values.any():
+            print(f"WARNING: df has NAN")
+            print(df[df.isna().any(axis=1)])
+            print("END NAN")
         regression(df, list(self.coeffs.keys()), self.dependent_variable)
 
 
