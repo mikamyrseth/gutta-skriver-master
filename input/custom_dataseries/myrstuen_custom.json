@@ -8,6 +8,7 @@
     "weights": {
       "ALPHA": -3.4869,
       "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": 1.5347,
+      "SLFED-ICP-CA": 0.02,
       "LOG-ICE-BRENT": 0.059,
       "LOG-DB-CVIX": -0.0878,
       "LOG-S&P-500": -0.1637

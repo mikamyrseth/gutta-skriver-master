@@ -1,4 +1,3 @@
-from curses.ascii import isdigit
 from enum import Enum
 import enum
 import numpy as np
