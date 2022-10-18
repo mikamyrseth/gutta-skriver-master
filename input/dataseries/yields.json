@@ -20,7 +20,7 @@
     "description": "Euro area 10-year nominal government bond yields",
     "frequency": "DAILY",
     "publisher": "Bloomberg",
-    "bbg_ticker": "ICEIB10",
+    "bbg_ticker": "GTDEM10Y Corp",
     "link": "NA"
   },
   {
