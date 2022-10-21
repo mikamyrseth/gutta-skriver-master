@@ -3,6 +3,7 @@ from enum import Enum
 from typing import Dict
 import numpy as np
 import math
+from datetime import date, datetime
 
 from pandas import DataFrame
 import pandas as pd
@@ -40,6 +41,7 @@ class Dataseries(object):
         self.frequency = DataFrequency.get_frequency_enum(frequency)
         self.bbg_ticker = bbg_ticker
         self.link = link
+        self.df = self.init_df()
 
     def __str__(self):
         return '   '.join("%s: %s\n" % item for item in vars(self).items())
@@ -50,38 +52,44 @@ class Dataseries(object):
                 return series
         raise Exception("Could not get dataseries with name ", name)
 
-    def get_df(self, frequency: DataFrequency, from_date: datetime, to_date: datetime) -> DataFrame:
-        # if større frequcny ---> agreggering, men hvordan???
-        # if mindre frequency --> split data lineært elns...
-
+    def init_df(self) -> DataFrame:
         # Generate ALPHA
         if self.name == "ALPHA":
             date_index = pd.date_range(
-                from_date, to_date, freq=frequency.value)
+                date(1999, 12, 31), date(2022, 10, 21), freq=DataFrequency.DAILY)
             ones = np.ones(len(date_index))
             df = pd.DataFrame({'Date': date_index, 'ALPHA': ones})
             df = df.set_index('Date')
             return df
 
         # Load
-        if self.bbg_ticker == "NA":
-            print(f"Attempting to find non-BBG data with name {self.name}")
-            df = pd.read_excel("NON_BLOOMBERG_DATA.xls", sheet_name=self.name)
-            df["Date"] = pd.to_datetime(df['Date'], infer_datetime_format=True)
-            print(df)
-        else:
+        try:
+            if self.bbg_ticker == "NA":
+                df = pd.read_excel("NON_BLOOMBERG_DATA.xls",
+                                   sheet_name=self.name)
+                df["Date"] = pd.to_datetime(
+                    df['Date'], infer_datetime_format=True)
+            else:
+                print(
+                df=pd.read_excel("IFOE1_DATA_221010.xlsx",
+                                   sheet_name=self.bbg_ticker, header=None, names=["Date", self.name])
+
+                df["Date"]=pd.to_datetime(
+                    df['Date'], unit='D', origin='1899-12-30')
+
+            # Process and cut
+            df=df.set_index(['Date'])
+            return df
+        except Exception as e:
             print(
-                f"Attempting to find data {self.name} with ticker {self.bbg_ticker}")
-            df = pd.read_excel("IFOE1_DATA_221010.xlsx",
-                               sheet_name=self.bbg_ticker, header=None, names=["Date", self.name])
+                f"***WARNING*** Data with name {self.name} could not be loaded")
+            return DataFrame()
 
-            df["Date"] = pd.to_datetime(
-                df['Date'], unit='D', origin='1899-12-30')
+    def get_df(self, frequency: DataFrequency, from_date: datetime, to_date: datetime) -> DataFrame:
+        df=self.df
+        df=df.resample(frequency.value).ffill()
 
-        # Process and cut
-        df = df.set_index(['Date'])
-        df = df.resample(frequency.value).ffill()
-        df = df.loc[from_date:to_date]
+        df=df.loc[from_date:to_date]
         if df.loc[from_date:from_date].empty:
             warnings.warn(
                 f"Series {self.name} does not have data from {to_date}. First data is {df.iloc[0]}")
@@ -100,20 +108,20 @@ class Dataseries(object):
 
 
 class CustomSeriesType(Enum):
-    ADD = "ADD"
-    MULTIPLY = "MULTIPLY"
+    ADD="ADD"
+    MULTIPLY="MULTIPLY"
 
 
 class CustomDataseries(object):
-    data = []
+    data=[]
 
-    def __init__(self, name: str, page: str, weights: dict, type: CustomSeriesType, recalculate: bool = False, dependent_variable: str = None):
-        self.name = name
-        self.page = page
-        self.weights = weights
-        self.type = CustomSeriesType
-        self.recalculate = recalculate
-        self.dependent_variable = dependent_variable
+    def __init__(self, name: str, page: str, weights: dict, type: CustomSeriesType, recalculate: bool=False, dependent_variable: str=None):
+        self.name=name
+        self.page=page
+        self.weights=weights
+        self.type=CustomSeriesType
+        self.recalculate=recalculate
+        self.dependent_variable=dependent_variable
 
     def __str__(self) -> str:
         return '   '.join("%s: %s\n" % item for item in vars(self).items())
@@ -125,42 +133,42 @@ class CustomDataseries(object):
         raise Exception("Could not get custom series with name ", name)
 
     def get_dataseries(self) -> "list[Dataseries]":
-        dataseries = set()
+        dataseries=set()
         for weight in self.weights:
-            prefixes, name = Prefixes.process_prefixes(weight)
+            prefixes, name=Prefixes.process_prefixes(weight)
             if Prefixes.CUSTOM in prefixes:
-                custom_dataseries = CustomDataseries.getCustomDataseries(name)
-                custom_source = custom_dataseries.get_dataseries()
-                dataseries = dataseries.union(custom_source)
+                custom_dataseries=CustomDataseries.getCustomDataseries(name)
+                custom_source=custom_dataseries.get_dataseries()
+                dataseries=dataseries.union(custom_source)
             else:
-                dataseries_ = Dataseries.get_dataseries(name)
+                dataseries_=Dataseries.get_dataseries(name)
                 dataseries.add(dataseries_)
         return dataseries
 
     def get_df(self, frequency: DataFrequency, from_date: datetime, to_date: datetime) -> DataFrame:
-        df = DataFrame()
+        df=DataFrame()
         for series, weight in self.weights.items():
-            prefixes, source_series_name = Prefixes.process_prefixes(series)
+            prefixes, source_series_name=Prefixes.process_prefixes(series)
 
             if Prefixes.CUSTOM in prefixes:
-                dataseries = CustomDataseries.getCustomDataseries(
+                dataseries=CustomDataseries.getCustomDataseries(
                     source_series_name)
             else:
-                dataseries = Dataseries.get_dataseries(source_series_name)
+                dataseries=Dataseries.get_dataseries(source_series_name)
 
-            inner_df = dataseries.get_df(frequency, from_date, to_date)
+            inner_df=dataseries.get_df(frequency, from_date, to_date)
 
-            inner_df = Prefixes.apply_prefixes(
+            inner_df=Prefixes.apply_prefixes(
                 prefixes, inner_df, source_series_name)
 
-            df[series] = inner_df
+            df[series]=inner_df
 
         for index, row in df.iterrows():
-            prediction = 0
+            prediction=0
             for series, weight in self.weights.items():
                 prediction += row[series]*weight
 
-            df.loc[index, self.name] = prediction
+            df.loc[index, self.name]=prediction
 
         print("PROCESSED MODEL!: ")
         print(df)
@@ -170,22 +178,22 @@ class CustomDataseries(object):
         return df.loc[:, [self.name]]
 
     def get_source_df(self, frequency: DataFrequency, from_date: datetime, to_date: datetime) -> DataFrame:
-        df = DataFrame()
+        df=DataFrame()
         for series, weight in self.weights.items():
-            prefixes, source_series_name = Prefixes.process_prefixes(series)
+            prefixes, source_series_name=Prefixes.process_prefixes(series)
 
             if Prefixes.CUSTOM in prefixes:
-                dataseries = CustomDataseries.getCustomDataseries(
+                dataseries=CustomDataseries.getCustomDataseries(
                     source_series_name)
             else:
-                dataseries = Dataseries.get_dataseries(source_series_name)
+                dataseries=Dataseries.get_dataseries(source_series_name)
 
-            inner_df = dataseries.get_df(frequency, from_date, to_date)
+            inner_df=dataseries.get_df(frequency, from_date, to_date)
 
-            inner_df = Prefixes.apply_prefixes(
+            inner_df=Prefixes.apply_prefixes(
                 prefixes, inner_df, source_series_name)
 
-            df[series] = inner_df
+            df[series]=inner_df
         return df
 
     def reestimate(self, from_date: datetime, to_date: datetime):
@@ -193,34 +201,34 @@ class CustomDataseries(object):
             return
         # recalculate relevant dataseries
         for series, weight in self.weights.items():
-            prefixes, source_series_name = Prefixes.process_prefixes(series)
+            prefixes, source_series_name=Prefixes.process_prefixes(series)
             if Prefixes.CUSTOM in prefixes:
-                dataseries = CustomDataseries.getCustomDataseries(
+                dataseries=CustomDataseries.getCustomDataseries(
                     source_series_name)
             else:
-                dataseries = Dataseries.get_dataseries(source_series_name)
+                dataseries=Dataseries.get_dataseries(source_series_name)
             dataseries.reestimate(from_date, to_date)
 
         # recalculate relevant dataseries
         for series, weight in self.weights.items():
-            prefixes, source_series_name = Prefixes.process_prefixes(series)
+            prefixes, source_series_name=Prefixes.process_prefixes(series)
             if Prefixes.CUSTOM in prefixes:
-                dataseries = CustomDataseries.getCustomDataseries(
+                dataseries=CustomDataseries.getCustomDataseries(
                     source_series_name)
             else:
-                dataseries = Dataseries.get_dataseries(source_series_name)
+                dataseries=Dataseries.get_dataseries(source_series_name)
             dataseries.reestimate(from_date, to_date)
 
-        df = self.get_source_df(DataFrequency.MONTHLY, from_date, to_date)
+        df=self.get_source_df(DataFrequency.MONTHLY, from_date, to_date)
 
-        dep_prefix, dep_name = Prefixes.process_prefixes(
+        dep_prefix, dep_name=Prefixes.process_prefixes(
             self.dependent_variable)
-        dep_series = Dataseries.get_dataseries(dep_name)
-        dep_series_df = dep_series.get_df(self.frequency, from_date, to_date)
-        dep_series_df = Prefixes.apply_prefixes(
+        dep_series=Dataseries.get_dataseries(dep_name)
+        dep_series_df=dep_series.get_df(self.frequency, from_date, to_date)
+        dep_series_df=Prefixes.apply_prefixes(
             dep_prefix, dep_series_df, dep_name)
 
-        df[self.dependent_variable] = dep_series_df
+        df[self.dependent_variable]=dep_series_df
         print(df)
         print(list(self.weights.keys()))
         if df.isnull().values.any():
@@ -228,31 +236,31 @@ class CustomDataseries(object):
             print(df[df.isna().any(axis=1)])
             print("END NAN")
 
-        lm = regression(df, list(self.weights.keys()), self.dependent_variable)
+        lm=regression(df, list(self.weights.keys()), self.dependent_variable)
         for index, key in enumerate(self.weights.keys()):
-            self.coeffs[key] = lm.coef_[index]
-        self.coeffs["ALPHA"] = lm.intercept_
+            self.coeffs[key]=lm.coef_[index]
+        self.coeffs["ALPHA"]=lm.intercept_
         print(f"Updated dataseries {self.name} to: ")
         print(self)
 
 
 def regression(df: pd.DataFrame, X_names: list[str], Y_name: str):
 
-    X = df[X_names]
-    Y = df[Y_name]
+    X=df[X_names]
+    Y=df[Y_name]
 
     print(X)
     print(Y)
 
-    X_train, X_test, Y_train, Y_test = train_test_split(
+    X_train, X_test, Y_train, Y_test=train_test_split(
         X, Y, test_size=0.01, random_state=101)
 
-    lm = LinearRegression()
+    lm=LinearRegression()
     lm.fit(X_train, Y_train)
 
-    #print("STD", X_train.std(axis=0))
-    #print("coef.", lm.coef_)
-    #print("norm. coef ", lm.coef_* X_train.std(axis=0))
+    # print("STD", X_train.std(axis=0))
+    # print("coef.", lm.coef_)
+    # print("norm. coef ", lm.coef_* X_train.std(axis=0))
     print(X_names)
     print(lm.coef_)
     print(lm.intercept_)
@@ -262,6 +270,6 @@ def regression(df: pd.DataFrame, X_names: list[str], Y_name: str):
 
     print(lm.coef_)
 
-    prediction = lm.predict(X_test)
+    prediction=lm.predict(X_test)
     plt.scatter(Y_test, prediction)
     plt.show()

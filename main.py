@@ -9,6 +9,7 @@ from datetime import datetime
 
 
 def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]] ":
+    # Load data
     all_dataseries = []
     directory = "input/dataseries"
     for filename in os.listdir(directory):
@@ -22,6 +23,14 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
             dataseries_json.close()
             all_dataseries = all_dataseries+dataseries
     Dataseries.data = all_dataseries
+
+    # Check values
+    for dataseries in all_dataseries:
+        if dataseries.df.empty:
+            print(f"{dataseries.name}: MISSING")
+        else:
+            print(
+                f"{dataseries.name} has data from {dataseries.df.index[0]} to {dataseries.df.index[-1]}")
 
     all_custom_dataseries = []
     directory = "input/custom_dataseries"
