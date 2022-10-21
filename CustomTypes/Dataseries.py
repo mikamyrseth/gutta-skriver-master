@@ -63,9 +63,7 @@ class Dataseries(object):
             df = df.set_index('Date')
             return df
 
-        
-
-        #Load
+        # Load
         if self.bbg_ticker == "NA":
             print(f"Attempting to find non-BBG data with name {self.name}")
             df = pd.read_excel("NON_BLOOMBERG_DATA.xls", sheet_name=self.name)
@@ -75,10 +73,11 @@ class Dataseries(object):
             print(
                 f"Attempting to find data {self.name} with ticker {self.bbg_ticker}")
             df = pd.read_excel("IFOE1_DATA_221010.xlsx",
-                            sheet_name=self.bbg_ticker, header=None, names=["Date", self.name])
+                               sheet_name=self.bbg_ticker, header=None, names=["Date", self.name])
 
-            df["Date"] = pd.to_datetime(df['Date'], unit='D', origin='1899-12-30')
-        
+            df["Date"] = pd.to_datetime(
+                df['Date'], unit='D', origin='1899-12-30')
+
         # Process and cut
         df = df.set_index(['Date'])
         df = df.resample(frequency.value).ffill()
@@ -163,7 +162,6 @@ class CustomDataseries(object):
 
             df.loc[index, self.name] = prediction
 
-
         print("PROCESSED MODEL!: ")
         print(df)
         # pd.set_option('display.max_columns', None)
@@ -191,8 +189,17 @@ class CustomDataseries(object):
         return df
 
     def reestimate(self, from_date: datetime, to_date: datetime):
-        if(not self.recalculate):
+        if self.recalculate == False:
             return
+        # recalculate relevant dataseries
+        for series, weight in self.weights.items():
+            prefixes, source_series_name = Prefixes.process_prefixes(series)
+            if Prefixes.CUSTOM in prefixes:
+                dataseries = CustomDataseries.getCustomDataseries(
+                    source_series_name)
+            else:
+                dataseries = Dataseries.get_dataseries(source_series_name)
+            dataseries.reestimate(from_date, to_date)
 
         # recalculate relevant dataseries
         for series, weight in self.weights.items():
@@ -205,12 +212,28 @@ class CustomDataseries(object):
             dataseries.reestimate(from_date, to_date)
 
         df = self.get_source_df(DataFrequency.MONTHLY, from_date, to_date)
-        df[self.dependent_variable] = Dataseries.get_dataseries(
-            self.dependent_variable).get_df(DataFrequency.MONTHLY, from_date, to_date)
+
+        dep_prefix, dep_name = Prefixes.process_prefixes(
+            self.dependent_variable)
+        dep_series = Dataseries.get_dataseries(dep_name)
+        dep_series_df = dep_series.get_df(self.frequency, from_date, to_date)
+        dep_series_df = Prefixes.apply_prefixes(
+            dep_prefix, dep_series_df, dep_name)
+
+        df[self.dependent_variable] = dep_series_df
         print(df)
         print(list(self.weights.keys()))
-        regression(df, list(self.weights.keys()), self.dependent_variable)
-        return
+        if df.isnull().values.any():
+            print(f"WARNING: df has NAN")
+            print(df[df.isna().any(axis=1)])
+            print("END NAN")
+
+        lm = regression(df, list(self.weights.keys()), self.dependent_variable)
+        for index, key in enumerate(self.weights.keys()):
+            self.coeffs[key] = lm.coef_[index]
+        self.coeffs["ALPHA"] = lm.intercept_
+        print(f"Updated dataseries {self.name} to: ")
+        print(self)
 
 
 def regression(df: pd.DataFrame, X_names: list[str], Y_name: str):
@@ -233,7 +256,7 @@ def regression(df: pd.DataFrame, X_names: list[str], Y_name: str):
     print(X_names)
     print(lm.coef_)
     print(lm.intercept_)
-    return lm.coef_
+    return lm
 
     # return lm.coef_ * X_train.std(axis=0)
 

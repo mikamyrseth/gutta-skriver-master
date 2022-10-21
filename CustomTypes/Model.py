@@ -96,7 +96,6 @@ class Model(object):
         # print(df.head())
         return df['OUTPUT']
 
-
     def get_source_df(self, frequency: DataFrequency, from_date: datetime, to_date: datetime) -> DataFrame:
         df = DataFrame()
         for series, weight in self.coeffs.items():
@@ -115,7 +114,6 @@ class Model(object):
 
             df[series] = inner_df
         return df
-
 
     def reestimate(self, from_date: datetime, to_date: datetime):
         # recalculate relevant dataseries
@@ -140,12 +138,12 @@ class Model(object):
 
         df = self.get_source_df(DataFrequency.MONTHLY, from_date, to_date)
 
-        dep_prefix, dep_name = Prefixes.process_prefixes(self.dependent_variable)
+        dep_prefix, dep_name = Prefixes.process_prefixes(
+            self.dependent_variable)
         dep_series = Dataseries.get_dataseries(dep_name)
         dep_series_df = dep_series.get_df(self.frequency, from_date, to_date)
         dep_series_df = Prefixes.apply_prefixes(
-                dep_prefix, dep_series_df, dep_name)
-
+            dep_prefix, dep_series_df, dep_name)
 
         df[self.dependent_variable] = dep_series_df
         print(df)
@@ -154,10 +152,16 @@ class Model(object):
             print(f"WARNING: df has NAN")
             print(df[df.isna().any(axis=1)])
             print("END NAN")
-        regression(df, list(self.coeffs.keys()), self.dependent_variable)
+
+        lm = regression(df, list(self.coeffs.keys()), self.dependent_variable)
+        for index, key in enumerate(self.coeffs.keys()):
+            self.coeffs[key] = lm.coef_[index]
+        self.coeffs["ALPHA"] = lm.intercept_
+        print(f"Updated model {self.name} to: ")
+        print(self)
 
 
-def regression(df: pd.DataFrame, X_names: list[str], Y_name: str):
+def regression(df: pd.DataFrame, X_names: list[str], Y_name: str) -> LinearRegression:
 
     X = df[X_names]
     Y = df[Y_name]
@@ -177,7 +181,7 @@ def regression(df: pd.DataFrame, X_names: list[str], Y_name: str):
     print(X_names)
     print(lm.coef_)
     print(lm.intercept_)
-    return lm.coef_
+    return lm
 
     # return lm.coef_ * X_train.std(axis=0)
 
