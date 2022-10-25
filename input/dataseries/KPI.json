@@ -68,7 +68,7 @@
     "description": "KPI justert for avgiftsenergi og eksludert energi",
     "frequency": "MONTHLY",
     "publisher": "SSB",
-    "bbg_ticker": "???",
+    "bbg_ticker": "NA",
     "link": "https://www.ssb.no/statbank/table/05327/tableViewLayout1/"
   }
 ]

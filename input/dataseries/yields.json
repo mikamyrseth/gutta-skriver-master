@@ -60,7 +60,7 @@
     "description": "Norwegian 10-year nominal swap rates",
     "frequency": "DAILY",
     "publisher": "Bloomberg",
-    "bbg_ticker": "NKSW10 curncy",
+    "bbg_ticker": "NKSW10 Curncy",
     "link": "NA"
   }
 ]

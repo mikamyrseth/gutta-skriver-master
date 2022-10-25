@@ -60,12 +60,15 @@ class Prefixes(Enum):
                 return df
 
     def apply_prefixes(prefixes: list, df, column_name: str):
+        # Apply prefixes in reverse order
+        prefixes.reverse()
+
         number_indexes = [i for i, x in enumerate(
             prefixes) if str(x).isdigit()]
         for i, prefix in enumerate(prefixes):
-            if i+1 in number_indexes:
+            if i-1 in number_indexes:
                 df = Prefixes.process_df(
-                    prefix, df, column_name, prefixes[i+1])
+                    prefix, df, column_name, prefixes[i-1])
             else:
                 df = Prefixes.process_df(prefix, df, column_name)
         return df

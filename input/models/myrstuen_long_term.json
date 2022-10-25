@@ -1,25 +1,24 @@
 {
-    "name": "Myrstuen langtidsmodell",
-    "authors": ["Lars Myrstuen, Didrik Sylte, Jan Tore Klovland"],
-    "publish_year": 2021,
-    "page": "62 (5.3)",
-    "model_start_date": "2022-01-01",
-    "model_end_date": "2022-01-01",
-    "dependent_variable": "LOG-NB-KKI",
-    "frequency": "MONTHLY",
-    "coeffs": {
-        "ALPHA": 3.4869,
-        "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": -1.5347,
-        "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE": 1.0238,
-        "LOG-ICE-BRENT": -0.059,
-        "LOG-DB-CVIX": 0.0878,
-        "LOG-S&P-500": 0.1637
-    },
-    "stds": {
-      "DELTA-ICE-BRENT": 0.0089
-    },
-    "stats": {
-      "adjustedR2": 0.358
-    }
+  "name": "Myrstuen langtidsmodell",
+  "authors": ["Lars Myrstuen, Didrik Sylte, Jan Tore Klovland"],
+  "publish_year": 2021,
+  "page": "62 (5.3)",
+  "model_start_date": "2022-01-01",
+  "model_end_date": "2022-01-01",
+  "dependent_variable": "LOG-NB-KKI",
+  "frequency": "MONTHLY",
+  "coeffs": {
+    "ALPHA": 3.4869,
+    "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": -1.5347,
+    "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE": 1.0238,
+    "LOG-ICE-BRENT": -0.059,
+    "LOG-DB-CVIX": 0.0878,
+    "LOG-S&P-500": 0.1637
+  },
+  "stds": {
+    "DELTA-ICE-BRENT": 0.0089
+  },
+  "stats": {
+    "adjustedR2": 0.358
   }
-  
+}

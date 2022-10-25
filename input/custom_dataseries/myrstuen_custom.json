@@ -30,7 +30,7 @@
     "weights": {
       "SW-GB-12M": 0.142,
       "SW-CA-12M": 0.02,
-      "SW-EU-12M": 0.522,
+      "SW-EU-12M": 0.525,
       "SW-JP-12M": 0.022,
       "SW-PL-12M": 0.044,
       "SW-SE-12M": 0.16,
@@ -42,8 +42,8 @@
     "page": "23",
     "type": "ADD",
     "weights": {
-      "LOG-SW-NO-12M": 1,
-      "LOG-CUSTOM-MYRSTUEN-FOREIGN-INTEREST-12M": -1
+      "SW-NO-12M": 0.01,
+      "CUSTOM-MYRSTUEN-FOREIGN-INTEREST-12M": -0.01
     }
   },
   {
@@ -53,7 +53,7 @@
     "weights": {
       "ES-HICP-GB": 0.142,
       "SLFED-ICP-CA": 0.02,
-      "ES-HICP-EU": 0.522,
+      "ES-HICP-EU": 0.525,
       "SLFED-ICP-JP": 0.022,
       "ES-HICP-PO": 0.044,
       "ES-HICP-SE": 0.16,
