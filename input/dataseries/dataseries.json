@@ -44,7 +44,7 @@
     "description": "Norwegian Interbank Offered Rate 3MND",
     "frequency": "DAILY",
     "publisher": "??",
-    "bbg_ticker": "NIBOR",
+    "bbg_ticker": "NIBOR3M Index",
     "link": "??"
   },
   {
@@ -88,7 +88,7 @@
     "link": "https://www.newyorkfed.org/research/policy/oil_price_dynamics_report"
   },
   {
-    "name": "GPR-NARROW",
+    "name": "GPR",
     "description": "Geopolitical Risk Index. A monthly index of geopolitical risk developed and updated by D. Caldara and M. Iacoviello",
     "frequency": "WEEKLY",
     "publisher": "Matteo Iacoviello",
@@ -100,7 +100,7 @@
     "description": "Barclays' emerging economies currency volatility index",
     "frequency": "DAILY",
     "publisher": "Barclays",
-    "bbg_ticker": "BXIIVEMG",
+    "bbg_ticker": "BXIIVEMG Index",
     "link": "??"
   },
 
