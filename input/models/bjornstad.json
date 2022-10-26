@@ -7,7 +7,7 @@
   "model_end_date": "",
   "dependent_variable": "DELTA-LOG-NOKEUR",
   "frequency": "QUARTERLY",
-  "coeffs": {
+  "weights": {
     "LAGGED-DELTA-2-LOG-NOKEUR": -0.24,
     "CUSTOM-BJORNSTAD-PRICE-DIFFERENCE": 0.89,
     "CUSTOM-BJORNSTAD-PRICE-DIFFERENCE-LAG": -0.47,

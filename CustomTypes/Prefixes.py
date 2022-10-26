@@ -1,5 +1,6 @@
 from enum import Enum
 import enum
+import warnings
 import numpy as np
 
 
@@ -40,24 +41,22 @@ class Prefixes(Enum):
             return df
         match prefix:
             case Prefixes.CUSTOM:
-                print("After:", df)
                 return df
             case Prefixes.LOG:
                 df[column_name] = np.log(df[column_name])
                 print("After:", df)
                 if df.isnull().values.any():
-                    print(f"WARNING: Series has NAN")
+                    warnings.warn(f"WARNING: Series has NAN")
                     print(df)
-                return df
             case Prefixes.DELTA:
                 df = df.diff(step)
-                print("After:", df)
-                return df
+                df = df.fillna(0)
             case Prefixes.LAGGED:
                 lagged = df[df.columns.values[0]].shift(step)
                 df[df.columns.values[0]] = lagged
-                print("After:", df)
-                return df
+                df = df.fillna(0)
+        print("After:", df)
+        return df
 
     def apply_prefixes(prefixes: list, df, column_name: str):
         # Apply prefixes in reverse order

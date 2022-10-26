@@ -7,7 +7,7 @@
   "model_end_date": "2018-12-31",
   "dependent_variable": "LOG-NB-I44",
   "frequency": "WEEKLY",
-  "coeffs": {
+  "weights": {
     "ALPHA": 4.513,
     "CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M": 0.102,
     "CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR": 0.125,

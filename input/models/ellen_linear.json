@@ -1,23 +1,21 @@
 {
-    "name": "Ellen linear model",
-    "authors": "Saskia Ter Ellen",
-    "publish_year": 2016,
-    "page": "3",
-    "model_start_date": "2001-01-01",
-    "model_end_date": "2015-08-01",
-    "dependent_variable": "LOG-NB-I44",
-    "frequency": "MONTHLY",
-    "coeffs": {
-      "ALPHA": 0.0018,
-      "DELTA-LOG-ICE-BRENT": -0.0661
-
-    },
-    "stds": {
-        "CONSTANT":1.296,
-        "DELTA-LOG-ICE-BRENT":-4.9851
-    },
-    "stats": {
-      "adjustedR2":0.3367
-    }
+  "name": "Ellen linear model",
+  "authors": "Saskia Ter Ellen",
+  "publish_year": 2016,
+  "page": "3",
+  "model_start_date": "2001-01-01",
+  "model_end_date": "2015-08-01",
+  "dependent_variable": "LOG-NB-I44",
+  "frequency": "MONTHLY",
+  "weights": {
+    "ALPHA": 0.0018,
+    "DELTA-LOG-ICE-BRENT": -0.0661
+  },
+  "stds": {
+    "CONSTANT": 1.296,
+    "DELTA-LOG-ICE-BRENT": -4.9851
+  },
+  "stats": {
+    "adjustedR2": 0.3367
   }
-  
+}

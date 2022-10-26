@@ -7,7 +7,7 @@
   "model_end_date": "2022-01-01",
   "dependent_variable": "DELTA-LOG-NB-KKI",
   "frequency": "MONTHLY",
-  "coeffs": {
+  "weights": {
     "ALPHA": 0.0002,
     "LAGGED-DELTA-LOG-NB-KKI": 0.1985,
     "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": -2.7891,

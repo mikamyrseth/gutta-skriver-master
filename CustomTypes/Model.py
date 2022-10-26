@@ -18,7 +18,7 @@ class Model(object):
                  authors: "list[str]",
                  publish_year: int,
                  page: str,
-                 coeffs: dict,
+                 weights: dict,
                  model_start_date: str,
                  model_end_date: str,
                  dependent_variable: str,
@@ -30,7 +30,7 @@ class Model(object):
         self.authors = authors
         self.publish_year = publish_year
         self.page = page
-        self.coeffs = coeffs
+        self.weights = weights
         self.model_start_date = model_start_date
         self.model_end_date = model_end_date
         self.dependent_variable = dependent_variable
@@ -43,7 +43,7 @@ class Model(object):
 
     def get_dataseries(self) -> "list[Dataseries]":
         dataseries = set()
-        for coeff in self.coeffs:
+        for coeff in self.weights:
             prefixes, name = Prefixes.process_prefixes(coeff)
             if Prefixes.CUSTOM in prefixes:
                 custom_dataseries = CustomDataseries.getCustomDataseries(name)
@@ -59,8 +59,8 @@ class Model(object):
 
     def run_model(self, from_date: datetime, to_date: datetime):
         df = DataFrame()
-        self.coeffs[self.dependent_variable] = 0
-        for series, weight in self.coeffs.items():
+        self.weights[self.dependent_variable] = 0
+        for series, weight in self.weights.items():
             prefixes, source_series_name = Prefixes.process_prefixes(series)
 
             if Prefixes.CUSTOM in prefixes:
@@ -78,7 +78,7 @@ class Model(object):
 
         for index, row in df.iterrows():
             prediction = 0
-            for series, weight in self.coeffs.items():
+            for series, weight in self.weights.items():
                 prediction += row[series]*weight
 
             df.loc[index, 'OUTPUT'] = prediction
@@ -98,7 +98,7 @@ class Model(object):
 
     def get_source_df(self, frequency: DataFrequency, from_date: datetime, to_date: datetime) -> DataFrame:
         df = DataFrame()
-        for series, weight in self.coeffs.items():
+        for series, weight in self.weights.items():
             prefixes, source_series_name = Prefixes.process_prefixes(series)
 
             if Prefixes.CUSTOM in prefixes:
@@ -117,24 +117,15 @@ class Model(object):
 
     def reestimate(self, from_date: datetime, to_date: datetime):
         # recalculate relevant dataseries
-        for series, weight in self.coeffs.items():
+        for series, weight in self.weights.items():
             prefixes, source_series_name = Prefixes.process_prefixes(series)
             if Prefixes.CUSTOM in prefixes:
                 dataseries = CustomDataseries.getCustomDataseries(
                     source_series_name)
             else:
                 dataseries = Dataseries.get_dataseries(source_series_name)
-            dataseries.reestimate(from_date, to_date)
-
-        # recalculate relevant dataseries
-        for series, weight in self.coeffs.items():
-            prefixes, source_series_name = Prefixes.process_prefixes(series)
-            if Prefixes.CUSTOM in prefixes:
-                dataseries = CustomDataseries.getCustomDataseries(
-                    source_series_name)
-            else:
-                dataseries = Dataseries.get_dataseries(source_series_name)
-            dataseries.reestimate(from_date, to_date)
+            print("reestimating ", source_series_name)
+            dataseries.reestimate(from_date, to_date, self.frequency)
 
         df = self.get_source_df(DataFrequency.MONTHLY, from_date, to_date)
 
@@ -147,17 +138,17 @@ class Model(object):
 
         df[self.dependent_variable] = dep_series_df
         print(df)
-        print(list(self.coeffs.keys()))
+        print(list(self.weights.keys()))
         if df.isnull().values.any():
             print(f"WARNING: df has NAN")
             print(df[df.isna().any(axis=1)])
             print("END NAN")
 
-        lm = regression(df, list(self.coeffs.keys()), self.dependent_variable)
-        for index, key in enumerate(self.coeffs.keys()):
-            self.coeffs[key] = lm.coef_[index]
-        self.coeffs["ALPHA"] = lm.intercept_
-        print(f"Updated model {self.name} to: ")
+        lm = regression(df, list(self.weights.keys()), self.dependent_variable)
+        for index, key in enumerate(self.weights.keys()):
+            self.weights[key] = lm.coef_[index]
+        self.weights["ALPHA"] = lm.intercept_
+        print(f"Reestimated model {self.name} to: ")
         print(self)
 
 

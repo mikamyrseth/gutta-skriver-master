@@ -7,7 +7,7 @@
   "model_end_date": "2015-08-01",
   "dependent_variable": "DELTA-LOG-NB-I44",
   "frequency": "MONTHLY",
-  "coeffs": {
+  "weights": {
     "ALPHA": 0.0018,
     "DELTA-LOG-ICE-BRENT-POSITIVE": -0.0776,
     "DELTA-LOG-ICE-BRENT-NEGATIVE": -0.0562,
