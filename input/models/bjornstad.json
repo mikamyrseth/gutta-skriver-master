@@ -3,8 +3,8 @@
   "authors": "Roger Bjørnstad, Eilev Jansen",
   "publish_year": 2006,
   "page": "46",
-  "model_start_date": "31.03.2001",
-  "model_end_date": "30.09.2006",
+  "model_start_date": "2001-03-31",
+  "model_end_date": "2006-09-30",
   "dependent_variable": "DELTA-LOG-NOKEUR",
   "frequency": "QUARTERLY",
   "weights": {

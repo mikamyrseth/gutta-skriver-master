@@ -6,6 +6,9 @@ from numpy import inner
 import pandas as pd
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
+import scipy
+from sklearn.metrics import mean_absolute_percentage_error
+from sklearn.metrics import r2_score
 
 
 from pandas import DataFrame
@@ -31,8 +34,8 @@ class Model(object):
         self.publish_year = publish_year
         self.page = page
         self.weights = weights
-        self.model_start_date = model_start_date
-        self.model_end_date = model_end_date
+        self.model_start_date = datetime.datetime.fromisoformat(model_start_date)
+        self.model_end_date = datetime.datetime.fromisoformat(model_end_date)
         self.dependent_variable = dependent_variable
         self.frequency = DataFrequency.get_frequency_enum(frequency)
         self.stds = stds
@@ -145,10 +148,22 @@ class Model(object):
             print("END NAN")
 
         lm = regression(df, list(self.weights.keys()), self.dependent_variable)
+        old_coeffs = list(self.weights.values()).copy()
         for index, key in enumerate(self.weights.keys()):
             self.weights[key] = lm.coef_[index]
         self.weights["ALPHA"] = lm.intercept_
         print(f"Reestimated model {self.name} to: ")
+
+
+        new_coeffs = list(self.weights.values())
+        print("comparing")
+        print(old_coeffs)
+        print(new_coeffs)
+        error = mean_absolute_percentage_error(old_coeffs,new_coeffs)
+        print("model deviance is (MAPE)", error)
+        r2 = r2_score(old_coeffs, new_coeffs)
+        print("R2", r2)
+
         print(self)
 
 
@@ -172,6 +187,9 @@ def regression(df: pd.DataFrame, X_names: list[str], Y_name: str) -> LinearRegre
     print(X_names)
     print(lm.coef_)
     print(lm.intercept_)
+
+    print("R squared: ", lm.score(X_train, Y_train))
+
     return lm
 
     # return lm.coef_ * X_train.std(axis=0)

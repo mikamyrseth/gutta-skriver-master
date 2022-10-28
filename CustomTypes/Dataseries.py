@@ -11,6 +11,8 @@ from CustomTypes.Prefixes import Prefixes
 import warnings
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error
+from sklearn.metrics import r2_score
 
 
 class DataFrequency(str, Enum):
@@ -230,11 +232,23 @@ class CustomDataseries(object):
             print(df[df.isna().any(axis=1)])
             print("END NAN")
 
+
         lm = regression(df, list(self.weights.keys()), self.dependent_variable)
+        old_coeffs = list(self.weights.values()).copy()
         for index, key in enumerate(self.weights.keys()):
             self.weights[key] = lm.coef_[index]
         self.weights["ALPHA"] = lm.intercept_
         print(f"Reestimated dataseries {self.name} to: ")
+
+
+        new_coeffs = list(self.weights.values())
+        print("comparing")
+        print(old_coeffs)
+        print(new_coeffs)
+        mse = mean_squared_error(old_coeffs,new_coeffs)
+        r2 = r2_score(old_coeffs, new_coeffs)
+        print("dataseries deviance is (MSE)", mse)
+        print("R2", r2)
         print(self)
 
 
