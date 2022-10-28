@@ -86,7 +86,7 @@ class Dataseries(object):
 
     def get_df(self, frequency: DataFrequency, from_date: datetime, to_date: datetime) -> DataFrame:
         df = self.df
-        df = df.resample(frequency.value).ffill()
+        df = df.resample(frequency.value).mean()
 
         df = df.loc[from_date:to_date]
         if df.loc[from_date:from_date].empty:
