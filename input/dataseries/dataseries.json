@@ -32,11 +32,11 @@
     "link": "NA"
   },
   {
-    "name": "NOKEUR",
+    "name": "EURNOK",
     "description": "NOK to EUR currency pair",
     "frequency": "DAILY",
     "publisher": "??",
-    "bbg_ticker": "NOKEUR Curncy",
+    "bbg_ticker": "EURNOK Curncy",
     "link": "??"
   },
   {
@@ -60,7 +60,7 @@
     "description": "Norwegian nominal effective exchange rate",
     "frequency": "DAILY",
     "publisher": "Norges Bank",
-    "bbg_ticker": "??",
+    "bbg_ticker": "NA",
     "link": "https://www.norges-bank.no/tema/Statistikk/Valutakurser/?tab=currency&id=I44"
   },
   {
@@ -68,7 +68,7 @@
     "description": "Oil price resulting of demand",
     "frequency": "WEEKLY",
     "publisher": "Federal Reserve Bank of New York",
-    "bbg_ticker": "USOPWDEM Index",
+    "bbg_ticker": "NA",
     "link": "https://www.newyorkfed.org/research/policy/oil_price_dynamics_report"
   },
   {
@@ -76,7 +76,7 @@
     "description": "Oil price resulting of supply",
     "frequency": "WEEKLY",
     "publisher": "Federal Reserve Bank of New York",
-    "bbg_ticker": "USOPWSUP Index",
+    "bbg_ticker": "NA",
     "link": "https://www.newyorkfed.org/research/policy/oil_price_dynamics_report"
   },
   {
@@ -84,7 +84,7 @@
     "description": "Oil price not explained by supply or demand factors",
     "frequency": "WEEKLY",
     "publisher": "Federal Reserve Bank of New York",
-    "bbg_ticker": "USOPWRES Index",
+    "bbg_ticker": "NA",
     "link": "https://www.newyorkfed.org/research/policy/oil_price_dynamics_report"
   },
   {
@@ -92,7 +92,7 @@
     "description": "Geopolitical Risk Index. A monthly index of geopolitical risk developed and updated by D. Caldara and M. Iacoviello",
     "frequency": "WEEKLY",
     "publisher": "Matteo Iacoviello",
-    "bbg_ticker": "??",
+    "bbg_ticker": "NA",
     "link": "https://www.matteoiacoviello.com/gpr.htm"
   },
   {
