@@ -9,7 +9,7 @@
   },
   {
     "name": "ES-HICP-EU",
-    "description": "HKPI for Eurosonen",
+    "description": "HKPI for Eurosonen (EA)",
     "frequency": "MONTHLY",
     "publisher": "Eurostat",
     "bbg_ticker": "NA",
