@@ -34,7 +34,8 @@ class Model(object):
         self.publish_year = publish_year
         self.page = page
         self.weights = weights
-        self.model_start_date = datetime.datetime.fromisoformat(model_start_date)
+        self.model_start_date = datetime.datetime.fromisoformat(
+            model_start_date)
         self.model_end_date = datetime.datetime.fromisoformat(model_end_date)
         self.dependent_variable = dependent_variable
         self.frequency = DataFrequency.get_frequency_enum(frequency)
@@ -94,6 +95,8 @@ class Model(object):
 
         print("PROCESSED MODEL!: ")
         print(df)
+        r2 = r2_score(df[self.dependent_variable], df["OUTPUT"])
+        print("R2", r2)
         # pd.set_option('display.max_columns', None)
         # pd.reset_option(“max_columns”)
         # print(df.head())
@@ -154,12 +157,11 @@ class Model(object):
         self.weights["ALPHA"] = lm.intercept_
         print(f"Reestimated model {self.name} to: ")
 
-
         new_coeffs = list(self.weights.values())
         print("comparing")
         print(old_coeffs)
         print(new_coeffs)
-        error = mean_absolute_percentage_error(old_coeffs,new_coeffs)
+        error = mean_absolute_percentage_error(old_coeffs, new_coeffs)
         print("model deviance is (MAPE)", error)
         r2 = r2_score(old_coeffs, new_coeffs)
         print("R2", r2)
