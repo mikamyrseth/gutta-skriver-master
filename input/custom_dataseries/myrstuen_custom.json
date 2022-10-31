@@ -51,7 +51,7 @@
     "page": "XX?",
     "type": "ADD",
     "weights": {
-      "ES-HICP-GB": 0.142,
+      "SLFED-ICP-UK": 0.142,
       "SLFED-ICP-CA": 0.02,
       "ES-HICP-EU": 0.525,
       "SLFED-ICP-JP": 0.022,

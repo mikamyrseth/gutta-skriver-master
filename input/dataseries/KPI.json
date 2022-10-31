@@ -70,5 +70,13 @@
     "publisher": "SSB",
     "bbg_ticker": "NA",
     "link": "https://www.ssb.no/statbank/table/05327/tableViewLayout1/"
+  },
+  {
+    "name": "SLFED-ICP-UK",
+    "description": "Consumer Price Index of All Items in the United Kingdom",
+    "frequency": "MONTHLY",
+    "publisher": "Fedreal Reserve Bank of St. Louis",
+    "bbg_ticker": "NA",
+    "link": "https://fred.stlouisfed.org/series/GBRCPIALLMINMEI"
   }
 ]
