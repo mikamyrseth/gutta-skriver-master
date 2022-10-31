@@ -95,7 +95,11 @@ class Model(object):
 
         print("PROCESSED MODEL!: ")
         print(df)
-        r2 = r2_score(df[self.dependent_variable], df["OUTPUT"])
+        print("Comparing")
+        print(df[self.dependent_variable].tolist())
+        print("to")
+        print(df["OUTPUT"].tolist())
+        r2 = r2_score(df[self.dependent_variable].tolist(), df["OUTPUT"].tolist())
         print("R2", r2)
         # pd.set_option('display.max_columns', None)
         # pd.reset_option(“max_columns”)
