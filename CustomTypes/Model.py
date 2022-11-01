@@ -9,6 +9,7 @@ from sklearn.model_selection import train_test_split
 import scipy
 from sklearn.metrics import mean_absolute_percentage_error
 from sklearn.metrics import r2_score
+import matplotlib.pyplot as plt
 
 
 from pandas import DataFrame
@@ -27,19 +28,22 @@ class Model(object):
                  dependent_variable: str,
                  frequency: DataFrequency,
                  stds: dict,
-                 stats: dict
+                 stats: dict,
+                 lags: int = 0,
                  ):
         self.name = name
         self.authors = authors
         self.publish_year = publish_year
         self.page = page
         self.weights = weights
-        self.model_start_date = datetime.datetime.fromisoformat(model_start_date)
+        self.model_start_date = datetime.datetime.fromisoformat(
+            model_start_date)
         self.model_end_date = datetime.datetime.fromisoformat(model_end_date)
         self.dependent_variable = dependent_variable
         self.frequency = DataFrequency.get_frequency_enum(frequency)
         self.stds = stds
         self.stats = stats
+        self.lags = lags
 
     def __str__(self):
         return '   '.join("%s: %s\n" % item for item in vars(self).items())
@@ -79,6 +83,9 @@ class Model(object):
 
             df[series] = inner_df
 
+        # Remove lagged rows
+        df = df.iloc[self.lags:, :]
+
         for index, row in df.iterrows():
             prediction = 0
             for series, weight in self.weights.items():
@@ -94,6 +101,13 @@ class Model(object):
 
         print("PROCESSED MODEL!: ")
         print(df)
+        print("Comparing")
+        print(df[self.dependent_variable].tolist())
+        print("to")
+        print(df["OUTPUT"].tolist())
+        r2 = r2_score(df[self.dependent_variable].tolist(),
+                      df["OUTPUT"].tolist())
+        print("R2", r2)
         # pd.set_option('display.max_columns', None)
         # pd.reset_option(“max_columns”)
         # print(df.head())
@@ -140,6 +154,10 @@ class Model(object):
             dep_prefix, dep_series_df, dep_name)
 
         df[self.dependent_variable] = dep_series_df
+
+        # Remove lagged rows
+        df = df.iloc[self.lags:, :]
+
         print(df)
         print(list(self.weights.keys()))
         if df.isnull().values.any():
@@ -154,12 +172,11 @@ class Model(object):
         self.weights["ALPHA"] = lm.intercept_
         print(f"Reestimated model {self.name} to: ")
 
-
         new_coeffs = list(self.weights.values())
         print("comparing")
         print(old_coeffs)
         print(new_coeffs)
-        error = mean_absolute_percentage_error(old_coeffs,new_coeffs)
+        error = mean_absolute_percentage_error(old_coeffs, new_coeffs)
         print("model deviance is (MAPE)", error)
         r2 = r2_score(old_coeffs, new_coeffs)
         print("R2", r2)
@@ -181,12 +198,20 @@ def regression(df: pd.DataFrame, X_names: list[str], Y_name: str) -> LinearRegre
     lm = LinearRegression()
     lm.fit(X_train, Y_train)
 
+    lm.normalize
+
     #print("STD", X_train.std(axis=0))
     #print("coef.", lm.coef_)
-    #print("norm. coef ", lm.coef_* X_train.std(axis=0))
+
     print(X_names)
     print(lm.coef_)
     print(lm.intercept_)
+
+    normalized_coefficients = lm.coef_ * X_train.std(axis=0)
+
+    print("norm. coef ", normalized_coefficients)
+    normalized_coefficients.plot(kind="barh")
+    plt.show()
 
     print("R squared: ", lm.score(X_train, Y_train))
 

@@ -15,12 +15,12 @@
     "recalculate": true,
     "dependent_variable": "LOG-NB-KKI",
     "weights": {
-      "ALPHA": -3.4869,
-      "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": 1.5347,
-      "CUSTOM-MYRSTUEN-FOREIGN-PRICE": -1.0238,
-      "LOG-ICE-BRENT": 0.059,
-      "LOG-DB-CVIX": -0.0878,
-      "LOG-S&P-500": -0.1637
+      "ALPHA": 3.4869,
+      "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": -1.5347,
+      "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE": 1.0238,
+      "LOG-ICE-BRENT": -0.059,
+      "LOG-DB-CVIX": 0.0878,
+      "LOG-S&P-500": 0.1637
     }
   },
   {
@@ -42,8 +42,8 @@
     "page": "23",
     "type": "ADD",
     "weights": {
-      "LOG-SW-NO-12M": 0.01,
-      "LOG-CUSTOM-MYRSTUEN-FOREIGN-INTEREST-12M": -0.01
+      "SW-NO-12M": 0.01,
+      "CUSTOM-MYRSTUEN-FOREIGN-INTEREST-12M": -0.01
     }
   },
   {
@@ -51,7 +51,7 @@
     "page": "XX?",
     "type": "ADD",
     "weights": {
-      "ES-HICP-GB": 0.142,
+      "SLFED-ICP-UK": 0.142,
       "SLFED-ICP-CA": 0.02,
       "ES-HICP-EU": 0.525,
       "SLFED-ICP-JP": 0.022,
