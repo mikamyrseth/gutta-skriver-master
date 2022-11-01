@@ -27,7 +27,8 @@ class Model(object):
                  dependent_variable: str,
                  frequency: DataFrequency,
                  stds: dict,
-                 stats: dict
+                 stats: dict,
+                 lags: int = 0,
                  ):
         self.name = name
         self.authors = authors
@@ -41,6 +42,7 @@ class Model(object):
         self.frequency = DataFrequency.get_frequency_enum(frequency)
         self.stds = stds
         self.stats = stats
+        self.lags = lags
 
     def __str__(self):
         return '   '.join("%s: %s\n" % item for item in vars(self).items())
@@ -80,6 +82,9 @@ class Model(object):
 
             df[series] = inner_df
 
+        # Remove lagged rows
+        df = df.iloc[self.lags:, :]
+
         for index, row in df.iterrows():
             prediction = 0
             for series, weight in self.weights.items():
@@ -99,7 +104,8 @@ class Model(object):
         print(df[self.dependent_variable].tolist())
         print("to")
         print(df["OUTPUT"].tolist())
-        r2 = r2_score(df[self.dependent_variable].tolist(), df["OUTPUT"].tolist())
+        r2 = r2_score(df[self.dependent_variable].tolist(),
+                      df["OUTPUT"].tolist())
         print("R2", r2)
         # pd.set_option('display.max_columns', None)
         # pd.reset_option(“max_columns”)
@@ -147,6 +153,10 @@ class Model(object):
             dep_prefix, dep_series_df, dep_name)
 
         df[self.dependent_variable] = dep_series_df
+
+        # Remove lagged rows
+        df = df.iloc[self.lags:, :]
+
         print(df)
         print(list(self.weights.keys()))
         if df.isnull().values.any():
