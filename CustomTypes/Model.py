@@ -9,6 +9,7 @@ from sklearn.model_selection import train_test_split
 import scipy
 from sklearn.metrics import mean_absolute_percentage_error
 from sklearn.metrics import r2_score
+import matplotlib.pyplot as plt
 
 
 from pandas import DataFrame
@@ -197,12 +198,20 @@ def regression(df: pd.DataFrame, X_names: list[str], Y_name: str) -> LinearRegre
     lm = LinearRegression()
     lm.fit(X_train, Y_train)
 
+    lm.normalize
+
     #print("STD", X_train.std(axis=0))
     #print("coef.", lm.coef_)
-    #print("norm. coef ", lm.coef_* X_train.std(axis=0))
+
     print(X_names)
     print(lm.coef_)
     print(lm.intercept_)
+
+    normalized_coefficients = lm.coef_ * X_train.std(axis=0)
+
+    print("norm. coef ", normalized_coefficients)
+    normalized_coefficients.plot(kind="barh")
+    plt.show()
 
     print("R squared: ", lm.score(X_train, Y_train))
 
