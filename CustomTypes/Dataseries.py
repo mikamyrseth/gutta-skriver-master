@@ -88,7 +88,7 @@ class Dataseries(object):
 
     def get_df(self, frequency: DataFrequency, from_date: datetime, to_date: datetime) -> DataFrame:
         df = self.df
-        df = df.resample(frequency.value).mean()
+        df = df.resample(frequency.value).ffill()
 
         df = df.loc[from_date:to_date]
         if df.loc[from_date:from_date].empty:
@@ -232,7 +232,6 @@ class CustomDataseries(object):
             print(df[df.isna().any(axis=1)])
             print("END NAN")
 
-
         lm = regression(df, list(self.weights.keys()), self.dependent_variable)
         old_coeffs = list(self.weights.values()).copy()
         for index, key in enumerate(self.weights.keys()):
@@ -240,12 +239,11 @@ class CustomDataseries(object):
         self.weights["ALPHA"] = lm.intercept_
         print(f"Reestimated dataseries {self.name} to: ")
 
-
         new_coeffs = list(self.weights.values())
         print("comparing")
         print(old_coeffs)
         print(new_coeffs)
-        mse = mean_squared_error(old_coeffs,new_coeffs)
+        mse = mean_squared_error(old_coeffs, new_coeffs)
         r2 = r2_score(old_coeffs, new_coeffs)
         print("dataseries deviance is (MSE)", mse)
         print("R2", r2)

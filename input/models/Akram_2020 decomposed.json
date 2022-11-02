@@ -4,7 +4,7 @@
   "publish_year": 2020,
   "page": "3&7",
   "model_start_date": "2010-01-15",
-  "model_end_date": "2018-12-31",
+  "model_end_date": "2018-12-30",
   "dependent_variable": "LOG-NB-I44",
   "frequency": "WEEKLY",
   "weights": {

@@ -61,8 +61,7 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
             all_models.append(model)
 
     for model in all_models:
-        if model.name == "Ellen linear model":
-            print("Running Ellen linear model")
+        if model.name == "Bjørnstad korttidsmodell":
             model.reestimate(model.model_start_date, model.model_end_date)
             # model.reestimate(model.model_end_date, date(2021, 12, 31))
             # model.reestimate(model.model_start_date, date(2021, 12, 31))

@@ -144,7 +144,7 @@ class Model(object):
             print("reestimating ", source_series_name)
             dataseries.reestimate(from_date, to_date, self.frequency)
 
-        df = self.get_source_df(DataFrequency.MONTHLY, from_date, to_date)
+        df = self.get_source_df(self.frequency, from_date, to_date)
 
         dep_prefix, dep_name = Prefixes.process_prefixes(
             self.dependent_variable)

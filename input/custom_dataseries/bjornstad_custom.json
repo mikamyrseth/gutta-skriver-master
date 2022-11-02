@@ -22,7 +22,7 @@
     "page": "46",
     "type": "ADD",
     "weights": {
-      "LAGGED-LOG-NOKEUR": 1,
+      "LAGGED-LOG-EURNOK": 1,
       "LAGGED-LOG-ES-HICP-NO": -1,
       "LOG-ES-HICP-EU": 1
     }

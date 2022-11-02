@@ -67,7 +67,7 @@ class Prefixes(Enum):
         for i, prefix in enumerate(prefixes):
             if i-1 in number_indexes:
                 df = Prefixes.process_df(
-                    prefix, df, column_name, prefixes[i-1])
+                    prefix, df, column_name, int(prefixes[i-1]))
             else:
                 df = Prefixes.process_df(prefix, df, column_name)
         return df
