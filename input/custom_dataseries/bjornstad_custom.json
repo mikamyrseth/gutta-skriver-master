@@ -24,7 +24,7 @@
     "weights": {
       "LAGGED-LOG-EURNOK": 1,
       "LAGGED-LOG-ES-HICP-NO": -1,
-      "LOG-ES-HICP-EU": 1
+      "LAGGED-LOG-ES-HICP-EU": 1
     }
   },
   {
@@ -33,9 +33,9 @@
     "type": "ADD",
     "weights": {
       "LAGGED-NIBOR": 1,
-      "LAGGED-DELTA-LOG-ES-HICP-NO": -1,
+      "LAGGED-DELTA-LOG-ES-HICP-NO": -100,
       "LAGGED-EURIBOR": -1,
-      "LAGGED-DELTA-LOG-ES-HICP-EU": 1
+      "LAGGED-DELTA-LOG-ES-HICP-EU": 100
     }
   }
 ]

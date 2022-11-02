@@ -24,13 +24,15 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
             all_dataseries = all_dataseries+dataseries
     Dataseries.data = all_dataseries
 
-    # Check values
-    for dataseries in all_dataseries:
-        if dataseries.df.empty:
-            print(f"{dataseries.name}: MISSING")
-        else:
-            print(
-                f"{dataseries.name}:{dataseries.bbg_ticker} has data from {dataseries.df.index[0]} to {dataseries.df.index[-1]}")
+    
+    # Data debugging
+    if True:
+        for dataseries in all_dataseries:
+            if dataseries.df.empty:
+                print(f"{dataseries.name}: MISSING")
+            else:
+                print(
+                    f"{dataseries.name}:{dataseries.bbg_ticker} has data from {dataseries.df.index[0]} to {dataseries.df.index[-1]}")
 
     all_custom_dataseries = []
     directory = "input/custom_dataseries"
@@ -60,14 +62,17 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
             model_json.close()
             all_models.append(model)
 
-    for model in all_models:
-        if model.name == "Bjørnstad korttidsmodell":
-            model.reestimate(model.model_start_date, model.model_end_date)
-            # model.reestimate(model.model_end_date, date(2021, 12, 31))
-            # model.reestimate(model.model_start_date, date(2021, 12, 31))
-            # model.run_model(model.model_start_date, model.model_end_date)
-            # model.run_model(model.model_end_date, date(2021, 12, 31))
-            # model.run_model(model.model_start_date, date(2021, 12, 31))
+    # Run models
+    if True:
+        for model in all_models:
+            if model.name == "Ellen linear model":
+                print("Running model:", model.name)
+                model.reestimate(model.model_start_date, model.model_end_date)
+                # model.reestimate(model.model_end_date, date(2021, 12, 31))
+                # model.reestimate(model.model_start_date, date(2021, 12, 31))
+                # model.run_model(model.model_start_date, model.model_end_date)
+                # model.run_model(model.model_end_date, date(2021, 12, 31))
+                # model.run_model(model.model_start_date, date(2021, 12, 31))
 
 
 load_json()
