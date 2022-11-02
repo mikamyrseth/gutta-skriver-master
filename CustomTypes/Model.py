@@ -175,7 +175,7 @@ class Model(object):
         new_coeffs = list(self.weights.values())
         print("comparing")
         print(old_coeffs)
-        print(new_coeffs)
+        print([round(cof, 2) for cof in new_coeffs])
         error = mean_absolute_percentage_error(old_coeffs, new_coeffs)
         print("model deviance is (MAPE)", error)
         r2 = r2_score(old_coeffs, new_coeffs)
