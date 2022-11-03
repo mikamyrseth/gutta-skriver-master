@@ -24,7 +24,6 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
             all_dataseries = all_dataseries+dataseries
     Dataseries.data = all_dataseries
 
-    
     # Data debugging
     if True:
         for dataseries in all_dataseries:

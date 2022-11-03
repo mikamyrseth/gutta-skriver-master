@@ -211,7 +211,7 @@ def regression(df: pd.DataFrame, X_names: list[str], Y_name: str) -> LinearRegre
 
     print("norm. coef ", normalized_coefficients)
     normalized_coefficients.plot(kind="barh")
-    plt.show()
+    plt.savefig('normalized-coefficients.png')
 
     print("R squared: ", lm.score(X_train, Y_train))
 
