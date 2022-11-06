@@ -88,12 +88,12 @@ class Dataseries(object):
 
     def get_df(self, frequency: DataFrequency, from_date: datetime, to_date: datetime) -> DataFrame:
         df = self.df
-        df = df.resample(frequency.value).ffill()
+        df = df.resample(frequency.value).mean()
 
         df = df.loc[from_date:to_date]
         if df.loc[from_date:from_date].empty:
             warnings.warn(
-                f"Series {self.name} does not have data from {to_date}. First data is {df.iloc[0]}")
+                f"Series {self.name} does not have data from {from_date}. First data is {df.iloc[0]}")
         if df.loc[to_date:to_date].empty:
             warnings.warn(
                 f"Series {self.name} does not have data to {to_date}. Last data is {df.iloc[-1]}")
