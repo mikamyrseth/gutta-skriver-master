@@ -35,8 +35,8 @@ class Prefixes(Enum):
         return prefixes_in_name, dataseries_name
 
     def process_df(prefix, df, column_name: str, step=1):
-        print(f"Processed prefix for {column_name}, {prefix} with step {step}")
-        print("Before:", df)
+        # print(f"Processed prefix for {column_name}, {prefix} with step {step}")
+        # print("Before:", df)
         if str(prefix).isdigit():
             return df
         match prefix:
@@ -44,10 +44,10 @@ class Prefixes(Enum):
                 return df
             case Prefixes.LOG:
                 df[column_name] = np.log(df[column_name])
-                print("After:", df)
+                # print("After:", df)
                 if df.isnull().values.any():
                     warnings.warn(f"WARNING: Series has NAN")
-                    print(df)
+                    # print(df)
             case Prefixes.DELTA:
                 df = df.diff(step)
                 df = df.fillna(0)
@@ -55,7 +55,7 @@ class Prefixes(Enum):
                 lagged = df[df.columns.values[0]].shift(step)
                 df[df.columns.values[0]] = lagged
                 df = df.fillna(0)
-        print("After:", df)
+        # print("After:", df)
         return df
 
     def apply_prefixes(prefixes: list, df, column_name: str):

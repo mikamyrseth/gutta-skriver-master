@@ -17,7 +17,7 @@ from sklearn.metrics import r2_score
 
 class DataFrequency(str, Enum):
     DAILY = "d"
-    WEEKLY = "W"
+    WEEKLY = "7d"
     MONTHLY = "M"
     QUARTERLY = "Q"
 
@@ -88,7 +88,7 @@ class Dataseries(object):
 
     def get_df(self, frequency: DataFrequency, from_date: datetime, to_date: datetime) -> DataFrame:
         df = self.df
-        df = df.resample(frequency.value).mean()
+        df = df.resample(frequency.value, origin=from_date).last()
 
         df = df.loc[from_date:to_date]
         if df.loc[from_date:from_date].empty:
