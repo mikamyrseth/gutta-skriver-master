@@ -88,15 +88,19 @@ class Dataseries(object):
 
     def get_df(self, frequency: DataFrequency, from_date: datetime, to_date: datetime) -> DataFrame:
         df = self.df
-        df = df.resample(frequency.value, origin=from_date).last()
 
+        if df.index.min() > pd.Timestamp(from_date):
+            warnings.warn(f"{self.name} does not have data from {from_date} first data point is {df.index.min()}")
+            print(1/0)
+        if df.index.max() < pd.Timestamp(to_date):
+            warnings.warn(f"{self.name} does not have data from {to_date} last data point is {df.index.max()}")
+            print(1/0)
+
+        
+        df = df.asfreq('D').interpolate()
         df = df.loc[from_date:to_date]
-        if df.loc[from_date:from_date].empty:
-            warnings.warn(
-                f"Series {self.name} does not have data from {from_date}. First data is {df.iloc[0]}")
-        if df.loc[to_date:to_date].empty:
-            warnings.warn(
-                f"Series {self.name} does not have data to {to_date}. Last data is {df.iloc[-1]}")
+
+        df = df.resample(frequency.value, origin=from_date,).last()
 
         if df.isnull().values.any():
             print(f"WARNING: {self.name} has NAN")
@@ -105,7 +109,7 @@ class Dataseries(object):
         return df
 
     def reestimate(self, from_date: datetime, to_date: datetime, frequency: DataFrequency):
-        print("reestimating ", self.name)
+        print("Skipped reestimating ", self.name)
         return
 
 

@@ -6,7 +6,7 @@
   "model_start_date": "2002-12-31",
   "model_end_date": "2006-09-30",
   "dependent_variable": "DELTA-LOG-EURNOK",
-  "frequency": "QUARTERLY",
+  "frequency": "MONTHLY",
   "lags": 4,
   "weights": {
     "ALPHA": -0.69,

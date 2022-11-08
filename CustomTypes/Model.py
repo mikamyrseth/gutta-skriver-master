@@ -44,6 +44,7 @@ class Model(object):
         self.stds = stds
         self.stats = stats
         self.lags = lags
+        self.results = {}
 
     def __str__(self):
         return '   '.join("%s: %s\n" % item for item in vars(self).items())
@@ -99,19 +100,19 @@ class Model(object):
         # dep_df = Prefixes.process_df("DELTA", dep_df, "NOIWTOT Index")
         # df["FASIT"] = dep_df
 
-        print("PROCESSED MODEL!: ")
-        print(df)
-        print("Comparing")
-        print(df[self.dependent_variable].tolist())
-        print("to")
-        print(df["OUTPUT"].tolist())
+        # print("PROCESSED MODEL!: ")
+        # print(df)
+        # print("Comparing")
+        # print(df[self.dependent_variable].tolist())
+        # print("to")
+        # print(df["OUTPUT"].tolist())
         r2 = r2_score(df[self.dependent_variable].tolist(),
                       df["OUTPUT"].tolist())
         print("R2", r2)
         # pd.set_option('display.max_columns', None)
         # pd.reset_option(“max_columns”)
         # print(df.head())
-        return df['OUTPUT']
+        return r2
 
     def get_source_df(self, frequency: DataFrequency, from_date: datetime, to_date: datetime) -> DataFrame:
         df = DataFrame()
@@ -166,59 +167,16 @@ class Model(object):
             print("END NAN")
 
         lm = regression(df, list(self.weights.keys()), self.dependent_variable)
-
-        # print("STD", X_train.std(axis=0))
-        # print("coef.", lm.coef_)
-
-        print(lm.coef_)
-        print(lm.intercept_)
-
-        X = df[list(self.weights.keys())]
-        Y = df[self.dependent_variable]
-
-        normalized_coefficients = lm.coef_ * X.std(axis=0)
-
-        print("norm. coef ", normalized_coefficients)
-        normalized_coefficients.plot(kind="barh")
-        plt.savefig(f'normalized-coefficients-{self.name}.png')
-
-        prediction_r_2 = lm.score(X, Y)
-        print("R squared: ", prediction_r_2)
-
-        old_coeffs = list(self.weights.values()).copy()
+        
         for index, key in enumerate(self.weights.keys()):
             self.weights[key] = lm.coef_[index]
         self.weights["ALPHA"] = lm.intercept_
         print(f"Reestimated model {self.name} to: ")
 
-        new_coeffs = list(self.weights.values())
-        print("comparing")
-        print(old_coeffs)
-        print([round(cof, 2) for cof in new_coeffs])
-        error = mean_absolute_percentage_error(old_coeffs, new_coeffs)
-        print("model deviance is (MAPE)", error)
-        r2 = r2_score(old_coeffs, new_coeffs)
+        # print([round(cof, 2) for cof in new_coeffs])
+        
+        return lm, df
 
-        print("R2", r2)
-
-        # Save results to file
-        results = {}
-        results["Prediction r2"] = prediction_r_2
-        results["model similarity (R2)"] = r2
-        results["model deviance (MAPE)"] = error
-
-        results = pd.DataFrame(data=results, index=[0])
-        # df = (df.T)
-        print(df)
-
-        df = pd.concat([results, normalized_coefficients])
-
-        df.to_excel(f'results-{self.name}.xlsx')
-        # with pd.ExcelWriter("results.xlsx", sheet_name=self.name, engine="openpyxl", mode="a", on_sheet_exists="replace") as writer:
-        # df.to_excel(writer, sheet_name=self.name, index=False)
-        # pd.write_excel(writer, df)
-
-        # print(self)
 
 
 def regression(df: pd.DataFrame, X_names: list[str], Y_name: str) -> LinearRegression:

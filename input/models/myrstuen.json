@@ -4,7 +4,7 @@
   "publish_year": 2021,
   "page": "69 (5.5)",
   "model_start_date": "2001-12-31",
-  "model_end_date": "2020-01-31",
+  "model_end_date": "2019-04-30",
   "dependent_variable": "DELTA-LOG-NB-KKI",
   "frequency": "MONTHLY",
   "lags": 1,

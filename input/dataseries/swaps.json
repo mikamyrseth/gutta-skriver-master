@@ -62,5 +62,13 @@
     "publisher": "Bloomberg?",
     "bbg_ticker": "USSW1 Curncy",
     "link": "NA"
+  }, 
+  {
+    "name": "SW-SE-10YR",
+    "description": "Sweden 10-year nominal government bond (swap)",
+    "frequency": "DAILY",
+    "publisher": "Bloomberg?",
+    "bbg_ticker": "SKSW10 Curncy",
+    "link": "NA"
   }
 ]
