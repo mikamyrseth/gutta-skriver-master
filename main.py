@@ -61,9 +61,21 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
             model_json.close()
             all_models.append(model)
 
+    runSandbox = False
     runTest1 = True
     runTest2 = True
     runTest3 = True
+    
+
+    # Sandbox testing
+    if runSandbox:
+        for model in all_models:
+            if model.name == "Ellen linear model":
+                lm, df = model.reestimate(date(2015, 1, 1), date(2020, 1, 1))
+                X = df[list(model.weights.keys())]
+                Y = df[model.dependent_variable]
+                prediction_r_2 = lm.score(X, Y) 
+                print("MODEL HAS R2 of: " , prediction_r_2)
 
     # test 1 - Model reestimation
     if runTest1:
@@ -90,10 +102,11 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 plt.savefig(f'normalized-coefficients-{model.name}.png')       
                 
                 # save stats
-                model.results["test1:model_similarity_R2"] = r2
-                model.results["test1:model_deviance_MAPE"] = error
-                model.results["test1:normalized_coefficients"] = normalized_coefficients
-                model.results["test1:prediction_strength_R2"] = prediction_r_2
+                model.results["test1"] = {}
+                model.results["test1"]["test1:model_similarity_R2"] = r2
+                model.results["test1"]["test1:model_deviance_MAPE"] = error
+                model.results["test1"]["test1:prediction_strength_R2"] = prediction_r_2
+                model.results["test1"]["test1:normalized_coefficients"] = normalized_coefficients.to_dict()
 
                 # model.reestimate(model.model_end_date, date(2021, 12, 31))
                 # model.reestimate(model.model_start_date, date(2021, 12, 31))
@@ -111,10 +124,13 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
             base_r2 = model.run_model(model.model_start_date, model.model_end_date)
             new_r2 = model.run_model(model.model_start_date, new_end_date)
             delta_r2 = new_r2-base_r2
-            model.results["test2:base_r2"] = base_r2
-            model.results["test2:new_r2"] = new_r2
-            model.results["test2:delta_r2"] = delta_r2
-            model.results["test2:percent_change_r2"] = delta_r2/base_r2
+            model.results["test2"] = {}
+            model.results["test2"]["test2:base-interval"] = f"{model.model_start_date}-{model.model_end_date}"
+            model.results["test2"]["test2:base_r2"] = base_r2
+            model.results["test2"]["test2:new_r2"] = new_r2
+            model.results["test2"]["test2:new-interval"] = f"{model.model_start_date}-{new_end_date}"
+            model.results["test2"]["test2:delta_r2"] = delta_r2
+            model.results["test2"]["test2:percent_change_r2"] = delta_r2/base_r2
 
     # test 3 - time intervals
     if runTest3:
@@ -129,22 +145,24 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 lm, df = model.reestimate(start_date, end_date)
                 X = df[list(model.weights.keys())]
                 Y = df[model.dependent_variable]
-                # prediction_r_2 = lm.score(X, Y)   
-                # print(df)
-                # print(list(model.weights.keys()))
-                # print(X)
+                prediction_r_2 = lm.score(X, Y)   
+                print(df)
+                print(list(model.weights.keys()))
+                print(X)
                 normalized_coefficients = lm.coef_ * X.std(axis=0)   
-                normalized_coefficients.abs()
-                model.results[f"test3:{start_date}-{end_date}_R2"] = model.run_model(start_date, end_date)
-                model.results[f"test3:{start_date}-{end_date}_top_coefficient"] = normalized_coefficients.idxmax(axis=0)
+                normalized_coefficients = normalized_coefficients.abs()
+                model.results["test3"] = {}
+                model.results["test3"][f"test3:{start_date}-{end_date}_R2"] = prediction_r_2
+                # model.results[f"test3:{start_date}-{end_date}_coeffs"] = normalized_coefficients.to_dict()
+                model.results["test3"][f"test3:{start_date}-{end_date}_top_coefficient"] = normalized_coefficients.idxmax(axis=0)
   
 
     # Save results
     if True:
         for model in all_models:
-            print(model.name)
-            print(model.results)
-            print(" ")
+            with open("results/" + model.name + ".json", "w+") as outfile:
+                json.dump(model.results, outfile, indent=4)
+
             # df = pd.DataFrame(data=model.results, index=[0])
             # df = (df.T)
             # print(df)
@@ -157,6 +175,13 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
             # pd.write_excel(writer, df)
 
             # print(self)
+
+            # save dict to file and format it nicely
+            # with open("results/" + self.name + ".json", "w+") as outfile:
+            #     json.dump(self.results, outfile, indent=4)
+            
+
+            # get key of dict with max value
 
 
 load_json()

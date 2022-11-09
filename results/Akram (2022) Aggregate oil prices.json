@@ -1,0 +1,25 @@
+{
+    "test1": {
+        "test1:model_similarity_R2": 0.9997825275265639,
+        "test1:model_deviance_MAPE": 0.17883740423375483,
+        "test1:prediction_strength_R2": 0.942999077232013,
+        "test1:normalized_coefficients": {
+            "ALPHA": 0.0,
+            "CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M": -0.0374449479324244,
+            "CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR": -0.02062816487822208,
+            "LOG-ICE-BRENT": -0.030362681430132175
+        }
+    },
+    "test2": {
+        "test2:base-interval": "2010-01-09 00:00:00-2018-12-31 00:00:00",
+        "test2:base_r2": 0.9429990772320133,
+        "test2:new_r2": 0.5574919738052886,
+        "test2:new-interval": "2010-01-09 00:00:00-2020-05-05 00:00:00",
+        "test2:delta_r2": -0.3855071034267247,
+        "test2:percent_change_r2": -0.4088096295473632
+    },
+    "test3": {
+        "test3:2020-01-01-2021-12-30_R2": 0.8520851542800714,
+        "test3:2020-01-01-2021-12-30_top_coefficient": "LOG-ICE-BRENT"
+    }
+}

@@ -112,6 +112,10 @@ class Model(object):
         # pd.set_option('display.max_columns', None)
         # pd.reset_option(“max_columns”)
         # print(df.head())
+
+        # remove key in dict
+        self.weights.pop(self.dependent_variable, None)
+
         return r2
 
     def get_source_df(self, frequency: DataFrequency, from_date: datetime, to_date: datetime) -> DataFrame:

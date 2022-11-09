@@ -1,0 +1,32 @@
+{
+    "test1": {
+        "test1:model_similarity_R2": 0.22486940074026096,
+        "test1:model_deviance_MAPE": 0.914009063837312,
+        "test1:prediction_strength_R2": 0.5953146368259231,
+        "test1:normalized_coefficients": {
+            "ALPHA": 0.0,
+            "LAGGED-DELTA-2-LOG-EURNOK": -0.006280522890885753,
+            "CUSTOM-BJORNSTAD-PRICE-DIFFERENCE": 0.004831643880414767,
+            "CUSTOM-BJORNSTAD-PRICE-DIFFERENCE-LAG": 0.00034647331081906236,
+            "DELTA-4-LOG-ICE-BRENT": -0.0036962100725287956,
+            "DELTA-2-LOG-SSB-KPI-JAE": -0.005057594462561727,
+            "DELTA-3-NIBOR": -0.008048899890847927,
+            "LAGGED-DELTA-3-EURIBOR": 0.006984659029470191,
+            "LAGGED-LOG-ICE-BRENT": -0.006595914611415514,
+            "CUSTOM-BJORNSTAD-PPP-EQUILIBRIUM": -0.006480428758554624,
+            "CUSTOM-BJORNSTAD-RATE-DIFFERENCE": -0.005016785375931631
+        }
+    },
+    "test2": {
+        "test2:base-interval": "2002-12-31 00:00:00-2006-09-30 00:00:00",
+        "test2:base_r2": 0.5953146368259233,
+        "test2:new_r2": 0.4304558646943829,
+        "test2:new-interval": "2002-12-31 00:00:00-2007-04-23 00:00:00",
+        "test2:delta_r2": -0.16485877213154043,
+        "test2:percent_change_r2": -0.2769271271583853
+    },
+    "test3": {
+        "test3:2020-01-01-2021-12-30_R2": 0.6811326095724743,
+        "test3:2020-01-01-2021-12-30_top_coefficient": "LAGGED-DELTA-3-EURIBOR"
+    }
+}

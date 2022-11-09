@@ -1,0 +1,27 @@
+{
+    "test1": {
+        "test1:model_similarity_R2": 0.9865185058674111,
+        "test1:model_deviance_MAPE": 0.12489094537850419,
+        "test1:prediction_strength_R2": 0.8912254997940071,
+        "test1:normalized_coefficients": {
+            "ALPHA": 0.0,
+            "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": -0.013098273055263603,
+            "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE": 0.014673893847683575,
+            "LOG-ICE-BRENT": -0.03512779755676434,
+            "LOG-DB-CVIX": 0.022377190317840228,
+            "LOG-S&P-500": 0.05569132472069477
+        }
+    },
+    "test2": {
+        "test2:base-interval": "2001-12-31 00:00:00-2019-04-30 00:00:00",
+        "test2:base_r2": 0.8912254997940067,
+        "test2:new_r2": 0.9147943876161183,
+        "test2:new-interval": "2001-12-31 00:00:00-2021-12-04 00:00:00",
+        "test2:delta_r2": 0.02356888782211164,
+        "test2:percent_change_r2": 0.026445481898306582
+    },
+    "test3": {
+        "test3:2020-01-01-2021-12-30_R2": 0.8503276265398922,
+        "test3:2020-01-01-2021-12-30_top_coefficient": "LOG-ICE-BRENT"
+    }
+}
