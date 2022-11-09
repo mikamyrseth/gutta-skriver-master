@@ -1,23 +1,33 @@
 {
     "test1": {
-        "test1:model_similarity_R2": 0.9055932263997344,
-        "test1:model_deviance_MAPE": 0.49336058265814653,
-        "test1:prediction_strength_R2": 0.148735966945432,
-        "test1:normalized_coefficients": {
-            "ALPHA": 0.0,
-            "DELTA-LOG-ICE-BRENT": -0.0073422704736326875
-        }
+        "Model": "Ellen linear model",
+        "dependent variable": "DELTA-LOG-NB-I44",
+        "Prediction interval": "2001-01-01-2015-08-01",
+        "Top Coefficient": "DELTA-LOG-ICE-BRENT",
+        "Model Similarity (R2)": 0.906,
+        "Model Deviance (MAPE)": 0.493,
+        "Prediction Strength (R2)": 0.149
     },
     "test2": {
-        "test2:base-interval": "2001-01-01 00:00:00-2015-08-01 00:00:00",
-        "test2:base_r2": 0.148735966945432,
-        "test2:new_r2": 0.14972921243758808,
-        "test2:new-interval": "2001-01-01 00:00:00-2017-10-07 00:00:00",
-        "test2:delta_r2": 0.0009932454921560696,
-        "test2:percent_change_r2": 0.0066779106127065405
+        "Model": "Ellen linear model",
+        "Base Interval": "2001-01-01-2015-08-01",
+        "Base R2": 0.149,
+        "New R2": 0.15,
+        "New interval": "2001-01-01-2017-10-07",
+        "Delta R2": 0.001,
+        "R2 percent change": 0.007
     },
     "test3": {
-        "test3:2020-01-01-2021-12-30_R2": 0.5933434585061297,
-        "test3:2020-01-01-2021-12-30_top_coefficient": "DELTA-LOG-ICE-BRENT"
+        "Model": "Ellen linear model",
+        "2002-12-31-2006-01-01_R2": 0.003,
+        "2002-12-31-2006-01-01_top_coefficient": "DELTA-LOG-ICE-BRENT",
+        "2006-01-01-2010-01-01_R2": 0.205,
+        "2006-01-01-2010-01-01_top_coefficient": "DELTA-LOG-ICE-BRENT",
+        "2010-01-01-2015-01-01_R2": 0.336,
+        "2010-01-01-2015-01-01_top_coefficient": "DELTA-LOG-ICE-BRENT",
+        "2015-01-01-2020-01-01_R2": 0.311,
+        "2015-01-01-2020-01-01_top_coefficient": "DELTA-LOG-ICE-BRENT",
+        "2020-01-01-2021-12-30_R2": 0.593,
+        "2020-01-01-2021-12-30_top_coefficient": "DELTA-LOG-ICE-BRENT"
     }
 }

@@ -1,25 +1,33 @@
 {
     "test1": {
-        "test1:model_similarity_R2": 0.9997825275265639,
-        "test1:model_deviance_MAPE": 0.17883740423375483,
-        "test1:prediction_strength_R2": 0.942999077232013,
-        "test1:normalized_coefficients": {
-            "ALPHA": 0.0,
-            "CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M": -0.0374449479324244,
-            "CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR": -0.02062816487822208,
-            "LOG-ICE-BRENT": -0.030362681430132175
-        }
+        "Model": "Akram (2022) Aggregate oil prices",
+        "dependent variable": "LOG-NB-I44",
+        "Prediction interval": "2010-01-09-2018-12-31",
+        "Top Coefficient": "CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M",
+        "Model Similarity (R2)": 1.0,
+        "Model Deviance (MAPE)": 0.179,
+        "Prediction Strength (R2)": 0.943
     },
     "test2": {
-        "test2:base-interval": "2010-01-09 00:00:00-2018-12-31 00:00:00",
-        "test2:base_r2": 0.9429990772320133,
-        "test2:new_r2": 0.5574919738052886,
-        "test2:new-interval": "2010-01-09 00:00:00-2020-05-05 00:00:00",
-        "test2:delta_r2": -0.3855071034267247,
-        "test2:percent_change_r2": -0.4088096295473632
+        "Model": "Akram (2022) Aggregate oil prices",
+        "Base Interval": "2010-01-09-2018-12-31",
+        "Base R2": 0.943,
+        "New R2": 0.557,
+        "New interval": "2010-01-09-2020-05-05",
+        "Delta R2": -0.386,
+        "R2 percent change": -0.409
     },
     "test3": {
-        "test3:2020-01-01-2021-12-30_R2": 0.8520851542800714,
-        "test3:2020-01-01-2021-12-30_top_coefficient": "LOG-ICE-BRENT"
+        "Model": "Akram (2022) Aggregate oil prices",
+        "2002-12-31-2006-01-01_R2": 0.746,
+        "2002-12-31-2006-01-01_top_coefficient": "LOG-ICE-BRENT",
+        "2006-01-01-2010-01-01_R2": 0.667,
+        "2006-01-01-2010-01-01_top_coefficient": "LOG-ICE-BRENT",
+        "2010-01-01-2015-01-01_R2": 0.814,
+        "2010-01-01-2015-01-01_top_coefficient": "CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR",
+        "2015-01-01-2020-01-01_R2": 0.322,
+        "2015-01-01-2020-01-01_top_coefficient": "CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR",
+        "2020-01-01-2021-12-30_R2": 0.852,
+        "2020-01-01-2021-12-30_top_coefficient": "LOG-ICE-BRENT"
     }
 }

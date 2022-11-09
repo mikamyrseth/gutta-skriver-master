@@ -1,0 +1,67 @@
+[
+    {
+        "Model": "Akram (2022) Aggregate oil prices",
+        "2002-12-31-2006-01-01_R2": 0.746,
+        "2002-12-31-2006-01-01_top_coefficient": "LOG-ICE-BRENT",
+        "2006-01-01-2010-01-01_R2": 0.667,
+        "2006-01-01-2010-01-01_top_coefficient": "LOG-ICE-BRENT",
+        "2010-01-01-2015-01-01_R2": 0.814,
+        "2010-01-01-2015-01-01_top_coefficient": "CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR",
+        "2015-01-01-2020-01-01_R2": 0.322,
+        "2015-01-01-2020-01-01_top_coefficient": "CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR",
+        "2020-01-01-2021-12-30_R2": 0.852,
+        "2020-01-01-2021-12-30_top_coefficient": "LOG-ICE-BRENT"
+    },
+    {
+        "Model": "Bjornstad korttidsmodell",
+        "2002-12-31-2006-01-01_R2": 0.611,
+        "2002-12-31-2006-01-01_top_coefficient": "DELTA-3-NIBOR",
+        "2006-01-01-2010-01-01_R2": 0.583,
+        "2006-01-01-2010-01-01_top_coefficient": "DELTA-3-NIBOR",
+        "2010-01-01-2015-01-01_R2": 0.342,
+        "2010-01-01-2015-01-01_top_coefficient": "DELTA-4-LOG-ICE-BRENT",
+        "2015-01-01-2020-01-01_R2": 0.345,
+        "2015-01-01-2020-01-01_top_coefficient": "CUSTOM-BJORNSTAD-PPP-EQUILIBRIUM",
+        "2020-01-01-2021-12-30_R2": 0.681,
+        "2020-01-01-2021-12-30_top_coefficient": "LAGGED-DELTA-3-EURIBOR"
+    },
+    {
+        "Model": "Ellen linear model",
+        "2002-12-31-2006-01-01_R2": 0.003,
+        "2002-12-31-2006-01-01_top_coefficient": "DELTA-LOG-ICE-BRENT",
+        "2006-01-01-2010-01-01_R2": 0.205,
+        "2006-01-01-2010-01-01_top_coefficient": "DELTA-LOG-ICE-BRENT",
+        "2010-01-01-2015-01-01_R2": 0.336,
+        "2010-01-01-2015-01-01_top_coefficient": "DELTA-LOG-ICE-BRENT",
+        "2015-01-01-2020-01-01_R2": 0.311,
+        "2015-01-01-2020-01-01_top_coefficient": "DELTA-LOG-ICE-BRENT",
+        "2020-01-01-2021-12-30_R2": 0.593,
+        "2020-01-01-2021-12-30_top_coefficient": "DELTA-LOG-ICE-BRENT"
+    },
+    {
+        "Model": "Myrstuen korttidsmodell",
+        "2002-12-31-2006-01-01_R2": 0.521,
+        "2002-12-31-2006-01-01_top_coefficient": "LAGGED-CUSTOM-MYRSTUEN-EQULIBIRUM",
+        "2006-01-01-2010-01-01_R2": 0.476,
+        "2006-01-01-2010-01-01_top_coefficient": "DELTA-LOG-ICE-BRENT",
+        "2010-01-01-2015-01-01_R2": 0.643,
+        "2010-01-01-2015-01-01_top_coefficient": "DELTA-LOG-ICE-BRENT",
+        "2015-01-01-2020-01-01_R2": 0.49,
+        "2015-01-01-2020-01-01_top_coefficient": "DELTA-LOG-ICE-BRENT",
+        "2020-01-01-2021-12-30_R2": 0.792,
+        "2020-01-01-2021-12-30_top_coefficient": "DELTA-LOG-ICE-BRENT"
+    },
+    {
+        "Model": "Myrstuen langtidsmodell",
+        "2002-12-31-2006-01-01_R2": 0.787,
+        "2002-12-31-2006-01-01_top_coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M",
+        "2006-01-01-2010-01-01_R2": 0.718,
+        "2006-01-01-2010-01-01_top_coefficient": "LOG-ICE-BRENT",
+        "2010-01-01-2015-01-01_R2": 0.859,
+        "2010-01-01-2015-01-01_top_coefficient": "LOG-S&P-500",
+        "2015-01-01-2020-01-01_R2": 0.539,
+        "2015-01-01-2020-01-01_top_coefficient": "LOG-ICE-BRENT",
+        "2020-01-01-2021-12-30_R2": 0.85,
+        "2020-01-01-2021-12-30_top_coefficient": "LOG-ICE-BRENT"
+    }
+]

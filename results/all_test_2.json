@@ -1,0 +1,47 @@
+[
+    {
+        "Model": "Akram (2022) Aggregate oil prices",
+        "Base Interval": "2010-01-09-2018-12-31",
+        "Base R2": 0.943,
+        "New R2": 0.557,
+        "New interval": "2010-01-09-2020-05-05",
+        "Delta R2": -0.386,
+        "R2 percent change": -0.409
+    },
+    {
+        "Model": "Bjornstad korttidsmodell",
+        "Base Interval": "2002-12-31-2006-09-30",
+        "Base R2": 0.595,
+        "New R2": 0.43,
+        "New interval": "2002-12-31-2007-04-23",
+        "Delta R2": -0.165,
+        "R2 percent change": -0.277
+    },
+    {
+        "Model": "Ellen linear model",
+        "Base Interval": "2001-01-01-2015-08-01",
+        "Base R2": 0.149,
+        "New R2": 0.15,
+        "New interval": "2001-01-01-2017-10-07",
+        "Delta R2": 0.001,
+        "R2 percent change": 0.007
+    },
+    {
+        "Model": "Myrstuen korttidsmodell",
+        "Base Interval": "2001-12-31-2019-04-30",
+        "Base R2": 0.442,
+        "New R2": 0.478,
+        "New interval": "2001-12-31-2021-12-04",
+        "Delta R2": 0.036,
+        "R2 percent change": 0.081
+    },
+    {
+        "Model": "Myrstuen langtidsmodell",
+        "Base Interval": "2001-12-31-2019-04-30",
+        "Base R2": 0.891,
+        "New R2": 0.915,
+        "New interval": "2001-12-31-2021-12-04",
+        "Delta R2": 0.024,
+        "R2 percent change": 0.026
+    }
+]

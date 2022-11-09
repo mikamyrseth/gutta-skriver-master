@@ -94,19 +94,23 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 X = df[list(model.weights.keys())]
                 Y = df[model.dependent_variable]
                 normalized_coefficients = lm.coef_ * X.std(axis=0)   
-                normalized_coefficients.abs()
+                normalized_coefficients = normalized_coefficients.abs()
                 prediction_r_2 = lm.score(X, Y)      
 
                 # Plot coefficients
                 normalized_coefficients.plot(kind="barh")
-                plt.savefig(f'normalized-coefficients-{model.name}.png')       
+                plt.savefig(f'normalized-coefficients-{model.name}.png')    
                 
                 # save stats
                 model.results["test1"] = {}
-                model.results["test1"]["test1:model_similarity_R2"] = r2
-                model.results["test1"]["test1:model_deviance_MAPE"] = error
-                model.results["test1"]["test1:prediction_strength_R2"] = prediction_r_2
-                model.results["test1"]["test1:normalized_coefficients"] = normalized_coefficients.to_dict()
+                model.results["test1"]["Model"] = model.name
+                model.results["test1"]["dependent variable"] = model.dependent_variable
+                model.results["test1"]["Prediction interval"] = f"{model.model_start_date.strftime('%Y-%m-%d')}-{model.model_end_date.strftime('%Y-%m-%d')}"
+                model.results["test1"]["Top Coefficient"] = normalized_coefficients.idxmax(axis=0)
+                model.results["test1"]["Model Similarity (R2)"] = r2.round(3)
+                model.results["test1"]["Model Deviance (MAPE)"] = error.round(3)
+                model.results["test1"]["Prediction Strength (R2)"] = prediction_r_2.round(3)
+                # model.results["test1"]["normalized_coefficients"] = normalized_coefficients.to_dict()
 
                 # model.reestimate(model.model_end_date, date(2021, 12, 31))
                 # model.reestimate(model.model_start_date, date(2021, 12, 31))
@@ -124,13 +128,15 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
             base_r2 = model.run_model(model.model_start_date, model.model_end_date)
             new_r2 = model.run_model(model.model_start_date, new_end_date)
             delta_r2 = new_r2-base_r2
+            percentage_change = delta_r2/base_r2
             model.results["test2"] = {}
-            model.results["test2"]["test2:base-interval"] = f"{model.model_start_date}-{model.model_end_date}"
-            model.results["test2"]["test2:base_r2"] = base_r2
-            model.results["test2"]["test2:new_r2"] = new_r2
-            model.results["test2"]["test2:new-interval"] = f"{model.model_start_date}-{new_end_date}"
-            model.results["test2"]["test2:delta_r2"] = delta_r2
-            model.results["test2"]["test2:percent_change_r2"] = delta_r2/base_r2
+            model.results["test2"]["Model"] = model.name
+            model.results["test2"]["Base Interval"] = f"{model.model_start_date.strftime('%Y-%m-%d')}-{model.model_end_date.strftime('%Y-%m-%d')}"
+            model.results["test2"]["Base R2"] = base_r2.round(3)
+            model.results["test2"]["New R2"] = new_r2.round(3)
+            model.results["test2"]["New interval"] = f"{model.model_start_date.strftime('%Y-%m-%d')}-{new_end_date.strftime('%Y-%m-%d')}"
+            model.results["test2"]["Delta R2"] = delta_r2.round(3)
+            model.results["test2"]["R2 percent change"] = percentage_change.round(3)
 
     # test 3 - time intervals
     if runTest3:
@@ -141,6 +147,8 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
         (date(2020, 1, 1), date(2021, 12, 30))]
 
         for model in all_models:
+            model.results["test3"] = {}
+            model.results["test3"]["Model"] = model.name
             for start_date, end_date in time_intervals:
                 lm, df = model.reestimate(start_date, end_date)
                 X = df[list(model.weights.keys())]
@@ -151,17 +159,30 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 print(X)
                 normalized_coefficients = lm.coef_ * X.std(axis=0)   
                 normalized_coefficients = normalized_coefficients.abs()
-                model.results["test3"] = {}
-                model.results["test3"][f"test3:{start_date}-{end_date}_R2"] = prediction_r_2
+                model.results["test3"][f"{start_date}-{end_date}_R2"] = prediction_r_2.round(3)
                 # model.results[f"test3:{start_date}-{end_date}_coeffs"] = normalized_coefficients.to_dict()
-                model.results["test3"][f"test3:{start_date}-{end_date}_top_coefficient"] = normalized_coefficients.idxmax(axis=0)
+                model.results["test3"][f"{start_date}-{end_date}_top_coefficient"] = normalized_coefficients.idxmax(axis=0)
   
 
     # Save results
     if True:
+        all_test_1 = []
+        all_test_2 = []
+        all_test_3 = []
         for model in all_models:
             with open("results/" + model.name + ".json", "w+") as outfile:
                 json.dump(model.results, outfile, indent=4)
+            all_test_1.append(model.results["test1"])
+            all_test_2.append(model.results["test2"])
+            all_test_3.append(model.results["test3"])
+
+        with open("results/all_test_1.json", "w+") as outfile:
+            json.dump(all_test_1, outfile, indent=4)
+        with open("results/all_test_2.json", "w+") as outfile:
+            json.dump(all_test_2, outfile, indent=4)
+        with open("results/all_test_3.json", "w+") as outfile:
+            json.dump(all_test_3, outfile, indent=4)
+
 
             # df = pd.DataFrame(data=model.results, index=[0])
             # df = (df.T)
