@@ -17,17 +17,36 @@
         "Delta R2": 0.024,
         "R2 percent change": 0.026
     },
-    "test3": {
-        "Model": "Myrstuen langtidsmodell",
-        "2002-12-31-2006-01-01_R2": 0.787,
-        "2002-12-31-2006-01-01_top_coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M",
-        "2006-01-01-2010-01-01_R2": 0.718,
-        "2006-01-01-2010-01-01_top_coefficient": "LOG-ICE-BRENT",
-        "2010-01-01-2015-01-01_R2": 0.859,
-        "2010-01-01-2015-01-01_top_coefficient": "LOG-S&P-500",
-        "2015-01-01-2020-01-01_R2": 0.539,
-        "2015-01-01-2020-01-01_top_coefficient": "LOG-ICE-BRENT",
-        "2020-01-01-2021-12-30_R2": 0.85,
-        "2020-01-01-2021-12-30_top_coefficient": "LOG-ICE-BRENT"
-    }
+    "test3": [
+        {
+            "Model": "Myrstuen langtidsmodell",
+            "Prediction interval": "2002-12-31-2006-01-01",
+            "R2": 0.787,
+            "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
+        },
+        {
+            "Model": "Myrstuen langtidsmodell",
+            "Prediction interval": "2006-01-01-2010-01-01",
+            "R2": 0.718,
+            "Top Coefficient": "LOG-ICE-BRENT"
+        },
+        {
+            "Model": "Myrstuen langtidsmodell",
+            "Prediction interval": "2010-01-01-2015-01-01",
+            "R2": 0.859,
+            "Top Coefficient": "LOG-S&P-500"
+        },
+        {
+            "Model": "Myrstuen langtidsmodell",
+            "Prediction interval": "2015-01-01-2020-01-01",
+            "R2": 0.539,
+            "Top Coefficient": "LOG-ICE-BRENT"
+        },
+        {
+            "Model": "Myrstuen langtidsmodell",
+            "Prediction interval": "2020-01-01-2021-12-30",
+            "R2": 0.85,
+            "Top Coefficient": "LOG-ICE-BRENT"
+        }
+    ]
 }

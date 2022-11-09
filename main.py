@@ -147,8 +147,7 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
         (date(2020, 1, 1), date(2021, 12, 30))]
 
         for model in all_models:
-            model.results["test3"] = {}
-            model.results["test3"]["Model"] = model.name
+            model.results["test3"] = []
             for start_date, end_date in time_intervals:
                 lm, df = model.reestimate(start_date, end_date)
                 X = df[list(model.weights.keys())]
@@ -159,9 +158,13 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 print(X)
                 normalized_coefficients = lm.coef_ * X.std(axis=0)   
                 normalized_coefficients = normalized_coefficients.abs()
-                model.results["test3"][f"{start_date}-{end_date}_R2"] = prediction_r_2.round(3)
+                time_result = {}
+                time_result["Model"] = model.name
+                time_result["Prediction interval"] = f"{start_date}-{end_date}"
+                time_result[f"R2"] = prediction_r_2.round(3)
                 # model.results[f"test3:{start_date}-{end_date}_coeffs"] = normalized_coefficients.to_dict()
-                model.results["test3"][f"{start_date}-{end_date}_top_coefficient"] = normalized_coefficients.idxmax(axis=0)
+                time_result[f"Top Coefficient"] = normalized_coefficients.idxmax(axis=0)
+                model.results["test3"].append(time_result)
   
 
     # Save results
@@ -174,7 +177,8 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 json.dump(model.results, outfile, indent=4)
             all_test_1.append(model.results["test1"])
             all_test_2.append(model.results["test2"])
-            all_test_3.append(model.results["test3"])
+            for time_result in model.results["test3"]:
+                all_test_3.append(time_result)
 
         with open("results/all_test_1.json", "w+") as outfile:
             json.dump(all_test_1, outfile, indent=4)

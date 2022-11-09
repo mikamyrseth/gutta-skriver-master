@@ -17,17 +17,36 @@
         "Delta R2": -0.165,
         "R2 percent change": -0.277
     },
-    "test3": {
-        "Model": "Bjornstad korttidsmodell",
-        "2002-12-31-2006-01-01_R2": 0.611,
-        "2002-12-31-2006-01-01_top_coefficient": "DELTA-3-NIBOR",
-        "2006-01-01-2010-01-01_R2": 0.583,
-        "2006-01-01-2010-01-01_top_coefficient": "DELTA-3-NIBOR",
-        "2010-01-01-2015-01-01_R2": 0.342,
-        "2010-01-01-2015-01-01_top_coefficient": "DELTA-4-LOG-ICE-BRENT",
-        "2015-01-01-2020-01-01_R2": 0.345,
-        "2015-01-01-2020-01-01_top_coefficient": "CUSTOM-BJORNSTAD-PPP-EQUILIBRIUM",
-        "2020-01-01-2021-12-30_R2": 0.681,
-        "2020-01-01-2021-12-30_top_coefficient": "LAGGED-DELTA-3-EURIBOR"
-    }
+    "test3": [
+        {
+            "Model": "Bjornstad korttidsmodell",
+            "Prediction interval": "2002-12-31-2006-01-01",
+            "R2": 0.611,
+            "Top Coefficient": "DELTA-3-NIBOR"
+        },
+        {
+            "Model": "Bjornstad korttidsmodell",
+            "Prediction interval": "2006-01-01-2010-01-01",
+            "R2": 0.583,
+            "Top Coefficient": "DELTA-3-NIBOR"
+        },
+        {
+            "Model": "Bjornstad korttidsmodell",
+            "Prediction interval": "2010-01-01-2015-01-01",
+            "R2": 0.342,
+            "Top Coefficient": "DELTA-4-LOG-ICE-BRENT"
+        },
+        {
+            "Model": "Bjornstad korttidsmodell",
+            "Prediction interval": "2015-01-01-2020-01-01",
+            "R2": 0.345,
+            "Top Coefficient": "CUSTOM-BJORNSTAD-PPP-EQUILIBRIUM"
+        },
+        {
+            "Model": "Bjornstad korttidsmodell",
+            "Prediction interval": "2020-01-01-2021-12-30",
+            "R2": 0.681,
+            "Top Coefficient": "LAGGED-DELTA-3-EURIBOR"
+        }
+    ]
 }
