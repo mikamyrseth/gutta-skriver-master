@@ -1,0 +1,12 @@
+[
+    {
+      "name": "CUSTOM-JOHANSEN-INTEREST-DIFFERENCE-3M",
+      "page": "29",
+      "type": "ADD",
+      "weights": {
+        "NIBOR": 1,
+        "EURIBOR": -1
+      }
+    }
+  ]
+  

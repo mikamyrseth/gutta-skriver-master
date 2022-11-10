@@ -30,6 +30,12 @@
         "Top Coefficient": "LOG-ICE-BRENT"
     },
     {
+        "Model": "Akram (2022) Aggregate oil prices",
+        "Prediction interval": "2002-12-31-2021-12-30",
+        "R2": 0.315,
+        "Top Coefficient": "LOG-ICE-BRENT"
+    },
+    {
         "Model": "Bjornstad korttidsmodell",
         "Prediction interval": "2002-12-31-2006-01-01",
         "R2": 0.611,
@@ -57,6 +63,12 @@
         "Model": "Bjornstad korttidsmodell",
         "Prediction interval": "2020-01-01-2021-12-30",
         "R2": 0.681,
+        "Top Coefficient": "LAGGED-DELTA-3-EURIBOR"
+    },
+    {
+        "Model": "Bjornstad korttidsmodell",
+        "Prediction interval": "2002-12-31-2021-12-30",
+        "R2": 0.255,
         "Top Coefficient": "LAGGED-DELTA-3-EURIBOR"
     },
     {
@@ -90,6 +102,12 @@
         "Top Coefficient": "DELTA-LOG-ICE-BRENT"
     },
     {
+        "Model": "Ellen linear model",
+        "Prediction interval": "2002-12-31-2021-12-30",
+        "R2": 0.288,
+        "Top Coefficient": "DELTA-LOG-ICE-BRENT"
+    },
+    {
         "Model": "Myrstuen korttidsmodell",
         "Prediction interval": "2002-12-31-2006-01-01",
         "R2": 0.521,
@@ -117,6 +135,12 @@
         "Model": "Myrstuen korttidsmodell",
         "Prediction interval": "2020-01-01-2021-12-30",
         "R2": 0.792,
+        "Top Coefficient": "DELTA-LOG-ICE-BRENT"
+    },
+    {
+        "Model": "Myrstuen korttidsmodell",
+        "Prediction interval": "2002-12-31-2021-12-30",
+        "R2": 0.495,
         "Top Coefficient": "DELTA-LOG-ICE-BRENT"
     },
     {
@@ -148,5 +172,11 @@
         "Prediction interval": "2020-01-01-2021-12-30",
         "R2": 0.85,
         "Top Coefficient": "LOG-ICE-BRENT"
+    },
+    {
+        "Model": "Myrstuen langtidsmodell",
+        "Prediction interval": "2002-12-31-2021-12-30",
+        "R2": 0.916,
+        "Top Coefficient": "LOG-S&P-500"
     }
 ]

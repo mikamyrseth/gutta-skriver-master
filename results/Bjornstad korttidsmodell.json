@@ -47,6 +47,12 @@
             "Prediction interval": "2020-01-01-2021-12-30",
             "R2": 0.681,
             "Top Coefficient": "LAGGED-DELTA-3-EURIBOR"
+        },
+        {
+            "Model": "Bjornstad korttidsmodell",
+            "Prediction interval": "2002-12-31-2021-12-30",
+            "R2": 0.255,
+            "Top Coefficient": "LAGGED-DELTA-3-EURIBOR"
         }
     ]
 }

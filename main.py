@@ -144,7 +144,8 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
         (date(2006, 1, 1), date(2010, 1, 1)), 
         (date(2010, 1, 1), date(2015, 1, 1)), 
         (date(2015, 1, 1), date(2020, 1, 1)), 
-        (date(2020, 1, 1), date(2021, 12, 30))]
+        (date(2020, 1, 1), date(2021, 12, 30)),
+        (date(2002, 12, 31), date(2021, 12, 30))]
 
         for model in all_models:
             model.results["test3"] = []

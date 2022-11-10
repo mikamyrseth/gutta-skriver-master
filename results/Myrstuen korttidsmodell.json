@@ -47,6 +47,12 @@
             "Prediction interval": "2020-01-01-2021-12-30",
             "R2": 0.792,
             "Top Coefficient": "DELTA-LOG-ICE-BRENT"
+        },
+        {
+            "Model": "Myrstuen korttidsmodell",
+            "Prediction interval": "2002-12-31-2021-12-30",
+            "R2": 0.495,
+            "Top Coefficient": "DELTA-LOG-ICE-BRENT"
         }
     ]
 }

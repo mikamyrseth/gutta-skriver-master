@@ -47,6 +47,12 @@
             "Prediction interval": "2020-01-01-2021-12-30",
             "R2": 0.85,
             "Top Coefficient": "LOG-ICE-BRENT"
+        },
+        {
+            "Model": "Myrstuen langtidsmodell",
+            "Prediction interval": "2002-12-31-2021-12-30",
+            "R2": 0.916,
+            "Top Coefficient": "LOG-S&P-500"
         }
     ]
 }

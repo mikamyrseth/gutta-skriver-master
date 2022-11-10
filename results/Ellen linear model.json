@@ -47,6 +47,12 @@
             "Prediction interval": "2020-01-01-2021-12-30",
             "R2": 0.593,
             "Top Coefficient": "DELTA-LOG-ICE-BRENT"
+        },
+        {
+            "Model": "Ellen linear model",
+            "Prediction interval": "2002-12-31-2021-12-30",
+            "R2": 0.288,
+            "Top Coefficient": "DELTA-LOG-ICE-BRENT"
         }
     ]
 }

@@ -1,0 +1,26 @@
+{
+    "name": "Johansen langtidsmodell",
+    "authors": ["Christoffer Sten Mørseth Johansen og André Trønnes Pedersen"],
+    "publish_year": 2017,
+    "page": "62 (5.3)",
+    "model_start_date": "2001-12-31",
+    "model_end_date": "2019-04-30",
+    "dependent_variable": "LOG-NB-KKI",
+    "frequency": "MONTHLY",
+    "weights": {
+      "ALPHA": 2.0813,
+      "CUSTOM-JOHANSEN-INTEREST-DIFFERENCE-3M": 0.0,
+      "CUSTOM-JOHANSEN-PRICE-DIFFERENCE": 0.0,
+      "LOG-ICE-BRENT": 0.0,
+      "LOG-GRI": 0.0,
+      "LOG-INDUSTRIAL-PRODUCTION": 0.0,
+      "LOG-RENTEBANE": 0.0
+    },
+    "stds": {
+      "DELTA-ICE-BRENT": 0.0089
+    },
+    "stats": {
+      "adjustedR2": 0.358
+    }
+  }
+  
