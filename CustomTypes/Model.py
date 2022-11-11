@@ -183,7 +183,7 @@ class Model(object):
 
 
 
-def regression(df: pd.DataFrame, X_names: list[str], Y_name: str) -> LinearRegression:
+def regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str) -> LinearRegression:
 
     X = df[X_names]
     Y = df[Y_name]

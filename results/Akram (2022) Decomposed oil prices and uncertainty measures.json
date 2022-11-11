@@ -1,0 +1,58 @@
+{
+    "test1": {
+        "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
+        "dependent variable": "LOG-NB-I44",
+        "Prediction interval": "2010-01-18-2018-12-31",
+        "Top Coefficient": "CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M",
+        "Model Similarity (R2)": 0.994,
+        "Model Deviance (MAPE)": 1.111,
+        "Prediction Strength (R2)": 0.91
+    },
+    "test2": {
+        "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
+        "Base Interval": "2010-01-18-2018-12-31",
+        "Base R2": 0.91,
+        "New R2": 0.209,
+        "New interval": "2010-01-18-2020-05-04",
+        "Delta R2": -0.701,
+        "R2 percent change": -0.77
+    },
+    "test3": [
+        {
+            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
+            "Prediction interval": "2002-12-31-2006-01-01",
+            "R2": 0.582,
+            "Top Coefficient": "LOG-FVX-EM"
+        },
+        {
+            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
+            "Prediction interval": "2006-01-01-2010-01-01",
+            "R2": 0.718,
+            "Top Coefficient": "CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M"
+        },
+        {
+            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
+            "Prediction interval": "2010-01-01-2015-01-01",
+            "R2": 0.733,
+            "Top Coefficient": "CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR"
+        },
+        {
+            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
+            "Prediction interval": "2015-01-01-2020-01-01",
+            "R2": 0.148,
+            "Top Coefficient": "LOG-FVX-EM"
+        },
+        {
+            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
+            "Prediction interval": "2020-01-01-2021-12-30",
+            "R2": 0.78,
+            "Top Coefficient": "CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR"
+        },
+        {
+            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
+            "Prediction interval": "2002-12-31-2021-12-30",
+            "R2": 0.097,
+            "Top Coefficient": "CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M"
+        }
+    ]
+}

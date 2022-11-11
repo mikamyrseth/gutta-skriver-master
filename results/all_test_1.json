@@ -1,21 +1,12 @@
 [
     {
-        "Model": "Akram (2022) Aggregate oil prices",
+        "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
         "dependent variable": "LOG-NB-I44",
-        "Prediction interval": "2010-01-09-2018-12-31",
+        "Prediction interval": "2010-01-18-2018-12-31",
         "Top Coefficient": "CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M",
-        "Model Similarity (R2)": 1.0,
-        "Model Deviance (MAPE)": 0.179,
-        "Prediction Strength (R2)": 0.943
-    },
-    {
-        "Model": "Bjornstad korttidsmodell",
-        "dependent variable": "DELTA-LOG-EURNOK",
-        "Prediction interval": "2002-12-31-2006-09-30",
-        "Top Coefficient": "DELTA-3-NIBOR",
-        "Model Similarity (R2)": 0.225,
-        "Model Deviance (MAPE)": 0.914,
-        "Prediction Strength (R2)": 0.595
+        "Model Similarity (R2)": 0.994,
+        "Model Deviance (MAPE)": 1.111,
+        "Prediction Strength (R2)": 0.91
     },
     {
         "Model": "Ellen linear model",
@@ -34,6 +25,24 @@
         "Model Similarity (R2)": 0.571,
         "Model Deviance (MAPE)": 1.029,
         "Prediction Strength (R2)": 0.442
+    },
+    {
+        "Model": "Akram (2022) Aggregate oil prices",
+        "dependent variable": "LOG-NB-I44",
+        "Prediction interval": "2010-01-09-2018-12-31",
+        "Top Coefficient": "CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M",
+        "Model Similarity (R2)": 1.0,
+        "Model Deviance (MAPE)": 0.179,
+        "Prediction Strength (R2)": 0.943
+    },
+    {
+        "Model": "Bjornstad&Jansen 2007 korttidsmodell",
+        "dependent variable": "DELTA-LOG-EURNOK",
+        "Prediction interval": "2002-12-31-2006-09-30",
+        "Top Coefficient": "DELTA-3-NIBOR",
+        "Model Similarity (R2)": 0.225,
+        "Model Deviance (MAPE)": 0.914,
+        "Prediction Strength (R2)": 0.595
     },
     {
         "Model": "Myrstuen langtidsmodell",

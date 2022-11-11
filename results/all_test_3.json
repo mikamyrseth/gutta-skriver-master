@@ -1,75 +1,39 @@
 [
     {
-        "Model": "Akram (2022) Aggregate oil prices",
+        "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
         "Prediction interval": "2002-12-31-2006-01-01",
-        "R2": 0.746,
-        "Top Coefficient": "LOG-ICE-BRENT"
+        "R2": 0.582,
+        "Top Coefficient": "LOG-FVX-EM"
     },
     {
-        "Model": "Akram (2022) Aggregate oil prices",
+        "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
         "Prediction interval": "2006-01-01-2010-01-01",
-        "R2": 0.667,
-        "Top Coefficient": "LOG-ICE-BRENT"
+        "R2": 0.718,
+        "Top Coefficient": "CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M"
     },
     {
-        "Model": "Akram (2022) Aggregate oil prices",
+        "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
         "Prediction interval": "2010-01-01-2015-01-01",
-        "R2": 0.814,
+        "R2": 0.733,
         "Top Coefficient": "CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR"
     },
     {
-        "Model": "Akram (2022) Aggregate oil prices",
+        "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
         "Prediction interval": "2015-01-01-2020-01-01",
-        "R2": 0.322,
+        "R2": 0.148,
+        "Top Coefficient": "LOG-FVX-EM"
+    },
+    {
+        "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
+        "Prediction interval": "2020-01-01-2021-12-30",
+        "R2": 0.78,
         "Top Coefficient": "CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR"
     },
     {
-        "Model": "Akram (2022) Aggregate oil prices",
-        "Prediction interval": "2020-01-01-2021-12-30",
-        "R2": 0.852,
-        "Top Coefficient": "LOG-ICE-BRENT"
-    },
-    {
-        "Model": "Akram (2022) Aggregate oil prices",
+        "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
         "Prediction interval": "2002-12-31-2021-12-30",
-        "R2": 0.315,
-        "Top Coefficient": "LOG-ICE-BRENT"
-    },
-    {
-        "Model": "Bjornstad korttidsmodell",
-        "Prediction interval": "2002-12-31-2006-01-01",
-        "R2": 0.611,
-        "Top Coefficient": "DELTA-3-NIBOR"
-    },
-    {
-        "Model": "Bjornstad korttidsmodell",
-        "Prediction interval": "2006-01-01-2010-01-01",
-        "R2": 0.583,
-        "Top Coefficient": "DELTA-3-NIBOR"
-    },
-    {
-        "Model": "Bjornstad korttidsmodell",
-        "Prediction interval": "2010-01-01-2015-01-01",
-        "R2": 0.342,
-        "Top Coefficient": "DELTA-4-LOG-ICE-BRENT"
-    },
-    {
-        "Model": "Bjornstad korttidsmodell",
-        "Prediction interval": "2015-01-01-2020-01-01",
-        "R2": 0.345,
-        "Top Coefficient": "CUSTOM-BJORNSTAD-PPP-EQUILIBRIUM"
-    },
-    {
-        "Model": "Bjornstad korttidsmodell",
-        "Prediction interval": "2020-01-01-2021-12-30",
-        "R2": 0.681,
-        "Top Coefficient": "LAGGED-DELTA-3-EURIBOR"
-    },
-    {
-        "Model": "Bjornstad korttidsmodell",
-        "Prediction interval": "2002-12-31-2021-12-30",
-        "R2": 0.255,
-        "Top Coefficient": "LAGGED-DELTA-3-EURIBOR"
+        "R2": 0.097,
+        "Top Coefficient": "CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M"
     },
     {
         "Model": "Ellen linear model",
@@ -142,6 +106,78 @@
         "Prediction interval": "2002-12-31-2021-12-30",
         "R2": 0.495,
         "Top Coefficient": "DELTA-LOG-ICE-BRENT"
+    },
+    {
+        "Model": "Akram (2022) Aggregate oil prices",
+        "Prediction interval": "2002-12-31-2006-01-01",
+        "R2": 0.746,
+        "Top Coefficient": "LOG-ICE-BRENT"
+    },
+    {
+        "Model": "Akram (2022) Aggregate oil prices",
+        "Prediction interval": "2006-01-01-2010-01-01",
+        "R2": 0.667,
+        "Top Coefficient": "LOG-ICE-BRENT"
+    },
+    {
+        "Model": "Akram (2022) Aggregate oil prices",
+        "Prediction interval": "2010-01-01-2015-01-01",
+        "R2": 0.814,
+        "Top Coefficient": "CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR"
+    },
+    {
+        "Model": "Akram (2022) Aggregate oil prices",
+        "Prediction interval": "2015-01-01-2020-01-01",
+        "R2": 0.322,
+        "Top Coefficient": "CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR"
+    },
+    {
+        "Model": "Akram (2022) Aggregate oil prices",
+        "Prediction interval": "2020-01-01-2021-12-30",
+        "R2": 0.852,
+        "Top Coefficient": "LOG-ICE-BRENT"
+    },
+    {
+        "Model": "Akram (2022) Aggregate oil prices",
+        "Prediction interval": "2002-12-31-2021-12-30",
+        "R2": 0.315,
+        "Top Coefficient": "LOG-ICE-BRENT"
+    },
+    {
+        "Model": "Bjornstad&Jansen 2007 korttidsmodell",
+        "Prediction interval": "2002-12-31-2006-01-01",
+        "R2": 0.611,
+        "Top Coefficient": "DELTA-3-NIBOR"
+    },
+    {
+        "Model": "Bjornstad&Jansen 2007 korttidsmodell",
+        "Prediction interval": "2006-01-01-2010-01-01",
+        "R2": 0.583,
+        "Top Coefficient": "DELTA-3-NIBOR"
+    },
+    {
+        "Model": "Bjornstad&Jansen 2007 korttidsmodell",
+        "Prediction interval": "2010-01-01-2015-01-01",
+        "R2": 0.342,
+        "Top Coefficient": "DELTA-4-LOG-ICE-BRENT"
+    },
+    {
+        "Model": "Bjornstad&Jansen 2007 korttidsmodell",
+        "Prediction interval": "2015-01-01-2020-01-01",
+        "R2": 0.345,
+        "Top Coefficient": "CUSTOM-BJORNSTAD-PPP-EQUILIBRIUM"
+    },
+    {
+        "Model": "Bjornstad&Jansen 2007 korttidsmodell",
+        "Prediction interval": "2020-01-01-2021-12-30",
+        "R2": 0.681,
+        "Top Coefficient": "LAGGED-DELTA-3-EURIBOR"
+    },
+    {
+        "Model": "Bjornstad&Jansen 2007 korttidsmodell",
+        "Prediction interval": "2002-12-31-2021-12-30",
+        "R2": 0.255,
+        "Top Coefficient": "LAGGED-DELTA-3-EURIBOR"
     },
     {
         "Model": "Myrstuen langtidsmodell",
