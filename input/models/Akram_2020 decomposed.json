@@ -3,7 +3,7 @@
   "authors": ["Q. Farooq Akram"],
   "publish_year": 2020,
   "page": "3&7",
-  "model_start_date": "2010-01-18",
+  "model_start_date": "2010-01-15",
   "model_end_date": "2018-12-31",
   "dependent_variable": "LOG-NB-I44",
   "frequency": "WEEKLY",
@@ -13,9 +13,9 @@
     "CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR": -0.105,
     "LOG-GPR": 0.015,
     "LOG-FVX-EM": 0.026,
-    "NYFED-OIL-DEMAND": -0.116,
-    "NYFED-OIL-SUPPLY": -0.116,
-    "NYFED-OIL-RESIDUAL": 0.094
+    "AGGREGATE-NYFED-OIL-DEMAND": -0.116,
+    "AGGREGATE-NYFED-OIL-SUPPLY": -0.116,
+    "AGGREGATE-NYFED-OIL-RESIDUAL": 0.094
   },
   "stds": {},
   "stats": {}

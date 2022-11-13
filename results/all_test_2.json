@@ -1,12 +1,12 @@
 [
     {
         "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
-        "Base Interval": "2010-01-18-2018-12-31",
-        "Base R2": 0.91,
-        "New R2": 0.209,
-        "New interval": "2010-01-18-2020-05-04",
-        "Delta R2": -0.701,
-        "R2 percent change": -0.77
+        "Base Interval": "2010-01-15-2018-12-31",
+        "Base R2": 0.974,
+        "New R2": 0.91,
+        "New interval": "2010-01-15-2020-05-04",
+        "Delta R2": -0.064,
+        "R2 percent change": -0.066
     },
     {
         "Model": "Ellen linear model",
@@ -28,12 +28,12 @@
     },
     {
         "Model": "Akram (2022) Aggregate oil prices",
-        "Base Interval": "2010-01-09-2018-12-31",
-        "Base R2": 0.943,
-        "New R2": 0.557,
-        "New interval": "2010-01-09-2020-05-05",
-        "Delta R2": -0.386,
-        "R2 percent change": -0.409
+        "Base Interval": "2010-01-15-2018-12-31",
+        "Base R2": 0.944,
+        "New R2": 0.549,
+        "New interval": "2010-01-15-2020-05-04",
+        "Delta R2": -0.395,
+        "R2 percent change": -0.419
     },
     {
         "Model": "Bjornstad&Jansen 2007 korttidsmodell",

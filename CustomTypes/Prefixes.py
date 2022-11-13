@@ -9,6 +9,7 @@ class Prefixes(Enum):
     LOG = "LOG"
     DELTA = "DELTA"
     LAGGED = "LAGGED"
+    AGGREGATE = "AGGREGATE"
 
     def process_prefixes(name: str) -> "tuple[list, str]":
         prefixes_in_name = []
@@ -35,8 +36,8 @@ class Prefixes(Enum):
         return prefixes_in_name, dataseries_name
 
     def process_df(prefix, df, column_name: str, step=1):
-        # print(f"Processed prefix for {column_name}, {prefix} with step {step}")
-        # print("Before:", df)
+        print(f"Processed prefix for {column_name}, {prefix} with step {step}")
+        print("Before:", df)
         if str(prefix).isdigit():
             return df
         match prefix:
@@ -55,7 +56,9 @@ class Prefixes(Enum):
                 lagged = df[df.columns.values[0]].shift(step)
                 df[df.columns.values[0]] = lagged
                 df = df.fillna(0)
-        # print("After:", df)
+            case Prefixes.AGGREGATE:
+                df = df.cumsum()
+        print("After:", df)
         return df
 
     def apply_prefixes(prefixes: list, df, column_name: str):
