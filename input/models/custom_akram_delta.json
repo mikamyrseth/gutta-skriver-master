@@ -1,0 +1,22 @@
+{
+  "name": "Custom Akram 2022 differentiated",
+  "authors": ["Q. Farooq Akram, Oss"],
+  "publish_year": 2020,
+  "page": "3&7",
+  "model_start_date": "2010-01-15",
+  "model_end_date": "2018-12-31",
+  "dependent_variable": "DELTA-LOG-NB-I44",
+  "frequency": "WEEKLY",
+  "weights": {
+    "ALPHA": 4.513,
+    "DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M": -0.027,
+    "DELTA-CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR": -0.105,
+    "DELTA-LOG-GPR": 0.015,
+    "DELTA-LOG-FVX-EM": 0.026,
+    "DELTA-AGGREGATE-NYFED-OIL-DEMAND": -0.116,
+    "DELTA-AGGREGATE-NYFED-OIL-SUPPLY": -0.116,
+    "DELTA-AGGREGATE-NYFED-OIL-RESIDUAL": 0.094
+  },
+  "stds": {},
+  "stats": {}
+}

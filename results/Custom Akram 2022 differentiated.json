@@ -1,0 +1,58 @@
+{
+    "test1": {
+        "Model": "Custom Akram 2022 differentiated",
+        "dependent variable": "DELTA-LOG-NB-I44",
+        "Prediction interval": "2010-01-15-2018-12-31",
+        "Top Coefficient": "DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M",
+        "Model Similarity (R2)": -0.125,
+        "Model Deviance (MAPE)": 0.75,
+        "Prediction Strength (R2)": 0.32
+    },
+    "test2": {
+        "Model": "Custom Akram 2022 differentiated",
+        "Base Interval": "2010-01-15-2018-12-31",
+        "Base R2": 0.32,
+        "New R2": 0.394,
+        "New interval": "2010-01-15-2020-05-04",
+        "Delta R2": 0.073,
+        "R2 percent change": 0.229
+    },
+    "test3": [
+        {
+            "Model": "Custom Akram 2022 differentiated",
+            "Prediction interval": "2002-12-31-2006-01-01",
+            "R2": 0.137,
+            "Top Coefficient": "DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M"
+        },
+        {
+            "Model": "Custom Akram 2022 differentiated",
+            "Prediction interval": "2006-01-01-2010-01-01",
+            "R2": 0.365,
+            "Top Coefficient": "DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M"
+        },
+        {
+            "Model": "Custom Akram 2022 differentiated",
+            "Prediction interval": "2010-01-01-2015-01-01",
+            "R2": 0.33,
+            "Top Coefficient": "DELTA-LOG-FVX-EM"
+        },
+        {
+            "Model": "Custom Akram 2022 differentiated",
+            "Prediction interval": "2015-01-01-2020-01-01",
+            "R2": 0.338,
+            "Top Coefficient": "DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M"
+        },
+        {
+            "Model": "Custom Akram 2022 differentiated",
+            "Prediction interval": "2020-01-01-2021-12-30",
+            "R2": 0.538,
+            "Top Coefficient": "DELTA-AGGREGATE-NYFED-OIL-RESIDUAL"
+        },
+        {
+            "Model": "Custom Akram 2022 differentiated",
+            "Prediction interval": "2002-12-31-2021-12-30",
+            "R2": 0.321,
+            "Top Coefficient": "DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M"
+        }
+    ]
+}

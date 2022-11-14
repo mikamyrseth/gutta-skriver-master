@@ -1,5 +1,14 @@
 [
     {
+        "Model": "Custom Akram 2022 differentiated",
+        "Base Interval": "2010-01-15-2018-12-31",
+        "Base R2": 0.32,
+        "New R2": 0.394,
+        "New interval": "2010-01-15-2020-05-04",
+        "Delta R2": 0.073,
+        "R2 percent change": 0.229
+    },
+    {
         "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
         "Base Interval": "2010-01-15-2018-12-31",
         "Base R2": 0.974,

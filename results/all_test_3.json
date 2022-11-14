@@ -1,5 +1,41 @@
 [
     {
+        "Model": "Custom Akram 2022 differentiated",
+        "Prediction interval": "2002-12-31-2006-01-01",
+        "R2": 0.137,
+        "Top Coefficient": "DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M"
+    },
+    {
+        "Model": "Custom Akram 2022 differentiated",
+        "Prediction interval": "2006-01-01-2010-01-01",
+        "R2": 0.365,
+        "Top Coefficient": "DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M"
+    },
+    {
+        "Model": "Custom Akram 2022 differentiated",
+        "Prediction interval": "2010-01-01-2015-01-01",
+        "R2": 0.33,
+        "Top Coefficient": "DELTA-LOG-FVX-EM"
+    },
+    {
+        "Model": "Custom Akram 2022 differentiated",
+        "Prediction interval": "2015-01-01-2020-01-01",
+        "R2": 0.338,
+        "Top Coefficient": "DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M"
+    },
+    {
+        "Model": "Custom Akram 2022 differentiated",
+        "Prediction interval": "2020-01-01-2021-12-30",
+        "R2": 0.538,
+        "Top Coefficient": "DELTA-AGGREGATE-NYFED-OIL-RESIDUAL"
+    },
+    {
+        "Model": "Custom Akram 2022 differentiated",
+        "Prediction interval": "2002-12-31-2021-12-30",
+        "R2": 0.321,
+        "Top Coefficient": "DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M"
+    },
+    {
         "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
         "Prediction interval": "2002-12-31-2006-01-01",
         "R2": 0.784,
