@@ -50,7 +50,7 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
 
     all_models: list[Model] = []
     directory = "input/models"
-    # directory = "input/models_benchmarks"
+    # directory = "input/models_benchmarks_long"
     for filename in os.listdir(directory):
         f = os.path.join(directory, filename)
         # checking if it is a file

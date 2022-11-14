@@ -1,16 +1,15 @@
 {
-    "name": "Benchmark S&P-500",
+    "name": "Benchmark Interest Difference long",
     "authors": "Myrseth, Røstum, Vestrum",
     "publish_year": 2022,
     "page": "NA",
     "model_start_date": "2002-12-31",
     "model_end_date": "2015-08-01",
-    "dependent_variable": "DELTA-LOG-NB-I44",
+    "dependent_variable": "LOG-NB-I44",
     "frequency": "WEEKLY",
     "weights": {
       "ALPHA": 1,
-      "DELTA-LOG-S&P-500": 1
-      
+      "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": 1
     },
     "stds": {},
     "stats": {}

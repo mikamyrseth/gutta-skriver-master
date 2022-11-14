@@ -1,0 +1,113 @@
+{
+    "test1": {
+        "Model": "Benchmark ICE-BRENT long",
+        "dependent variable": "LOG-NB-I44",
+        "Prediction interval": "2002-12-31-2015-08-01",
+        "Top Coefficient": "LOG-ICE-BRENT",
+        "Model Similarity (R2)": 0.0,
+        "Model Deviance (MAPE)": 2.41,
+        "Prediction Strength (R2)": 0.341,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.339
+    },
+    "test2": {
+        "Model": "Benchmark ICE-BRENT long",
+        "Base Interval": "2002-12-31-2015-08-01",
+        "Base R2": 0.341,
+        "Base Adjusted R2": 0.338,
+        "New R2": 0.266,
+        "New Adjusted R2": 0.263,
+        "New interval": "2002-12-31-2017-06-20",
+        "Delta R2": -0.075,
+        "Delta Adjusted R2": -0.075,
+        "R2 percent change": -0.221,
+        "Adjusted R2 percent change": -0.222
+    },
+    "test3": [
+        {
+            "Model": "Benchmark ICE-BRENT long",
+            "Prediction interval": "2002-12-31-2006-01-01",
+            "R2": 0.094,
+            "Adjusted R2": 0.082,
+            "Top Coefficient": "LOG-ICE-BRENT"
+        },
+        {
+            "Model": "Benchmark ICE-BRENT long",
+            "Prediction interval": "2006-01-01-2010-01-01",
+            "R2": 0.646,
+            "Adjusted R2": 0.643,
+            "Top Coefficient": "LOG-ICE-BRENT"
+        },
+        {
+            "Model": "Benchmark ICE-BRENT long",
+            "Prediction interval": "2010-01-01-2015-01-01",
+            "R2": 0.264,
+            "Adjusted R2": 0.258,
+            "Top Coefficient": "LOG-ICE-BRENT"
+        },
+        {
+            "Model": "Benchmark ICE-BRENT long",
+            "Prediction interval": "2015-01-01-2020-01-01",
+            "R2": 0.049,
+            "Adjusted R2": 0.042,
+            "Top Coefficient": "LOG-ICE-BRENT"
+        },
+        {
+            "Model": "Benchmark ICE-BRENT long",
+            "Prediction interval": "2020-01-01-2021-12-30",
+            "R2": 0.827,
+            "Adjusted R2": 0.823,
+            "Top Coefficient": "LOG-ICE-BRENT"
+        },
+        {
+            "Model": "Benchmark ICE-BRENT long",
+            "Prediction interval": "2002-12-31-2021-12-30",
+            "R2": 0.249,
+            "Adjusted R2": 0.248,
+            "Top Coefficient": "LOG-ICE-BRENT"
+        }
+    ],
+    "test3-by-interval": {
+        "2002-12-31-2006-01-01": {
+            "Model": "Benchmark ICE-BRENT long",
+            "Prediction interval": "2002-12-31-2006-01-01",
+            "R2": 0.094,
+            "Adjusted R2": 0.082,
+            "Top Coefficient": "LOG-ICE-BRENT"
+        },
+        "2006-01-01-2010-01-01": {
+            "Model": "Benchmark ICE-BRENT long",
+            "Prediction interval": "2006-01-01-2010-01-01",
+            "R2": 0.646,
+            "Adjusted R2": 0.643,
+            "Top Coefficient": "LOG-ICE-BRENT"
+        },
+        "2010-01-01-2015-01-01": {
+            "Model": "Benchmark ICE-BRENT long",
+            "Prediction interval": "2010-01-01-2015-01-01",
+            "R2": 0.264,
+            "Adjusted R2": 0.258,
+            "Top Coefficient": "LOG-ICE-BRENT"
+        },
+        "2015-01-01-2020-01-01": {
+            "Model": "Benchmark ICE-BRENT long",
+            "Prediction interval": "2015-01-01-2020-01-01",
+            "R2": 0.049,
+            "Adjusted R2": 0.042,
+            "Top Coefficient": "LOG-ICE-BRENT"
+        },
+        "2020-01-01-2021-12-30": {
+            "Model": "Benchmark ICE-BRENT long",
+            "Prediction interval": "2020-01-01-2021-12-30",
+            "R2": 0.827,
+            "Adjusted R2": 0.823,
+            "Top Coefficient": "LOG-ICE-BRENT"
+        },
+        "2002-12-31-2021-12-30": {
+            "Model": "Benchmark ICE-BRENT long",
+            "Prediction interval": "2002-12-31-2021-12-30",
+            "R2": 0.249,
+            "Adjusted R2": 0.248,
+            "Top Coefficient": "LOG-ICE-BRENT"
+        }
+    }
+}

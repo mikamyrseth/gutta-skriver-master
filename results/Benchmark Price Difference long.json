@@ -1,0 +1,113 @@
+{
+    "test1": {
+        "Model": "Benchmark Price Difference long",
+        "dependent variable": "LOG-NB-I44",
+        "Prediction interval": "2002-12-31-2015-08-01",
+        "Top Coefficient": "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE",
+        "Model Similarity (R2)": 0.0,
+        "Model Deviance (MAPE)": 2.199,
+        "Prediction Strength (R2)": 0.265,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.263
+    },
+    "test2": {
+        "Model": "Benchmark Price Difference long",
+        "Base Interval": "2002-12-31-2015-08-01",
+        "Base R2": 0.265,
+        "Base Adjusted R2": 0.262,
+        "New R2": 0.542,
+        "New Adjusted R2": 0.54,
+        "New interval": "2002-12-31-2017-06-20",
+        "Delta R2": 0.276,
+        "Delta Adjusted R2": 0.278,
+        "R2 percent change": 1.041,
+        "Adjusted R2 percent change": 1.061
+    },
+    "test3": [
+        {
+            "Model": "Benchmark Price Difference long",
+            "Prediction interval": "2002-12-31-2006-01-01",
+            "R2": 0.084,
+            "Adjusted R2": 0.072,
+            "Top Coefficient": "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE"
+        },
+        {
+            "Model": "Benchmark Price Difference long",
+            "Prediction interval": "2006-01-01-2010-01-01",
+            "R2": 0.345,
+            "Adjusted R2": 0.338,
+            "Top Coefficient": "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE"
+        },
+        {
+            "Model": "Benchmark Price Difference long",
+            "Prediction interval": "2010-01-01-2015-01-01",
+            "R2": 0.246,
+            "Adjusted R2": 0.241,
+            "Top Coefficient": "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE"
+        },
+        {
+            "Model": "Benchmark Price Difference long",
+            "Prediction interval": "2015-01-01-2020-01-01",
+            "R2": 0.197,
+            "Adjusted R2": 0.19,
+            "Top Coefficient": "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE"
+        },
+        {
+            "Model": "Benchmark Price Difference long",
+            "Prediction interval": "2020-01-01-2021-12-30",
+            "R2": 0.168,
+            "Adjusted R2": 0.151,
+            "Top Coefficient": "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE"
+        },
+        {
+            "Model": "Benchmark Price Difference long",
+            "Prediction interval": "2002-12-31-2021-12-30",
+            "R2": 0.793,
+            "Adjusted R2": 0.793,
+            "Top Coefficient": "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE"
+        }
+    ],
+    "test3-by-interval": {
+        "2002-12-31-2006-01-01": {
+            "Model": "Benchmark Price Difference long",
+            "Prediction interval": "2002-12-31-2006-01-01",
+            "R2": 0.084,
+            "Adjusted R2": 0.072,
+            "Top Coefficient": "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE"
+        },
+        "2006-01-01-2010-01-01": {
+            "Model": "Benchmark Price Difference long",
+            "Prediction interval": "2006-01-01-2010-01-01",
+            "R2": 0.345,
+            "Adjusted R2": 0.338,
+            "Top Coefficient": "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE"
+        },
+        "2010-01-01-2015-01-01": {
+            "Model": "Benchmark Price Difference long",
+            "Prediction interval": "2010-01-01-2015-01-01",
+            "R2": 0.246,
+            "Adjusted R2": 0.241,
+            "Top Coefficient": "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE"
+        },
+        "2015-01-01-2020-01-01": {
+            "Model": "Benchmark Price Difference long",
+            "Prediction interval": "2015-01-01-2020-01-01",
+            "R2": 0.197,
+            "Adjusted R2": 0.19,
+            "Top Coefficient": "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE"
+        },
+        "2020-01-01-2021-12-30": {
+            "Model": "Benchmark Price Difference long",
+            "Prediction interval": "2020-01-01-2021-12-30",
+            "R2": 0.168,
+            "Adjusted R2": 0.151,
+            "Top Coefficient": "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE"
+        },
+        "2002-12-31-2021-12-30": {
+            "Model": "Benchmark Price Difference long",
+            "Prediction interval": "2002-12-31-2021-12-30",
+            "R2": 0.793,
+            "Adjusted R2": 0.793,
+            "Top Coefficient": "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE"
+        }
+    }
+}
