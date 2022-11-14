@@ -49,8 +49,8 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
     CustomDataseries.data = all_custom_dataseries
 
     all_models: list[Model] = []
-    directory = "input/models"
-    # directory = "input/models_benchmarks_long"
+    # directory = "input/models"
+    directory = "input/models_benchmarks_short"
     for filename in os.listdir(directory):
         f = os.path.join(directory, filename)
         # checking if it is a file
@@ -107,11 +107,12 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 fig = plt.gcf()
                 fig.set_size_inches(18.5, 10.5)
 
-                #ensure plot labels are showing
+                # ensure plot labels are showing
                 plt.tight_layout()
 
                 # save plot
-                fig.savefig(f'results/normalized-coefficients/{model.name}.png')
+                fig.savefig(
+                    f'results/normalized-coefficients/{model.name}.png')
 
                 # save stats
                 model.results["test1"] = {}
@@ -146,7 +147,8 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
 
             base_r2, adjusted_base_r2 = model.run_model(
                 model.model_start_date, model.model_end_date)
-            new_r2, adjusted_new_r2 = model.run_model(model.model_start_date, new_end_date)
+            new_r2, adjusted_new_r2 = model.run_model(
+                model.model_start_date, new_end_date)
             delta_r2 = new_r2-base_r2
             delta_adjusted_r2 = adjusted_new_r2-adjusted_base_r2
             percentage_change = delta_r2/base_r2
@@ -156,15 +158,20 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
             model.results["test2"][
                 "Base Interval"] = f"{model.model_start_date.strftime('%Y-%m-%d')}-{model.model_end_date.strftime('%Y-%m-%d')}"
             model.results["test2"]["Base R2"] = base_r2.round(3)
-            model.results["test2"]["Base Adjusted R2"] = adjusted_base_r2.round(3)
+            model.results["test2"]["Base Adjusted R2"] = adjusted_base_r2.round(
+                3)
             model.results["test2"]["New R2"] = new_r2.round(3)
-            model.results["test2"]["New Adjusted R2"] = adjusted_new_r2.round(3)
+            model.results["test2"]["New Adjusted R2"] = adjusted_new_r2.round(
+                3)
             model.results["test2"][
                 "New interval"] = f"{model.model_start_date.strftime('%Y-%m-%d')}-{new_end_date.strftime('%Y-%m-%d')}"
             model.results["test2"]["Delta R2"] = delta_r2.round(3)
-            model.results["test2"]["Delta Adjusted R2"] = delta_adjusted_r2.round(3)
-            model.results["test2"]["R2 percent change"] = percentage_change.round(3)
-            model.results["test2"]["Adjusted R2 percent change"] = percentage_change_adjusted.round(3)
+            model.results["test2"]["Delta Adjusted R2"] = delta_adjusted_r2.round(
+                3)
+            model.results["test2"]["R2 percent change"] = percentage_change.round(
+                3)
+            model.results["test2"]["Adjusted R2 percent change"] = percentage_change_adjusted.round(
+                3)
 
     # test 3 - time intervals
     if runTest3:
@@ -233,6 +240,23 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 json.dump(all_test_3, outfile, indent=4)
             with open("results/all_test_3_by_interval.json", "w+") as outfile:
                 json.dump(all_test_3_by_interval, outfile, indent=4)
+
+        # make a plot of Adjusted R2 test3-by-interval for each model
+        if runTest3:
+            for model in all_models:
+                df = pd.DataFrame(model.results["test3"])
+                df = df.set_index("Prediction interval")
+                df = df.drop(columns=["Model", "R2", "Top Coefficient"])
+                df.plot.bar()
+                plt.title(model.name)
+                # Increase canvas size
+                fig = plt.gcf()
+                fig.set_size_inches(18.5, 10.5)
+
+                fig.tight_layout()
+                fig.savefig(
+                    f"results/r2-intervals/{model.name}_test3_by_interval.png")
+                plt.close()
 
             # df = pd.DataFrame(data=model.results, index=[0])
             # df = (df.T)

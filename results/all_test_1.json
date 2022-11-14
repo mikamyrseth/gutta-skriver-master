@@ -1,72 +1,52 @@
 [
     {
-        "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
-        "dependent variable": "LOG-NB-I44",
-        "Prediction interval": "2010-01-15-2018-12-31",
-        "Top Coefficient": "AGGREGATE-NYFED-OIL-SUPPLY",
-        "Model Similarity (R2)": 1.0,
-        "Model Deviance (MAPE)": 0.304,
-        "Prediction Strength (R2)": 0.974,
-        "Adjusted Prediction Strength (Adjusted R2)": 0.974
-    },
-    {
-        "Model": "Akram (2022) Aggregate oil prices",
-        "dependent variable": "LOG-NB-I44",
-        "Prediction interval": "2010-01-15-2018-12-31",
-        "Top Coefficient": "CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M",
-        "Model Similarity (R2)": 1.0,
-        "Model Deviance (MAPE)": 0.181,
-        "Prediction Strength (R2)": 0.944,
-        "Adjusted Prediction Strength (Adjusted R2)": 0.944
-    },
-    {
-        "Model": "Bjornstad&Jansen 2007 korttidsmodell",
-        "dependent variable": "DELTA-LOG-EURNOK",
-        "Prediction interval": "2002-12-31-2006-09-30",
-        "Top Coefficient": "DELTA-3-NIBOR",
-        "Model Similarity (R2)": 0.225,
-        "Model Deviance (MAPE)": 0.914,
-        "Prediction Strength (R2)": 0.595,
-        "Adjusted Prediction Strength (Adjusted R2)": 0.447
-    },
-    {
-        "Model": "Custom Akram 2022 differentiated",
+        "Model": "Benchmark CVIX",
         "dependent variable": "DELTA-LOG-NB-I44",
-        "Prediction interval": "2010-01-15-2018-12-31",
-        "Top Coefficient": "DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M",
+        "Prediction interval": "2002-12-31-2015-08-01",
+        "Top Coefficient": "DELTA-LOG-DB-CVIX",
         "Model Similarity (R2)": 0.0,
-        "Model Deviance (MAPE)": 1.023,
-        "Prediction Strength (R2)": 0.32,
-        "Adjusted Prediction Strength (Adjusted R2)": 0.309
+        "Model Deviance (MAPE)": 0.986,
+        "Prediction Strength (R2)": 0.022,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.019
     },
     {
-        "Model": "Ellen linear model",
+        "Model": "Benchmark Price Difference",
         "dependent variable": "DELTA-LOG-NB-I44",
-        "Prediction interval": "2001-01-01-2015-08-01",
-        "Top Coefficient": "DELTA-LOG-ICE-BRENT",
-        "Model Similarity (R2)": 0.906,
-        "Model Deviance (MAPE)": 0.493,
-        "Prediction Strength (R2)": 0.149,
-        "Adjusted Prediction Strength (Adjusted R2)": 0.139
+        "Prediction interval": "2002-12-31-2015-08-01",
+        "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-PRICE-DIFFERENCE",
+        "Model Similarity (R2)": 0.0,
+        "Model Deviance (MAPE)": 0.575,
+        "Prediction Strength (R2)": 0.009,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.006
     },
     {
-        "Model": "Myrstuen korttidsmodell",
-        "dependent variable": "DELTA-LOG-NB-KKI",
-        "Prediction interval": "2001-12-31-2019-04-30",
-        "Top Coefficient": "DELTA-LOG-ICE-BRENT",
-        "Model Similarity (R2)": 0.571,
-        "Model Deviance (MAPE)": 1.029,
-        "Prediction Strength (R2)": 0.442,
-        "Adjusted Prediction Strength (Adjusted R2)": 0.428
+        "Model": "Benchmark Interest Difference",
+        "dependent variable": "DELTA-LOG-NB-I44",
+        "Prediction interval": "2002-12-31-2015-08-01",
+        "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M",
+        "Model Similarity (R2)": 0.0,
+        "Model Deviance (MAPE)": 3.411,
+        "Prediction Strength (R2)": 0.173,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.171
     },
     {
-        "Model": "Myrstuen langtidsmodell",
-        "dependent variable": "LOG-NB-KKI",
-        "Prediction interval": "2001-12-31-2019-04-30",
-        "Top Coefficient": "LOG-S&P-500",
-        "Model Similarity (R2)": 0.987,
-        "Model Deviance (MAPE)": 0.125,
-        "Prediction Strength (R2)": 0.891,
-        "Adjusted Prediction Strength (Adjusted R2)": 0.888
+        "Model": "Benchmark ICE-BRENT",
+        "dependent variable": "DELTA-LOG-NB-I44",
+        "Prediction interval": "2002-12-31-2015-08-01",
+        "Top Coefficient": "DELTA-LOG-ICE-BRENT",
+        "Model Similarity (R2)": 0.0,
+        "Model Deviance (MAPE)": 1.039,
+        "Prediction Strength (R2)": 0.116,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.113
+    },
+    {
+        "Model": "Benchmark S&P-500 short",
+        "dependent variable": "DELTA-LOG-NB-I44",
+        "Prediction interval": "2002-12-31-2015-08-01",
+        "Top Coefficient": "DELTA-LOG-S&P-500",
+        "Model Similarity (R2)": 0.0,
+        "Model Deviance (MAPE)": 1.062,
+        "Prediction Strength (R2)": 0.087,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.084
     }
 ]

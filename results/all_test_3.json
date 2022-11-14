@@ -1,296 +1,212 @@
 [
     {
-        "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
+        "Model": "Benchmark CVIX",
         "Prediction interval": "2002-12-31-2006-01-01",
-        "R2": 0.784,
-        "Adjusted R2": 0.773,
-        "Top Coefficient": "CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M"
+        "R2": 0.028,
+        "Adjusted R2": 0.016,
+        "Top Coefficient": "DELTA-LOG-DB-CVIX"
     },
     {
-        "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
+        "Model": "Benchmark CVIX",
         "Prediction interval": "2006-01-01-2010-01-01",
-        "R2": 0.753,
-        "Adjusted R2": 0.743,
-        "Top Coefficient": "CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M"
-    },
-    {
-        "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
-        "Prediction interval": "2010-01-01-2015-01-01",
-        "R2": 0.859,
-        "Adjusted R2": 0.855,
-        "Top Coefficient": "AGGREGATE-NYFED-OIL-SUPPLY"
-    },
-    {
-        "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
-        "Prediction interval": "2015-01-01-2020-01-01",
-        "R2": 0.688,
-        "Adjusted R2": 0.679,
-        "Top Coefficient": "AGGREGATE-NYFED-OIL-SUPPLY"
-    },
-    {
-        "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
-        "Prediction interval": "2020-01-01-2021-12-30",
-        "R2": 0.89,
-        "Adjusted R2": 0.881,
-        "Top Coefficient": "AGGREGATE-NYFED-OIL-RESIDUAL"
-    },
-    {
-        "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
-        "Prediction interval": "2002-12-31-2021-12-30",
-        "R2": 0.925,
-        "Adjusted R2": 0.924,
-        "Top Coefficient": "AGGREGATE-NYFED-OIL-SUPPLY"
-    },
-    {
-        "Model": "Akram (2022) Aggregate oil prices",
-        "Prediction interval": "2002-12-31-2006-01-01",
-        "R2": 0.746,
-        "Adjusted R2": 0.74,
-        "Top Coefficient": "LOG-ICE-BRENT"
-    },
-    {
-        "Model": "Akram (2022) Aggregate oil prices",
-        "Prediction interval": "2006-01-01-2010-01-01",
-        "R2": 0.667,
-        "Adjusted R2": 0.661,
-        "Top Coefficient": "LOG-ICE-BRENT"
-    },
-    {
-        "Model": "Akram (2022) Aggregate oil prices",
-        "Prediction interval": "2010-01-01-2015-01-01",
-        "R2": 0.814,
-        "Adjusted R2": 0.811,
-        "Top Coefficient": "CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR"
-    },
-    {
-        "Model": "Akram (2022) Aggregate oil prices",
-        "Prediction interval": "2015-01-01-2020-01-01",
-        "R2": 0.322,
-        "Adjusted R2": 0.312,
-        "Top Coefficient": "CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR"
-    },
-    {
-        "Model": "Akram (2022) Aggregate oil prices",
-        "Prediction interval": "2020-01-01-2021-12-30",
-        "R2": 0.852,
-        "Adjusted R2": 0.846,
-        "Top Coefficient": "LOG-ICE-BRENT"
-    },
-    {
-        "Model": "Akram (2022) Aggregate oil prices",
-        "Prediction interval": "2002-12-31-2021-12-30",
-        "R2": 0.315,
-        "Adjusted R2": 0.312,
-        "Top Coefficient": "LOG-ICE-BRENT"
-    },
-    {
-        "Model": "Bjornstad&Jansen 2007 korttidsmodell",
-        "Prediction interval": "2002-12-31-2006-01-01",
-        "R2": 0.611,
-        "Adjusted R2": 0.417,
-        "Top Coefficient": "DELTA-3-NIBOR"
-    },
-    {
-        "Model": "Bjornstad&Jansen 2007 korttidsmodell",
-        "Prediction interval": "2006-01-01-2010-01-01",
-        "R2": 0.583,
-        "Adjusted R2": 0.444,
-        "Top Coefficient": "DELTA-3-NIBOR"
-    },
-    {
-        "Model": "Bjornstad&Jansen 2007 korttidsmodell",
-        "Prediction interval": "2010-01-01-2015-01-01",
-        "R2": 0.342,
-        "Adjusted R2": 0.181,
-        "Top Coefficient": "DELTA-4-LOG-ICE-BRENT"
-    },
-    {
-        "Model": "Bjornstad&Jansen 2007 korttidsmodell",
-        "Prediction interval": "2015-01-01-2020-01-01",
-        "R2": 0.345,
-        "Adjusted R2": 0.185,
-        "Top Coefficient": "CUSTOM-BJORNSTAD-PPP-EQUILIBRIUM"
-    },
-    {
-        "Model": "Bjornstad&Jansen 2007 korttidsmodell",
-        "Prediction interval": "2020-01-01-2021-12-30",
-        "R2": 0.681,
-        "Adjusted R2": 0.243,
-        "Top Coefficient": "LAGGED-DELTA-3-EURIBOR"
-    },
-    {
-        "Model": "Bjornstad&Jansen 2007 korttidsmodell",
-        "Prediction interval": "2002-12-31-2021-12-30",
-        "R2": 0.255,
-        "Adjusted R2": 0.216,
-        "Top Coefficient": "LAGGED-DELTA-3-EURIBOR"
-    },
-    {
-        "Model": "Custom Akram 2022 differentiated",
-        "Prediction interval": "2002-12-31-2006-01-01",
-        "R2": 0.137,
-        "Adjusted R2": 0.09,
-        "Top Coefficient": "DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M"
-    },
-    {
-        "Model": "Custom Akram 2022 differentiated",
-        "Prediction interval": "2006-01-01-2010-01-01",
-        "R2": 0.365,
-        "Adjusted R2": 0.339,
-        "Top Coefficient": "DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M"
-    },
-    {
-        "Model": "Custom Akram 2022 differentiated",
-        "Prediction interval": "2010-01-01-2015-01-01",
-        "R2": 0.33,
-        "Adjusted R2": 0.309,
-        "Top Coefficient": "DELTA-LOG-FVX-EM"
-    },
-    {
-        "Model": "Custom Akram 2022 differentiated",
-        "Prediction interval": "2015-01-01-2020-01-01",
-        "R2": 0.338,
-        "Adjusted R2": 0.317,
-        "Top Coefficient": "DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M"
-    },
-    {
-        "Model": "Custom Akram 2022 differentiated",
-        "Prediction interval": "2020-01-01-2021-12-30",
-        "R2": 0.538,
-        "Adjusted R2": 0.5,
-        "Top Coefficient": "DELTA-AGGREGATE-NYFED-OIL-RESIDUAL"
-    },
-    {
-        "Model": "Custom Akram 2022 differentiated",
-        "Prediction interval": "2002-12-31-2021-12-30",
-        "R2": 0.321,
-        "Adjusted R2": 0.315,
-        "Top Coefficient": "DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M"
-    },
-    {
-        "Model": "Ellen linear model",
-        "Prediction interval": "2002-12-31-2006-01-01",
         "R2": 0.003,
-        "Adjusted R2": -0.054,
-        "Top Coefficient": "DELTA-LOG-ICE-BRENT"
+        "Adjusted R2": -0.007,
+        "Top Coefficient": "DELTA-LOG-DB-CVIX"
     },
     {
-        "Model": "Ellen linear model",
-        "Prediction interval": "2006-01-01-2010-01-01",
-        "R2": 0.205,
-        "Adjusted R2": 0.171,
-        "Top Coefficient": "DELTA-LOG-ICE-BRENT"
-    },
-    {
-        "Model": "Ellen linear model",
+        "Model": "Benchmark CVIX",
         "Prediction interval": "2010-01-01-2015-01-01",
-        "R2": 0.336,
-        "Adjusted R2": 0.313,
-        "Top Coefficient": "DELTA-LOG-ICE-BRENT"
+        "R2": 0.087,
+        "Adjusted R2": 0.08,
+        "Top Coefficient": "DELTA-LOG-DB-CVIX"
     },
     {
-        "Model": "Ellen linear model",
+        "Model": "Benchmark CVIX",
         "Prediction interval": "2015-01-01-2020-01-01",
-        "R2": 0.311,
-        "Adjusted R2": 0.287,
-        "Top Coefficient": "DELTA-LOG-ICE-BRENT"
+        "R2": 0.034,
+        "Adjusted R2": 0.026,
+        "Top Coefficient": "DELTA-LOG-DB-CVIX"
     },
     {
-        "Model": "Ellen linear model",
+        "Model": "Benchmark CVIX",
         "Prediction interval": "2020-01-01-2021-12-30",
-        "R2": 0.593,
-        "Adjusted R2": 0.555,
-        "Top Coefficient": "DELTA-LOG-ICE-BRENT"
+        "R2": 0.314,
+        "Adjusted R2": 0.301,
+        "Top Coefficient": "DELTA-LOG-DB-CVIX"
     },
     {
-        "Model": "Ellen linear model",
+        "Model": "Benchmark CVIX",
         "Prediction interval": "2002-12-31-2021-12-30",
-        "R2": 0.288,
-        "Adjusted R2": 0.282,
-        "Top Coefficient": "DELTA-LOG-ICE-BRENT"
+        "R2": 0.067,
+        "Adjusted R2": 0.065,
+        "Top Coefficient": "DELTA-LOG-DB-CVIX"
     },
     {
-        "Model": "Myrstuen korttidsmodell",
+        "Model": "Benchmark Price Difference",
         "Prediction interval": "2002-12-31-2006-01-01",
-        "R2": 0.521,
-        "Adjusted R2": 0.443,
-        "Top Coefficient": "LAGGED-CUSTOM-MYRSTUEN-EQULIBIRUM"
+        "R2": 0.01,
+        "Adjusted R2": -0.003,
+        "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-PRICE-DIFFERENCE"
     },
     {
-        "Model": "Myrstuen korttidsmodell",
+        "Model": "Benchmark Price Difference",
         "Prediction interval": "2006-01-01-2010-01-01",
-        "R2": 0.476,
-        "Adjusted R2": 0.413,
-        "Top Coefficient": "DELTA-LOG-ICE-BRENT"
+        "R2": 0.013,
+        "Adjusted R2": 0.004,
+        "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-PRICE-DIFFERENCE"
     },
     {
-        "Model": "Myrstuen korttidsmodell",
+        "Model": "Benchmark Price Difference",
         "Prediction interval": "2010-01-01-2015-01-01",
-        "R2": 0.643,
-        "Adjusted R2": 0.61,
-        "Top Coefficient": "DELTA-LOG-ICE-BRENT"
+        "R2": 0.027,
+        "Adjusted R2": 0.019,
+        "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-PRICE-DIFFERENCE"
     },
     {
-        "Model": "Myrstuen korttidsmodell",
+        "Model": "Benchmark Price Difference",
         "Prediction interval": "2015-01-01-2020-01-01",
-        "R2": 0.49,
-        "Adjusted R2": 0.442,
-        "Top Coefficient": "DELTA-LOG-ICE-BRENT"
+        "R2": 0.0,
+        "Adjusted R2": -0.007,
+        "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-PRICE-DIFFERENCE"
     },
     {
-        "Model": "Myrstuen korttidsmodell",
+        "Model": "Benchmark Price Difference",
         "Prediction interval": "2020-01-01-2021-12-30",
-        "R2": 0.792,
-        "Adjusted R2": 0.731,
-        "Top Coefficient": "DELTA-LOG-ICE-BRENT"
+        "R2": 0.016,
+        "Adjusted R2": -0.003,
+        "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-PRICE-DIFFERENCE"
     },
     {
-        "Model": "Myrstuen korttidsmodell",
+        "Model": "Benchmark Price Difference",
         "Prediction interval": "2002-12-31-2021-12-30",
-        "R2": 0.495,
-        "Adjusted R2": 0.484,
-        "Top Coefficient": "DELTA-LOG-ICE-BRENT"
+        "R2": 0.005,
+        "Adjusted R2": 0.003,
+        "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-PRICE-DIFFERENCE"
     },
     {
-        "Model": "Myrstuen langtidsmodell",
+        "Model": "Benchmark Interest Difference",
         "Prediction interval": "2002-12-31-2006-01-01",
-        "R2": 0.787,
-        "Adjusted R2": 0.746,
-        "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
+        "R2": 0.092,
+        "Adjusted R2": 0.08,
+        "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
     },
     {
-        "Model": "Myrstuen langtidsmodell",
+        "Model": "Benchmark Interest Difference",
         "Prediction interval": "2006-01-01-2010-01-01",
-        "R2": 0.718,
-        "Adjusted R2": 0.677,
-        "Top Coefficient": "LOG-ICE-BRENT"
+        "R2": 0.266,
+        "Adjusted R2": 0.259,
+        "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
     },
     {
-        "Model": "Myrstuen langtidsmodell",
+        "Model": "Benchmark Interest Difference",
         "Prediction interval": "2010-01-01-2015-01-01",
-        "R2": 0.859,
-        "Adjusted R2": 0.843,
-        "Top Coefficient": "LOG-S&P-500"
+        "R2": 0.181,
+        "Adjusted R2": 0.175,
+        "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
     },
     {
-        "Model": "Myrstuen langtidsmodell",
+        "Model": "Benchmark Interest Difference",
         "Prediction interval": "2015-01-01-2020-01-01",
-        "R2": 0.539,
-        "Adjusted R2": 0.488,
-        "Top Coefficient": "LOG-ICE-BRENT"
+        "R2": 0.236,
+        "Adjusted R2": 0.23,
+        "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
     },
     {
-        "Model": "Myrstuen langtidsmodell",
+        "Model": "Benchmark Interest Difference",
         "Prediction interval": "2020-01-01-2021-12-30",
-        "R2": 0.85,
-        "Adjusted R2": 0.798,
-        "Top Coefficient": "LOG-ICE-BRENT"
+        "R2": 0.23,
+        "Adjusted R2": 0.215,
+        "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
     },
     {
-        "Model": "Myrstuen langtidsmodell",
+        "Model": "Benchmark Interest Difference",
         "Prediction interval": "2002-12-31-2021-12-30",
-        "R2": 0.916,
-        "Adjusted R2": 0.914,
-        "Top Coefficient": "LOG-S&P-500"
+        "R2": 0.152,
+        "Adjusted R2": 0.151,
+        "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
+    },
+    {
+        "Model": "Benchmark ICE-BRENT",
+        "Prediction interval": "2002-12-31-2006-01-01",
+        "R2": 0.001,
+        "Adjusted R2": -0.012,
+        "Top Coefficient": "DELTA-LOG-ICE-BRENT"
+    },
+    {
+        "Model": "Benchmark ICE-BRENT",
+        "Prediction interval": "2006-01-01-2010-01-01",
+        "R2": 0.163,
+        "Adjusted R2": 0.155,
+        "Top Coefficient": "DELTA-LOG-ICE-BRENT"
+    },
+    {
+        "Model": "Benchmark ICE-BRENT",
+        "Prediction interval": "2010-01-01-2015-01-01",
+        "R2": 0.099,
+        "Adjusted R2": 0.092,
+        "Top Coefficient": "DELTA-LOG-ICE-BRENT"
+    },
+    {
+        "Model": "Benchmark ICE-BRENT",
+        "Prediction interval": "2015-01-01-2020-01-01",
+        "R2": 0.151,
+        "Adjusted R2": 0.144,
+        "Top Coefficient": "DELTA-LOG-ICE-BRENT"
+    },
+    {
+        "Model": "Benchmark ICE-BRENT",
+        "Prediction interval": "2020-01-01-2021-12-30",
+        "R2": 0.276,
+        "Adjusted R2": 0.262,
+        "Top Coefficient": "DELTA-LOG-ICE-BRENT"
+    },
+    {
+        "Model": "Benchmark ICE-BRENT",
+        "Prediction interval": "2002-12-31-2021-12-30",
+        "R2": 0.14,
+        "Adjusted R2": 0.138,
+        "Top Coefficient": "DELTA-LOG-ICE-BRENT"
+    },
+    {
+        "Model": "Benchmark S&P-500 short",
+        "Prediction interval": "2002-12-31-2006-01-01",
+        "R2": 0.001,
+        "Adjusted R2": -0.012,
+        "Top Coefficient": "DELTA-LOG-S&P-500"
+    },
+    {
+        "Model": "Benchmark S&P-500 short",
+        "Prediction interval": "2006-01-01-2010-01-01",
+        "R2": 0.036,
+        "Adjusted R2": 0.027,
+        "Top Coefficient": "DELTA-LOG-S&P-500"
+    },
+    {
+        "Model": "Benchmark S&P-500 short",
+        "Prediction interval": "2010-01-01-2015-01-01",
+        "R2": 0.096,
+        "Adjusted R2": 0.089,
+        "Top Coefficient": "DELTA-LOG-S&P-500"
+    },
+    {
+        "Model": "Benchmark S&P-500 short",
+        "Prediction interval": "2015-01-01-2020-01-01",
+        "R2": 0.051,
+        "Adjusted R2": 0.043,
+        "Top Coefficient": "DELTA-LOG-S&P-500"
+    },
+    {
+        "Model": "Benchmark S&P-500 short",
+        "Prediction interval": "2020-01-01-2021-12-30",
+        "R2": 0.377,
+        "Adjusted R2": 0.365,
+        "Top Coefficient": "DELTA-LOG-S&P-500"
+    },
+    {
+        "Model": "Benchmark S&P-500 short",
+        "Prediction interval": "2002-12-31-2021-12-30",
+        "R2": 0.148,
+        "Adjusted R2": 0.147,
+        "Top Coefficient": "DELTA-LOG-S&P-500"
     }
 ]

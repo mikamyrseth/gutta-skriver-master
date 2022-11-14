@@ -1,0 +1,113 @@
+{
+    "test1": {
+        "Model": "Benchmark S&P-500 short",
+        "dependent variable": "DELTA-LOG-NB-I44",
+        "Prediction interval": "2002-12-31-2015-08-01",
+        "Top Coefficient": "DELTA-LOG-S&P-500",
+        "Model Similarity (R2)": 0.0,
+        "Model Deviance (MAPE)": 1.062,
+        "Prediction Strength (R2)": 0.087,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.084
+    },
+    "test2": {
+        "Model": "Benchmark S&P-500 short",
+        "Base Interval": "2002-12-31-2015-08-01",
+        "Base R2": 0.087,
+        "Base Adjusted R2": 0.082,
+        "New R2": 0.088,
+        "New Adjusted R2": 0.084,
+        "New interval": "2002-12-31-2017-06-20",
+        "Delta R2": 0.001,
+        "Delta Adjusted R2": 0.002,
+        "R2 percent change": 0.011,
+        "Adjusted R2 percent change": 0.018
+    },
+    "test3": [
+        {
+            "Model": "Benchmark S&P-500 short",
+            "Prediction interval": "2002-12-31-2006-01-01",
+            "R2": 0.001,
+            "Adjusted R2": -0.012,
+            "Top Coefficient": "DELTA-LOG-S&P-500"
+        },
+        {
+            "Model": "Benchmark S&P-500 short",
+            "Prediction interval": "2006-01-01-2010-01-01",
+            "R2": 0.036,
+            "Adjusted R2": 0.027,
+            "Top Coefficient": "DELTA-LOG-S&P-500"
+        },
+        {
+            "Model": "Benchmark S&P-500 short",
+            "Prediction interval": "2010-01-01-2015-01-01",
+            "R2": 0.096,
+            "Adjusted R2": 0.089,
+            "Top Coefficient": "DELTA-LOG-S&P-500"
+        },
+        {
+            "Model": "Benchmark S&P-500 short",
+            "Prediction interval": "2015-01-01-2020-01-01",
+            "R2": 0.051,
+            "Adjusted R2": 0.043,
+            "Top Coefficient": "DELTA-LOG-S&P-500"
+        },
+        {
+            "Model": "Benchmark S&P-500 short",
+            "Prediction interval": "2020-01-01-2021-12-30",
+            "R2": 0.377,
+            "Adjusted R2": 0.365,
+            "Top Coefficient": "DELTA-LOG-S&P-500"
+        },
+        {
+            "Model": "Benchmark S&P-500 short",
+            "Prediction interval": "2002-12-31-2021-12-30",
+            "R2": 0.148,
+            "Adjusted R2": 0.147,
+            "Top Coefficient": "DELTA-LOG-S&P-500"
+        }
+    ],
+    "test3-by-interval": {
+        "2002-12-31-2006-01-01": {
+            "Model": "Benchmark S&P-500 short",
+            "Prediction interval": "2002-12-31-2006-01-01",
+            "R2": 0.001,
+            "Adjusted R2": -0.012,
+            "Top Coefficient": "DELTA-LOG-S&P-500"
+        },
+        "2006-01-01-2010-01-01": {
+            "Model": "Benchmark S&P-500 short",
+            "Prediction interval": "2006-01-01-2010-01-01",
+            "R2": 0.036,
+            "Adjusted R2": 0.027,
+            "Top Coefficient": "DELTA-LOG-S&P-500"
+        },
+        "2010-01-01-2015-01-01": {
+            "Model": "Benchmark S&P-500 short",
+            "Prediction interval": "2010-01-01-2015-01-01",
+            "R2": 0.096,
+            "Adjusted R2": 0.089,
+            "Top Coefficient": "DELTA-LOG-S&P-500"
+        },
+        "2015-01-01-2020-01-01": {
+            "Model": "Benchmark S&P-500 short",
+            "Prediction interval": "2015-01-01-2020-01-01",
+            "R2": 0.051,
+            "Adjusted R2": 0.043,
+            "Top Coefficient": "DELTA-LOG-S&P-500"
+        },
+        "2020-01-01-2021-12-30": {
+            "Model": "Benchmark S&P-500 short",
+            "Prediction interval": "2020-01-01-2021-12-30",
+            "R2": 0.377,
+            "Adjusted R2": 0.365,
+            "Top Coefficient": "DELTA-LOG-S&P-500"
+        },
+        "2002-12-31-2021-12-30": {
+            "Model": "Benchmark S&P-500 short",
+            "Prediction interval": "2002-12-31-2021-12-30",
+            "R2": 0.148,
+            "Adjusted R2": 0.147,
+            "Top Coefficient": "DELTA-LOG-S&P-500"
+        }
+    }
+}
