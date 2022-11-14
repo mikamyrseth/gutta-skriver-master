@@ -1,112 +1,112 @@
 {
     "test1": {
-        "Model": "Ellen linear model",
+        "Model": "Benchmark ICE-BRENT",
         "dependent variable": "DELTA-LOG-NB-I44",
-        "Prediction interval": "2001-01-01-2015-08-01",
+        "Prediction interval": "2002-12-31-2015-08-01",
         "Top Coefficient": "DELTA-LOG-ICE-BRENT",
-        "Model Similarity (R2)": 0.906,
-        "Model Deviance (MAPE)": 0.493,
-        "Prediction Strength (R2)": 0.149,
-        "Adjusted Prediction Strength (Adjusted R2)": 0.139
+        "Model Similarity (R2)": 0.0,
+        "Model Deviance (MAPE)": 1.039,
+        "Prediction Strength (R2)": 0.116,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.113
     },
     "test2": {
-        "Model": "Ellen linear model",
-        "Base Interval": "2001-01-01-2015-08-01",
-        "Base R2": 0.149,
-        "Base Adjusted R2": 0.134,
-        "New R2": 0.15,
-        "New Adjusted R2": 0.137,
-        "New interval": "2001-01-01-2017-10-07",
-        "Delta R2": 0.001,
-        "Delta Adjusted R2": 0.003,
-        "R2 percent change": 0.007,
-        "Adjusted R2 percent change": 0.022
+        "Model": "Benchmark ICE-BRENT",
+        "Base Interval": "2002-12-31-2015-08-01",
+        "Base R2": 0.116,
+        "Base Adjusted R2": 0.112,
+        "New R2": 0.113,
+        "New Adjusted R2": 0.11,
+        "New interval": "2002-12-31-2017-06-20",
+        "Delta R2": -0.002,
+        "Delta Adjusted R2": -0.002,
+        "R2 percent change": -0.02,
+        "Adjusted R2 percent change": -0.017
     },
     "test3": [
         {
-            "Model": "Ellen linear model",
+            "Model": "Benchmark ICE-BRENT",
             "Prediction interval": "2002-12-31-2006-01-01",
-            "R2": 0.003,
-            "Adjusted R2": -0.054,
+            "R2": 0.001,
+            "Adjusted R2": -0.012,
             "Top Coefficient": "DELTA-LOG-ICE-BRENT"
         },
         {
-            "Model": "Ellen linear model",
+            "Model": "Benchmark ICE-BRENT",
             "Prediction interval": "2006-01-01-2010-01-01",
-            "R2": 0.205,
-            "Adjusted R2": 0.171,
+            "R2": 0.163,
+            "Adjusted R2": 0.155,
             "Top Coefficient": "DELTA-LOG-ICE-BRENT"
         },
         {
-            "Model": "Ellen linear model",
+            "Model": "Benchmark ICE-BRENT",
             "Prediction interval": "2010-01-01-2015-01-01",
-            "R2": 0.336,
-            "Adjusted R2": 0.313,
+            "R2": 0.099,
+            "Adjusted R2": 0.092,
             "Top Coefficient": "DELTA-LOG-ICE-BRENT"
         },
         {
-            "Model": "Ellen linear model",
+            "Model": "Benchmark ICE-BRENT",
             "Prediction interval": "2015-01-01-2020-01-01",
-            "R2": 0.311,
-            "Adjusted R2": 0.287,
+            "R2": 0.151,
+            "Adjusted R2": 0.144,
             "Top Coefficient": "DELTA-LOG-ICE-BRENT"
         },
         {
-            "Model": "Ellen linear model",
+            "Model": "Benchmark ICE-BRENT",
             "Prediction interval": "2020-01-01-2021-12-30",
-            "R2": 0.593,
-            "Adjusted R2": 0.555,
+            "R2": 0.276,
+            "Adjusted R2": 0.262,
             "Top Coefficient": "DELTA-LOG-ICE-BRENT"
         },
         {
-            "Model": "Ellen linear model",
+            "Model": "Benchmark ICE-BRENT",
             "Prediction interval": "2002-12-31-2021-12-30",
-            "R2": 0.288,
-            "Adjusted R2": 0.282,
+            "R2": 0.14,
+            "Adjusted R2": 0.138,
             "Top Coefficient": "DELTA-LOG-ICE-BRENT"
         }
     ],
     "test3-by-interval": {
         "2002-12-31-2006-01-01": {
-            "Model": "Ellen linear model",
+            "Model": "Benchmark ICE-BRENT",
             "Prediction interval": "2002-12-31-2006-01-01",
-            "R2": 0.003,
-            "Adjusted R2": -0.054,
+            "R2": 0.001,
+            "Adjusted R2": -0.012,
             "Top Coefficient": "DELTA-LOG-ICE-BRENT"
         },
         "2006-01-01-2010-01-01": {
-            "Model": "Ellen linear model",
+            "Model": "Benchmark ICE-BRENT",
             "Prediction interval": "2006-01-01-2010-01-01",
-            "R2": 0.205,
-            "Adjusted R2": 0.171,
+            "R2": 0.163,
+            "Adjusted R2": 0.155,
             "Top Coefficient": "DELTA-LOG-ICE-BRENT"
         },
         "2010-01-01-2015-01-01": {
-            "Model": "Ellen linear model",
+            "Model": "Benchmark ICE-BRENT",
             "Prediction interval": "2010-01-01-2015-01-01",
-            "R2": 0.336,
-            "Adjusted R2": 0.313,
+            "R2": 0.099,
+            "Adjusted R2": 0.092,
             "Top Coefficient": "DELTA-LOG-ICE-BRENT"
         },
         "2015-01-01-2020-01-01": {
-            "Model": "Ellen linear model",
+            "Model": "Benchmark ICE-BRENT",
             "Prediction interval": "2015-01-01-2020-01-01",
-            "R2": 0.311,
-            "Adjusted R2": 0.287,
+            "R2": 0.151,
+            "Adjusted R2": 0.144,
             "Top Coefficient": "DELTA-LOG-ICE-BRENT"
         },
         "2020-01-01-2021-12-30": {
-            "Model": "Ellen linear model",
+            "Model": "Benchmark ICE-BRENT",
             "Prediction interval": "2020-01-01-2021-12-30",
-            "R2": 0.593,
-            "Adjusted R2": 0.555,
+            "R2": 0.276,
+            "Adjusted R2": 0.262,
             "Top Coefficient": "DELTA-LOG-ICE-BRENT"
         },
         "2002-12-31-2021-12-30": {
-            "Model": "Ellen linear model",
+            "Model": "Benchmark ICE-BRENT",
             "Prediction interval": "2002-12-31-2021-12-30",
-            "R2": 0.288,
-            "Adjusted R2": 0.282,
+            "R2": 0.14,
+            "Adjusted R2": 0.138,
             "Top Coefficient": "DELTA-LOG-ICE-BRENT"
         }
     }

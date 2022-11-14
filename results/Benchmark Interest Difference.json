@@ -1,0 +1,113 @@
+{
+    "test1": {
+        "Model": "Benchmark Interest Difference",
+        "dependent variable": "DELTA-LOG-NB-I44",
+        "Prediction interval": "2002-12-31-2015-08-01",
+        "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M",
+        "Model Similarity (R2)": 0.0,
+        "Model Deviance (MAPE)": 3.411,
+        "Prediction Strength (R2)": 0.173,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.171
+    },
+    "test2": {
+        "Model": "Benchmark Interest Difference",
+        "Base Interval": "2002-12-31-2015-08-01",
+        "Base R2": 0.173,
+        "Base Adjusted R2": 0.169,
+        "New R2": 0.168,
+        "New Adjusted R2": 0.165,
+        "New interval": "2002-12-31-2017-06-20",
+        "Delta R2": -0.005,
+        "Delta Adjusted R2": -0.005,
+        "R2 percent change": -0.029,
+        "Adjusted R2 percent change": -0.027
+    },
+    "test3": [
+        {
+            "Model": "Benchmark Interest Difference",
+            "Prediction interval": "2002-12-31-2006-01-01",
+            "R2": 0.092,
+            "Adjusted R2": 0.08,
+            "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
+        },
+        {
+            "Model": "Benchmark Interest Difference",
+            "Prediction interval": "2006-01-01-2010-01-01",
+            "R2": 0.266,
+            "Adjusted R2": 0.259,
+            "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
+        },
+        {
+            "Model": "Benchmark Interest Difference",
+            "Prediction interval": "2010-01-01-2015-01-01",
+            "R2": 0.181,
+            "Adjusted R2": 0.175,
+            "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
+        },
+        {
+            "Model": "Benchmark Interest Difference",
+            "Prediction interval": "2015-01-01-2020-01-01",
+            "R2": 0.236,
+            "Adjusted R2": 0.23,
+            "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
+        },
+        {
+            "Model": "Benchmark Interest Difference",
+            "Prediction interval": "2020-01-01-2021-12-30",
+            "R2": 0.23,
+            "Adjusted R2": 0.215,
+            "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
+        },
+        {
+            "Model": "Benchmark Interest Difference",
+            "Prediction interval": "2002-12-31-2021-12-30",
+            "R2": 0.152,
+            "Adjusted R2": 0.151,
+            "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
+        }
+    ],
+    "test3-by-interval": {
+        "2002-12-31-2006-01-01": {
+            "Model": "Benchmark Interest Difference",
+            "Prediction interval": "2002-12-31-2006-01-01",
+            "R2": 0.092,
+            "Adjusted R2": 0.08,
+            "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
+        },
+        "2006-01-01-2010-01-01": {
+            "Model": "Benchmark Interest Difference",
+            "Prediction interval": "2006-01-01-2010-01-01",
+            "R2": 0.266,
+            "Adjusted R2": 0.259,
+            "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
+        },
+        "2010-01-01-2015-01-01": {
+            "Model": "Benchmark Interest Difference",
+            "Prediction interval": "2010-01-01-2015-01-01",
+            "R2": 0.181,
+            "Adjusted R2": 0.175,
+            "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
+        },
+        "2015-01-01-2020-01-01": {
+            "Model": "Benchmark Interest Difference",
+            "Prediction interval": "2015-01-01-2020-01-01",
+            "R2": 0.236,
+            "Adjusted R2": 0.23,
+            "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
+        },
+        "2020-01-01-2021-12-30": {
+            "Model": "Benchmark Interest Difference",
+            "Prediction interval": "2020-01-01-2021-12-30",
+            "R2": 0.23,
+            "Adjusted R2": 0.215,
+            "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
+        },
+        "2002-12-31-2021-12-30": {
+            "Model": "Benchmark Interest Difference",
+            "Prediction interval": "2002-12-31-2021-12-30",
+            "R2": 0.152,
+            "Adjusted R2": 0.151,
+            "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
+        }
+    }
+}

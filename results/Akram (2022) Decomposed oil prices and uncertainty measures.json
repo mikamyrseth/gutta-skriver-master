@@ -65,5 +65,49 @@
             "Adjusted R2": 0.924,
             "Top Coefficient": "AGGREGATE-NYFED-OIL-SUPPLY"
         }
-    ]
+    ],
+    "test3-by-interval": {
+        "2002-12-31-2006-01-01": {
+            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
+            "Prediction interval": "2002-12-31-2006-01-01",
+            "R2": 0.784,
+            "Adjusted R2": 0.773,
+            "Top Coefficient": "CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M"
+        },
+        "2006-01-01-2010-01-01": {
+            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
+            "Prediction interval": "2006-01-01-2010-01-01",
+            "R2": 0.753,
+            "Adjusted R2": 0.743,
+            "Top Coefficient": "CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M"
+        },
+        "2010-01-01-2015-01-01": {
+            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
+            "Prediction interval": "2010-01-01-2015-01-01",
+            "R2": 0.859,
+            "Adjusted R2": 0.855,
+            "Top Coefficient": "AGGREGATE-NYFED-OIL-SUPPLY"
+        },
+        "2015-01-01-2020-01-01": {
+            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
+            "Prediction interval": "2015-01-01-2020-01-01",
+            "R2": 0.688,
+            "Adjusted R2": 0.679,
+            "Top Coefficient": "AGGREGATE-NYFED-OIL-SUPPLY"
+        },
+        "2020-01-01-2021-12-30": {
+            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
+            "Prediction interval": "2020-01-01-2021-12-30",
+            "R2": 0.89,
+            "Adjusted R2": 0.881,
+            "Top Coefficient": "AGGREGATE-NYFED-OIL-RESIDUAL"
+        },
+        "2002-12-31-2021-12-30": {
+            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
+            "Prediction interval": "2002-12-31-2021-12-30",
+            "R2": 0.925,
+            "Adjusted R2": 0.924,
+            "Top Coefficient": "AGGREGATE-NYFED-OIL-SUPPLY"
+        }
+    }
 }

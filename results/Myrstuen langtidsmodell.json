@@ -65,5 +65,49 @@
             "Adjusted R2": 0.914,
             "Top Coefficient": "LOG-S&P-500"
         }
-    ]
+    ],
+    "test3-by-interval": {
+        "2002-12-31-2006-01-01": {
+            "Model": "Myrstuen langtidsmodell",
+            "Prediction interval": "2002-12-31-2006-01-01",
+            "R2": 0.787,
+            "Adjusted R2": 0.746,
+            "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
+        },
+        "2006-01-01-2010-01-01": {
+            "Model": "Myrstuen langtidsmodell",
+            "Prediction interval": "2006-01-01-2010-01-01",
+            "R2": 0.718,
+            "Adjusted R2": 0.677,
+            "Top Coefficient": "LOG-ICE-BRENT"
+        },
+        "2010-01-01-2015-01-01": {
+            "Model": "Myrstuen langtidsmodell",
+            "Prediction interval": "2010-01-01-2015-01-01",
+            "R2": 0.859,
+            "Adjusted R2": 0.843,
+            "Top Coefficient": "LOG-S&P-500"
+        },
+        "2015-01-01-2020-01-01": {
+            "Model": "Myrstuen langtidsmodell",
+            "Prediction interval": "2015-01-01-2020-01-01",
+            "R2": 0.539,
+            "Adjusted R2": 0.488,
+            "Top Coefficient": "LOG-ICE-BRENT"
+        },
+        "2020-01-01-2021-12-30": {
+            "Model": "Myrstuen langtidsmodell",
+            "Prediction interval": "2020-01-01-2021-12-30",
+            "R2": 0.85,
+            "Adjusted R2": 0.798,
+            "Top Coefficient": "LOG-ICE-BRENT"
+        },
+        "2002-12-31-2021-12-30": {
+            "Model": "Myrstuen langtidsmodell",
+            "Prediction interval": "2002-12-31-2021-12-30",
+            "R2": 0.916,
+            "Adjusted R2": 0.914,
+            "Top Coefficient": "LOG-S&P-500"
+        }
+    }
 }

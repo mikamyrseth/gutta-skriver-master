@@ -50,6 +50,7 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
 
     all_models: list[Model] = []
     directory = "input/models"
+    # directory = "input/models_benchmarks"
     for filename in os.listdir(directory):
         f = os.path.join(directory, filename)
         # checking if it is a file
@@ -101,7 +102,16 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
 
                 # Plot coefficients
                 normalized_coefficients.plot(kind="barh")
-                plt.savefig(f'normalized-coefficients-{model.name}.png')
+
+                # Increase canvas size
+                fig = plt.gcf()
+                fig.set_size_inches(18.5, 10.5)
+
+                #ensure plot labels are showing
+                plt.tight_layout()
+
+                # save plot
+                fig.savefig(f'results/normalized-coefficients/{model.name}.png')
 
                 # save stats
                 model.results["test1"] = {}
@@ -167,6 +177,7 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
 
         for model in all_models:
             model.results["test3"] = []
+            model.results["test3-by-interval"] = {}
             for start_date, end_date in time_intervals:
                 lm, df = model.reestimate(start_date, end_date)
                 X = df[list(model.weights.keys())]
@@ -188,12 +199,14 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 time_result[f"Top Coefficient"] = normalized_coefficients.idxmax(
                     axis=0)
                 model.results["test3"].append(time_result)
+                model.results["test3-by-interval"][f"{start_date}-{end_date}"] = time_result
 
     # Save results
     if True:
         all_test_1 = []
         all_test_2 = []
         all_test_3 = []
+        all_test_3_by_interval = {}
         for model in all_models:
             with open("results/" + model.name + ".json", "w+") as outfile:
                 json.dump(model.results, outfile, indent=4)
@@ -204,6 +217,10 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
             if runTest3:
                 for time_result in model.results["test3"]:
                     all_test_3.append(time_result)
+                for interval, time_result in model.results["test3-by-interval"].items():
+                    if interval not in all_test_3_by_interval:
+                        all_test_3_by_interval[interval] = []
+                    all_test_3_by_interval[interval].append(time_result)
 
         if runTest1:
             with open("results/all_test_1.json", "w+") as outfile:
@@ -214,6 +231,8 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
         if runTest3:
             with open("results/all_test_3.json", "w+") as outfile:
                 json.dump(all_test_3, outfile, indent=4)
+            with open("results/all_test_3_by_interval.json", "w+") as outfile:
+                json.dump(all_test_3_by_interval, outfile, indent=4)
 
             # df = pd.DataFrame(data=model.results, index=[0])
             # df = (df.T)

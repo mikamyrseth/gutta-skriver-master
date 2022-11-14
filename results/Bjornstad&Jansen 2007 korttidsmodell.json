@@ -65,5 +65,49 @@
             "Adjusted R2": 0.216,
             "Top Coefficient": "LAGGED-DELTA-3-EURIBOR"
         }
-    ]
+    ],
+    "test3-by-interval": {
+        "2002-12-31-2006-01-01": {
+            "Model": "Bjornstad&Jansen 2007 korttidsmodell",
+            "Prediction interval": "2002-12-31-2006-01-01",
+            "R2": 0.611,
+            "Adjusted R2": 0.417,
+            "Top Coefficient": "DELTA-3-NIBOR"
+        },
+        "2006-01-01-2010-01-01": {
+            "Model": "Bjornstad&Jansen 2007 korttidsmodell",
+            "Prediction interval": "2006-01-01-2010-01-01",
+            "R2": 0.583,
+            "Adjusted R2": 0.444,
+            "Top Coefficient": "DELTA-3-NIBOR"
+        },
+        "2010-01-01-2015-01-01": {
+            "Model": "Bjornstad&Jansen 2007 korttidsmodell",
+            "Prediction interval": "2010-01-01-2015-01-01",
+            "R2": 0.342,
+            "Adjusted R2": 0.181,
+            "Top Coefficient": "DELTA-4-LOG-ICE-BRENT"
+        },
+        "2015-01-01-2020-01-01": {
+            "Model": "Bjornstad&Jansen 2007 korttidsmodell",
+            "Prediction interval": "2015-01-01-2020-01-01",
+            "R2": 0.345,
+            "Adjusted R2": 0.185,
+            "Top Coefficient": "CUSTOM-BJORNSTAD-PPP-EQUILIBRIUM"
+        },
+        "2020-01-01-2021-12-30": {
+            "Model": "Bjornstad&Jansen 2007 korttidsmodell",
+            "Prediction interval": "2020-01-01-2021-12-30",
+            "R2": 0.681,
+            "Adjusted R2": 0.243,
+            "Top Coefficient": "LAGGED-DELTA-3-EURIBOR"
+        },
+        "2002-12-31-2021-12-30": {
+            "Model": "Bjornstad&Jansen 2007 korttidsmodell",
+            "Prediction interval": "2002-12-31-2021-12-30",
+            "R2": 0.255,
+            "Adjusted R2": 0.216,
+            "Top Coefficient": "LAGGED-DELTA-3-EURIBOR"
+        }
+    }
 }
