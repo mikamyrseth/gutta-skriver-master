@@ -109,6 +109,8 @@ class Model(object):
         r2 = r2_score(df[self.dependent_variable].tolist(),
                       df["OUTPUT"].tolist())
         print("R2", r2)
+
+        adjusted_r2 = 1 - (1-r2)*(len(df)-1)/(len(df)-len(self.weights)-1)
         # pd.set_option('display.max_columns', None)
         # pd.reset_option(“max_columns”)
         # print(df.head())
@@ -116,7 +118,7 @@ class Model(object):
         # remove key in dict
         self.weights.pop(self.dependent_variable, None)
 
-        return r2
+        return r2, adjusted_r2
 
     def get_source_df(self, frequency: DataFrequency, from_date: datetime, to_date: datetime) -> DataFrame:
         df = DataFrame()

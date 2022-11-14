@@ -96,6 +96,8 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 normalized_coefficients = lm.coef_ * X.std(axis=0)
                 normalized_coefficients = normalized_coefficients.abs()
                 prediction_r_2 = lm.score(X, Y)
+                adjusted_r2 = 1 - \
+                    (1-prediction_r_2)*(len(Y)-1)/(len(Y)-X.shape[1]-1)
 
                 # Plot coefficients
                 normalized_coefficients.plot(kind="barh")
@@ -114,6 +116,8 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                     3)
                 model.results["test1"]["Prediction Strength (R2)"] = prediction_r_2.round(
                     3)
+                model.results["test1"]["Adjusted Prediction Strength (Adjusted R2)"] = adjusted_r2.round(
+                    3)
                 # model.results["test1"]["normalized_coefficients"] = normalized_coefficients.to_dict()
 
                 # model.reestimate(model.model_end_date, date(2021, 12, 31))
@@ -130,22 +134,27 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
             new_end_date = model.model_end_date + \
                 timedelta(days=int(delta_time.days*0.15))
 
-            base_r2 = model.run_model(
+            base_r2, adjusted_base_r2 = model.run_model(
                 model.model_start_date, model.model_end_date)
-            new_r2 = model.run_model(model.model_start_date, new_end_date)
+            new_r2, adjusted_new_r2 = model.run_model(model.model_start_date, new_end_date)
             delta_r2 = new_r2-base_r2
+            delta_adjusted_r2 = adjusted_new_r2-adjusted_base_r2
             percentage_change = delta_r2/base_r2
+            percentage_change_adjusted = delta_adjusted_r2/adjusted_base_r2
             model.results["test2"] = {}
             model.results["test2"]["Model"] = model.name
             model.results["test2"][
                 "Base Interval"] = f"{model.model_start_date.strftime('%Y-%m-%d')}-{model.model_end_date.strftime('%Y-%m-%d')}"
             model.results["test2"]["Base R2"] = base_r2.round(3)
+            model.results["test2"]["Base Adjusted R2"] = adjusted_base_r2.round(3)
             model.results["test2"]["New R2"] = new_r2.round(3)
+            model.results["test2"]["New Adjusted R2"] = adjusted_new_r2.round(3)
             model.results["test2"][
                 "New interval"] = f"{model.model_start_date.strftime('%Y-%m-%d')}-{new_end_date.strftime('%Y-%m-%d')}"
             model.results["test2"]["Delta R2"] = delta_r2.round(3)
-            model.results["test2"]["R2 percent change"] = percentage_change.round(
-                3)
+            model.results["test2"]["Delta Adjusted R2"] = delta_adjusted_r2.round(3)
+            model.results["test2"]["R2 percent change"] = percentage_change.round(3)
+            model.results["test2"]["Adjusted R2 percent change"] = percentage_change_adjusted.round(3)
 
     # test 3 - time intervals
     if runTest3:
@@ -163,15 +172,18 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 X = df[list(model.weights.keys())]
                 Y = df[model.dependent_variable]
                 prediction_r_2 = lm.score(X, Y)
-                print(df)
-                print(list(model.weights.keys()))
-                print(X)
+                adjusted_prediction_r_2 = 1 - \
+                    (1-prediction_r_2)*(len(Y)-1)/(len(Y)-X.shape[1]-1)
+                # print(df)
+                # print(list(model.weights.keys()))
+                # print(X)
                 normalized_coefficients = lm.coef_ * X.std(axis=0)
                 normalized_coefficients = normalized_coefficients.abs()
                 time_result = {}
                 time_result["Model"] = model.name
                 time_result["Prediction interval"] = f"{start_date}-{end_date}"
                 time_result[f"R2"] = prediction_r_2.round(3)
+                time_result[f"Adjusted R2"] = adjusted_prediction_r_2.round(3)
                 # model.results[f"test3:{start_date}-{end_date}_coeffs"] = normalized_coefficients.to_dict()
                 time_result[f"Top Coefficient"] = normalized_coefficients.idxmax(
                     axis=0)

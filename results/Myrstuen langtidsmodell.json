@@ -6,52 +6,63 @@
         "Top Coefficient": "LOG-S&P-500",
         "Model Similarity (R2)": 0.987,
         "Model Deviance (MAPE)": 0.125,
-        "Prediction Strength (R2)": 0.891
+        "Prediction Strength (R2)": 0.891,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.888
     },
     "test2": {
         "Model": "Myrstuen langtidsmodell",
         "Base Interval": "2001-12-31-2019-04-30",
         "Base R2": 0.891,
+        "Base Adjusted R2": 0.887,
         "New R2": 0.915,
+        "New Adjusted R2": 0.912,
         "New interval": "2001-12-31-2021-12-04",
         "Delta R2": 0.024,
-        "R2 percent change": 0.026
+        "Delta Adjusted R2": 0.025,
+        "R2 percent change": 0.026,
+        "Adjusted R2 percent change": 0.028
     },
     "test3": [
         {
             "Model": "Myrstuen langtidsmodell",
             "Prediction interval": "2002-12-31-2006-01-01",
             "R2": 0.787,
+            "Adjusted R2": 0.746,
             "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
         {
             "Model": "Myrstuen langtidsmodell",
             "Prediction interval": "2006-01-01-2010-01-01",
             "R2": 0.718,
+            "Adjusted R2": 0.677,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
         {
             "Model": "Myrstuen langtidsmodell",
             "Prediction interval": "2010-01-01-2015-01-01",
             "R2": 0.859,
+            "Adjusted R2": 0.843,
             "Top Coefficient": "LOG-S&P-500"
         },
         {
             "Model": "Myrstuen langtidsmodell",
             "Prediction interval": "2015-01-01-2020-01-01",
             "R2": 0.539,
+            "Adjusted R2": 0.488,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
         {
             "Model": "Myrstuen langtidsmodell",
             "Prediction interval": "2020-01-01-2021-12-30",
             "R2": 0.85,
+            "Adjusted R2": 0.798,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
         {
             "Model": "Myrstuen langtidsmodell",
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.916,
+            "Adjusted R2": 0.914,
             "Top Coefficient": "LOG-S&P-500"
         }
     ]

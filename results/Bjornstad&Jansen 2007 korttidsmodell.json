@@ -6,52 +6,63 @@
         "Top Coefficient": "DELTA-3-NIBOR",
         "Model Similarity (R2)": 0.225,
         "Model Deviance (MAPE)": 0.914,
-        "Prediction Strength (R2)": 0.595
+        "Prediction Strength (R2)": 0.595,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.447
     },
     "test2": {
         "Model": "Bjornstad&Jansen 2007 korttidsmodell",
         "Base Interval": "2002-12-31-2006-09-30",
         "Base R2": 0.595,
+        "Base Adjusted R2": 0.428,
         "New R2": 0.43,
+        "New Adjusted R2": 0.241,
         "New interval": "2002-12-31-2007-04-23",
         "Delta R2": -0.165,
-        "R2 percent change": -0.277
+        "Delta Adjusted R2": -0.187,
+        "R2 percent change": -0.277,
+        "Adjusted R2 percent change": -0.438
     },
     "test3": [
         {
             "Model": "Bjornstad&Jansen 2007 korttidsmodell",
             "Prediction interval": "2002-12-31-2006-01-01",
             "R2": 0.611,
+            "Adjusted R2": 0.417,
             "Top Coefficient": "DELTA-3-NIBOR"
         },
         {
             "Model": "Bjornstad&Jansen 2007 korttidsmodell",
             "Prediction interval": "2006-01-01-2010-01-01",
             "R2": 0.583,
+            "Adjusted R2": 0.444,
             "Top Coefficient": "DELTA-3-NIBOR"
         },
         {
             "Model": "Bjornstad&Jansen 2007 korttidsmodell",
             "Prediction interval": "2010-01-01-2015-01-01",
             "R2": 0.342,
+            "Adjusted R2": 0.181,
             "Top Coefficient": "DELTA-4-LOG-ICE-BRENT"
         },
         {
             "Model": "Bjornstad&Jansen 2007 korttidsmodell",
             "Prediction interval": "2015-01-01-2020-01-01",
             "R2": 0.345,
+            "Adjusted R2": 0.185,
             "Top Coefficient": "CUSTOM-BJORNSTAD-PPP-EQUILIBRIUM"
         },
         {
             "Model": "Bjornstad&Jansen 2007 korttidsmodell",
             "Prediction interval": "2020-01-01-2021-12-30",
             "R2": 0.681,
+            "Adjusted R2": 0.243,
             "Top Coefficient": "LAGGED-DELTA-3-EURIBOR"
         },
         {
             "Model": "Bjornstad&Jansen 2007 korttidsmodell",
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.255,
+            "Adjusted R2": 0.216,
             "Top Coefficient": "LAGGED-DELTA-3-EURIBOR"
         }
     ]

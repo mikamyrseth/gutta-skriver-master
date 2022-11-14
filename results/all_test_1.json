@@ -1,39 +1,13 @@
 [
     {
-        "Model": "Custom Akram 2022 differentiated",
-        "dependent variable": "DELTA-LOG-NB-I44",
-        "Prediction interval": "2010-01-15-2018-12-31",
-        "Top Coefficient": "DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M",
-        "Model Similarity (R2)": -0.125,
-        "Model Deviance (MAPE)": 0.75,
-        "Prediction Strength (R2)": 0.32
-    },
-    {
         "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
         "dependent variable": "LOG-NB-I44",
         "Prediction interval": "2010-01-15-2018-12-31",
         "Top Coefficient": "AGGREGATE-NYFED-OIL-SUPPLY",
         "Model Similarity (R2)": 1.0,
         "Model Deviance (MAPE)": 0.304,
-        "Prediction Strength (R2)": 0.974
-    },
-    {
-        "Model": "Ellen linear model",
-        "dependent variable": "DELTA-LOG-NB-I44",
-        "Prediction interval": "2001-01-01-2015-08-01",
-        "Top Coefficient": "DELTA-LOG-ICE-BRENT",
-        "Model Similarity (R2)": 0.906,
-        "Model Deviance (MAPE)": 0.493,
-        "Prediction Strength (R2)": 0.149
-    },
-    {
-        "Model": "Myrstuen korttidsmodell",
-        "dependent variable": "DELTA-LOG-NB-KKI",
-        "Prediction interval": "2001-12-31-2019-04-30",
-        "Top Coefficient": "DELTA-LOG-ICE-BRENT",
-        "Model Similarity (R2)": 0.571,
-        "Model Deviance (MAPE)": 1.029,
-        "Prediction Strength (R2)": 0.442
+        "Prediction Strength (R2)": 0.974,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.974
     },
     {
         "Model": "Akram (2022) Aggregate oil prices",
@@ -42,7 +16,8 @@
         "Top Coefficient": "CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M",
         "Model Similarity (R2)": 1.0,
         "Model Deviance (MAPE)": 0.181,
-        "Prediction Strength (R2)": 0.944
+        "Prediction Strength (R2)": 0.944,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.944
     },
     {
         "Model": "Bjornstad&Jansen 2007 korttidsmodell",
@@ -51,7 +26,38 @@
         "Top Coefficient": "DELTA-3-NIBOR",
         "Model Similarity (R2)": 0.225,
         "Model Deviance (MAPE)": 0.914,
-        "Prediction Strength (R2)": 0.595
+        "Prediction Strength (R2)": 0.595,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.447
+    },
+    {
+        "Model": "Custom Akram 2022 differentiated",
+        "dependent variable": "DELTA-LOG-NB-I44",
+        "Prediction interval": "2010-01-15-2018-12-31",
+        "Top Coefficient": "DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M",
+        "Model Similarity (R2)": -0.125,
+        "Model Deviance (MAPE)": 0.75,
+        "Prediction Strength (R2)": 0.32,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.309
+    },
+    {
+        "Model": "Ellen linear model",
+        "dependent variable": "DELTA-LOG-NB-I44",
+        "Prediction interval": "2001-01-01-2015-08-01",
+        "Top Coefficient": "DELTA-LOG-ICE-BRENT",
+        "Model Similarity (R2)": 0.906,
+        "Model Deviance (MAPE)": 0.493,
+        "Prediction Strength (R2)": 0.149,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.139
+    },
+    {
+        "Model": "Myrstuen korttidsmodell",
+        "dependent variable": "DELTA-LOG-NB-KKI",
+        "Prediction interval": "2001-12-31-2019-04-30",
+        "Top Coefficient": "DELTA-LOG-ICE-BRENT",
+        "Model Similarity (R2)": 0.571,
+        "Model Deviance (MAPE)": 1.029,
+        "Prediction Strength (R2)": 0.442,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.428
     },
     {
         "Model": "Myrstuen langtidsmodell",
@@ -60,6 +66,7 @@
         "Top Coefficient": "LOG-S&P-500",
         "Model Similarity (R2)": 0.987,
         "Model Deviance (MAPE)": 0.125,
-        "Prediction Strength (R2)": 0.891
+        "Prediction Strength (R2)": 0.891,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.888
     }
 ]

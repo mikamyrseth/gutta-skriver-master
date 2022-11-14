@@ -1,65 +1,93 @@
 [
     {
-        "Model": "Custom Akram 2022 differentiated",
-        "Base Interval": "2010-01-15-2018-12-31",
-        "Base R2": 0.32,
-        "New R2": 0.394,
-        "New interval": "2010-01-15-2020-05-04",
-        "Delta R2": 0.073,
-        "R2 percent change": 0.229
-    },
-    {
         "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
         "Base Interval": "2010-01-15-2018-12-31",
         "Base R2": 0.974,
+        "Base Adjusted R2": 0.974,
         "New R2": 0.91,
+        "New Adjusted R2": 0.908,
         "New interval": "2010-01-15-2020-05-04",
         "Delta R2": -0.064,
-        "R2 percent change": -0.066
-    },
-    {
-        "Model": "Ellen linear model",
-        "Base Interval": "2001-01-01-2015-08-01",
-        "Base R2": 0.149,
-        "New R2": 0.15,
-        "New interval": "2001-01-01-2017-10-07",
-        "Delta R2": 0.001,
-        "R2 percent change": 0.007
-    },
-    {
-        "Model": "Myrstuen korttidsmodell",
-        "Base Interval": "2001-12-31-2019-04-30",
-        "Base R2": 0.442,
-        "New R2": 0.478,
-        "New interval": "2001-12-31-2021-12-04",
-        "Delta R2": 0.036,
-        "R2 percent change": 0.081
+        "Delta Adjusted R2": -0.066,
+        "R2 percent change": -0.066,
+        "Adjusted R2 percent change": -0.067
     },
     {
         "Model": "Akram (2022) Aggregate oil prices",
         "Base Interval": "2010-01-15-2018-12-31",
         "Base R2": 0.944,
+        "Base Adjusted R2": 0.944,
         "New R2": 0.549,
+        "New Adjusted R2": 0.545,
         "New interval": "2010-01-15-2020-05-04",
         "Delta R2": -0.395,
-        "R2 percent change": -0.419
+        "Delta Adjusted R2": -0.399,
+        "R2 percent change": -0.419,
+        "Adjusted R2 percent change": -0.423
     },
     {
         "Model": "Bjornstad&Jansen 2007 korttidsmodell",
         "Base Interval": "2002-12-31-2006-09-30",
         "Base R2": 0.595,
+        "Base Adjusted R2": 0.428,
         "New R2": 0.43,
+        "New Adjusted R2": 0.241,
         "New interval": "2002-12-31-2007-04-23",
         "Delta R2": -0.165,
-        "R2 percent change": -0.277
+        "Delta Adjusted R2": -0.187,
+        "R2 percent change": -0.277,
+        "Adjusted R2 percent change": -0.438
+    },
+    {
+        "Model": "Custom Akram 2022 differentiated",
+        "Base Interval": "2010-01-15-2018-12-31",
+        "Base R2": 0.32,
+        "Base Adjusted R2": 0.307,
+        "New R2": 0.394,
+        "New Adjusted R2": 0.383,
+        "New interval": "2010-01-15-2020-05-04",
+        "Delta R2": 0.073,
+        "Delta Adjusted R2": 0.076,
+        "R2 percent change": 0.229,
+        "Adjusted R2 percent change": 0.249
+    },
+    {
+        "Model": "Ellen linear model",
+        "Base Interval": "2001-01-01-2015-08-01",
+        "Base R2": 0.149,
+        "Base Adjusted R2": 0.134,
+        "New R2": 0.15,
+        "New Adjusted R2": 0.137,
+        "New interval": "2001-01-01-2017-10-07",
+        "Delta R2": 0.001,
+        "Delta Adjusted R2": 0.003,
+        "R2 percent change": 0.007,
+        "Adjusted R2 percent change": 0.022
+    },
+    {
+        "Model": "Myrstuen korttidsmodell",
+        "Base Interval": "2001-12-31-2019-04-30",
+        "Base R2": 0.442,
+        "Base Adjusted R2": 0.425,
+        "New R2": 0.478,
+        "New Adjusted R2": 0.464,
+        "New interval": "2001-12-31-2021-12-04",
+        "Delta R2": 0.036,
+        "Delta Adjusted R2": 0.039,
+        "R2 percent change": 0.081,
+        "Adjusted R2 percent change": 0.092
     },
     {
         "Model": "Myrstuen langtidsmodell",
         "Base Interval": "2001-12-31-2019-04-30",
         "Base R2": 0.891,
+        "Base Adjusted R2": 0.887,
         "New R2": 0.915,
+        "New Adjusted R2": 0.912,
         "New interval": "2001-12-31-2021-12-04",
         "Delta R2": 0.024,
-        "R2 percent change": 0.026
+        "Delta Adjusted R2": 0.025,
+        "R2 percent change": 0.026,
+        "Adjusted R2 percent change": 0.028
     }
 ]
