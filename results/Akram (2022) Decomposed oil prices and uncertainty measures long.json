@@ -1,0 +1,130 @@
+{
+    "test1": {
+        "Model": "Akram (2022) Decomposed oil prices and uncertainty measures long",
+        "dependent variable": "LOG-NB-I44",
+        "Prediction interval": "2010-01-15-2018-12-31",
+        "Top Coefficient": "AGGREGATE-NYFED-OIL-SUPPLY",
+        "Model Similarity (R2)": 1.0,
+        "Model Deviance (MAPE)": 0.304,
+        "Prediction Strength (R2)": 0.974,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.974,
+        "Standard Error of Residuals": 0.013
+    },
+    "test2": {
+        "Model": "Akram (2022) Decomposed oil prices and uncertainty measures long",
+        "Base Interval": "2010-01-15-2018-12-31",
+        "Base R2": 0.974,
+        "Base standard error of residuals": 0.013,
+        "Base Adjusted R2": 0.974,
+        "New R2": 0.91,
+        "New Adjusted R2": 0.908,
+        "New standard error of residuals": 0.026,
+        "New interval": "2010-01-15-2020-05-04",
+        "Delta R2": -0.064,
+        "Delta Adjusted R2": -0.066,
+        "Delta standard error of residuals": 0.013,
+        "R2 percent change": -0.066,
+        "Adjusted R2 percent change": -0.067,
+        "Standard error of residuals percent change": 0.984
+    },
+    "test3": [
+        {
+            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures long",
+            "Prediction interval": "2003-01-01-2007-01-01",
+            "R2": 0.707,
+            "Adjusted R2": 0.693,
+            "Standard error of residuals": 0.0154,
+            "Top Coefficient": "AGGREGATE-NYFED-OIL-SUPPLY"
+        },
+        {
+            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures long",
+            "Prediction interval": "2007-01-01-2011-01-01",
+            "R2": 0.845,
+            "Adjusted R2": 0.838,
+            "Standard error of residuals": 0.0143,
+            "Top Coefficient": "CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M"
+        },
+        {
+            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures long",
+            "Prediction interval": "2011-01-01-2016-01-01",
+            "R2": 0.967,
+            "Adjusted R2": 0.966,
+            "Standard error of residuals": 0.0125,
+            "Top Coefficient": "AGGREGATE-NYFED-OIL-SUPPLY"
+        },
+        {
+            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures long",
+            "Prediction interval": "2016-01-01-2021-01-30",
+            "R2": 0.818,
+            "Adjusted R2": 0.811,
+            "Standard error of residuals": 0.0182,
+            "Top Coefficient": "AGGREGATE-NYFED-OIL-SUPPLY"
+        },
+        {
+            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures long",
+            "Prediction interval": "2021-01-01-2021-12-30",
+            "R2": 0.475,
+            "Adjusted R2": 0.363,
+            "Standard error of residuals": 0.0122,
+            "Top Coefficient": "AGGREGATE-NYFED-OIL-SUPPLY"
+        },
+        {
+            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures long",
+            "Prediction interval": "2002-12-31-2021-12-30",
+            "R2": 0.925,
+            "Adjusted R2": 0.924,
+            "Standard error of residuals": 0.0236,
+            "Top Coefficient": "AGGREGATE-NYFED-OIL-SUPPLY"
+        }
+    ],
+    "test3-by-interval": {
+        "2003-01-01-2007-01-01": {
+            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures long",
+            "Prediction interval": "2003-01-01-2007-01-01",
+            "R2": 0.707,
+            "Adjusted R2": 0.693,
+            "Standard error of residuals": 0.0154,
+            "Top Coefficient": "AGGREGATE-NYFED-OIL-SUPPLY"
+        },
+        "2007-01-01-2011-01-01": {
+            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures long",
+            "Prediction interval": "2007-01-01-2011-01-01",
+            "R2": 0.845,
+            "Adjusted R2": 0.838,
+            "Standard error of residuals": 0.0143,
+            "Top Coefficient": "CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M"
+        },
+        "2011-01-01-2016-01-01": {
+            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures long",
+            "Prediction interval": "2011-01-01-2016-01-01",
+            "R2": 0.967,
+            "Adjusted R2": 0.966,
+            "Standard error of residuals": 0.0125,
+            "Top Coefficient": "AGGREGATE-NYFED-OIL-SUPPLY"
+        },
+        "2016-01-01-2021-01-30": {
+            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures long",
+            "Prediction interval": "2016-01-01-2021-01-30",
+            "R2": 0.818,
+            "Adjusted R2": 0.811,
+            "Standard error of residuals": 0.0182,
+            "Top Coefficient": "AGGREGATE-NYFED-OIL-SUPPLY"
+        },
+        "2021-01-01-2021-12-30": {
+            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures long",
+            "Prediction interval": "2021-01-01-2021-12-30",
+            "R2": 0.475,
+            "Adjusted R2": 0.363,
+            "Standard error of residuals": 0.0122,
+            "Top Coefficient": "AGGREGATE-NYFED-OIL-SUPPLY"
+        },
+        "2002-12-31-2021-12-30": {
+            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures long",
+            "Prediction interval": "2002-12-31-2021-12-30",
+            "R2": 0.925,
+            "Adjusted R2": 0.924,
+            "Standard error of residuals": 0.0236,
+            "Top Coefficient": "AGGREGATE-NYFED-OIL-SUPPLY"
+        }
+    }
+}

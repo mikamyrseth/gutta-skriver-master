@@ -33,7 +33,7 @@
             "Prediction interval": "2003-01-01-2007-01-01",
             "R2": 0.003,
             "Adjusted R2": -0.012,
-            "Standard error of residuals": 0.028,
+            "Standard error of residuals": 0.0283,
             "Top Coefficient": "LOG-S&P-500"
         },
         {
@@ -41,7 +41,7 @@
             "Prediction interval": "2007-01-01-2011-01-01",
             "R2": 0.425,
             "Adjusted R2": 0.417,
-            "Standard error of residuals": 0.028,
+            "Standard error of residuals": 0.0276,
             "Top Coefficient": "LOG-S&P-500"
         },
         {
@@ -49,7 +49,7 @@
             "Prediction interval": "2011-01-01-2016-01-01",
             "R2": 0.634,
             "Adjusted R2": 0.63,
-            "Standard error of residuals": 0.042,
+            "Standard error of residuals": 0.0415,
             "Top Coefficient": "LOG-S&P-500"
         },
         {
@@ -57,7 +57,7 @@
             "Prediction interval": "2016-01-01-2021-01-30",
             "R2": 0.219,
             "Adjusted R2": 0.21,
-            "Standard error of residuals": 0.038,
+            "Standard error of residuals": 0.0378,
             "Top Coefficient": "LOG-S&P-500"
         },
         {
@@ -65,7 +65,7 @@
             "Prediction interval": "2021-01-01-2021-12-30",
             "R2": 0.002,
             "Adjusted R2": -0.06,
-            "Standard error of residuals": 0.017,
+            "Standard error of residuals": 0.0169,
             "Top Coefficient": "LOG-S&P-500"
         },
         {
@@ -73,7 +73,7 @@
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.596,
             "Adjusted R2": 0.594,
-            "Standard error of residuals": 0.055,
+            "Standard error of residuals": 0.0548,
             "Top Coefficient": "LOG-S&P-500"
         }
     ],
@@ -83,7 +83,7 @@
             "Prediction interval": "2003-01-01-2007-01-01",
             "R2": 0.003,
             "Adjusted R2": -0.012,
-            "Standard error of residuals": 0.028,
+            "Standard error of residuals": 0.0283,
             "Top Coefficient": "LOG-S&P-500"
         },
         "2007-01-01-2011-01-01": {
@@ -91,7 +91,7 @@
             "Prediction interval": "2007-01-01-2011-01-01",
             "R2": 0.425,
             "Adjusted R2": 0.417,
-            "Standard error of residuals": 0.028,
+            "Standard error of residuals": 0.0276,
             "Top Coefficient": "LOG-S&P-500"
         },
         "2011-01-01-2016-01-01": {
@@ -99,7 +99,7 @@
             "Prediction interval": "2011-01-01-2016-01-01",
             "R2": 0.634,
             "Adjusted R2": 0.63,
-            "Standard error of residuals": 0.042,
+            "Standard error of residuals": 0.0415,
             "Top Coefficient": "LOG-S&P-500"
         },
         "2016-01-01-2021-01-30": {
@@ -107,7 +107,7 @@
             "Prediction interval": "2016-01-01-2021-01-30",
             "R2": 0.219,
             "Adjusted R2": 0.21,
-            "Standard error of residuals": 0.038,
+            "Standard error of residuals": 0.0378,
             "Top Coefficient": "LOG-S&P-500"
         },
         "2021-01-01-2021-12-30": {
@@ -115,7 +115,7 @@
             "Prediction interval": "2021-01-01-2021-12-30",
             "R2": 0.002,
             "Adjusted R2": -0.06,
-            "Standard error of residuals": 0.017,
+            "Standard error of residuals": 0.0169,
             "Top Coefficient": "LOG-S&P-500"
         },
         "2002-12-31-2021-12-30": {
@@ -123,7 +123,7 @@
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.596,
             "Adjusted R2": 0.594,
-            "Standard error of residuals": 0.055,
+            "Standard error of residuals": 0.0548,
             "Top Coefficient": "LOG-S&P-500"
         }
     }

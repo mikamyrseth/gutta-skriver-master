@@ -33,7 +33,7 @@
             "Prediction interval": "2003-01-01-2007-01-01",
             "R2": 0.055,
             "Adjusted R2": 0.041,
-            "Standard error of residuals": 0.028,
+            "Standard error of residuals": 0.0276,
             "Top Coefficient": "LOG-DB-CVIX"
         },
         {
@@ -41,7 +41,7 @@
             "Prediction interval": "2007-01-01-2011-01-01",
             "R2": 0.244,
             "Adjusted R2": 0.233,
-            "Standard error of residuals": 0.032,
+            "Standard error of residuals": 0.0317,
             "Top Coefficient": "LOG-DB-CVIX"
         },
         {
@@ -49,7 +49,7 @@
             "Prediction interval": "2011-01-01-2016-01-01",
             "R2": 0.0,
             "Adjusted R2": -0.012,
-            "Standard error of residuals": 0.069,
+            "Standard error of residuals": 0.0686,
             "Top Coefficient": "LOG-DB-CVIX"
         },
         {
@@ -57,7 +57,7 @@
             "Prediction interval": "2016-01-01-2021-01-30",
             "R2": 0.007,
             "Adjusted R2": -0.004,
-            "Standard error of residuals": 0.043,
+            "Standard error of residuals": 0.0426,
             "Top Coefficient": "LOG-DB-CVIX"
         },
         {
@@ -65,7 +65,7 @@
             "Prediction interval": "2021-01-01-2021-12-30",
             "R2": 0.003,
             "Adjusted R2": -0.06,
-            "Standard error of residuals": 0.017,
+            "Standard error of residuals": 0.0169,
             "Top Coefficient": "LOG-DB-CVIX"
         },
         {
@@ -73,7 +73,7 @@
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.098,
             "Adjusted R2": 0.095,
-            "Standard error of residuals": 0.082,
+            "Standard error of residuals": 0.0818,
             "Top Coefficient": "LOG-DB-CVIX"
         }
     ],
@@ -83,7 +83,7 @@
             "Prediction interval": "2003-01-01-2007-01-01",
             "R2": 0.055,
             "Adjusted R2": 0.041,
-            "Standard error of residuals": 0.028,
+            "Standard error of residuals": 0.0276,
             "Top Coefficient": "LOG-DB-CVIX"
         },
         "2007-01-01-2011-01-01": {
@@ -91,7 +91,7 @@
             "Prediction interval": "2007-01-01-2011-01-01",
             "R2": 0.244,
             "Adjusted R2": 0.233,
-            "Standard error of residuals": 0.032,
+            "Standard error of residuals": 0.0317,
             "Top Coefficient": "LOG-DB-CVIX"
         },
         "2011-01-01-2016-01-01": {
@@ -99,7 +99,7 @@
             "Prediction interval": "2011-01-01-2016-01-01",
             "R2": 0.0,
             "Adjusted R2": -0.012,
-            "Standard error of residuals": 0.069,
+            "Standard error of residuals": 0.0686,
             "Top Coefficient": "LOG-DB-CVIX"
         },
         "2016-01-01-2021-01-30": {
@@ -107,7 +107,7 @@
             "Prediction interval": "2016-01-01-2021-01-30",
             "R2": 0.007,
             "Adjusted R2": -0.004,
-            "Standard error of residuals": 0.043,
+            "Standard error of residuals": 0.0426,
             "Top Coefficient": "LOG-DB-CVIX"
         },
         "2021-01-01-2021-12-30": {
@@ -115,7 +115,7 @@
             "Prediction interval": "2021-01-01-2021-12-30",
             "R2": 0.003,
             "Adjusted R2": -0.06,
-            "Standard error of residuals": 0.017,
+            "Standard error of residuals": 0.0169,
             "Top Coefficient": "LOG-DB-CVIX"
         },
         "2002-12-31-2021-12-30": {
@@ -123,7 +123,7 @@
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.098,
             "Adjusted R2": 0.095,
-            "Standard error of residuals": 0.082,
+            "Standard error of residuals": 0.0818,
             "Top Coefficient": "LOG-DB-CVIX"
         }
     }

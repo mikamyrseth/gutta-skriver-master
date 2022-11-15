@@ -1,6 +1,6 @@
 [
     {
-        "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
+        "Model": "Akram (2022) Decomposed oil prices and uncertainty measures long",
         "dependent variable": "LOG-NB-I44",
         "Prediction interval": "2010-01-15-2018-12-31",
         "Top Coefficient": "AGGREGATE-NYFED-OIL-SUPPLY",
@@ -11,7 +11,7 @@
         "Standard Error of Residuals": 0.013
     },
     {
-        "Model": "Akram (2022) Aggregate oil prices",
+        "Model": "Akram (2022) Aggregate oil prices long",
         "dependent variable": "LOG-NB-I44",
         "Prediction interval": "2010-01-15-2018-12-31",
         "Top Coefficient": "CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M",
@@ -22,7 +22,7 @@
         "Standard Error of Residuals": 0.019
     },
     {
-        "Model": "Myrstuen langtidsmodell",
+        "Model": "Myrstuen langtidsmodell long",
         "dependent variable": "LOG-NB-KKI",
         "Prediction interval": "2001-12-31-2019-04-30",
         "Top Coefficient": "LOG-S&P-500",
@@ -99,7 +99,7 @@
         "Standard Error of Residuals": 0.043
     },
     {
-        "Model": "Custom Akram 2022 differentiated",
+        "Model": "Custom Akram 2022 differentiated short",
         "dependent variable": "DELTA-LOG-NB-I44",
         "Prediction interval": "2010-01-15-2018-12-31",
         "Top Coefficient": "DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M",
@@ -110,7 +110,7 @@
         "Standard Error of Residuals": 0.007
     },
     {
-        "Model": "Ellen linear model",
+        "Model": "Ellen linear model short",
         "dependent variable": "DELTA-LOG-NB-I44",
         "Prediction interval": "2001-01-01-2015-08-01",
         "Top Coefficient": "DELTA-LOG-ICE-BRENT",
@@ -121,7 +121,7 @@
         "Standard Error of Residuals": 0.018
     },
     {
-        "Model": "Myrstuen korttidsmodell",
+        "Model": "Myrstuen korttidsmodell short",
         "dependent variable": "DELTA-LOG-NB-KKI",
         "Prediction interval": "2001-12-31-2019-04-30",
         "Top Coefficient": "DELTA-LOG-ICE-BRENT",
@@ -132,7 +132,7 @@
         "Standard Error of Residuals": 0.014
     },
     {
-        "Model": "Bjornstad&Jansen 2007 korttidsmodell",
+        "Model": "Bjornstad&Jansen 2007 korttidsmodell short",
         "dependent variable": "DELTA-LOG-EURNOK",
         "Prediction interval": "2002-12-31-2006-09-30",
         "Top Coefficient": "DELTA-3-NIBOR",
@@ -143,7 +143,7 @@
         "Standard Error of Residuals": 0.011
     },
     {
-        "Model": "Benchmark CVIX",
+        "Model": "Benchmark CVIX short",
         "dependent variable": "DELTA-LOG-NB-I44",
         "Prediction interval": "2002-12-31-2015-08-01",
         "Top Coefficient": "DELTA-LOG-DB-CVIX",
@@ -154,7 +154,7 @@
         "Standard Error of Residuals": 0.01
     },
     {
-        "Model": "Benchmark Price Difference",
+        "Model": "Benchmark Price Difference short",
         "dependent variable": "DELTA-LOG-NB-I44",
         "Prediction interval": "2002-12-31-2015-08-01",
         "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-PRICE-DIFFERENCE",
@@ -165,7 +165,7 @@
         "Standard Error of Residuals": 0.01
     },
     {
-        "Model": "Benchmark Interest Difference",
+        "Model": "Benchmark Interest Difference short",
         "dependent variable": "DELTA-LOG-NB-I44",
         "Prediction interval": "2002-12-31-2015-08-01",
         "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M",
@@ -176,7 +176,7 @@
         "Standard Error of Residuals": 0.009
     },
     {
-        "Model": "Benchmark ICE-BRENT",
+        "Model": "Benchmark ICE-BRENT short",
         "dependent variable": "DELTA-LOG-NB-I44",
         "Prediction interval": "2002-12-31-2015-08-01",
         "Top Coefficient": "DELTA-LOG-ICE-BRENT",

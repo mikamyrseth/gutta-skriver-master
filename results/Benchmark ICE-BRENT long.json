@@ -33,7 +33,7 @@
             "Prediction interval": "2003-01-01-2007-01-01",
             "R2": 0.131,
             "Adjusted R2": 0.119,
-            "Standard error of residuals": 0.026,
+            "Standard error of residuals": 0.0264,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
         {
@@ -41,7 +41,7 @@
             "Prediction interval": "2007-01-01-2011-01-01",
             "R2": 0.644,
             "Adjusted R2": 0.639,
-            "Standard error of residuals": 0.022,
+            "Standard error of residuals": 0.0217,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
         {
@@ -49,7 +49,7 @@
             "Prediction interval": "2011-01-01-2016-01-01",
             "R2": 0.859,
             "Adjusted R2": 0.858,
-            "Standard error of residuals": 0.026,
+            "Standard error of residuals": 0.0257,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
         {
@@ -57,7 +57,7 @@
             "Prediction interval": "2016-01-01-2021-01-30",
             "R2": 0.373,
             "Adjusted R2": 0.366,
-            "Standard error of residuals": 0.034,
+            "Standard error of residuals": 0.0338,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
         {
@@ -65,7 +65,7 @@
             "Prediction interval": "2021-01-01-2021-12-30",
             "R2": 0.078,
             "Adjusted R2": 0.02,
-            "Standard error of residuals": 0.016,
+            "Standard error of residuals": 0.0162,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
         {
@@ -73,7 +73,7 @@
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.249,
             "Adjusted R2": 0.247,
-            "Standard error of residuals": 0.075,
+            "Standard error of residuals": 0.0746,
             "Top Coefficient": "LOG-ICE-BRENT"
         }
     ],
@@ -83,7 +83,7 @@
             "Prediction interval": "2003-01-01-2007-01-01",
             "R2": 0.131,
             "Adjusted R2": 0.119,
-            "Standard error of residuals": 0.026,
+            "Standard error of residuals": 0.0264,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
         "2007-01-01-2011-01-01": {
@@ -91,7 +91,7 @@
             "Prediction interval": "2007-01-01-2011-01-01",
             "R2": 0.644,
             "Adjusted R2": 0.639,
-            "Standard error of residuals": 0.022,
+            "Standard error of residuals": 0.0217,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
         "2011-01-01-2016-01-01": {
@@ -99,7 +99,7 @@
             "Prediction interval": "2011-01-01-2016-01-01",
             "R2": 0.859,
             "Adjusted R2": 0.858,
-            "Standard error of residuals": 0.026,
+            "Standard error of residuals": 0.0257,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
         "2016-01-01-2021-01-30": {
@@ -107,7 +107,7 @@
             "Prediction interval": "2016-01-01-2021-01-30",
             "R2": 0.373,
             "Adjusted R2": 0.366,
-            "Standard error of residuals": 0.034,
+            "Standard error of residuals": 0.0338,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
         "2021-01-01-2021-12-30": {
@@ -115,7 +115,7 @@
             "Prediction interval": "2021-01-01-2021-12-30",
             "R2": 0.078,
             "Adjusted R2": 0.02,
-            "Standard error of residuals": 0.016,
+            "Standard error of residuals": 0.0162,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
         "2002-12-31-2021-12-30": {
@@ -123,7 +123,7 @@
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.249,
             "Adjusted R2": 0.247,
-            "Standard error of residuals": 0.075,
+            "Standard error of residuals": 0.0746,
             "Top Coefficient": "LOG-ICE-BRENT"
         }
     }

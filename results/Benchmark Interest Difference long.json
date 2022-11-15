@@ -33,7 +33,7 @@
             "Prediction interval": "2003-01-01-2007-01-01",
             "R2": 0.172,
             "Adjusted R2": 0.159,
-            "Standard error of residuals": 0.026,
+            "Standard error of residuals": 0.0258,
             "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
         {
@@ -41,7 +41,7 @@
             "Prediction interval": "2007-01-01-2011-01-01",
             "R2": 0.376,
             "Adjusted R2": 0.367,
-            "Standard error of residuals": 0.029,
+            "Standard error of residuals": 0.0288,
             "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
         {
@@ -49,7 +49,7 @@
             "Prediction interval": "2011-01-01-2016-01-01",
             "R2": 0.646,
             "Adjusted R2": 0.642,
-            "Standard error of residuals": 0.041,
+            "Standard error of residuals": 0.0408,
             "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
         {
@@ -57,7 +57,7 @@
             "Prediction interval": "2016-01-01-2021-01-30",
             "R2": 0.046,
             "Adjusted R2": 0.035,
-            "Standard error of residuals": 0.042,
+            "Standard error of residuals": 0.0417,
             "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
         {
@@ -65,7 +65,7 @@
             "Prediction interval": "2021-01-01-2021-12-30",
             "R2": 0.007,
             "Adjusted R2": -0.055,
-            "Standard error of residuals": 0.017,
+            "Standard error of residuals": 0.0169,
             "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
         {
@@ -73,7 +73,7 @@
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.008,
             "Adjusted R2": 0.005,
-            "Standard error of residuals": 0.086,
+            "Standard error of residuals": 0.0857,
             "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         }
     ],
@@ -83,7 +83,7 @@
             "Prediction interval": "2003-01-01-2007-01-01",
             "R2": 0.172,
             "Adjusted R2": 0.159,
-            "Standard error of residuals": 0.026,
+            "Standard error of residuals": 0.0258,
             "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
         "2007-01-01-2011-01-01": {
@@ -91,7 +91,7 @@
             "Prediction interval": "2007-01-01-2011-01-01",
             "R2": 0.376,
             "Adjusted R2": 0.367,
-            "Standard error of residuals": 0.029,
+            "Standard error of residuals": 0.0288,
             "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
         "2011-01-01-2016-01-01": {
@@ -99,7 +99,7 @@
             "Prediction interval": "2011-01-01-2016-01-01",
             "R2": 0.646,
             "Adjusted R2": 0.642,
-            "Standard error of residuals": 0.041,
+            "Standard error of residuals": 0.0408,
             "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
         "2016-01-01-2021-01-30": {
@@ -107,7 +107,7 @@
             "Prediction interval": "2016-01-01-2021-01-30",
             "R2": 0.046,
             "Adjusted R2": 0.035,
-            "Standard error of residuals": 0.042,
+            "Standard error of residuals": 0.0417,
             "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
         "2021-01-01-2021-12-30": {
@@ -115,7 +115,7 @@
             "Prediction interval": "2021-01-01-2021-12-30",
             "R2": 0.007,
             "Adjusted R2": -0.055,
-            "Standard error of residuals": 0.017,
+            "Standard error of residuals": 0.0169,
             "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
         "2002-12-31-2021-12-30": {
@@ -123,7 +123,7 @@
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.008,
             "Adjusted R2": 0.005,
-            "Standard error of residuals": 0.086,
+            "Standard error of residuals": 0.0857,
             "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         }
     }

@@ -256,7 +256,7 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 time_result[f"R2"] = prediction_r_2.round(3)
                 time_result[f"Adjusted R2"] = adjusted_prediction_r_2.round(3)
                 time_result[f"Standard error of residuals"] = std_error.round(
-                    3)
+                    4)
                 # model.results[f"test3:{start_date}-{end_date}_coeffs"] = normalized_coefficients.to_dict()
                 time_result[f"Top Coefficient"] = normalized_coefficients.idxmax(
                     axis=0)
@@ -441,7 +441,7 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
 
                 # add data labels
                 for i, v in enumerate(df["Standard error of residuals"]):
-                    plt.text(i, v, str(round(v, 3)), color='black',
+                    plt.text(i, v, str(round(v, 4)), color='black',
                              fontweight='bold', ha="center")
 
                 plt.title(time_interval+" All Long Models")
@@ -476,7 +476,7 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
 
                 # add data labels
                 for i, v in enumerate(df["Standard error of residuals"]):
-                    plt.text(i, v, str(round(v, 3)), color='black',
+                    plt.text(i, v, str(round(v, 4)), color='black',
                              fontweight='bold', ha="center")
 
                 plt.title(time_interval+" All Short Models")

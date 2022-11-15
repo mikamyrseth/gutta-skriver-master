@@ -1,27 +1,27 @@
 {
     "2003-01-01-2007-01-01": [
         {
-            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
+            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures long",
             "Prediction interval": "2003-01-01-2007-01-01",
             "R2": 0.707,
             "Adjusted R2": 0.693,
-            "Standard error of residuals": 0.015,
+            "Standard error of residuals": 0.0154,
             "Top Coefficient": "AGGREGATE-NYFED-OIL-SUPPLY"
         },
         {
-            "Model": "Akram (2022) Aggregate oil prices",
+            "Model": "Akram (2022) Aggregate oil prices long",
             "Prediction interval": "2003-01-01-2007-01-01",
             "R2": 0.608,
             "Adjusted R2": 0.599,
-            "Standard error of residuals": 0.018,
+            "Standard error of residuals": 0.0177,
             "Top Coefficient": "CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M"
         },
         {
-            "Model": "Myrstuen langtidsmodell",
+            "Model": "Myrstuen langtidsmodell long",
             "Prediction interval": "2003-01-01-2007-01-01",
             "R2": 0.76,
             "Adjusted R2": 0.718,
-            "Standard error of residuals": 0.014,
+            "Standard error of residuals": 0.0135,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
         {
@@ -29,7 +29,7 @@
             "Prediction interval": "2003-01-01-2007-01-01",
             "R2": 0.055,
             "Adjusted R2": 0.041,
-            "Standard error of residuals": 0.028,
+            "Standard error of residuals": 0.0276,
             "Top Coefficient": "LOG-DB-CVIX"
         },
         {
@@ -37,7 +37,7 @@
             "Prediction interval": "2003-01-01-2007-01-01",
             "R2": 0.016,
             "Adjusted R2": 0.002,
-            "Standard error of residuals": 0.028,
+            "Standard error of residuals": 0.0281,
             "Top Coefficient": "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE"
         },
         {
@@ -45,7 +45,7 @@
             "Prediction interval": "2003-01-01-2007-01-01",
             "R2": 0.172,
             "Adjusted R2": 0.159,
-            "Standard error of residuals": 0.026,
+            "Standard error of residuals": 0.0258,
             "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
         {
@@ -53,7 +53,7 @@
             "Prediction interval": "2003-01-01-2007-01-01",
             "R2": 0.081,
             "Adjusted R2": 0.068,
-            "Standard error of residuals": 0.027,
+            "Standard error of residuals": 0.0272,
             "Top Coefficient": "LAGGED-LOG-NB-I44"
         },
         {
@@ -61,7 +61,7 @@
             "Prediction interval": "2003-01-01-2007-01-01",
             "R2": 0.131,
             "Adjusted R2": 0.119,
-            "Standard error of residuals": 0.026,
+            "Standard error of residuals": 0.0264,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
         {
@@ -69,71 +69,71 @@
             "Prediction interval": "2003-01-01-2007-01-01",
             "R2": 0.003,
             "Adjusted R2": -0.012,
-            "Standard error of residuals": 0.028,
+            "Standard error of residuals": 0.0283,
             "Top Coefficient": "LOG-S&P-500"
         },
         {
-            "Model": "Custom Akram 2022 differentiated",
+            "Model": "Custom Akram 2022 differentiated short",
             "Prediction interval": "2003-01-01-2007-01-01",
             "R2": 0.143,
             "Adjusted R2": 0.104,
-            "Standard error of residuals": 0.008,
+            "Standard error of residuals": 0.0079,
             "Top Coefficient": "DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M"
         },
         {
-            "Model": "Ellen linear model",
+            "Model": "Ellen linear model short",
             "Prediction interval": "2003-01-01-2007-01-01",
             "R2": 0.039,
             "Adjusted R2": -0.026,
-            "Standard error of residuals": 0.018,
+            "Standard error of residuals": 0.0183,
             "Top Coefficient": "DELTA-LOG-ICE-BRENT"
         },
         {
-            "Model": "Myrstuen korttidsmodell",
+            "Model": "Myrstuen korttidsmodell short",
             "Prediction interval": "2003-01-01-2007-01-01",
             "R2": 0.509,
             "Adjusted R2": 0.437,
-            "Standard error of residuals": 0.013,
+            "Standard error of residuals": 0.0132,
             "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
         {
-            "Model": "Bjornstad&Jansen 2007 korttidsmodell",
+            "Model": "Bjornstad&Jansen 2007 korttidsmodell short",
             "Prediction interval": "2003-01-01-2007-01-01",
             "R2": 0.526,
             "Adjusted R2": 0.348,
-            "Standard error of residuals": 0.012,
+            "Standard error of residuals": 0.0121,
             "Top Coefficient": "LAGGED-DELTA-3-EURIBOR"
         },
         {
-            "Model": "Benchmark CVIX",
+            "Model": "Benchmark CVIX short",
             "Prediction interval": "2003-01-01-2007-01-01",
             "R2": 0.033,
             "Adjusted R2": 0.019,
-            "Standard error of residuals": 0.008,
+            "Standard error of residuals": 0.0083,
             "Top Coefficient": "DELTA-LOG-DB-CVIX"
         },
         {
-            "Model": "Benchmark Price Difference",
+            "Model": "Benchmark Price Difference short",
             "Prediction interval": "2003-01-01-2007-01-01",
             "R2": 0.002,
             "Adjusted R2": -0.013,
-            "Standard error of residuals": 0.008,
+            "Standard error of residuals": 0.0085,
             "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-PRICE-DIFFERENCE"
         },
         {
-            "Model": "Benchmark Interest Difference",
+            "Model": "Benchmark Interest Difference short",
             "Prediction interval": "2003-01-01-2007-01-01",
             "R2": 0.099,
             "Adjusted R2": 0.085,
-            "Standard error of residuals": 0.008,
+            "Standard error of residuals": 0.0081,
             "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
         {
-            "Model": "Benchmark ICE-BRENT",
+            "Model": "Benchmark ICE-BRENT short",
             "Prediction interval": "2003-01-01-2007-01-01",
             "R2": 0.01,
             "Adjusted R2": -0.005,
-            "Standard error of residuals": 0.008,
+            "Standard error of residuals": 0.0084,
             "Top Coefficient": "DELTA-LOG-ICE-BRENT"
         },
         {
@@ -141,33 +141,33 @@
             "Prediction interval": "2003-01-01-2007-01-01",
             "R2": 0.0,
             "Adjusted R2": -0.014,
-            "Standard error of residuals": 0.008,
+            "Standard error of residuals": 0.0085,
             "Top Coefficient": "DELTA-LOG-S&P-500"
         }
     ],
     "2007-01-01-2011-01-01": [
         {
-            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
+            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures long",
             "Prediction interval": "2007-01-01-2011-01-01",
             "R2": 0.845,
             "Adjusted R2": 0.838,
-            "Standard error of residuals": 0.014,
+            "Standard error of residuals": 0.0143,
             "Top Coefficient": "CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M"
         },
         {
-            "Model": "Akram (2022) Aggregate oil prices",
+            "Model": "Akram (2022) Aggregate oil prices long",
             "Prediction interval": "2007-01-01-2011-01-01",
             "R2": 0.679,
             "Adjusted R2": 0.671,
-            "Standard error of residuals": 0.021,
+            "Standard error of residuals": 0.0206,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
         {
-            "Model": "Myrstuen langtidsmodell",
+            "Model": "Myrstuen langtidsmodell long",
             "Prediction interval": "2007-01-01-2011-01-01",
             "R2": 0.815,
             "Adjusted R2": 0.783,
-            "Standard error of residuals": 0.015,
+            "Standard error of residuals": 0.0154,
             "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
         {
@@ -175,7 +175,7 @@
             "Prediction interval": "2007-01-01-2011-01-01",
             "R2": 0.244,
             "Adjusted R2": 0.233,
-            "Standard error of residuals": 0.032,
+            "Standard error of residuals": 0.0317,
             "Top Coefficient": "LOG-DB-CVIX"
         },
         {
@@ -183,7 +183,7 @@
             "Prediction interval": "2007-01-01-2011-01-01",
             "R2": 0.087,
             "Adjusted R2": 0.073,
-            "Standard error of residuals": 0.035,
+            "Standard error of residuals": 0.0348,
             "Top Coefficient": "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE"
         },
         {
@@ -191,7 +191,7 @@
             "Prediction interval": "2007-01-01-2011-01-01",
             "R2": 0.376,
             "Adjusted R2": 0.367,
-            "Standard error of residuals": 0.029,
+            "Standard error of residuals": 0.0288,
             "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
         {
@@ -199,7 +199,7 @@
             "Prediction interval": "2007-01-01-2011-01-01",
             "R2": 0.002,
             "Adjusted R2": -0.013,
-            "Standard error of residuals": 0.036,
+            "Standard error of residuals": 0.0364,
             "Top Coefficient": "LAGGED-LOG-NB-I44"
         },
         {
@@ -207,7 +207,7 @@
             "Prediction interval": "2007-01-01-2011-01-01",
             "R2": 0.644,
             "Adjusted R2": 0.639,
-            "Standard error of residuals": 0.022,
+            "Standard error of residuals": 0.0217,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
         {
@@ -215,51 +215,51 @@
             "Prediction interval": "2007-01-01-2011-01-01",
             "R2": 0.425,
             "Adjusted R2": 0.417,
-            "Standard error of residuals": 0.028,
+            "Standard error of residuals": 0.0276,
             "Top Coefficient": "LOG-S&P-500"
         },
         {
-            "Model": "Custom Akram 2022 differentiated",
+            "Model": "Custom Akram 2022 differentiated short",
             "Prediction interval": "2007-01-01-2011-01-01",
             "R2": 0.403,
             "Adjusted R2": 0.376,
-            "Standard error of residuals": 0.009,
+            "Standard error of residuals": 0.0085,
             "Top Coefficient": "DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M"
         },
         {
-            "Model": "Ellen linear model",
+            "Model": "Ellen linear model short",
             "Prediction interval": "2007-01-01-2011-01-01",
             "R2": 0.214,
             "Adjusted R2": 0.162,
-            "Standard error of residuals": 0.02,
+            "Standard error of residuals": 0.0196,
             "Top Coefficient": "DELTA-LOG-ICE-BRENT"
         },
         {
-            "Model": "Myrstuen korttidsmodell",
+            "Model": "Myrstuen korttidsmodell short",
             "Prediction interval": "2007-01-01-2011-01-01",
             "R2": 0.555,
             "Adjusted R2": 0.49,
-            "Standard error of residuals": 0.015,
+            "Standard error of residuals": 0.0149,
             "Top Coefficient": "LAGGED-CUSTOM-MYRSTUEN-EQULIBIRUM"
         },
         {
-            "Model": "Bjornstad&Jansen 2007 korttidsmodell",
+            "Model": "Bjornstad&Jansen 2007 korttidsmodell short",
             "Prediction interval": "2007-01-01-2011-01-01",
             "R2": 0.482,
             "Adjusted R2": 0.288,
-            "Standard error of residuals": 0.019,
+            "Standard error of residuals": 0.0193,
             "Top Coefficient": "LAGGED-DELTA-3-EURIBOR"
         },
         {
-            "Model": "Benchmark CVIX",
+            "Model": "Benchmark CVIX short",
             "Prediction interval": "2007-01-01-2011-01-01",
             "R2": 0.041,
             "Adjusted R2": 0.027,
-            "Standard error of residuals": 0.011,
+            "Standard error of residuals": 0.0108,
             "Top Coefficient": "DELTA-LOG-DB-CVIX"
         },
         {
-            "Model": "Benchmark Price Difference",
+            "Model": "Benchmark Price Difference short",
             "Prediction interval": "2007-01-01-2011-01-01",
             "R2": 0.007,
             "Adjusted R2": -0.008,
@@ -267,19 +267,19 @@
             "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-PRICE-DIFFERENCE"
         },
         {
-            "Model": "Benchmark Interest Difference",
+            "Model": "Benchmark Interest Difference short",
             "Prediction interval": "2007-01-01-2011-01-01",
             "R2": 0.241,
             "Adjusted R2": 0.23,
-            "Standard error of residuals": 0.01,
+            "Standard error of residuals": 0.0096,
             "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
         {
-            "Model": "Benchmark ICE-BRENT",
+            "Model": "Benchmark ICE-BRENT short",
             "Prediction interval": "2007-01-01-2011-01-01",
             "R2": 0.207,
             "Adjusted R2": 0.195,
-            "Standard error of residuals": 0.01,
+            "Standard error of residuals": 0.0098,
             "Top Coefficient": "DELTA-LOG-ICE-BRENT"
         },
         {
@@ -287,33 +287,33 @@
             "Prediction interval": "2007-01-01-2011-01-01",
             "R2": 0.136,
             "Adjusted R2": 0.123,
-            "Standard error of residuals": 0.01,
+            "Standard error of residuals": 0.0103,
             "Top Coefficient": "DELTA-LOG-S&P-500"
         }
     ],
     "2011-01-01-2016-01-01": [
         {
-            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
+            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures long",
             "Prediction interval": "2011-01-01-2016-01-01",
             "R2": 0.967,
             "Adjusted R2": 0.966,
-            "Standard error of residuals": 0.012,
+            "Standard error of residuals": 0.0125,
             "Top Coefficient": "AGGREGATE-NYFED-OIL-SUPPLY"
         },
         {
-            "Model": "Akram (2022) Aggregate oil prices",
+            "Model": "Akram (2022) Aggregate oil prices long",
             "Prediction interval": "2011-01-01-2016-01-01",
             "R2": 0.953,
             "Adjusted R2": 0.953,
-            "Standard error of residuals": 0.015,
+            "Standard error of residuals": 0.0148,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
         {
-            "Model": "Myrstuen langtidsmodell",
+            "Model": "Myrstuen langtidsmodell long",
             "Prediction interval": "2011-01-01-2016-01-01",
             "R2": 0.965,
             "Adjusted R2": 0.96,
-            "Standard error of residuals": 0.014,
+            "Standard error of residuals": 0.0141,
             "Top Coefficient": "LOG-S&P-500"
         },
         {
@@ -321,7 +321,7 @@
             "Prediction interval": "2011-01-01-2016-01-01",
             "R2": 0.0,
             "Adjusted R2": -0.012,
-            "Standard error of residuals": 0.069,
+            "Standard error of residuals": 0.0686,
             "Top Coefficient": "LOG-DB-CVIX"
         },
         {
@@ -329,7 +329,7 @@
             "Prediction interval": "2011-01-01-2016-01-01",
             "R2": 0.754,
             "Adjusted R2": 0.751,
-            "Standard error of residuals": 0.034,
+            "Standard error of residuals": 0.0341,
             "Top Coefficient": "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE"
         },
         {
@@ -337,7 +337,7 @@
             "Prediction interval": "2011-01-01-2016-01-01",
             "R2": 0.646,
             "Adjusted R2": 0.642,
-            "Standard error of residuals": 0.041,
+            "Standard error of residuals": 0.0408,
             "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
         {
@@ -345,7 +345,7 @@
             "Prediction interval": "2011-01-01-2016-01-01",
             "R2": 0.067,
             "Adjusted R2": 0.056,
-            "Standard error of residuals": 0.066,
+            "Standard error of residuals": 0.0662,
             "Top Coefficient": "LAGGED-LOG-NB-I44"
         },
         {
@@ -353,7 +353,7 @@
             "Prediction interval": "2011-01-01-2016-01-01",
             "R2": 0.859,
             "Adjusted R2": 0.858,
-            "Standard error of residuals": 0.026,
+            "Standard error of residuals": 0.0257,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
         {
@@ -361,67 +361,67 @@
             "Prediction interval": "2011-01-01-2016-01-01",
             "R2": 0.634,
             "Adjusted R2": 0.63,
-            "Standard error of residuals": 0.042,
+            "Standard error of residuals": 0.0415,
             "Top Coefficient": "LOG-S&P-500"
         },
         {
-            "Model": "Custom Akram 2022 differentiated",
+            "Model": "Custom Akram 2022 differentiated short",
             "Prediction interval": "2011-01-01-2016-01-01",
             "R2": 0.358,
             "Adjusted R2": 0.335,
-            "Standard error of residuals": 0.008,
+            "Standard error of residuals": 0.0077,
             "Top Coefficient": "DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M"
         },
         {
-            "Model": "Ellen linear model",
+            "Model": "Ellen linear model short",
             "Prediction interval": "2011-01-01-2016-01-01",
             "R2": 0.355,
             "Adjusted R2": 0.321,
-            "Standard error of residuals": 0.015,
+            "Standard error of residuals": 0.0147,
             "Top Coefficient": "DELTA-LOG-ICE-BRENT"
         },
         {
-            "Model": "Myrstuen korttidsmodell",
+            "Model": "Myrstuen korttidsmodell short",
             "Prediction interval": "2011-01-01-2016-01-01",
             "R2": 0.681,
             "Adjusted R2": 0.645,
-            "Standard error of residuals": 0.01,
+            "Standard error of residuals": 0.0104,
             "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
         {
-            "Model": "Bjornstad&Jansen 2007 korttidsmodell",
+            "Model": "Bjornstad&Jansen 2007 korttidsmodell short",
             "Prediction interval": "2011-01-01-2016-01-01",
             "R2": 0.313,
             "Adjusted R2": 0.126,
-            "Standard error of residuals": 0.016,
+            "Standard error of residuals": 0.0163,
             "Top Coefficient": "CUSTOM-BJORNSTAD-PRICE-DIFFERENCE"
         },
         {
-            "Model": "Benchmark CVIX",
+            "Model": "Benchmark CVIX short",
             "Prediction interval": "2011-01-01-2016-01-01",
             "R2": 0.055,
             "Adjusted R2": 0.044,
-            "Standard error of residuals": 0.009,
+            "Standard error of residuals": 0.0094,
             "Top Coefficient": "DELTA-LOG-DB-CVIX"
         },
         {
-            "Model": "Benchmark Price Difference",
+            "Model": "Benchmark Price Difference short",
             "Prediction interval": "2011-01-01-2016-01-01",
             "R2": 0.018,
             "Adjusted R2": 0.006,
-            "Standard error of residuals": 0.01,
+            "Standard error of residuals": 0.0096,
             "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-PRICE-DIFFERENCE"
         },
         {
-            "Model": "Benchmark Interest Difference",
+            "Model": "Benchmark Interest Difference short",
             "Prediction interval": "2011-01-01-2016-01-01",
             "R2": 0.2,
             "Adjusted R2": 0.19,
-            "Standard error of residuals": 0.009,
+            "Standard error of residuals": 0.0086,
             "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
         {
-            "Model": "Benchmark ICE-BRENT",
+            "Model": "Benchmark ICE-BRENT short",
             "Prediction interval": "2011-01-01-2016-01-01",
             "R2": 0.138,
             "Adjusted R2": 0.128,
@@ -433,33 +433,33 @@
             "Prediction interval": "2011-01-01-2016-01-01",
             "R2": 0.082,
             "Adjusted R2": 0.071,
-            "Standard error of residuals": 0.009,
+            "Standard error of residuals": 0.0092,
             "Top Coefficient": "DELTA-LOG-S&P-500"
         }
     ],
     "2016-01-01-2021-01-30": [
         {
-            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
+            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures long",
             "Prediction interval": "2016-01-01-2021-01-30",
             "R2": 0.818,
             "Adjusted R2": 0.811,
-            "Standard error of residuals": 0.018,
+            "Standard error of residuals": 0.0182,
             "Top Coefficient": "AGGREGATE-NYFED-OIL-SUPPLY"
         },
         {
-            "Model": "Akram (2022) Aggregate oil prices",
+            "Model": "Akram (2022) Aggregate oil prices long",
             "Prediction interval": "2016-01-01-2021-01-30",
             "R2": 0.733,
             "Adjusted R2": 0.728,
-            "Standard error of residuals": 0.022,
+            "Standard error of residuals": 0.0221,
             "Top Coefficient": "CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR"
         },
         {
-            "Model": "Myrstuen langtidsmodell",
+            "Model": "Myrstuen langtidsmodell long",
             "Prediction interval": "2016-01-01-2021-01-30",
             "R2": 0.839,
             "Adjusted R2": 0.818,
-            "Standard error of residuals": 0.017,
+            "Standard error of residuals": 0.0172,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
         {
@@ -467,7 +467,7 @@
             "Prediction interval": "2016-01-01-2021-01-30",
             "R2": 0.007,
             "Adjusted R2": -0.004,
-            "Standard error of residuals": 0.043,
+            "Standard error of residuals": 0.0426,
             "Top Coefficient": "LOG-DB-CVIX"
         },
         {
@@ -475,7 +475,7 @@
             "Prediction interval": "2016-01-01-2021-01-30",
             "R2": 0.311,
             "Adjusted R2": 0.303,
-            "Standard error of residuals": 0.035,
+            "Standard error of residuals": 0.0355,
             "Top Coefficient": "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE"
         },
         {
@@ -483,7 +483,7 @@
             "Prediction interval": "2016-01-01-2021-01-30",
             "R2": 0.046,
             "Adjusted R2": 0.035,
-            "Standard error of residuals": 0.042,
+            "Standard error of residuals": 0.0417,
             "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
         {
@@ -491,7 +491,7 @@
             "Prediction interval": "2016-01-01-2021-01-30",
             "R2": 0.01,
             "Adjusted R2": -0.001,
-            "Standard error of residuals": 0.042,
+            "Standard error of residuals": 0.0425,
             "Top Coefficient": "LAGGED-LOG-NB-I44"
         },
         {
@@ -499,7 +499,7 @@
             "Prediction interval": "2016-01-01-2021-01-30",
             "R2": 0.373,
             "Adjusted R2": 0.366,
-            "Standard error of residuals": 0.034,
+            "Standard error of residuals": 0.0338,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
         {
@@ -507,71 +507,71 @@
             "Prediction interval": "2016-01-01-2021-01-30",
             "R2": 0.219,
             "Adjusted R2": 0.21,
-            "Standard error of residuals": 0.038,
+            "Standard error of residuals": 0.0378,
             "Top Coefficient": "LOG-S&P-500"
         },
         {
-            "Model": "Custom Akram 2022 differentiated",
+            "Model": "Custom Akram 2022 differentiated short",
             "Prediction interval": "2016-01-01-2021-01-30",
             "R2": 0.505,
             "Adjusted R2": 0.488,
-            "Standard error of residuals": 0.008,
+            "Standard error of residuals": 0.0084,
             "Top Coefficient": "DELTA-AGGREGATE-NYFED-OIL-DEMAND"
         },
         {
-            "Model": "Ellen linear model",
+            "Model": "Ellen linear model short",
             "Prediction interval": "2016-01-01-2021-01-30",
             "R2": 0.539,
             "Adjusted R2": 0.515,
-            "Standard error of residuals": 0.015,
+            "Standard error of residuals": 0.0153,
             "Top Coefficient": "DELTA-LOG-ICE-BRENT"
         },
         {
-            "Model": "Myrstuen korttidsmodell",
+            "Model": "Myrstuen korttidsmodell short",
             "Prediction interval": "2016-01-01-2021-01-30",
             "R2": 0.649,
             "Adjusted R2": 0.609,
-            "Standard error of residuals": 0.013,
+            "Standard error of residuals": 0.0134,
             "Top Coefficient": "DELTA-LOG-ICE-BRENT"
         },
         {
-            "Model": "Bjornstad&Jansen 2007 korttidsmodell",
+            "Model": "Bjornstad&Jansen 2007 korttidsmodell short",
             "Prediction interval": "2016-01-01-2021-01-30",
             "R2": 0.52,
             "Adjusted R2": 0.389,
-            "Standard error of residuals": 0.017,
+            "Standard error of residuals": 0.0171,
             "Top Coefficient": "DELTA-4-LOG-ICE-BRENT"
         },
         {
-            "Model": "Benchmark CVIX",
+            "Model": "Benchmark CVIX short",
             "Prediction interval": "2016-01-01-2021-01-30",
             "R2": 0.333,
             "Adjusted R2": 0.325,
-            "Standard error of residuals": 0.01,
+            "Standard error of residuals": 0.0098,
             "Top Coefficient": "DELTA-LOG-DB-CVIX"
         },
         {
-            "Model": "Benchmark Price Difference",
+            "Model": "Benchmark Price Difference short",
             "Prediction interval": "2016-01-01-2021-01-30",
             "R2": 0.003,
             "Adjusted R2": -0.008,
-            "Standard error of residuals": 0.012,
+            "Standard error of residuals": 0.0119,
             "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-PRICE-DIFFERENCE"
         },
         {
-            "Model": "Benchmark Interest Difference",
+            "Model": "Benchmark Interest Difference short",
             "Prediction interval": "2016-01-01-2021-01-30",
             "R2": 0.108,
             "Adjusted R2": 0.098,
-            "Standard error of residuals": 0.011,
+            "Standard error of residuals": 0.0113,
             "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
         {
-            "Model": "Benchmark ICE-BRENT",
+            "Model": "Benchmark ICE-BRENT short",
             "Prediction interval": "2016-01-01-2021-01-30",
             "R2": 0.329,
             "Adjusted R2": 0.321,
-            "Standard error of residuals": 0.01,
+            "Standard error of residuals": 0.0098,
             "Top Coefficient": "DELTA-LOG-ICE-BRENT"
         },
         {
@@ -585,27 +585,27 @@
     ],
     "2021-01-01-2021-12-30": [
         {
-            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
+            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures long",
             "Prediction interval": "2021-01-01-2021-12-30",
             "R2": 0.475,
             "Adjusted R2": 0.363,
-            "Standard error of residuals": 0.012,
+            "Standard error of residuals": 0.0122,
             "Top Coefficient": "AGGREGATE-NYFED-OIL-SUPPLY"
         },
         {
-            "Model": "Akram (2022) Aggregate oil prices",
+            "Model": "Akram (2022) Aggregate oil prices long",
             "Prediction interval": "2021-01-01-2021-12-30",
             "R2": 0.3,
             "Adjusted R2": 0.224,
-            "Standard error of residuals": 0.014,
+            "Standard error of residuals": 0.0141,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
         {
-            "Model": "Myrstuen langtidsmodell",
+            "Model": "Myrstuen langtidsmodell long",
             "Prediction interval": "2021-01-01-2021-12-30",
             "R2": 0.21,
             "Adjusted R2": -1.173,
-            "Standard error of residuals": 0.017,
+            "Standard error of residuals": 0.0166,
             "Top Coefficient": "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE"
         },
         {
@@ -613,7 +613,7 @@
             "Prediction interval": "2021-01-01-2021-12-30",
             "R2": 0.003,
             "Adjusted R2": -0.06,
-            "Standard error of residuals": 0.017,
+            "Standard error of residuals": 0.0169,
             "Top Coefficient": "LOG-DB-CVIX"
         },
         {
@@ -621,7 +621,7 @@
             "Prediction interval": "2021-01-01-2021-12-30",
             "R2": 0.305,
             "Adjusted R2": 0.261,
-            "Standard error of residuals": 0.014,
+            "Standard error of residuals": 0.0141,
             "Top Coefficient": "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE"
         },
         {
@@ -629,7 +629,7 @@
             "Prediction interval": "2021-01-01-2021-12-30",
             "R2": 0.007,
             "Adjusted R2": -0.055,
-            "Standard error of residuals": 0.017,
+            "Standard error of residuals": 0.0169,
             "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
         {
@@ -637,7 +637,7 @@
             "Prediction interval": "2021-01-01-2021-12-30",
             "R2": 0.001,
             "Adjusted R2": -0.061,
-            "Standard error of residuals": 0.017,
+            "Standard error of residuals": 0.0169,
             "Top Coefficient": "LAGGED-LOG-NB-I44"
         },
         {
@@ -645,7 +645,7 @@
             "Prediction interval": "2021-01-01-2021-12-30",
             "R2": 0.078,
             "Adjusted R2": 0.02,
-            "Standard error of residuals": 0.016,
+            "Standard error of residuals": 0.0162,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
         {
@@ -653,19 +653,19 @@
             "Prediction interval": "2021-01-01-2021-12-30",
             "R2": 0.002,
             "Adjusted R2": -0.06,
-            "Standard error of residuals": 0.017,
+            "Standard error of residuals": 0.0169,
             "Top Coefficient": "LOG-S&P-500"
         },
         {
-            "Model": "Custom Akram 2022 differentiated",
+            "Model": "Custom Akram 2022 differentiated short",
             "Prediction interval": "2021-01-01-2021-12-30",
             "R2": 0.399,
             "Adjusted R2": 0.27,
-            "Standard error of residuals": 0.008,
+            "Standard error of residuals": 0.0077,
             "Top Coefficient": "DELTA-AGGREGATE-NYFED-OIL-DEMAND"
         },
         {
-            "Model": "Ellen linear model",
+            "Model": "Ellen linear model short",
             "Prediction interval": "2021-01-01-2021-12-30",
             "R2": 0.283,
             "Adjusted R2": 0.014,
@@ -673,51 +673,51 @@
             "Top Coefficient": "DELTA-LOG-ICE-BRENT"
         },
         {
-            "Model": "Myrstuen korttidsmodell",
+            "Model": "Myrstuen korttidsmodell short",
             "Prediction interval": "2021-01-01-2021-12-30",
             "R2": 0.668,
             "Adjusted R2": 0.17,
-            "Standard error of residuals": 0.016,
+            "Standard error of residuals": 0.0157,
             "Top Coefficient": "LAGGED-CUSTOM-MYRSTUEN-EQULIBIRUM"
         },
         {
-            "Model": "Bjornstad&Jansen 2007 korttidsmodell",
+            "Model": "Bjornstad&Jansen 2007 korttidsmodell short",
             "Prediction interval": "2021-01-01-2021-12-30",
             "R2": 0.925,
             "Adjusted R2": 1.105,
-            "Standard error of residuals": 0.008,
+            "Standard error of residuals": 0.0078,
             "Top Coefficient": "DELTA-3-NIBOR"
         },
         {
-            "Model": "Benchmark CVIX",
+            "Model": "Benchmark CVIX short",
             "Prediction interval": "2021-01-01-2021-12-30",
             "R2": 0.184,
             "Adjusted R2": 0.133,
-            "Standard error of residuals": 0.009,
+            "Standard error of residuals": 0.0089,
             "Top Coefficient": "DELTA-LOG-DB-CVIX"
         },
         {
-            "Model": "Benchmark Price Difference",
+            "Model": "Benchmark Price Difference short",
             "Prediction interval": "2021-01-01-2021-12-30",
             "R2": 0.056,
             "Adjusted R2": -0.003,
-            "Standard error of residuals": 0.01,
+            "Standard error of residuals": 0.0096,
             "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-PRICE-DIFFERENCE"
         },
         {
-            "Model": "Benchmark Interest Difference",
+            "Model": "Benchmark Interest Difference short",
             "Prediction interval": "2021-01-01-2021-12-30",
             "R2": 0.016,
             "Adjusted R2": -0.046,
-            "Standard error of residuals": 0.01,
+            "Standard error of residuals": 0.0098,
             "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
         {
-            "Model": "Benchmark ICE-BRENT",
+            "Model": "Benchmark ICE-BRENT short",
             "Prediction interval": "2021-01-01-2021-12-30",
             "R2": 0.362,
             "Adjusted R2": 0.322,
-            "Standard error of residuals": 0.008,
+            "Standard error of residuals": 0.0079,
             "Top Coefficient": "DELTA-LOG-ICE-BRENT"
         },
         {
@@ -725,33 +725,33 @@
             "Prediction interval": "2021-01-01-2021-12-30",
             "R2": 0.314,
             "Adjusted R2": 0.271,
-            "Standard error of residuals": 0.008,
+            "Standard error of residuals": 0.0082,
             "Top Coefficient": "DELTA-LOG-S&P-500"
         }
     ],
     "2002-12-31-2021-12-30": [
         {
-            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
+            "Model": "Akram (2022) Decomposed oil prices and uncertainty measures long",
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.925,
             "Adjusted R2": 0.924,
-            "Standard error of residuals": 0.024,
+            "Standard error of residuals": 0.0236,
             "Top Coefficient": "AGGREGATE-NYFED-OIL-SUPPLY"
         },
         {
-            "Model": "Akram (2022) Aggregate oil prices",
+            "Model": "Akram (2022) Aggregate oil prices long",
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.315,
             "Adjusted R2": 0.312,
-            "Standard error of residuals": 0.071,
+            "Standard error of residuals": 0.0713,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
         {
-            "Model": "Myrstuen langtidsmodell",
+            "Model": "Myrstuen langtidsmodell long",
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.916,
             "Adjusted R2": 0.914,
-            "Standard error of residuals": 0.025,
+            "Standard error of residuals": 0.0251,
             "Top Coefficient": "LOG-S&P-500"
         },
         {
@@ -759,7 +759,7 @@
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.098,
             "Adjusted R2": 0.095,
-            "Standard error of residuals": 0.082,
+            "Standard error of residuals": 0.0818,
             "Top Coefficient": "LOG-DB-CVIX"
         },
         {
@@ -767,7 +767,7 @@
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.793,
             "Adjusted R2": 0.793,
-            "Standard error of residuals": 0.039,
+            "Standard error of residuals": 0.0391,
             "Top Coefficient": "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE"
         },
         {
@@ -775,7 +775,7 @@
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.008,
             "Adjusted R2": 0.005,
-            "Standard error of residuals": 0.086,
+            "Standard error of residuals": 0.0857,
             "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
         {
@@ -783,7 +783,7 @@
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.296,
             "Adjusted R2": 0.294,
-            "Standard error of residuals": 0.072,
+            "Standard error of residuals": 0.0722,
             "Top Coefficient": "LAGGED-LOG-NB-I44"
         },
         {
@@ -791,7 +791,7 @@
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.249,
             "Adjusted R2": 0.247,
-            "Standard error of residuals": 0.075,
+            "Standard error of residuals": 0.0746,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
         {
@@ -799,43 +799,43 @@
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.596,
             "Adjusted R2": 0.594,
-            "Standard error of residuals": 0.055,
+            "Standard error of residuals": 0.0548,
             "Top Coefficient": "LOG-S&P-500"
         },
         {
-            "Model": "Custom Akram 2022 differentiated",
+            "Model": "Custom Akram 2022 differentiated short",
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.321,
             "Adjusted R2": 0.315,
-            "Standard error of residuals": 0.009,
+            "Standard error of residuals": 0.0085,
             "Top Coefficient": "DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M"
         },
         {
-            "Model": "Ellen linear model",
+            "Model": "Ellen linear model short",
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.288,
             "Adjusted R2": 0.278,
-            "Standard error of residuals": 0.018,
+            "Standard error of residuals": 0.0177,
             "Top Coefficient": "DELTA-LOG-ICE-BRENT"
         },
         {
-            "Model": "Myrstuen korttidsmodell",
+            "Model": "Myrstuen korttidsmodell short",
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.495,
             "Adjusted R2": 0.481,
-            "Standard error of residuals": 0.015,
+            "Standard error of residuals": 0.0149,
             "Top Coefficient": "DELTA-LOG-ICE-BRENT"
         },
         {
-            "Model": "Bjornstad&Jansen 2007 korttidsmodell",
+            "Model": "Bjornstad&Jansen 2007 korttidsmodell short",
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.255,
             "Adjusted R2": 0.212,
-            "Standard error of residuals": 0.019,
+            "Standard error of residuals": 0.0193,
             "Top Coefficient": "LAGGED-DELTA-3-EURIBOR"
         },
         {
-            "Model": "Benchmark CVIX",
+            "Model": "Benchmark CVIX short",
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.067,
             "Adjusted R2": 0.065,
@@ -843,27 +843,27 @@
             "Top Coefficient": "DELTA-LOG-DB-CVIX"
         },
         {
-            "Model": "Benchmark Price Difference",
+            "Model": "Benchmark Price Difference short",
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.005,
             "Adjusted R2": 0.002,
-            "Standard error of residuals": 0.01,
+            "Standard error of residuals": 0.0103,
             "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-PRICE-DIFFERENCE"
         },
         {
-            "Model": "Benchmark Interest Difference",
+            "Model": "Benchmark Interest Difference short",
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.152,
             "Adjusted R2": 0.15,
-            "Standard error of residuals": 0.01,
+            "Standard error of residuals": 0.0095,
             "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
         {
-            "Model": "Benchmark ICE-BRENT",
+            "Model": "Benchmark ICE-BRENT short",
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.14,
             "Adjusted R2": 0.138,
-            "Standard error of residuals": 0.01,
+            "Standard error of residuals": 0.0096,
             "Top Coefficient": "DELTA-LOG-ICE-BRENT"
         },
         {
@@ -871,7 +871,7 @@
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.148,
             "Adjusted R2": 0.146,
-            "Standard error of residuals": 0.01,
+            "Standard error of residuals": 0.0095,
             "Top Coefficient": "DELTA-LOG-S&P-500"
         }
     ]

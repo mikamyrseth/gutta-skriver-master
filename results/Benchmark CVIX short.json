@@ -1,0 +1,130 @@
+{
+    "test1": {
+        "Model": "Benchmark CVIX short",
+        "dependent variable": "DELTA-LOG-NB-I44",
+        "Prediction interval": "2002-12-31-2015-08-01",
+        "Top Coefficient": "DELTA-LOG-DB-CVIX",
+        "Model Similarity (R2)": 0.0,
+        "Model Deviance (MAPE)": 0.986,
+        "Prediction Strength (R2)": 0.022,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.017,
+        "Standard Error of Residuals": 0.01
+    },
+    "test2": {
+        "Model": "Benchmark CVIX short",
+        "Base Interval": "2002-12-31-2015-08-01",
+        "Base R2": 0.022,
+        "Base standard error of residuals": 0.01,
+        "Base Adjusted R2": 0.016,
+        "New R2": 0.022,
+        "New Adjusted R2": 0.017,
+        "New standard error of residuals": 0.01,
+        "New interval": "2002-12-31-2017-06-20",
+        "Delta R2": 0.0,
+        "Delta Adjusted R2": 0.001,
+        "Delta standard error of residuals": -0.0,
+        "R2 percent change": 0.004,
+        "Adjusted R2 percent change": 0.056,
+        "Standard error of residuals percent change": -0.01
+    },
+    "test3": [
+        {
+            "Model": "Benchmark CVIX short",
+            "Prediction interval": "2003-01-01-2007-01-01",
+            "R2": 0.033,
+            "Adjusted R2": 0.019,
+            "Standard error of residuals": 0.0083,
+            "Top Coefficient": "DELTA-LOG-DB-CVIX"
+        },
+        {
+            "Model": "Benchmark CVIX short",
+            "Prediction interval": "2007-01-01-2011-01-01",
+            "R2": 0.041,
+            "Adjusted R2": 0.027,
+            "Standard error of residuals": 0.0108,
+            "Top Coefficient": "DELTA-LOG-DB-CVIX"
+        },
+        {
+            "Model": "Benchmark CVIX short",
+            "Prediction interval": "2011-01-01-2016-01-01",
+            "R2": 0.055,
+            "Adjusted R2": 0.044,
+            "Standard error of residuals": 0.0094,
+            "Top Coefficient": "DELTA-LOG-DB-CVIX"
+        },
+        {
+            "Model": "Benchmark CVIX short",
+            "Prediction interval": "2016-01-01-2021-01-30",
+            "R2": 0.333,
+            "Adjusted R2": 0.325,
+            "Standard error of residuals": 0.0098,
+            "Top Coefficient": "DELTA-LOG-DB-CVIX"
+        },
+        {
+            "Model": "Benchmark CVIX short",
+            "Prediction interval": "2021-01-01-2021-12-30",
+            "R2": 0.184,
+            "Adjusted R2": 0.133,
+            "Standard error of residuals": 0.0089,
+            "Top Coefficient": "DELTA-LOG-DB-CVIX"
+        },
+        {
+            "Model": "Benchmark CVIX short",
+            "Prediction interval": "2002-12-31-2021-12-30",
+            "R2": 0.067,
+            "Adjusted R2": 0.065,
+            "Standard error of residuals": 0.01,
+            "Top Coefficient": "DELTA-LOG-DB-CVIX"
+        }
+    ],
+    "test3-by-interval": {
+        "2003-01-01-2007-01-01": {
+            "Model": "Benchmark CVIX short",
+            "Prediction interval": "2003-01-01-2007-01-01",
+            "R2": 0.033,
+            "Adjusted R2": 0.019,
+            "Standard error of residuals": 0.0083,
+            "Top Coefficient": "DELTA-LOG-DB-CVIX"
+        },
+        "2007-01-01-2011-01-01": {
+            "Model": "Benchmark CVIX short",
+            "Prediction interval": "2007-01-01-2011-01-01",
+            "R2": 0.041,
+            "Adjusted R2": 0.027,
+            "Standard error of residuals": 0.0108,
+            "Top Coefficient": "DELTA-LOG-DB-CVIX"
+        },
+        "2011-01-01-2016-01-01": {
+            "Model": "Benchmark CVIX short",
+            "Prediction interval": "2011-01-01-2016-01-01",
+            "R2": 0.055,
+            "Adjusted R2": 0.044,
+            "Standard error of residuals": 0.0094,
+            "Top Coefficient": "DELTA-LOG-DB-CVIX"
+        },
+        "2016-01-01-2021-01-30": {
+            "Model": "Benchmark CVIX short",
+            "Prediction interval": "2016-01-01-2021-01-30",
+            "R2": 0.333,
+            "Adjusted R2": 0.325,
+            "Standard error of residuals": 0.0098,
+            "Top Coefficient": "DELTA-LOG-DB-CVIX"
+        },
+        "2021-01-01-2021-12-30": {
+            "Model": "Benchmark CVIX short",
+            "Prediction interval": "2021-01-01-2021-12-30",
+            "R2": 0.184,
+            "Adjusted R2": 0.133,
+            "Standard error of residuals": 0.0089,
+            "Top Coefficient": "DELTA-LOG-DB-CVIX"
+        },
+        "2002-12-31-2021-12-30": {
+            "Model": "Benchmark CVIX short",
+            "Prediction interval": "2002-12-31-2021-12-30",
+            "R2": 0.067,
+            "Adjusted R2": 0.065,
+            "Standard error of residuals": 0.01,
+            "Top Coefficient": "DELTA-LOG-DB-CVIX"
+        }
+    }
+}

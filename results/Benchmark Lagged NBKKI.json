@@ -33,7 +33,7 @@
             "Prediction interval": "2003-01-01-2007-01-01",
             "R2": 0.081,
             "Adjusted R2": 0.068,
-            "Standard error of residuals": 0.027,
+            "Standard error of residuals": 0.0272,
             "Top Coefficient": "LAGGED-LOG-NB-I44"
         },
         {
@@ -41,7 +41,7 @@
             "Prediction interval": "2007-01-01-2011-01-01",
             "R2": 0.002,
             "Adjusted R2": -0.013,
-            "Standard error of residuals": 0.036,
+            "Standard error of residuals": 0.0364,
             "Top Coefficient": "LAGGED-LOG-NB-I44"
         },
         {
@@ -49,7 +49,7 @@
             "Prediction interval": "2011-01-01-2016-01-01",
             "R2": 0.067,
             "Adjusted R2": 0.056,
-            "Standard error of residuals": 0.066,
+            "Standard error of residuals": 0.0662,
             "Top Coefficient": "LAGGED-LOG-NB-I44"
         },
         {
@@ -57,7 +57,7 @@
             "Prediction interval": "2016-01-01-2021-01-30",
             "R2": 0.01,
             "Adjusted R2": -0.001,
-            "Standard error of residuals": 0.042,
+            "Standard error of residuals": 0.0425,
             "Top Coefficient": "LAGGED-LOG-NB-I44"
         },
         {
@@ -65,7 +65,7 @@
             "Prediction interval": "2021-01-01-2021-12-30",
             "R2": 0.001,
             "Adjusted R2": -0.061,
-            "Standard error of residuals": 0.017,
+            "Standard error of residuals": 0.0169,
             "Top Coefficient": "LAGGED-LOG-NB-I44"
         },
         {
@@ -73,7 +73,7 @@
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.296,
             "Adjusted R2": 0.294,
-            "Standard error of residuals": 0.072,
+            "Standard error of residuals": 0.0722,
             "Top Coefficient": "LAGGED-LOG-NB-I44"
         }
     ],
@@ -83,7 +83,7 @@
             "Prediction interval": "2003-01-01-2007-01-01",
             "R2": 0.081,
             "Adjusted R2": 0.068,
-            "Standard error of residuals": 0.027,
+            "Standard error of residuals": 0.0272,
             "Top Coefficient": "LAGGED-LOG-NB-I44"
         },
         "2007-01-01-2011-01-01": {
@@ -91,7 +91,7 @@
             "Prediction interval": "2007-01-01-2011-01-01",
             "R2": 0.002,
             "Adjusted R2": -0.013,
-            "Standard error of residuals": 0.036,
+            "Standard error of residuals": 0.0364,
             "Top Coefficient": "LAGGED-LOG-NB-I44"
         },
         "2011-01-01-2016-01-01": {
@@ -99,7 +99,7 @@
             "Prediction interval": "2011-01-01-2016-01-01",
             "R2": 0.067,
             "Adjusted R2": 0.056,
-            "Standard error of residuals": 0.066,
+            "Standard error of residuals": 0.0662,
             "Top Coefficient": "LAGGED-LOG-NB-I44"
         },
         "2016-01-01-2021-01-30": {
@@ -107,7 +107,7 @@
             "Prediction interval": "2016-01-01-2021-01-30",
             "R2": 0.01,
             "Adjusted R2": -0.001,
-            "Standard error of residuals": 0.042,
+            "Standard error of residuals": 0.0425,
             "Top Coefficient": "LAGGED-LOG-NB-I44"
         },
         "2021-01-01-2021-12-30": {
@@ -115,7 +115,7 @@
             "Prediction interval": "2021-01-01-2021-12-30",
             "R2": 0.001,
             "Adjusted R2": -0.061,
-            "Standard error of residuals": 0.017,
+            "Standard error of residuals": 0.0169,
             "Top Coefficient": "LAGGED-LOG-NB-I44"
         },
         "2002-12-31-2021-12-30": {
@@ -123,7 +123,7 @@
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.296,
             "Adjusted R2": 0.294,
-            "Standard error of residuals": 0.072,
+            "Standard error of residuals": 0.0722,
             "Top Coefficient": "LAGGED-LOG-NB-I44"
         }
     }
