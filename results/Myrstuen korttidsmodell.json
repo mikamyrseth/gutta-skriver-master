@@ -7,106 +7,123 @@
         "Model Similarity (R2)": 0.571,
         "Model Deviance (MAPE)": 1.029,
         "Prediction Strength (R2)": 0.442,
-        "Adjusted Prediction Strength (Adjusted R2)": 0.428
+        "Adjusted Prediction Strength (Adjusted R2)": 0.425,
+        "Standard Error of Residuals": 0.014
     },
     "test2": {
         "Model": "Myrstuen korttidsmodell",
         "Base Interval": "2001-12-31-2019-04-30",
         "Base R2": 0.442,
-        "Base Adjusted R2": 0.425,
+        "Base standard error of residuals": 0.014,
+        "Base Adjusted R2": 0.423,
         "New R2": 0.478,
-        "New Adjusted R2": 0.464,
+        "New Adjusted R2": 0.462,
+        "New standard error of residuals": 0.015,
         "New interval": "2001-12-31-2021-12-04",
         "Delta R2": 0.036,
-        "Delta Adjusted R2": 0.039,
+        "Delta Adjusted R2": 0.04,
+        "Delta standard error of residuals": 0.001,
         "R2 percent change": 0.081,
-        "Adjusted R2 percent change": 0.092
+        "Adjusted R2 percent change": 0.094,
+        "Standard error of residuals percent change": 0.053
     },
     "test3": [
         {
             "Model": "Myrstuen korttidsmodell",
-            "Prediction interval": "2002-12-31-2006-01-01",
-            "R2": 0.521,
-            "Adjusted R2": 0.443,
+            "Prediction interval": "2003-01-01-2007-01-01",
+            "R2": 0.509,
+            "Adjusted R2": 0.437,
+            "Standard error of residuals": 0.013,
+            "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
+        },
+        {
+            "Model": "Myrstuen korttidsmodell",
+            "Prediction interval": "2007-01-01-2011-01-01",
+            "R2": 0.555,
+            "Adjusted R2": 0.49,
+            "Standard error of residuals": 0.015,
             "Top Coefficient": "LAGGED-CUSTOM-MYRSTUEN-EQULIBIRUM"
         },
         {
             "Model": "Myrstuen korttidsmodell",
-            "Prediction interval": "2006-01-01-2010-01-01",
-            "R2": 0.476,
-            "Adjusted R2": 0.413,
+            "Prediction interval": "2011-01-01-2016-01-01",
+            "R2": 0.681,
+            "Adjusted R2": 0.645,
+            "Standard error of residuals": 0.01,
+            "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
+        },
+        {
+            "Model": "Myrstuen korttidsmodell",
+            "Prediction interval": "2016-01-01-2021-01-30",
+            "R2": 0.649,
+            "Adjusted R2": 0.609,
+            "Standard error of residuals": 0.013,
             "Top Coefficient": "DELTA-LOG-ICE-BRENT"
         },
         {
             "Model": "Myrstuen korttidsmodell",
-            "Prediction interval": "2010-01-01-2015-01-01",
-            "R2": 0.643,
-            "Adjusted R2": 0.61,
-            "Top Coefficient": "DELTA-LOG-ICE-BRENT"
-        },
-        {
-            "Model": "Myrstuen korttidsmodell",
-            "Prediction interval": "2015-01-01-2020-01-01",
-            "R2": 0.49,
-            "Adjusted R2": 0.442,
-            "Top Coefficient": "DELTA-LOG-ICE-BRENT"
-        },
-        {
-            "Model": "Myrstuen korttidsmodell",
-            "Prediction interval": "2020-01-01-2021-12-30",
-            "R2": 0.792,
-            "Adjusted R2": 0.731,
-            "Top Coefficient": "DELTA-LOG-ICE-BRENT"
+            "Prediction interval": "2021-01-01-2021-12-30",
+            "R2": 0.668,
+            "Adjusted R2": 0.17,
+            "Standard error of residuals": 0.016,
+            "Top Coefficient": "LAGGED-CUSTOM-MYRSTUEN-EQULIBIRUM"
         },
         {
             "Model": "Myrstuen korttidsmodell",
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.495,
-            "Adjusted R2": 0.484,
+            "Adjusted R2": 0.481,
+            "Standard error of residuals": 0.015,
             "Top Coefficient": "DELTA-LOG-ICE-BRENT"
         }
     ],
     "test3-by-interval": {
-        "2002-12-31-2006-01-01": {
+        "2003-01-01-2007-01-01": {
             "Model": "Myrstuen korttidsmodell",
-            "Prediction interval": "2002-12-31-2006-01-01",
-            "R2": 0.521,
-            "Adjusted R2": 0.443,
+            "Prediction interval": "2003-01-01-2007-01-01",
+            "R2": 0.509,
+            "Adjusted R2": 0.437,
+            "Standard error of residuals": 0.013,
+            "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
+        },
+        "2007-01-01-2011-01-01": {
+            "Model": "Myrstuen korttidsmodell",
+            "Prediction interval": "2007-01-01-2011-01-01",
+            "R2": 0.555,
+            "Adjusted R2": 0.49,
+            "Standard error of residuals": 0.015,
             "Top Coefficient": "LAGGED-CUSTOM-MYRSTUEN-EQULIBIRUM"
         },
-        "2006-01-01-2010-01-01": {
+        "2011-01-01-2016-01-01": {
             "Model": "Myrstuen korttidsmodell",
-            "Prediction interval": "2006-01-01-2010-01-01",
-            "R2": 0.476,
-            "Adjusted R2": 0.413,
+            "Prediction interval": "2011-01-01-2016-01-01",
+            "R2": 0.681,
+            "Adjusted R2": 0.645,
+            "Standard error of residuals": 0.01,
+            "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
+        },
+        "2016-01-01-2021-01-30": {
+            "Model": "Myrstuen korttidsmodell",
+            "Prediction interval": "2016-01-01-2021-01-30",
+            "R2": 0.649,
+            "Adjusted R2": 0.609,
+            "Standard error of residuals": 0.013,
             "Top Coefficient": "DELTA-LOG-ICE-BRENT"
         },
-        "2010-01-01-2015-01-01": {
+        "2021-01-01-2021-12-30": {
             "Model": "Myrstuen korttidsmodell",
-            "Prediction interval": "2010-01-01-2015-01-01",
-            "R2": 0.643,
-            "Adjusted R2": 0.61,
-            "Top Coefficient": "DELTA-LOG-ICE-BRENT"
-        },
-        "2015-01-01-2020-01-01": {
-            "Model": "Myrstuen korttidsmodell",
-            "Prediction interval": "2015-01-01-2020-01-01",
-            "R2": 0.49,
-            "Adjusted R2": 0.442,
-            "Top Coefficient": "DELTA-LOG-ICE-BRENT"
-        },
-        "2020-01-01-2021-12-30": {
-            "Model": "Myrstuen korttidsmodell",
-            "Prediction interval": "2020-01-01-2021-12-30",
-            "R2": 0.792,
-            "Adjusted R2": 0.731,
-            "Top Coefficient": "DELTA-LOG-ICE-BRENT"
+            "Prediction interval": "2021-01-01-2021-12-30",
+            "R2": 0.668,
+            "Adjusted R2": 0.17,
+            "Standard error of residuals": 0.016,
+            "Top Coefficient": "LAGGED-CUSTOM-MYRSTUEN-EQULIBIRUM"
         },
         "2002-12-31-2021-12-30": {
             "Model": "Myrstuen korttidsmodell",
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.495,
-            "Adjusted R2": 0.484,
+            "Adjusted R2": 0.481,
+            "Standard error of residuals": 0.015,
             "Top Coefficient": "DELTA-LOG-ICE-BRENT"
         }
     }

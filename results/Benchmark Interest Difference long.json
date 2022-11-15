@@ -7,106 +7,123 @@
         "Model Similarity (R2)": 0.0,
         "Model Deviance (MAPE)": 3.428,
         "Prediction Strength (R2)": 0.163,
-        "Adjusted Prediction Strength (Adjusted R2)": 0.161
+        "Adjusted Prediction Strength (Adjusted R2)": 0.16,
+        "Standard Error of Residuals": 0.04
     },
     "test2": {
         "Model": "Benchmark Interest Difference long",
         "Base Interval": "2002-12-31-2015-08-01",
         "Base R2": 0.163,
-        "Base Adjusted R2": 0.16,
+        "Base standard error of residuals": 0.04,
+        "Base Adjusted R2": 0.158,
         "New R2": -0.025,
-        "New Adjusted R2": -0.029,
+        "New Adjusted R2": -0.03,
+        "New standard error of residuals": 0.06,
         "New interval": "2002-12-31-2017-06-20",
         "Delta R2": -0.188,
         "Delta Adjusted R2": -0.188,
+        "Delta standard error of residuals": 0.021,
         "R2 percent change": -1.15,
-        "Adjusted R2 percent change": -1.179
+        "Adjusted R2 percent change": -1.189,
+        "Standard error of residuals percent change": 0.526
     },
     "test3": [
         {
             "Model": "Benchmark Interest Difference long",
-            "Prediction interval": "2002-12-31-2006-01-01",
-            "R2": 0.278,
-            "Adjusted R2": 0.269,
+            "Prediction interval": "2003-01-01-2007-01-01",
+            "R2": 0.172,
+            "Adjusted R2": 0.159,
+            "Standard error of residuals": 0.026,
             "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
         {
             "Model": "Benchmark Interest Difference long",
-            "Prediction interval": "2006-01-01-2010-01-01",
-            "R2": 0.137,
-            "Adjusted R2": 0.129,
+            "Prediction interval": "2007-01-01-2011-01-01",
+            "R2": 0.376,
+            "Adjusted R2": 0.367,
+            "Standard error of residuals": 0.029,
             "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
         {
             "Model": "Benchmark Interest Difference long",
-            "Prediction interval": "2010-01-01-2015-01-01",
-            "R2": 0.027,
-            "Adjusted R2": 0.02,
+            "Prediction interval": "2011-01-01-2016-01-01",
+            "R2": 0.646,
+            "Adjusted R2": 0.642,
+            "Standard error of residuals": 0.041,
             "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
         {
             "Model": "Benchmark Interest Difference long",
-            "Prediction interval": "2015-01-01-2020-01-01",
-            "R2": 0.085,
-            "Adjusted R2": 0.077,
+            "Prediction interval": "2016-01-01-2021-01-30",
+            "R2": 0.046,
+            "Adjusted R2": 0.035,
+            "Standard error of residuals": 0.042,
             "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
         {
             "Model": "Benchmark Interest Difference long",
-            "Prediction interval": "2020-01-01-2021-12-30",
-            "R2": 0.181,
-            "Adjusted R2": 0.165,
+            "Prediction interval": "2021-01-01-2021-12-30",
+            "R2": 0.007,
+            "Adjusted R2": -0.055,
+            "Standard error of residuals": 0.017,
             "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
         {
             "Model": "Benchmark Interest Difference long",
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.008,
-            "Adjusted R2": 0.006,
+            "Adjusted R2": 0.005,
+            "Standard error of residuals": 0.086,
             "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         }
     ],
     "test3-by-interval": {
-        "2002-12-31-2006-01-01": {
+        "2003-01-01-2007-01-01": {
             "Model": "Benchmark Interest Difference long",
-            "Prediction interval": "2002-12-31-2006-01-01",
-            "R2": 0.278,
-            "Adjusted R2": 0.269,
+            "Prediction interval": "2003-01-01-2007-01-01",
+            "R2": 0.172,
+            "Adjusted R2": 0.159,
+            "Standard error of residuals": 0.026,
             "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
-        "2006-01-01-2010-01-01": {
+        "2007-01-01-2011-01-01": {
             "Model": "Benchmark Interest Difference long",
-            "Prediction interval": "2006-01-01-2010-01-01",
-            "R2": 0.137,
-            "Adjusted R2": 0.129,
+            "Prediction interval": "2007-01-01-2011-01-01",
+            "R2": 0.376,
+            "Adjusted R2": 0.367,
+            "Standard error of residuals": 0.029,
             "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
-        "2010-01-01-2015-01-01": {
+        "2011-01-01-2016-01-01": {
             "Model": "Benchmark Interest Difference long",
-            "Prediction interval": "2010-01-01-2015-01-01",
-            "R2": 0.027,
-            "Adjusted R2": 0.02,
+            "Prediction interval": "2011-01-01-2016-01-01",
+            "R2": 0.646,
+            "Adjusted R2": 0.642,
+            "Standard error of residuals": 0.041,
             "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
-        "2015-01-01-2020-01-01": {
+        "2016-01-01-2021-01-30": {
             "Model": "Benchmark Interest Difference long",
-            "Prediction interval": "2015-01-01-2020-01-01",
-            "R2": 0.085,
-            "Adjusted R2": 0.077,
+            "Prediction interval": "2016-01-01-2021-01-30",
+            "R2": 0.046,
+            "Adjusted R2": 0.035,
+            "Standard error of residuals": 0.042,
             "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
-        "2020-01-01-2021-12-30": {
+        "2021-01-01-2021-12-30": {
             "Model": "Benchmark Interest Difference long",
-            "Prediction interval": "2020-01-01-2021-12-30",
-            "R2": 0.181,
-            "Adjusted R2": 0.165,
+            "Prediction interval": "2021-01-01-2021-12-30",
+            "R2": 0.007,
+            "Adjusted R2": -0.055,
+            "Standard error of residuals": 0.017,
             "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         },
         "2002-12-31-2021-12-30": {
             "Model": "Benchmark Interest Difference long",
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.008,
-            "Adjusted R2": 0.006,
+            "Adjusted R2": 0.005,
+            "Standard error of residuals": 0.086,
             "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
         }
     }

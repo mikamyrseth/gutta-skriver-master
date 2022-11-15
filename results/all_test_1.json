@@ -1,5 +1,148 @@
 [
     {
+        "Model": "Akram (2022) Decomposed oil prices and uncertainty measures",
+        "dependent variable": "LOG-NB-I44",
+        "Prediction interval": "2010-01-15-2018-12-31",
+        "Top Coefficient": "AGGREGATE-NYFED-OIL-SUPPLY",
+        "Model Similarity (R2)": 1.0,
+        "Model Deviance (MAPE)": 0.304,
+        "Prediction Strength (R2)": 0.974,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.974,
+        "Standard Error of Residuals": 0.013
+    },
+    {
+        "Model": "Akram (2022) Aggregate oil prices",
+        "dependent variable": "LOG-NB-I44",
+        "Prediction interval": "2010-01-15-2018-12-31",
+        "Top Coefficient": "CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M",
+        "Model Similarity (R2)": 1.0,
+        "Model Deviance (MAPE)": 0.181,
+        "Prediction Strength (R2)": 0.944,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.944,
+        "Standard Error of Residuals": 0.019
+    },
+    {
+        "Model": "Myrstuen langtidsmodell",
+        "dependent variable": "LOG-NB-KKI",
+        "Prediction interval": "2001-12-31-2019-04-30",
+        "Top Coefficient": "LOG-S&P-500",
+        "Model Similarity (R2)": 0.987,
+        "Model Deviance (MAPE)": 0.125,
+        "Prediction Strength (R2)": 0.891,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.887,
+        "Standard Error of Residuals": 0.023
+    },
+    {
+        "Model": "Benchmark CVIX long",
+        "dependent variable": "LOG-NB-I44",
+        "Prediction interval": "2002-12-31-2015-08-01",
+        "Top Coefficient": "LOG-DB-CVIX",
+        "Model Similarity (R2)": 0.0,
+        "Model Deviance (MAPE)": 2.232,
+        "Prediction Strength (R2)": 0.012,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.007,
+        "Standard Error of Residuals": 0.043
+    },
+    {
+        "Model": "Benchmark Price Difference long",
+        "dependent variable": "LOG-NB-I44",
+        "Prediction interval": "2002-12-31-2015-08-01",
+        "Top Coefficient": "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE",
+        "Model Similarity (R2)": 0.0,
+        "Model Deviance (MAPE)": 2.199,
+        "Prediction Strength (R2)": 0.265,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.262,
+        "Standard Error of Residuals": 0.037
+    },
+    {
+        "Model": "Benchmark Interest Difference long",
+        "dependent variable": "LOG-NB-I44",
+        "Prediction interval": "2002-12-31-2015-08-01",
+        "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M",
+        "Model Similarity (R2)": 0.0,
+        "Model Deviance (MAPE)": 3.428,
+        "Prediction Strength (R2)": 0.163,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.16,
+        "Standard Error of Residuals": 0.04
+    },
+    {
+        "Model": "Benchmark Lagged NBKKI",
+        "dependent variable": "LOG-NB-I44",
+        "Prediction interval": "2002-12-31-2015-08-01",
+        "Top Coefficient": "LAGGED-LOG-NB-I44",
+        "Model Similarity (R2)": -36.184,
+        "Model Deviance (MAPE)": 9480136549933372.0,
+        "Prediction Strength (R2)": 0.084,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.079,
+        "Standard Error of Residuals": 0.041
+    },
+    {
+        "Model": "Benchmark ICE-BRENT long",
+        "dependent variable": "LOG-NB-I44",
+        "Prediction interval": "2002-12-31-2015-08-01",
+        "Top Coefficient": "LOG-ICE-BRENT",
+        "Model Similarity (R2)": 0.0,
+        "Model Deviance (MAPE)": 2.41,
+        "Prediction Strength (R2)": 0.341,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.338,
+        "Standard Error of Residuals": 0.035
+    },
+    {
+        "Model": "Benchmark S&P-500 long",
+        "dependent variable": "LOG-NB-I44",
+        "Prediction interval": "2002-12-31-2015-08-01",
+        "Top Coefficient": "LOG-S&P-500",
+        "Model Similarity (R2)": 0.0,
+        "Model Deviance (MAPE)": 2.221,
+        "Prediction Strength (R2)": 0.002,
+        "Adjusted Prediction Strength (Adjusted R2)": -0.003,
+        "Standard Error of Residuals": 0.043
+    },
+    {
+        "Model": "Custom Akram 2022 differentiated",
+        "dependent variable": "DELTA-LOG-NB-I44",
+        "Prediction interval": "2010-01-15-2018-12-31",
+        "Top Coefficient": "DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M",
+        "Model Similarity (R2)": 0.0,
+        "Model Deviance (MAPE)": 1.023,
+        "Prediction Strength (R2)": 0.32,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.307,
+        "Standard Error of Residuals": 0.007
+    },
+    {
+        "Model": "Ellen linear model",
+        "dependent variable": "DELTA-LOG-NB-I44",
+        "Prediction interval": "2001-01-01-2015-08-01",
+        "Top Coefficient": "DELTA-LOG-ICE-BRENT",
+        "Model Similarity (R2)": 0.906,
+        "Model Deviance (MAPE)": 0.493,
+        "Prediction Strength (R2)": 0.149,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.134,
+        "Standard Error of Residuals": 0.018
+    },
+    {
+        "Model": "Myrstuen korttidsmodell",
+        "dependent variable": "DELTA-LOG-NB-KKI",
+        "Prediction interval": "2001-12-31-2019-04-30",
+        "Top Coefficient": "DELTA-LOG-ICE-BRENT",
+        "Model Similarity (R2)": 0.571,
+        "Model Deviance (MAPE)": 1.029,
+        "Prediction Strength (R2)": 0.442,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.425,
+        "Standard Error of Residuals": 0.014
+    },
+    {
+        "Model": "Bjornstad&Jansen 2007 korttidsmodell",
+        "dependent variable": "DELTA-LOG-EURNOK",
+        "Prediction interval": "2002-12-31-2006-09-30",
+        "Top Coefficient": "DELTA-3-NIBOR",
+        "Model Similarity (R2)": 0.225,
+        "Model Deviance (MAPE)": 0.914,
+        "Prediction Strength (R2)": 0.595,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.428,
+        "Standard Error of Residuals": 0.011
+    },
+    {
         "Model": "Benchmark CVIX",
         "dependent variable": "DELTA-LOG-NB-I44",
         "Prediction interval": "2002-12-31-2015-08-01",
@@ -7,7 +150,8 @@
         "Model Similarity (R2)": 0.0,
         "Model Deviance (MAPE)": 0.986,
         "Prediction Strength (R2)": 0.022,
-        "Adjusted Prediction Strength (Adjusted R2)": 0.019
+        "Adjusted Prediction Strength (Adjusted R2)": 0.017,
+        "Standard Error of Residuals": 0.01
     },
     {
         "Model": "Benchmark Price Difference",
@@ -17,7 +161,8 @@
         "Model Similarity (R2)": 0.0,
         "Model Deviance (MAPE)": 0.575,
         "Prediction Strength (R2)": 0.009,
-        "Adjusted Prediction Strength (Adjusted R2)": 0.006
+        "Adjusted Prediction Strength (Adjusted R2)": 0.005,
+        "Standard Error of Residuals": 0.01
     },
     {
         "Model": "Benchmark Interest Difference",
@@ -27,7 +172,8 @@
         "Model Similarity (R2)": 0.0,
         "Model Deviance (MAPE)": 3.411,
         "Prediction Strength (R2)": 0.173,
-        "Adjusted Prediction Strength (Adjusted R2)": 0.171
+        "Adjusted Prediction Strength (Adjusted R2)": 0.169,
+        "Standard Error of Residuals": 0.009
     },
     {
         "Model": "Benchmark ICE-BRENT",
@@ -37,7 +183,8 @@
         "Model Similarity (R2)": 0.0,
         "Model Deviance (MAPE)": 1.039,
         "Prediction Strength (R2)": 0.116,
-        "Adjusted Prediction Strength (Adjusted R2)": 0.113
+        "Adjusted Prediction Strength (Adjusted R2)": 0.112,
+        "Standard Error of Residuals": 0.009
     },
     {
         "Model": "Benchmark S&P-500 short",
@@ -47,6 +194,7 @@
         "Model Similarity (R2)": 0.0,
         "Model Deviance (MAPE)": 1.062,
         "Prediction Strength (R2)": 0.087,
-        "Adjusted Prediction Strength (Adjusted R2)": 0.084
+        "Adjusted Prediction Strength (Adjusted R2)": 0.082,
+        "Standard Error of Residuals": 0.01
     }
 ]

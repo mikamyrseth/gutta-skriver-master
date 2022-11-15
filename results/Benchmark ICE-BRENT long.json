@@ -7,106 +7,123 @@
         "Model Similarity (R2)": 0.0,
         "Model Deviance (MAPE)": 2.41,
         "Prediction Strength (R2)": 0.341,
-        "Adjusted Prediction Strength (Adjusted R2)": 0.339
+        "Adjusted Prediction Strength (Adjusted R2)": 0.338,
+        "Standard Error of Residuals": 0.035
     },
     "test2": {
         "Model": "Benchmark ICE-BRENT long",
         "Base Interval": "2002-12-31-2015-08-01",
         "Base R2": 0.341,
-        "Base Adjusted R2": 0.338,
+        "Base standard error of residuals": 0.035,
+        "Base Adjusted R2": 0.337,
         "New R2": 0.266,
-        "New Adjusted R2": 0.263,
+        "New Adjusted R2": 0.262,
+        "New standard error of residuals": 0.051,
         "New interval": "2002-12-31-2017-06-20",
         "Delta R2": -0.075,
         "Delta Adjusted R2": -0.075,
+        "Delta standard error of residuals": 0.016,
         "R2 percent change": -0.221,
-        "Adjusted R2 percent change": -0.222
+        "Adjusted R2 percent change": -0.223,
+        "Standard error of residuals percent change": 0.459
     },
     "test3": [
         {
             "Model": "Benchmark ICE-BRENT long",
-            "Prediction interval": "2002-12-31-2006-01-01",
-            "R2": 0.094,
-            "Adjusted R2": 0.082,
+            "Prediction interval": "2003-01-01-2007-01-01",
+            "R2": 0.131,
+            "Adjusted R2": 0.119,
+            "Standard error of residuals": 0.026,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
         {
             "Model": "Benchmark ICE-BRENT long",
-            "Prediction interval": "2006-01-01-2010-01-01",
-            "R2": 0.646,
-            "Adjusted R2": 0.643,
+            "Prediction interval": "2007-01-01-2011-01-01",
+            "R2": 0.644,
+            "Adjusted R2": 0.639,
+            "Standard error of residuals": 0.022,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
         {
             "Model": "Benchmark ICE-BRENT long",
-            "Prediction interval": "2010-01-01-2015-01-01",
-            "R2": 0.264,
-            "Adjusted R2": 0.258,
+            "Prediction interval": "2011-01-01-2016-01-01",
+            "R2": 0.859,
+            "Adjusted R2": 0.858,
+            "Standard error of residuals": 0.026,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
         {
             "Model": "Benchmark ICE-BRENT long",
-            "Prediction interval": "2015-01-01-2020-01-01",
-            "R2": 0.049,
-            "Adjusted R2": 0.042,
+            "Prediction interval": "2016-01-01-2021-01-30",
+            "R2": 0.373,
+            "Adjusted R2": 0.366,
+            "Standard error of residuals": 0.034,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
         {
             "Model": "Benchmark ICE-BRENT long",
-            "Prediction interval": "2020-01-01-2021-12-30",
-            "R2": 0.827,
-            "Adjusted R2": 0.823,
+            "Prediction interval": "2021-01-01-2021-12-30",
+            "R2": 0.078,
+            "Adjusted R2": 0.02,
+            "Standard error of residuals": 0.016,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
         {
             "Model": "Benchmark ICE-BRENT long",
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.249,
-            "Adjusted R2": 0.248,
+            "Adjusted R2": 0.247,
+            "Standard error of residuals": 0.075,
             "Top Coefficient": "LOG-ICE-BRENT"
         }
     ],
     "test3-by-interval": {
-        "2002-12-31-2006-01-01": {
+        "2003-01-01-2007-01-01": {
             "Model": "Benchmark ICE-BRENT long",
-            "Prediction interval": "2002-12-31-2006-01-01",
-            "R2": 0.094,
-            "Adjusted R2": 0.082,
+            "Prediction interval": "2003-01-01-2007-01-01",
+            "R2": 0.131,
+            "Adjusted R2": 0.119,
+            "Standard error of residuals": 0.026,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
-        "2006-01-01-2010-01-01": {
+        "2007-01-01-2011-01-01": {
             "Model": "Benchmark ICE-BRENT long",
-            "Prediction interval": "2006-01-01-2010-01-01",
-            "R2": 0.646,
-            "Adjusted R2": 0.643,
+            "Prediction interval": "2007-01-01-2011-01-01",
+            "R2": 0.644,
+            "Adjusted R2": 0.639,
+            "Standard error of residuals": 0.022,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
-        "2010-01-01-2015-01-01": {
+        "2011-01-01-2016-01-01": {
             "Model": "Benchmark ICE-BRENT long",
-            "Prediction interval": "2010-01-01-2015-01-01",
-            "R2": 0.264,
-            "Adjusted R2": 0.258,
+            "Prediction interval": "2011-01-01-2016-01-01",
+            "R2": 0.859,
+            "Adjusted R2": 0.858,
+            "Standard error of residuals": 0.026,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
-        "2015-01-01-2020-01-01": {
+        "2016-01-01-2021-01-30": {
             "Model": "Benchmark ICE-BRENT long",
-            "Prediction interval": "2015-01-01-2020-01-01",
-            "R2": 0.049,
-            "Adjusted R2": 0.042,
+            "Prediction interval": "2016-01-01-2021-01-30",
+            "R2": 0.373,
+            "Adjusted R2": 0.366,
+            "Standard error of residuals": 0.034,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
-        "2020-01-01-2021-12-30": {
+        "2021-01-01-2021-12-30": {
             "Model": "Benchmark ICE-BRENT long",
-            "Prediction interval": "2020-01-01-2021-12-30",
-            "R2": 0.827,
-            "Adjusted R2": 0.823,
+            "Prediction interval": "2021-01-01-2021-12-30",
+            "R2": 0.078,
+            "Adjusted R2": 0.02,
+            "Standard error of residuals": 0.016,
             "Top Coefficient": "LOG-ICE-BRENT"
         },
         "2002-12-31-2021-12-30": {
             "Model": "Benchmark ICE-BRENT long",
             "Prediction interval": "2002-12-31-2021-12-30",
             "R2": 0.249,
-            "Adjusted R2": 0.248,
+            "Adjusted R2": 0.247,
+            "Standard error of residuals": 0.075,
             "Top Coefficient": "LOG-ICE-BRENT"
         }
     }

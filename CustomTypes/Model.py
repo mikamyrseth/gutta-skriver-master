@@ -110,7 +110,12 @@ class Model(object):
                       df["OUTPUT"].tolist())
         print("R2", r2)
 
-        adjusted_r2 = 1 - (1-r2)*(len(df)-1)/(len(df)-len(self.weights)-1)
+        # calculate standard error of residuals
+        residuals = df[self.dependent_variable] - df["OUTPUT"]
+        std_err = residuals.std()
+
+        # extra -1 adjusts for alpha not being a parameter
+        adjusted_r2 = 1 - (1-r2)*(len(df)-1)/(len(df)-len(self.weights)-1-1)
         # pd.set_option('display.max_columns', None)
         # pd.reset_option(“max_columns”)
         # print(df.head())
@@ -118,7 +123,7 @@ class Model(object):
         # remove key in dict
         self.weights.pop(self.dependent_variable, None)
 
-        return r2, adjusted_r2
+        return r2, adjusted_r2, std_err
 
     def get_source_df(self, frequency: DataFrequency, from_date: datetime, to_date: datetime) -> DataFrame:
         df = DataFrame()
@@ -173,16 +178,15 @@ class Model(object):
             print("END NAN")
 
         lm = regression(df, list(self.weights.keys()), self.dependent_variable)
-        
+
         for index, key in enumerate(self.weights.keys()):
             self.weights[key] = lm.coef_[index]
         self.weights["ALPHA"] = lm.intercept_
         print(f"Reestimated model {self.name} to: ")
 
         # print([round(cof, 2) for cof in new_coeffs])
-        
-        return lm, df
 
+        return lm, df
 
 
 def regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str) -> LinearRegression:
