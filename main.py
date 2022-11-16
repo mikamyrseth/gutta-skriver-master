@@ -111,6 +111,7 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 # reestimate
                 print("Running model:", model.name)
                 old_coeffs = list(model.weights.values()).copy()
+                old_coeffs_dict = model.weights.copy()
                 lm, df = model.reestimate(
                     model.model_start_date, model.model_end_date)
 
@@ -155,6 +156,8 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                     "Prediction interval"] = f"{model.model_start_date.strftime('%Y-%m-%d')}-{model.model_end_date.strftime('%Y-%m-%d')}"
                 model.results["test1"]["Top Coefficient"] = normalized_coefficients.idxmax(
                     axis=0)
+                model.results["test1"]["old coefficients"] = old_coeffs_dict
+                model.results["test1"]["new coefficients"] = model.weights
                 model.results["test1"]["Model Similarity (R2)"] = r2.round(3)
                 model.results["test1"]["Model Deviance (MAPE)"] = error.round(
                     3)

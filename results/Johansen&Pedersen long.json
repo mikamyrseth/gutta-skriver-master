@@ -4,8 +4,26 @@
         "dependent variable": "LOG-NB-KKI",
         "Prediction interval": "2001-12-31-2016-12-31",
         "Top Coefficient": "LOG-ICE-BRENT",
-        "Model Similarity (R2)": -0.863,
-        "Model Deviance (MAPE)": 0.705,
+        "old coefficients": {
+            "ALPHA": 2.0813,
+            "CUSTOM-JOHANSEN-INTEREST-DIFFERENCE-3M": 3.0706,
+            "CUSTOM-JOHANSEN-PRICE-DIFFERENCE": 1.0379,
+            "LOG-ICE-BRENT": -0.1243,
+            "LOG-GPR": 0.3259,
+            "LOG-SSB-INDUSTRIAL-PRODUCTION": 0.6562,
+            "LOG-NB-INTEREST-FORECAST-3Y": 1.2828
+        },
+        "new coefficients": {
+            "ALPHA": 2.9528965029714533,
+            "CUSTOM-JOHANSEN-INTEREST-DIFFERENCE-3M": 2.570237881614893,
+            "CUSTOM-JOHANSEN-PRICE-DIFFERENCE": 0.7937804639975463,
+            "LOG-ICE-BRENT": -0.10625829743137544,
+            "LOG-GPR": -0.019497045228160204,
+            "LOG-SSB-INDUSTRIAL-PRODUCTION": 0.4648008602110404,
+            "LOG-NB-INTEREST-FORECAST-3Y": -0.026947970895764506
+        },
+        "Model Similarity (R2)": 0.587,
+        "Model Deviance (MAPE)": 0.476,
         "Prediction Strength (R2)": 0.88,
         "Adjusted Prediction Strength (Adjusted R2)": 0.874,
         "Standard Error of Residuals": 0.021

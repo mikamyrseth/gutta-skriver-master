@@ -4,6 +4,14 @@
         "dependent variable": "DELTA-LOG-NB-I44",
         "Prediction interval": "2002-12-31-2015-08-01",
         "Top Coefficient": "DELTA-LOG-ICE-BRENT",
+        "old coefficients": {
+            "ALPHA": 1,
+            "DELTA-LOG-ICE-BRENT": 1
+        },
+        "new coefficients": {
+            "ALPHA": 0.00042595958051854367,
+            "DELTA-LOG-ICE-BRENT": -0.07800681000932894
+        },
         "Model Similarity (R2)": 0.0,
         "Model Deviance (MAPE)": 1.039,
         "Prediction Strength (R2)": 0.116,
