@@ -1,0 +1,13 @@
+{
+    "test1": {
+        "Model": "Custom Akram 2020 differentiated short",
+        "dependent variable": "DELTA-LOG-NB-I44",
+        "Prediction interval": "2010-01-15-2018-12-31",
+        "Top Coefficient": "DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M",
+        "Model Similarity (R2)": 0.0,
+        "Model Deviance (MAPE)": 1.023,
+        "Prediction Strength (R2)": 0.32,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.307,
+        "Standard Error of Residuals": 0.007
+    }
+}

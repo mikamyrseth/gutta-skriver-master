@@ -1,0 +1,13 @@
+{
+    "test1": {
+        "Model": "Akram (2020) Aggregate oil prices long",
+        "dependent variable": "LOG-NB-I44",
+        "Prediction interval": "2010-01-15-2018-12-31",
+        "Top Coefficient": "CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M",
+        "Model Similarity (R2)": 1.0,
+        "Model Deviance (MAPE)": 0.181,
+        "Prediction Strength (R2)": 0.944,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.944,
+        "Standard Error of Residuals": 0.019
+    }
+}

@@ -4,10 +4,10 @@
         "dependent variable": "LOG-NB-KKI",
         "Prediction interval": "2001-12-31-2016-12-31",
         "Top Coefficient": "LOG-ICE-BRENT",
-        "Model Similarity (R2)": -0.863,
-        "Model Deviance (MAPE)": 0.705,
-        "Prediction Strength (R2)": 0.88,
-        "Adjusted Prediction Strength (Adjusted R2)": 0.874,
-        "Standard Error of Residuals": 0.021
+        "Model Similarity (R2)": -0.826,
+        "Model Deviance (MAPE)": 0.671,
+        "Prediction Strength (R2)": 0.89,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.885,
+        "Standard Error of Residuals": 0.02
     }
 }

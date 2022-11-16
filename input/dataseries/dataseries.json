@@ -135,5 +135,13 @@
     "publisher": "Statistics Norway",
     "bbg_ticker": "NA",
     "link": "Pengepolitiske rapporter"
+  },
+  {
+    "name": "GRI",
+    "description": "Geopolitical risk index based on vol of usdyen, usdeur(?) currency pairs",
+    "frequency": "MONTHLY",
+    "publisher": "BBG?",
+    "bbg_ticker": "NA",
+    "link": "NA"
   }
 ]
