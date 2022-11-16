@@ -1,0 +1,18 @@
+{
+    "name": "Random Walk",
+    "authors": ["Francis X. Diebold and Roberto S. Mariano"],
+    "publish_year": 1995,
+    "page": "253-265",
+    "model_start_date": "2002, 12, 31", 
+    "model_end_date": "2021, 12, 30",
+    "dependent_variable": "LOG-NB-KKI",
+    "frequency": "DAILY",
+    "weights": {
+      "ALPHA": 0,
+      "LAGGED-LOG-NB-KKI": 1
+    },
+    "stds": {
+    },
+    "stats": {
+    }
+  }
