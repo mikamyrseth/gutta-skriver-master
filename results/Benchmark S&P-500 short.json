@@ -4,6 +4,14 @@
         "dependent variable": "DELTA-LOG-NB-I44",
         "Prediction interval": "2002-12-31-2015-08-01",
         "Top Coefficient": "DELTA-LOG-S&P-500",
+        "old coefficients": {
+            "ALPHA": 1,
+            "DELTA-LOG-S&P-500": 1
+        },
+        "new coefficients": {
+            "ALPHA": 0.0005322109814175802,
+            "DELTA-LOG-S&P-500": -0.12489780510728335
+        },
         "Model Similarity (R2)": 0.0,
         "Model Deviance (MAPE)": 1.062,
         "Prediction Strength (R2)": 0.087,

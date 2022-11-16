@@ -3,11 +3,41 @@
         "Model": "Johansen&Pedersen short",
         "dependent variable": "DELTA-LOG-NB-KKI",
         "Prediction interval": "2001-12-31-2016-12-31",
+<<<<<<< HEAD
         "Top Coefficient": "CUSTOM-JOHANSEN-EQULIBRIUM",
         "Model Similarity (R2)": -0.11,
         "Model Deviance (MAPE)": 1.33,
         "Prediction Strength (R2)": 0.493,
         "Adjusted Prediction Strength (Adjusted R2)": 0.463,
+=======
+        "Top Coefficient": "DELTA-LOG-ICE-BRENT",
+        "old coefficients": {
+            "ALPHA": 0.0001,
+            "LAGGED-DELTA-LOG-NB-KKI": 0.2417,
+            "LAGGED-2-DELTA-LOG-NB-KKI": -0.1863,
+            "DELTA-CUSTOM-JOHANSEN-INTEREST-DIFFERENCE-3M": -3.3175,
+            "DELTA-LOG-ICE-BRENT": -0.0652,
+            "LAGGED-5-DELTA-CUSTOM-JOHANSEN-PRICE-DIFFERENCE": 0.4304,
+            "DELTA-LOG-GPR": 0.1121,
+            "DELTA-LOG-SSB-INDUSTRIAL-PRODUCTION": 0.1061,
+            "CUSTOM-JOHANSEN-EQULIBRIUM": -0.1763
+        },
+        "new coefficients": {
+            "ALPHA": 0.0004076317284725123,
+            "LAGGED-DELTA-LOG-NB-KKI": -0.2795801030744973,
+            "LAGGED-2-DELTA-LOG-NB-KKI": -0.14554748043681076,
+            "DELTA-CUSTOM-JOHANSEN-INTEREST-DIFFERENCE-3M": 3.5743698718106165,
+            "DELTA-LOG-ICE-BRENT": -0.09567722970882003,
+            "LAGGED-5-DELTA-CUSTOM-JOHANSEN-PRICE-DIFFERENCE": 0.2123212061168913,
+            "DELTA-LOG-GPR": 0.001868524254459769,
+            "DELTA-LOG-SSB-INDUSTRIAL-PRODUCTION": 0.13041548973723793,
+            "CUSTOM-JOHANSEN-EQULIBRIUM": 0.41809943728558163
+        },
+        "Model Similarity (R2)": -3.617,
+        "Model Deviance (MAPE)": 1.454,
+        "Prediction Strength (R2)": 0.49,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.46,
+>>>>>>> bf940c0454f25a8185f2b89664951956357bb2cc
         "Standard Error of Residuals": 0.014
     }
 }

@@ -4,8 +4,8 @@
     "page": "29",
     "type": "ADD",
     "weights": {
-      "NIBOR": 1,
-      "EURIBOR": -1
+      "NIBOR": -0.01,
+      "EURIBOR": 0.01
     }
   },
   {
@@ -13,8 +13,8 @@
     "page": "32",
     "type": "ADD",
     "weights": {
-      "ES-HICP-NO": 1,
-      "ES-HICP-EU": -1
+      "LOG-ES-HICP-NO": 1,
+      "LOG-ES-HICP-EU": -1
     }
   },
   {

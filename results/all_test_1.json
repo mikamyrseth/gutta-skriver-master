@@ -4,6 +4,26 @@
         "dependent variable": "LOG-NB-I44",
         "Prediction interval": "2010-01-15-2018-12-31",
         "Top Coefficient": "AGGREGATE-NYFED-OIL-SUPPLY",
+        "old coefficients": {
+            "ALPHA": 4.513,
+            "CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M": -0.027,
+            "CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR": -0.105,
+            "LOG-GPR": 0.015,
+            "LOG-FVX-EM": 0.026,
+            "AGGREGATE-NYFED-OIL-DEMAND": -0.116,
+            "AGGREGATE-NYFED-OIL-SUPPLY": -0.116,
+            "AGGREGATE-NYFED-OIL-RESIDUAL": 0.094
+        },
+        "new coefficients": {
+            "ALPHA": 4.4532381856406165,
+            "CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M": -0.03876387296490269,
+            "CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR": -0.06617734829522338,
+            "LOG-GPR": 0.017598253258295313,
+            "LOG-FVX-EM": 0.044102365329343425,
+            "AGGREGATE-NYFED-OIL-DEMAND": -0.08862247726772145,
+            "AGGREGATE-NYFED-OIL-SUPPLY": -0.15041828766697316,
+            "AGGREGATE-NYFED-OIL-RESIDUAL": 0.11347797156229081
+        },
         "Model Similarity (R2)": 1.0,
         "Model Deviance (MAPE)": 0.304,
         "Prediction Strength (R2)": 0.974,
@@ -15,6 +35,18 @@
         "dependent variable": "LOG-NB-I44",
         "Prediction interval": "2010-01-15-2018-12-31",
         "Top Coefficient": "CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M",
+        "old coefficients": {
+            "ALPHA": 5.115,
+            "CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M": -0.102,
+            "CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR": -0.125,
+            "LOG-ICE-BRENT": -0.077
+        },
+        "new coefficients": {
+            "ALPHA": 5.15480298064204,
+            "CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M": -0.1269517290051955,
+            "CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR": -0.07966725433596697,
+            "LOG-ICE-BRENT": -0.08526720142490624
+        },
         "Model Similarity (R2)": 1.0,
         "Model Deviance (MAPE)": 0.181,
         "Prediction Strength (R2)": 0.944,
@@ -37,6 +69,22 @@
         "dependent variable": "LOG-NB-KKI",
         "Prediction interval": "2001-12-31-2019-04-30",
         "Top Coefficient": "LOG-S&P-500",
+        "old coefficients": {
+            "ALPHA": 3.4869,
+            "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": -1.5347,
+            "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE": 1.0238,
+            "LOG-ICE-BRENT": -0.059,
+            "LOG-DB-CVIX": 0.0878,
+            "LOG-S&P-500": 0.1637
+        },
+        "new coefficients": {
+            "ALPHA": 3.483208029059005,
+            "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": -1.5150754858082778,
+            "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE": 0.5912806851164614,
+            "LOG-ICE-BRENT": -0.07552613032600153,
+            "LOG-DB-CVIX": 0.09060008381735363,
+            "LOG-S&P-500": 0.16352983607764604
+        },
         "Model Similarity (R2)": 0.987,
         "Model Deviance (MAPE)": 0.125,
         "Prediction Strength (R2)": 0.891,
@@ -44,10 +92,50 @@
         "Standard Error of Residuals": 0.023
     },
     {
+<<<<<<< HEAD
+=======
+        "Model": "Johansen&Pedersen long",
+        "dependent variable": "LOG-NB-KKI",
+        "Prediction interval": "2001-12-31-2016-12-31",
+        "Top Coefficient": "LOG-ICE-BRENT",
+        "old coefficients": {
+            "ALPHA": 2.0813,
+            "CUSTOM-JOHANSEN-INTEREST-DIFFERENCE-3M": 3.0706,
+            "CUSTOM-JOHANSEN-PRICE-DIFFERENCE": 1.0379,
+            "LOG-ICE-BRENT": -0.1243,
+            "LOG-GPR": 0.3259,
+            "LOG-SSB-INDUSTRIAL-PRODUCTION": 0.6562,
+            "LOG-NB-INTEREST-FORECAST-3Y": 1.2828
+        },
+        "new coefficients": {
+            "ALPHA": 2.9528965029714533,
+            "CUSTOM-JOHANSEN-INTEREST-DIFFERENCE-3M": 2.570237881614893,
+            "CUSTOM-JOHANSEN-PRICE-DIFFERENCE": 0.7937804639975463,
+            "LOG-ICE-BRENT": -0.10625829743137544,
+            "LOG-GPR": -0.019497045228160204,
+            "LOG-SSB-INDUSTRIAL-PRODUCTION": 0.4648008602110404,
+            "LOG-NB-INTEREST-FORECAST-3Y": -0.026947970895764506
+        },
+        "Model Similarity (R2)": 0.587,
+        "Model Deviance (MAPE)": 0.476,
+        "Prediction Strength (R2)": 0.88,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.874,
+        "Standard Error of Residuals": 0.021
+    },
+    {
+>>>>>>> bf940c0454f25a8185f2b89664951956357bb2cc
         "Model": "Benchmark CVIX long",
         "dependent variable": "LOG-NB-I44",
         "Prediction interval": "2002-12-31-2015-08-01",
         "Top Coefficient": "LOG-DB-CVIX",
+        "old coefficients": {
+            "ALPHA": 1,
+            "LOG-DB-CVIX": 1
+        },
+        "new coefficients": {
+            "ALPHA": 4.480156488311016,
+            "LOG-DB-CVIX": 0.017002283188350325
+        },
         "Model Similarity (R2)": 0.0,
         "Model Deviance (MAPE)": 2.232,
         "Prediction Strength (R2)": 0.012,
@@ -55,10 +143,78 @@
         "Standard Error of Residuals": 0.043
     },
     {
+<<<<<<< HEAD
+=======
+        "Model": "Benchmark Price Difference long",
+        "dependent variable": "LOG-NB-I44",
+        "Prediction interval": "2002-12-31-2015-08-01",
+        "Top Coefficient": "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE",
+        "old coefficients": {
+            "ALPHA": 1,
+            "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE": 1
+        },
+        "new coefficients": {
+            "ALPHA": 4.547960773108606,
+            "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE": 1.849045974055813
+        },
+        "Model Similarity (R2)": 0.0,
+        "Model Deviance (MAPE)": 2.199,
+        "Prediction Strength (R2)": 0.265,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.262,
+        "Standard Error of Residuals": 0.037
+    },
+    {
+        "Model": "Benchmark Interest Difference long",
+        "dependent variable": "LOG-NB-I44",
+        "Prediction interval": "2002-12-31-2015-08-01",
+        "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M",
+        "old coefficients": {
+            "ALPHA": 1,
+            "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": 1
+        },
+        "new coefficients": {
+            "ALPHA": 4.537072991961514,
+            "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": -2.319178017184204
+        },
+        "Model Similarity (R2)": 0.0,
+        "Model Deviance (MAPE)": 3.428,
+        "Prediction Strength (R2)": 0.163,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.16,
+        "Standard Error of Residuals": 0.04
+    },
+    {
+        "Model": "Benchmark Lagged NBKKI long",
+        "dependent variable": "LOG-NB-I44",
+        "Prediction interval": "2002-12-31-2015-08-01",
+        "Top Coefficient": "LAGGED-LOG-NB-I44",
+        "old coefficients": {
+            "ALPHA": 0,
+            "LAGGED-LOG-NB-I44": 1
+        },
+        "new coefficients": {
+            "ALPHA": 4.21002634973061,
+            "LAGGED-LOG-NB-I44": 0.06843244311744355
+        },
+        "Model Similarity (R2)": -36.184,
+        "Model Deviance (MAPE)": 9480136549933372.0,
+        "Prediction Strength (R2)": 0.084,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.079,
+        "Standard Error of Residuals": 0.041
+    },
+    {
+>>>>>>> bf940c0454f25a8185f2b89664951956357bb2cc
         "Model": "Benchmark ICE-BRENT long",
         "dependent variable": "LOG-NB-I44",
         "Prediction interval": "2002-12-31-2015-08-01",
         "Top Coefficient": "LOG-ICE-BRENT",
+        "old coefficients": {
+            "ALPHA": 1,
+            "LOG-ICE-BRENT": 1
+        },
+        "new coefficients": {
+            "ALPHA": 4.763047672001364,
+            "LOG-ICE-BRENT": -0.05741905088476762
+        },
         "Model Similarity (R2)": 0.0,
         "Model Deviance (MAPE)": 2.41,
         "Prediction Strength (R2)": 0.341,
@@ -69,7 +225,19 @@
         "Model": "Benchmark Interest Difference long",
         "dependent variable": "LOG-NB-I44",
         "Prediction interval": "2002-12-31-2015-08-01",
+<<<<<<< HEAD
         "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M",
+=======
+        "Top Coefficient": "LOG-S&P-500",
+        "old coefficients": {
+            "ALPHA": 1,
+            "LOG-S&P-500": 1
+        },
+        "new coefficients": {
+            "ALPHA": 4.452177350066871,
+            "LOG-S&P-500": 0.009283391015556438
+        },
+>>>>>>> bf940c0454f25a8185f2b89664951956357bb2cc
         "Model Similarity (R2)": 0.0,
         "Model Deviance (MAPE)": 3.428,
         "Prediction Strength (R2)": 0.163,
@@ -81,6 +249,14 @@
         "dependent variable": "LOG-NB-I44",
         "Prediction interval": "2002-12-31-2015-08-01",
         "Top Coefficient": "NB-INTEREST-FORECAST-3Y",
+        "old coefficients": {
+            "ALPHA": 1,
+            "NB-INTEREST-FORECAST-3Y": 1
+        },
+        "new coefficients": {
+            "ALPHA": 4.559086431255793,
+            "NB-INTEREST-FORECAST-3Y": -0.010329482818615218
+        },
         "Model Similarity (R2)": 0.0,
         "Model Deviance (MAPE)": 2.285,
         "Prediction Strength (R2)": 0.076,
@@ -88,6 +264,7 @@
         "Standard Error of Residuals": 0.042
     },
     {
+<<<<<<< HEAD
         "Model": "Benchmark Lagged NBKKI long",
         "dependent variable": "LOG-NB-I44",
         "Prediction interval": "2002-12-31-2015-08-01",
@@ -132,10 +309,32 @@
         "Standard Error of Residuals": 0.011
     },
     {
+=======
+>>>>>>> bf940c0454f25a8185f2b89664951956357bb2cc
         "Model": "Custom Akram 2020 differentiated short",
         "dependent variable": "DELTA-LOG-NB-I44",
         "Prediction interval": "2010-01-15-2018-12-31",
         "Top Coefficient": "DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M",
+        "old coefficients": {
+            "ALPHA": 1,
+            "DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M": 1,
+            "DELTA-CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR": 1,
+            "DELTA-LOG-GPR": 1,
+            "DELTA-LOG-FVX-EM": 1,
+            "DELTA-AGGREGATE-NYFED-OIL-DEMAND": 1,
+            "DELTA-AGGREGATE-NYFED-OIL-SUPPLY": 1,
+            "DELTA-AGGREGATE-NYFED-OIL-RESIDUAL": 1
+        },
+        "new coefficients": {
+            "ALPHA": 0.00020614541846110902,
+            "DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M": -0.07097791947421621,
+            "DELTA-CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR": -0.012281135670160669,
+            "DELTA-LOG-GPR": 0.005083396034897655,
+            "DELTA-LOG-FVX-EM": 0.031469012442560264,
+            "DELTA-AGGREGATE-NYFED-OIL-DEMAND": -0.0674497561277754,
+            "DELTA-AGGREGATE-NYFED-OIL-SUPPLY": -0.0799740423717116,
+            "DELTA-AGGREGATE-NYFED-OIL-RESIDUAL": 0.010922653665280925
+        },
         "Model Similarity (R2)": 0.0,
         "Model Deviance (MAPE)": 1.023,
         "Prediction Strength (R2)": 0.32,
@@ -147,6 +346,14 @@
         "dependent variable": "DELTA-LOG-NB-I44",
         "Prediction interval": "2001-01-01-2015-08-01",
         "Top Coefficient": "DELTA-LOG-ICE-BRENT",
+        "old coefficients": {
+            "ALPHA": 0.0018,
+            "DELTA-LOG-ICE-BRENT": -0.0661
+        },
+        "new coefficients": {
+            "ALPHA": 0.0004238738954950799,
+            "DELTA-LOG-ICE-BRENT": -0.0807878604119763
+        },
         "Model Similarity (R2)": 0.906,
         "Model Deviance (MAPE)": 0.493,
         "Prediction Strength (R2)": 0.149,
@@ -169,6 +376,20 @@
         "dependent variable": "DELTA-LOG-NB-KKI",
         "Prediction interval": "2001-12-31-2019-04-30",
         "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M",
+        "old coefficients": {
+            "ALPHA": 0.0002,
+            "LAGGED-DELTA-LOG-NB-KKI": 0.1985,
+            "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": -2.7891,
+            "DELTA-LOG-ICE-BRENT": -0.0574,
+            "CUSTOM-MYRSTUEN-EQULIBIRUM": -0.1556
+        },
+        "new coefficients": {
+            "ALPHA": 0.0005632454071748403,
+            "LAGGED-DELTA-LOG-NB-KKI": -0.23383840359482438,
+            "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": -5.020096898236948,
+            "DELTA-LOG-ICE-BRENT": -0.07853325879096333,
+            "CUSTOM-MYRSTUEN-EQULIBIRUM": 0.2643126140720034
+        },
         "Model Similarity (R2)": 0.149,
         "Model Deviance (MAPE)": 1.572,
         "Prediction Strength (R2)": 0.472,
@@ -176,10 +397,91 @@
         "Standard Error of Residuals": 0.014
     },
     {
+<<<<<<< HEAD
+=======
+        "Model": "Johansen&Pedersen short",
+        "dependent variable": "DELTA-LOG-NB-KKI",
+        "Prediction interval": "2001-12-31-2016-12-31",
+        "Top Coefficient": "DELTA-LOG-ICE-BRENT",
+        "old coefficients": {
+            "ALPHA": 0.0001,
+            "LAGGED-DELTA-LOG-NB-KKI": 0.2417,
+            "LAGGED-2-DELTA-LOG-NB-KKI": -0.1863,
+            "DELTA-CUSTOM-JOHANSEN-INTEREST-DIFFERENCE-3M": -3.3175,
+            "DELTA-LOG-ICE-BRENT": -0.0652,
+            "LAGGED-5-DELTA-CUSTOM-JOHANSEN-PRICE-DIFFERENCE": 0.4304,
+            "DELTA-LOG-GPR": 0.1121,
+            "DELTA-LOG-SSB-INDUSTRIAL-PRODUCTION": 0.1061,
+            "CUSTOM-JOHANSEN-EQULIBRIUM": -0.1763
+        },
+        "new coefficients": {
+            "ALPHA": 0.0004076317284725123,
+            "LAGGED-DELTA-LOG-NB-KKI": -0.2795801030744973,
+            "LAGGED-2-DELTA-LOG-NB-KKI": -0.14554748043681076,
+            "DELTA-CUSTOM-JOHANSEN-INTEREST-DIFFERENCE-3M": 3.5743698718106165,
+            "DELTA-LOG-ICE-BRENT": -0.09567722970882003,
+            "LAGGED-5-DELTA-CUSTOM-JOHANSEN-PRICE-DIFFERENCE": 0.2123212061168913,
+            "DELTA-LOG-GPR": 0.001868524254459769,
+            "DELTA-LOG-SSB-INDUSTRIAL-PRODUCTION": 0.13041548973723793,
+            "CUSTOM-JOHANSEN-EQULIBRIUM": 0.41809943728558163
+        },
+        "Model Similarity (R2)": -3.617,
+        "Model Deviance (MAPE)": 1.454,
+        "Prediction Strength (R2)": 0.49,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.46,
+        "Standard Error of Residuals": 0.014
+    },
+    {
+        "Model": "Bjornstad&Jansen 2007 korttidsmodell short",
+        "dependent variable": "DELTA-LOG-EURNOK",
+        "Prediction interval": "2002-12-31-2006-09-30",
+        "Top Coefficient": "DELTA-3-NIBOR",
+        "old coefficients": {
+            "ALPHA": -0.69,
+            "LAGGED-DELTA-2-LOG-EURNOK": -0.24,
+            "CUSTOM-BJORNSTAD-PRICE-DIFFERENCE": 0.89,
+            "CUSTOM-BJORNSTAD-PRICE-DIFFERENCE-LAG": -0.47,
+            "DELTA-4-LOG-ICE-BRENT": -0.024,
+            "DELTA-2-LOG-SSB-KPI-JAE": -1.7,
+            "DELTA-3-NIBOR": -0.969,
+            "LAGGED-DELTA-3-EURIBOR": 0.1633,
+            "LAGGED-LOG-ICE-BRENT": -0.006,
+            "CUSTOM-BJORNSTAD-PPP-EQUILIBRIUM": -0.11,
+            "CUSTOM-BJORNSTAD-RATE-DIFFERENCE": -0.079
+        },
+        "new coefficients": {
+            "ALPHA": 0.562617059240463,
+            "LAGGED-DELTA-2-LOG-EURNOK": -0.23511792556625163,
+            "CUSTOM-BJORNSTAD-PRICE-DIFFERENCE": 1.3287702086118356,
+            "CUSTOM-BJORNSTAD-PRICE-DIFFERENCE-LAG": 0.06755636463104801,
+            "DELTA-4-LOG-ICE-BRENT": -0.02956237376148623,
+            "DELTA-2-LOG-SSB-KPI-JAE": -1.0179301549707076,
+            "DELTA-3-NIBOR": -0.014098195844246365,
+            "LAGGED-DELTA-3-EURIBOR": 0.03622731795811248,
+            "LAGGED-LOG-ICE-BRENT": -0.01853856197048442,
+            "CUSTOM-BJORNSTAD-PPP-EQUILIBRIUM": -0.23188532517757832,
+            "CUSTOM-BJORNSTAD-RATE-DIFFERENCE": -0.0010083531320808359
+        },
+        "Model Similarity (R2)": 0.225,
+        "Model Deviance (MAPE)": 0.914,
+        "Prediction Strength (R2)": 0.595,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.428,
+        "Standard Error of Residuals": 0.011
+    },
+    {
+>>>>>>> bf940c0454f25a8185f2b89664951956357bb2cc
         "Model": "Benchmark CVIX short",
         "dependent variable": "DELTA-LOG-NB-I44",
         "Prediction interval": "2002-12-31-2015-08-01",
         "Top Coefficient": "DELTA-LOG-DB-CVIX",
+        "old coefficients": {
+            "ALPHA": 1,
+            "DELTA-LOG-DB-CVIX": 1
+        },
+        "new coefficients": {
+            "ALPHA": 0.00036316849344838564,
+            "DELTA-LOG-DB-CVIX": 0.028368817649739225
+        },
         "Model Similarity (R2)": 0.0,
         "Model Deviance (MAPE)": 0.986,
         "Prediction Strength (R2)": 0.022,
@@ -190,7 +492,19 @@
         "Model": "Benchmark ICE-BRENT short",
         "dependent variable": "DELTA-LOG-NB-I44",
         "Prediction interval": "2002-12-31-2015-08-01",
+<<<<<<< HEAD
         "Top Coefficient": "DELTA-LOG-ICE-BRENT",
+=======
+        "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-PRICE-DIFFERENCE",
+        "old coefficients": {
+            "ALPHA": 1,
+            "DELTA-CUSTOM-MYRSTUEN-PRICE-DIFFERENCE": 1
+        },
+        "new coefficients": {
+            "ALPHA": 0.0004192161758696589,
+            "DELTA-CUSTOM-MYRSTUEN-PRICE-DIFFERENCE": 1.150900177509614
+        },
+>>>>>>> bf940c0454f25a8185f2b89664951956357bb2cc
         "Model Similarity (R2)": 0.0,
         "Model Deviance (MAPE)": 1.039,
         "Prediction Strength (R2)": 0.116,
@@ -202,6 +516,14 @@
         "dependent variable": "DELTA-LOG-NB-I44",
         "Prediction interval": "2002-12-31-2015-08-01",
         "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M",
+        "old coefficients": {
+            "ALPHA": 1,
+            "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": 1
+        },
+        "new coefficients": {
+            "ALPHA": 0.00021885904141494207,
+            "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": -4.821451507200323
+        },
         "Model Similarity (R2)": 0.0,
         "Model Deviance (MAPE)": 3.411,
         "Prediction Strength (R2)": 0.173,
@@ -213,6 +535,14 @@
         "dependent variable": "DELTA-LOG-NB-I44",
         "Prediction interval": "2002-12-31-2015-08-01",
         "Top Coefficient": "DELTA-LAGGED-LOG-NB-I44",
+        "old coefficients": {
+            "ALPHA": 0,
+            "DELTA-LAGGED-LOG-NB-I44": 1
+        },
+        "new coefficients": {
+            "ALPHA": 0.0003550911655507511,
+            "DELTA-LAGGED-LOG-NB-I44": 0.0006244243750806292
+        },
         "Model Similarity (R2)": -0.998,
         "Model Deviance (MAPE)": 799594220428.958,
         "Prediction Strength (R2)": 0.0,
@@ -223,7 +553,19 @@
         "Model": "Benchmark Price Difference short",
         "dependent variable": "DELTA-LOG-NB-I44",
         "Prediction interval": "2002-12-31-2015-08-01",
+<<<<<<< HEAD
         "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-PRICE-DIFFERENCE",
+=======
+        "Top Coefficient": "DELTA-LOG-ICE-BRENT",
+        "old coefficients": {
+            "ALPHA": 1,
+            "DELTA-LOG-ICE-BRENT": 1
+        },
+        "new coefficients": {
+            "ALPHA": 0.00042595958051854367,
+            "DELTA-LOG-ICE-BRENT": -0.07800681000932894
+        },
+>>>>>>> bf940c0454f25a8185f2b89664951956357bb2cc
         "Model Similarity (R2)": 0.0,
         "Model Deviance (MAPE)": 0.575,
         "Prediction Strength (R2)": 0.009,
@@ -235,6 +577,14 @@
         "dependent variable": "DELTA-LOG-NB-I44",
         "Prediction interval": "2002-12-31-2015-08-01",
         "Top Coefficient": "DELTA-LOG-S&P-500",
+        "old coefficients": {
+            "ALPHA": 1,
+            "DELTA-LOG-S&P-500": 1
+        },
+        "new coefficients": {
+            "ALPHA": 0.0005322109814175802,
+            "DELTA-LOG-S&P-500": -0.12489780510728335
+        },
         "Model Similarity (R2)": 0.0,
         "Model Deviance (MAPE)": 1.062,
         "Prediction Strength (R2)": 0.087,

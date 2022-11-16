@@ -4,6 +4,14 @@
         "dependent variable": "LOG-NB-I44",
         "Prediction interval": "2002-12-31-2015-08-01",
         "Top Coefficient": "NB-INTEREST-FORECAST-3Y",
+        "old coefficients": {
+            "ALPHA": 1,
+            "NB-INTEREST-FORECAST-3Y": 1
+        },
+        "new coefficients": {
+            "ALPHA": 4.559086431255793,
+            "NB-INTEREST-FORECAST-3Y": -0.010329482818615218
+        },
         "Model Similarity (R2)": 0.0,
         "Model Deviance (MAPE)": 2.285,
         "Prediction Strength (R2)": 0.076,
