@@ -1,12 +1,45 @@
 [
-    {
-      "name": "CUSTOM-JOHANSEN-INTEREST-DIFFERENCE-3M",
-      "page": "29",
-      "type": "ADD",
-      "weights": {
-        "NIBOR": 1,
-        "EURIBOR": -1
-      }
+  {
+    "name": "CUSTOM-JOHANSEN-INTEREST-DIFFERENCE-3M",
+    "page": "29",
+    "type": "ADD",
+    "weights": {
+      "NIBOR": 1,
+      "EURIBOR": -1
     }
-  ]
-  
+  },
+  {
+    "name": "CUSTOM-JOHANSEN-PRICE-DIFFERENCE",
+    "page": "32",
+    "type": "ADD",
+    "weights": {
+      "ES-HICP-NO": 1,
+      "ES-HICP-EU": -1
+    }
+  },
+  {
+    "name": "CUSTOM-JOHANSEN-LONG-TERM-MODEL",
+    "page": "59 (37)",
+    "type": "ADD",
+    "recalculate": true,
+    "dependent_variable": "LOG-NB-KKI",
+    "weights": {
+      "ALPHA": 2.0813,
+      "CUSTOM-JOHANSEN-INTEREST-DIFFERENCE-3M": -3.0706,
+      "CUSTOM-JOHANSEN-PRICE-DIFFERENCE": 1.0379,
+      "LOG-ICE-BRENT": -0.1243,
+      "LOG-GPR": 0.3259,
+      "LOG-SSB-INDUSTRIAL-PRODUCTION": 0.6562,
+      "NB-INTEREST-FORECAST-3Y": -1.2828
+    }
+  },
+  {
+    "name": "CUSTOM-JOHANSEN-EQULIBRIUM",
+    "page": "NA",
+    "type": "ADD",
+    "weights": {
+      "LOG-NB-KKI": 1,
+      "CUSTOM-JOHANSEN-LONG-TERM-MODEL": -1
+    }
+  }
+]

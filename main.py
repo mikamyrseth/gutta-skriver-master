@@ -91,8 +91,8 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
 
     runSandbox = False
     runTest1 = True
-    runTest2 = True
-    runTest3 = True
+    runTest2 = False
+    runTest3 = False
 
     # Sandbox testing
     if runSandbox:

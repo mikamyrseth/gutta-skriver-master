@@ -1,0 +1,13 @@
+{
+    "test1": {
+        "Model": "Johansen&Pedersen short",
+        "dependent variable": "DELTA-LOG-NB-KKI",
+        "Prediction interval": "2001-12-31-2016-12-31",
+        "Top Coefficient": "DELTA-LOG-ICE-BRENT",
+        "Model Similarity (R2)": -0.112,
+        "Model Deviance (MAPE)": 1.389,
+        "Prediction Strength (R2)": 0.492,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.462,
+        "Standard Error of Residuals": 0.014
+    }
+}

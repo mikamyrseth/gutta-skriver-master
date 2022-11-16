@@ -119,5 +119,21 @@
     "publisher": "Norges Bank",
     "bbg_ticker": "??",
     "link": "??"
+  },
+  {
+    "name": "SSB-INDUSTRIAL-PRODUCTION",
+    "description": "Produksjonsindeks for industrien (2005=100) - Industri, sesongjustrert",
+    "frequency": "MONTHLY",
+    "publisher": "Statistics Norway",
+    "bbg_ticker": "NA",
+    "link": "https://www.ssb.no/statbank/table/07095/tableViewLayout1/"
+  },
+  {
+    "name": "NB-INTEREST-FORECAST-3Y",
+    "description": "Norges Bank's 3-year interest rate forecast",
+    "frequency": "MONTHLY",
+    "publisher": "Statistics Norway",
+    "bbg_ticker": "NA",
+    "link": "Pengepolitiske rapporter"
   }
 ]

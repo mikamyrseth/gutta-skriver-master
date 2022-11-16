@@ -1,0 +1,25 @@
+{
+  "name": "Johansen&Pedersen long",
+  "authors": ["Christoffer Sten Mørseth Johansen og André Trønnes Pedersen"],
+  "publish_year": 2017,
+  "page": "62 (5.3)",
+  "model_start_date": "2001-12-31",
+  "model_end_date": "2016-12-31",
+  "dependent_variable": "LOG-NB-KKI",
+  "frequency": "MONTHLY",
+  "weights": {
+    "ALPHA": 2.0813,
+    "CUSTOM-JOHANSEN-INTEREST-DIFFERENCE-3M": 3.0706,
+    "CUSTOM-JOHANSEN-PRICE-DIFFERENCE": 1.0379,
+    "LOG-ICE-BRENT": -0.1243,
+    "LOG-GPR": 0.3259,
+    "LOG-SSB-INDUSTRIAL-PRODUCTION": 0.6562,
+    "LOG-NB-INTEREST-FORECAST-3Y": 1.2828
+  },
+  "stds": {
+    "DELTA-ICE-BRENT": 0.0089
+  },
+  "stats": {
+    "adjustedR2": 0.358
+  }
+}

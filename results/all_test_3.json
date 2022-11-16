@@ -288,7 +288,7 @@
         "Top Coefficient": "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
     },
     {
-        "Model": "Benchmark Lagged NBKKI",
+        "Model": "Benchmark Lagged NBKKI long",
         "Prediction interval": "2003-01-01-2007-01-01",
         "R2": 0.081,
         "Adjusted R2": 0.068,
@@ -296,7 +296,7 @@
         "Top Coefficient": "LAGGED-LOG-NB-I44"
     },
     {
-        "Model": "Benchmark Lagged NBKKI",
+        "Model": "Benchmark Lagged NBKKI long",
         "Prediction interval": "2007-01-01-2011-01-01",
         "R2": 0.002,
         "Adjusted R2": -0.013,
@@ -304,7 +304,7 @@
         "Top Coefficient": "LAGGED-LOG-NB-I44"
     },
     {
-        "Model": "Benchmark Lagged NBKKI",
+        "Model": "Benchmark Lagged NBKKI long",
         "Prediction interval": "2011-01-01-2016-01-01",
         "R2": 0.067,
         "Adjusted R2": 0.056,
@@ -312,7 +312,7 @@
         "Top Coefficient": "LAGGED-LOG-NB-I44"
     },
     {
-        "Model": "Benchmark Lagged NBKKI",
+        "Model": "Benchmark Lagged NBKKI long",
         "Prediction interval": "2016-01-01-2021-01-30",
         "R2": 0.01,
         "Adjusted R2": -0.001,
@@ -320,7 +320,7 @@
         "Top Coefficient": "LAGGED-LOG-NB-I44"
     },
     {
-        "Model": "Benchmark Lagged NBKKI",
+        "Model": "Benchmark Lagged NBKKI long",
         "Prediction interval": "2021-01-01-2021-12-30",
         "R2": 0.001,
         "Adjusted R2": -0.061,
@@ -328,7 +328,7 @@
         "Top Coefficient": "LAGGED-LOG-NB-I44"
     },
     {
-        "Model": "Benchmark Lagged NBKKI",
+        "Model": "Benchmark Lagged NBKKI long",
         "Prediction interval": "2002-12-31-2021-12-30",
         "R2": 0.296,
         "Adjusted R2": 0.294,
@@ -766,6 +766,54 @@
         "Adjusted R2": 0.15,
         "Standard error of residuals": 0.0095,
         "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M"
+    },
+    {
+        "Model": "Benchmark Lagged NBKKI short",
+        "Prediction interval": "2003-01-01-2007-01-01",
+        "R2": 0.003,
+        "Adjusted R2": -0.011,
+        "Standard error of residuals": 0.0085,
+        "Top Coefficient": "DELTA-LAGGED-LOG-NB-I44"
+    },
+    {
+        "Model": "Benchmark Lagged NBKKI short",
+        "Prediction interval": "2007-01-01-2011-01-01",
+        "R2": 0.004,
+        "Adjusted R2": -0.01,
+        "Standard error of residuals": 0.011,
+        "Top Coefficient": "DELTA-LAGGED-LOG-NB-I44"
+    },
+    {
+        "Model": "Benchmark Lagged NBKKI short",
+        "Prediction interval": "2011-01-01-2016-01-01",
+        "R2": 0.001,
+        "Adjusted R2": -0.01,
+        "Standard error of residuals": 0.0096,
+        "Top Coefficient": "DELTA-LAGGED-LOG-NB-I44"
+    },
+    {
+        "Model": "Benchmark Lagged NBKKI short",
+        "Prediction interval": "2016-01-01-2021-01-30",
+        "R2": 0.004,
+        "Adjusted R2": -0.007,
+        "Standard error of residuals": 0.0119,
+        "Top Coefficient": "DELTA-LAGGED-LOG-NB-I44"
+    },
+    {
+        "Model": "Benchmark Lagged NBKKI short",
+        "Prediction interval": "2021-01-01-2021-12-30",
+        "R2": 0.0,
+        "Adjusted R2": -0.062,
+        "Standard error of residuals": 0.0099,
+        "Top Coefficient": "DELTA-LAGGED-LOG-NB-I44"
+    },
+    {
+        "Model": "Benchmark Lagged NBKKI short",
+        "Prediction interval": "2002-12-31-2021-12-30",
+        "R2": 0.0,
+        "Adjusted R2": -0.003,
+        "Standard error of residuals": 0.0103,
+        "Top Coefficient": "DELTA-LAGGED-LOG-NB-I44"
     },
     {
         "Model": "Benchmark ICE-BRENT short",

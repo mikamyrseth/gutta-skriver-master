@@ -90,16 +90,17 @@ class Dataseries(object):
         df = self.df
 
         if df.index.min() > pd.Timestamp(from_date):
-            warnings.warn(f"{self.name} does not have data from {from_date} first data point is {df.index.min()}")
+            warnings.warn(
+                f"{self.name} does not have data from {from_date} first data point is {df.index.min()}")
             print(1/0)
         if df.index.max() < pd.Timestamp(to_date):
-            warnings.warn(f"{self.name} does not have data from {to_date} last data point is {df.index.max()}")
+            warnings.warn(
+                f"{self.name} does not have data from {to_date} last data point is {df.index.max()}")
             print(1/0)
 
-        
-        df = df.asfreq('D').interpolate()
+        df = df.asfreq('D')
+        df = df.interpolate()
         df = df.loc[from_date:to_date]
-
         df = df.resample(frequency.value, origin=from_date,).last()
 
         if df.isnull().values.any():

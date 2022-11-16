@@ -33,6 +33,17 @@
         "Standard Error of Residuals": 0.023
     },
     {
+        "Model": "Johansen&Pedersen long",
+        "dependent variable": "LOG-NB-KKI",
+        "Prediction interval": "2001-12-31-2016-12-31",
+        "Top Coefficient": "LOG-ICE-BRENT",
+        "Model Similarity (R2)": -0.863,
+        "Model Deviance (MAPE)": 0.705,
+        "Prediction Strength (R2)": 0.88,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.874,
+        "Standard Error of Residuals": 0.021
+    },
+    {
         "Model": "Benchmark CVIX long",
         "dependent variable": "LOG-NB-I44",
         "Prediction interval": "2002-12-31-2015-08-01",
@@ -66,7 +77,7 @@
         "Standard Error of Residuals": 0.04
     },
     {
-        "Model": "Benchmark Lagged NBKKI",
+        "Model": "Benchmark Lagged NBKKI long",
         "dependent variable": "LOG-NB-I44",
         "Prediction interval": "2002-12-31-2015-08-01",
         "Top Coefficient": "LAGGED-LOG-NB-I44",
@@ -99,6 +110,17 @@
         "Standard Error of Residuals": 0.043
     },
     {
+        "Model": "Benchmark NB-INTEREST-FORECAST-3Y long",
+        "dependent variable": "LOG-NB-I44",
+        "Prediction interval": "2002-12-31-2015-08-01",
+        "Top Coefficient": "NB-INTEREST-FORECAST-3Y",
+        "Model Similarity (R2)": 0.0,
+        "Model Deviance (MAPE)": 2.285,
+        "Prediction Strength (R2)": 0.076,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.072,
+        "Standard Error of Residuals": 0.042
+    },
+    {
         "Model": "Custom Akram 2022 differentiated short",
         "dependent variable": "DELTA-LOG-NB-I44",
         "Prediction interval": "2010-01-15-2018-12-31",
@@ -124,11 +146,22 @@
         "Model": "Myrstuen korttidsmodell short",
         "dependent variable": "DELTA-LOG-NB-KKI",
         "Prediction interval": "2001-12-31-2019-04-30",
+        "Top Coefficient": "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M",
+        "Model Similarity (R2)": 0.149,
+        "Model Deviance (MAPE)": 1.572,
+        "Prediction Strength (R2)": 0.472,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.457,
+        "Standard Error of Residuals": 0.014
+    },
+    {
+        "Model": "Johansen&Pedersen short",
+        "dependent variable": "DELTA-LOG-NB-KKI",
+        "Prediction interval": "2001-12-31-2016-12-31",
         "Top Coefficient": "DELTA-LOG-ICE-BRENT",
-        "Model Similarity (R2)": 0.571,
-        "Model Deviance (MAPE)": 1.029,
-        "Prediction Strength (R2)": 0.442,
-        "Adjusted Prediction Strength (Adjusted R2)": 0.425,
+        "Model Similarity (R2)": -0.112,
+        "Model Deviance (MAPE)": 1.389,
+        "Prediction Strength (R2)": 0.492,
+        "Adjusted Prediction Strength (Adjusted R2)": 0.462,
         "Standard Error of Residuals": 0.014
     },
     {
@@ -174,6 +207,17 @@
         "Prediction Strength (R2)": 0.173,
         "Adjusted Prediction Strength (Adjusted R2)": 0.169,
         "Standard Error of Residuals": 0.009
+    },
+    {
+        "Model": "Benchmark Lagged NBKKI short",
+        "dependent variable": "DELTA-LOG-NB-I44",
+        "Prediction interval": "2002-12-31-2015-08-01",
+        "Top Coefficient": "DELTA-LAGGED-LOG-NB-I44",
+        "Model Similarity (R2)": -0.998,
+        "Model Deviance (MAPE)": 799594220428.958,
+        "Prediction Strength (R2)": 0.0,
+        "Adjusted Prediction Strength (Adjusted R2)": -0.005,
+        "Standard Error of Residuals": 0.01
     },
     {
         "Model": "Benchmark ICE-BRENT short",
