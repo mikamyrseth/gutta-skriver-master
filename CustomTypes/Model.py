@@ -118,7 +118,7 @@ class Model(object):
         adjusted_r2 = 1 - (1-r2)*(len(df)-1)/(len(df)-len(self.weights)-1-1)
         # pd.set_option('display.max_columns', None)
         # pd.reset_option(“max_columns”)
-        # print(df.head())
+        print(df.head())
 
         # remove key in dict
         self.weights.pop(self.dependent_variable, None)
@@ -182,9 +182,8 @@ class Model(object):
         for index, key in enumerate(self.weights.keys()):
             self.weights[key] = lm.coef_[index]
         self.weights["ALPHA"] = lm.intercept_
-        print(f"Reestimated model {self.name} to: ")
+        print(f"Reestimated model {self.name}")
 
-        # print([round(cof, 2) for cof in new_coeffs])
 
         return lm, df
 
@@ -197,11 +196,11 @@ def regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str) -> LinearReg
     print(X)
     print(Y)
 
-    X_train, X_test, Y_train, Y_test = train_test_split(
-        X, Y, test_size=0.01, random_state=101)
+    # X_train, X_test, Y_train, Y_test = train_test_split(
+    #     X, Y, test_size=0.01, random_state=101)
 
     lm = LinearRegression()
-    lm.fit(X_train, Y_train)
+    lm.fit(X, Y)
 
     lm.normalize
 

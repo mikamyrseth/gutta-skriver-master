@@ -1,5 +1,5 @@
 {
-    "name": "Benchmark CVIX short",
+    "name": "Benchmark MEAN short",
     "authors": "Myrseth, Røstum, Vestrum",
     "publish_year": 2022,
     "page": "NA",
@@ -7,10 +7,8 @@
     "model_end_date": "2015-08-01",
     "dependent_variable": "DELTA-LOG-NB-I44",
     "frequency": "WEEKLY",
-    "lags": 1,
     "weights": {
-      "ALPHA": 1,
-      "DELTA-LOG-DB-CVIX": 1
+      "ALPHA": 1
     },
     "stds": {},
     "stats": {}

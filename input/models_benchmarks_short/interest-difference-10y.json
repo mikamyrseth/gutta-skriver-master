@@ -1,5 +1,5 @@
 {
-    "name": "Benchmark CVIX short",
+    "name": "Benchmark Interest Difference 10Y short",
     "authors": "Myrseth, Røstum, Vestrum",
     "publish_year": 2022,
     "page": "NA",
@@ -10,7 +10,7 @@
     "lags": 1,
     "weights": {
       "ALPHA": 1,
-      "DELTA-LOG-DB-CVIX": 1
+      "DELTA-CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR": 1
     },
     "stds": {},
     "stats": {}

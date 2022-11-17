@@ -1,15 +1,15 @@
 {
-  "name": "Benchmark NB-INTEREST-FORECAST-3Y long",
+  "name": "Benchmark Random Walk short",
   "authors": "Myrseth, Røstum, Vestrum",
   "publish_year": 2022,
   "page": "NA",
   "model_start_date": "2002-12-31",
   "model_end_date": "2015-08-01",
-  "dependent_variable": "LOG-NB-I44",
+  "dependent_variable": "DELTA-LOG-NB-I44",
   "frequency": "WEEKLY",
+  "lags": 0,
   "weights": {
-    "ALPHA": 1,
-    "NB-INTEREST-FORECAST-3Y": 1
+    "ALPHA": 0
   },
   "stds": {},
   "stats": {}

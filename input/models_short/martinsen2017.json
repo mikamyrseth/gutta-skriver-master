@@ -7,6 +7,7 @@
     "model_end_date": "2016-12-31",
     "dependent_variable": "DELTA-LOG-NB-I44",
     "frequency": "MONTHLY",
+    "lags": 1,
     "weights": {
       "ALPHA": 4.935,
       "DELTA-CUSTOM-MYRSTUEN-PRICE-DIFFERENCE": 0.020,

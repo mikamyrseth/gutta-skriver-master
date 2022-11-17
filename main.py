@@ -90,19 +90,20 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
     all_models = all_long_models + all_short_models
 
     runSandbox = False
-    runTest1 = True
+    runTest1 = False
     runTest2 = False
-    runTest3 = False
+    runTest3 = True
 
     # Sandbox testing
     if runSandbox:
         for model in all_models:
-            if model.name == "Ellen linear model":
-                lm, df = model.reestimate(date(2015, 1, 1), date(2020, 1, 1))
-                X = df[list(model.weights.keys())]
-                Y = df[model.dependent_variable]
-                prediction_r_2 = lm.score(X, Y)
-                print("MODEL HAS R2 of: ", prediction_r_2)
+            if model.name == "Benchmark Random Walk long":
+                base_r2, adjusted_base_r2, base_std_err = model.run_model(
+                date(2002, 12, 31), date(2021, 12, 30))
+
+                print(f"Base R2: {base_r2}")
+                print(f"Adjusted Base R2: {adjusted_base_r2}")
+                print(f"Base Std Err: {base_std_err}")
 
     # test 1 - Model reestimation
     if runTest1:
@@ -127,7 +128,6 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                     deviance = delta/old_coeffs_dict[key]
                     deviance = deviance.round(3)
                     coeff_deviance[key] = deviance
-                        
 
                 X = df[list(model.weights.keys())]
                 Y = df[model.dependent_variable]
@@ -168,7 +168,7 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 model.results["test1"]["old coefficients"] = old_coeffs_dict
                 model.results["test1"]["new coefficients"] = model.weights
                 model.results["test1"]["coefficient deviance"] = coeff_deviance
-                model.results["test1"]["Model Similarity (R2)"] = r2.round(3)
+                model.results["test1"]["Model Similarity (R2)"] = round(r2, 3)
                 model.results["test1"]["Model Deviance (MAPE)"] = error.round(
                     3)
                 model.results["test1"]["Prediction Strength (R2)"] = prediction_r_2.round(
@@ -237,26 +237,31 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
         time_intervals = [(date(2003, 1, 1), date(2007, 1, 1)),
                           (date(2007, 1, 1), date(2011, 1, 1)),
                           (date(2011, 1, 1), date(2016, 1, 1)),
-                          (date(2016, 1, 1), date(2021, 1, 30)),
-                          (date(2021, 1, 1), date(2021, 12, 30)),
-                          (date(2002, 12, 31), date(2021, 12, 30))]
+                          #(date(2016, 1, 1), date(2021, 12, 30)),
+                          (date(2002, 12, 31), date(2016, 12, 30)),
+                          ]
 
         for model in all_models:
             model.results["test3"] = []
             model.results["test3-by-interval"] = {}
             for start_date, end_date in time_intervals:
-                lm, df = model.reestimate(start_date, end_date)
-                X = df[list(model.weights.keys())]
-                Y = df[model.dependent_variable]
-                prediction_r_2 = lm.score(X, Y)
 
-                # extra -1 adjusts for alpha not being a parameter
-                adjusted_prediction_r_2 = 1 - \
-                    (1-prediction_r_2)*(len(Y)-1)/(len(Y)-X.shape[1]-1-1)
+                if "Random Walk" in model.name:
+                    prediction_r_2, adjusted_prediction_r_2, std_error = model.run_model(
+                start_date, end_date)
+                else:
+                    lm, df = model.reestimate(start_date, end_date)
+                    X = df[list(model.weights.keys())]
+                    Y = df[model.dependent_variable]
+                    prediction_r_2 = lm.score(X, Y)
 
-                # Calculate stanbdard error of residuals
-                residuals = Y-lm.predict(X)
-                std_error = residuals.std()
+                    # extra -1 adjusts for alpha not being a parameter
+                    adjusted_prediction_r_2 = 1 - \
+                        (1-prediction_r_2)*(len(Y)-1)/(len(Y)-X.shape[1]-1-1)
+
+                    # Calculate stanbdard error of residuals
+                    residuals = Y-lm.predict(X)
+                    std_error = residuals.std()
 
                 # print(df)
                 # print(list(model.weights.keys()))
@@ -523,3 +528,4 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
 
 
 load_json()
+

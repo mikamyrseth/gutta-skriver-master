@@ -7,6 +7,7 @@
   "model_end_date": "2015-08-01",
   "dependent_variable": "LOG-NB-I44",
   "frequency": "WEEKLY",
+  "lags": 1,
   "weights": {
     "ALPHA": 0,
     "LAGGED-LOG-NB-I44": 1

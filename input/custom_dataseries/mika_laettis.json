@@ -1,0 +1,11 @@
+[
+    {
+        "name": "CUSTOM-MIKA-EQULIBRIUM",
+        "page": "63 (5.3)",
+        "type": "ADD",
+        "weights": {
+          "LOG-NB-KKI": 1,
+          "LAGGED-LOG-NB-KKI": -1
+        }
+    }
+]
