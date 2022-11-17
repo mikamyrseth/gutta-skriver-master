@@ -143,5 +143,29 @@
     "publisher": "BBG?",
     "bbg_ticker": "NA",
     "link": "NA"
+  },
+  {
+    "name": "SSB-TRADE-BALANCE",
+    "description": "Trade balance",
+    "frequency": "MONTHLY",
+    "publisher": "Statistics Norway",
+    "bbg_ticker": "NA",
+    "link": "https://www.ssb.no/statbank/table/08792/tableViewLayout1/"
+  },
+  {
+    "name": "SSB-NET-LENDING",
+    "description": "Government net lending",
+    "frequency": "QUARTERLY",
+    "publisher": "Statistics Norway",
+    "bbg_ticker": "NA",
+    "link": "https://www.ssb.no/statbank/table/08792/tableViewLayout1/"
+  },
+  {
+    "name": "SSB-CURRENT-ACCOUNT-BALANCE",
+    "description": "Government current account balance",
+    "frequency": "QUARTERLY",
+    "publisher": "Statistics Norway",
+    "bbg_ticker": "NA",
+    "link": "https://www.ssb.no/statbank/table/08792/tableViewLayout1/"
   }
 ]

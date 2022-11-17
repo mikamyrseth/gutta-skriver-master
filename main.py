@@ -120,6 +120,15 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 r2 = r2_score(old_coeffs, new_coeffs)
                 error = mean_absolute_percentage_error(old_coeffs, new_coeffs)
 
+                # calculate new dict with deviance from old to new coeffs
+                coeff_deviance = model.weights.copy()
+                for key in coeff_deviance:
+                    delta = coeff_deviance[key] - old_coeffs_dict[key]
+                    deviance = delta/old_coeffs_dict[key]
+                    deviance = deviance.round(3)
+                    coeff_deviance[key] = deviance
+                        
+
                 X = df[list(model.weights.keys())]
                 Y = df[model.dependent_variable]
                 normalized_coefficients = lm.coef_ * X.std(axis=0)
@@ -158,6 +167,7 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                     axis=0)
                 model.results["test1"]["old coefficients"] = old_coeffs_dict
                 model.results["test1"]["new coefficients"] = model.weights
+                model.results["test1"]["coefficient deviance"] = coeff_deviance
                 model.results["test1"]["Model Similarity (R2)"] = r2.round(3)
                 model.results["test1"]["Model Deviance (MAPE)"] = error.round(
                     3)

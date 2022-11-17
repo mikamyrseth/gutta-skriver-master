@@ -1,0 +1,21 @@
+{
+    "name": "Martinsen BEER long",
+    "authors": [""],
+    "publish_year": 2017,
+    "page": "9 (5)",
+    "model_start_date": "2001-12-31",
+    "model_end_date": "2016-12-31",
+    "dependent_variable": "LOG-NB-I44",
+    "frequency": "MONTHLY",
+    "weights": {
+      "ALPHA": 4.935,
+      "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE": 1.196,
+      "CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M": 0.020,
+      "CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR": -0.076,
+      "LOG-ICE-BRENT": -0.093,
+      "CUSTOM-AGGREGATE-BASIC-BALANCE": 0.0004
+    },
+    "stds": {},
+    "stats": {}
+  }
+  

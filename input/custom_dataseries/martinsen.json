@@ -1,0 +1,11 @@
+[
+    {
+        "name": "CUSTOM-BASIC-BALANCE",
+        "page": "29",
+        "type": "ADD",
+        "weights": {
+          "SSB-CURRENT-ACCOUNT-BALANCE": 0.01,
+          "SSB-NET-LENDING": -0.01
+        }
+    }
+]

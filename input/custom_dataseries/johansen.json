@@ -4,8 +4,8 @@
     "page": "29",
     "type": "ADD",
     "weights": {
-      "NIBOR": -0.01,
-      "EURIBOR": 0.01
+      "NIBOR": 0.01,
+      "EURIBOR": -0.01
     }
   },
   {
