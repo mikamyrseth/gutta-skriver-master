@@ -101,7 +101,7 @@ class Dataseries(object):
         df = df.asfreq('D')
         df = df.interpolate()
         df = df.loc[from_date:to_date]
-        df = df.resample(frequency.value, origin=from_date,).last()
+        df = df.resample(frequency.value, origin=from_date,).mean()
 
         if df.isnull().values.any():
             print(f"WARNING: {self.name} has NAN")
@@ -120,6 +120,16 @@ class CustomSeriesType(Enum):
     EXPONENT = "EXPONENT"
 
 
+def get_custom_series_type_enum(str):
+    match str:
+        case "ADD":
+            return CustomSeriesType.ADD
+        case "MULTIPLY":
+            return CustomSeriesType.MULTIPLY
+        case "EXPONENT":
+            return CustomSeriesType.EXPONENT
+
+
 class CustomDataseries(object):
     data = []
 
@@ -127,7 +137,7 @@ class CustomDataseries(object):
         self.name = name
         self.page = page
         self.weights = weights
-        self.type = CustomSeriesType
+        self.type = get_custom_series_type_enum(type)
         self.recalculate = recalculate
         self.dependent_variable = dependent_variable
 

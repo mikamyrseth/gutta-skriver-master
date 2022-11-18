@@ -90,7 +90,7 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
     all_models = all_long_models + all_short_models
 
     runSandbox = False
-    runTest1 = False
+    runTest1 = True
     runTest2 = False
     runTest3 = True
 
@@ -99,7 +99,7 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
         for model in all_models:
             if model.name == "Benchmark Random Walk long":
                 base_r2, adjusted_base_r2, base_std_err = model.run_model(
-                date(2002, 12, 31), date(2021, 12, 30))
+                    model.model_start_date, model.model_end_date)
 
                 print(f"Base R2: {base_r2}")
                 print(f"Adjusted Base R2: {adjusted_base_r2}")
@@ -248,7 +248,7 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
 
                 if "Random Walk" in model.name:
                     prediction_r_2, adjusted_prediction_r_2, std_error = model.run_model(
-                start_date, end_date)
+                        start_date, end_date)
                 else:
                     lm, df = model.reestimate(start_date, end_date)
                     X = df[list(model.weights.keys())]
@@ -528,4 +528,3 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
 
 
 load_json()
-
