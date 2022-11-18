@@ -41,5 +41,84 @@
       "LOG-NB-KKI": 1,
       "CUSTOM-JOHANSEN-LONG-TERM-MODEL": -1
     }
+  },
+  {
+    "name": "CUSTOM-JOHANSEN-GRI-ALL",
+    "page": "NA",
+    "type": "ADD",
+    "weights": {
+      "EURUSD-VOL3M": 0.01,
+      "USDJPY-VOL3M": 0.01,
+      "EURJPY-VOL3M": 0.01
+    }
+  },
+  {
+    "name": "CUSTOM-JOHANSEN-GRI-USDEUR",
+    "page": "NA",
+    "type": "ADD",
+    "weights": {
+      "EURUSD-VOL3M": -0.01,
+      "USDJPY-VOL3M": 0.01,
+      "EURJPY-VOL3M": 0.01
+    }
+  },
+  {
+    "name": "CUSTOM-JOHANSEN-GRI-USDJPY",
+    "page": "NA",
+    "type": "ADD",
+    "weights": {
+      "EURUSD-VOL3M": 0.01,
+      "USDJPY-VOL3M": -0.01,
+      "EURJPY-VOL3M": 0.01
+    }
+  },
+  {
+    "name": "CUSTOM-JOHANSEN-GRI-EURJPY",
+    "page": "NA",
+    "type": "ADD",
+    "weights": {
+      "EURUSD-VOL3M": 0.01,
+      "USDJPY-VOL3M": 0.01,
+      "EURJPY-VOL3M": 0.01
+    }
+  },
+  {
+    "name": "CUSTOM-JOHANSEN-GRI-PRODUCT",
+    "page": "NA",
+    "type": "MULTIPLY",
+    "weights": {
+      "CUSTOM-JOHANSEN-GRI-ALL": 1,
+      "CUSTOM-JOHANSEN-GRI-USDEUR": 1,
+      "CUSTOM-JOHANSEN-GRI-USDJPY": 1,
+      "CUSTOM-JOHANSEN-GRI-EURJPY": 1
+    }
+  },
+  {
+    "name": "CUSTOM-JOHANSEN-GRI-DIVISOR",
+    "page": "NA",
+    "type": "EXPONENT",
+    "weights": {
+      "CUSTOM-JOHANSEN-GRI-PRODUCT": -0.5
+    }
+  },
+  {
+    "name": "CUSTOM-JOHANSEN-DIVIDEND",
+    "page": "NA",
+    "type": "MULTIPLY",
+    "weights": {
+      "ALPHA": 2,
+      "EURUSD-VOL3M": 0.01,
+      "USDJPY-VOL3M": 0.01,
+      "EURJPY-VOL3M": 0.01
+    }
+  },
+  {
+    "name": "CUSTOM-JOHANSEN-GRI",
+    "page": "NA",
+    "type": "MULTIPLY",
+    "weights": {
+      "CUSTOM-JOHANSEN-DIVIDEND": 1,
+      "CUSTOM-JOHANSEN-GRI-DIVISOR": 1
+    }
   }
 ]

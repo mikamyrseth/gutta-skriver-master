@@ -1,0 +1,26 @@
+[
+  {
+    "name": "EURUSD-VOL3M",
+    "description": "EURUSD 3 month volatility",
+    "frequency": "DAILY",
+    "publisher": "Bloomberg",
+    "bbg_ticker": "EURUSDV1W BGNL Curncy",
+    "link": "NA"
+  },
+  {
+    "name": "USDJPY-VOL3M",
+    "description": "EURUSD 3 month volatility",
+    "frequency": "DAILY",
+    "publisher": "Bloomberg",
+    "bbg_ticker": "USDJPYV1W BGNL Curncy",
+    "link": "NA"
+  },
+  {
+    "name": "EURJPY-VOL3M",
+    "description": "EURUSD 3 month volatility",
+    "frequency": "DAILY",
+    "publisher": "Bloomberg",
+    "bbg_ticker": "EURJPYV1W BGNL Curncy",
+    "link": "NA"
+  }
+]

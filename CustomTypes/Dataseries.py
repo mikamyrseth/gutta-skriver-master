@@ -117,6 +117,7 @@ class Dataseries(object):
 class CustomSeriesType(Enum):
     ADD = "ADD"
     MULTIPLY = "MULTIPLY"
+    EXPONENT = "EXPONENT"
 
 
 class CustomDataseries(object):
@@ -170,12 +171,29 @@ class CustomDataseries(object):
 
             df[series] = inner_df
 
-        for index, row in df.iterrows():
-            prediction = 0
-            for series, weight in self.weights.items():
-                prediction += row[series]*weight
+        if self.type == CustomSeriesType.ADD:
+            for index, row in df.iterrows():
+                prediction = 0
+                for series, weight in self.weights.items():
+                    prediction += row[series]*weight
 
-            df.loc[index, self.name] = prediction
+                df.loc[index, self.name] = prediction
+
+        elif self.type == CustomSeriesType.MULTIPLY:
+            for index, row in df.iterrows():
+                prediction = 1
+                for series, weight in self.weights.items():
+                    prediction *= row[series]*weight
+
+                df.loc[index, self.name] = prediction
+
+        elif self.type == CustomSeriesType.EXPONENT:
+            for index, row in df.iterrows():
+                prediction = 0
+                for series, weight in self.weights.items():
+                    prediction += row[series]**weight
+
+                df.loc[index, self.name] = prediction
 
         print("PROCESSED MODEL!: ")
         print(df)
