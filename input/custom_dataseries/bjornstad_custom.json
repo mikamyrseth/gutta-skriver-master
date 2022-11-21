@@ -28,14 +28,30 @@
     }
   },
   {
-    "name": "CUSTOM-BJORNSTAD-RATE-DIFFERENCE",
+    "name": "CUSTOM-BJORNSTAD-NIBOR-QUARTER",
     "page": "46",
     "type": "ADD",
     "weights": {
-      "LAGGED-NIBOR": 1,
-      "LAGGED-DELTA-LOG-ES-HICP-NO": -1200,
-      "LAGGED-EURIBOR": -1,
-      "LAGGED-DELTA-LOG-ES-HICP-EU": 1200
+      "NIBOR": 0.01
+    }
+  },
+  {
+    "name": "CUSTOM-BJORNSTAD-EURIBOR-QUARTER",
+    "page": "46",
+    "type": "ADD",
+    "weights": {
+      "EURIBOR": 0.01
+    }
+  },
+  {
+    "name": "CUSTOM-BJORNSTAD-REAL-RATE-DIFFERENCE",
+    "page": "46",
+    "type": "ADD",
+    "weights": {
+      "CUSTOM-BJORNSTAD-NIBOR-QUARTER": 1,
+      "LAGGED-DELTA-3-LOG-ES-HICP-NO": -1,
+      "CUSTOM-BJORNSTAD-EURIBOR-QUARTER": 1,
+      "LAGGED-DELTA-3-LOG-ES-HICP-EU": -1
     }
   }
 ]
