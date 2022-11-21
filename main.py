@@ -90,9 +90,9 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
     all_models = all_long_models + all_short_models
 
     runSandbox = False
-    runTest1 = True
+    runTest1 = False
     runTest2 = False
-    runTest3 = False
+    runTest3 = True
 
     # Sandbox testing
     if runSandbox:
@@ -178,9 +178,9 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 model.results["test1"]["Standard Error of Residuals"] = std_error.round(
                     3)
 
-                # save df to xlsx
+                # save df to xlsx with dates
                 df.to_excel(
-                    f'results/test1/{model.name}.xlsx', index=True)
+                    f'results/df/{model.name}.xlsx', index=True)
 
     # test 2 - forward test
     if runTest2:
