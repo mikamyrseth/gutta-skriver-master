@@ -79,7 +79,7 @@
     "weights": {
       "EURUSD-VOL3M": 0.01,
       "USDJPY-VOL3M": 0.01,
-      "EURJPY-VOL3M": 0.01
+      "EURJPY-VOL3M": -0.01
     }
   },
   {
