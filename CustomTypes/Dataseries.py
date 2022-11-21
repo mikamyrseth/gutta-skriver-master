@@ -222,6 +222,13 @@ class CustomDataseries(object):
 
         print("PROCESSED MODEL!: ")
         print(df)
+
+        # save to xlsx
+        df.to_excel(
+                    f'results/df/custom_dataseries/{self.name}.xlsx', index=True, index_label="Date")
+
+
+
         # pd.set_option('display.max_columns', None)
         # pd.reset_option(“max_columns”)
         # print(df.head())
