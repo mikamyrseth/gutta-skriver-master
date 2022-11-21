@@ -6,6 +6,15 @@ from CustomTypes.Prefixes import *
 import json
 import os
 from datetime import datetime, timedelta
+from statsmodels.tsa.stattools import adfuller
+
+
+
+
+def is_stationary(df: pd.DataFrame, cutoff=0.05) -> bool:
+    pvalue = adfuller(df)[1]
+    return pvalue < cutoff
+    
 
 
 def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]] ":
@@ -97,7 +106,7 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
     # Sandbox testing
     if runSandbox:
         for model in all_models:
-            if model.name == "Ellen oil price threshold short":
+            if model.name == "Bjornstad&Jansen 2007 korttidsmodell short":
                 base_r2, adjusted_base_r2, base_std_err = model.run_model(
                     model.model_start_date, model.model_end_date)
 
@@ -137,7 +146,7 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
 
                 # extra -1 adjusts for alpha not being a parameter
                 adjusted_r2 = 1 - \
-                    (1-prediction_r_2)*(len(Y)-1)/(len(Y)-X.shape[1]-1-1)
+                        (1-prediction_r_2)*(len(Y)-1)/(len(Y)-X.shape[1]-1-1)
 
                 # Calculate standard error of residuals
                 residuals = Y - lm.predict(X)
@@ -177,10 +186,12 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                     3)
                 model.results["test1"]["Standard Error of Residuals"] = std_error.round(
                     3)
+                model.results["test1"]["Sample size"] = len(Y)
 
-                # save df to xlsx with dates
+                # save df to xlsx with dates on format yyyy-mm-dd
                 df.to_excel(
-                    f'results/df/{model.name}.xlsx', index=True)
+                    f'results/df/models/{model.name}.xlsx', index=True, index_label="Date")
+
 
     # test 2 - forward test
     if runTest2:
@@ -278,6 +289,23 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 model.results["test3"].append(time_result)
                 model.results["test3-by-interval"][f"{start_date}-{end_date}"] = time_result
 
+                # test_stationarity
+                all_stationary = True
+                not_stationary = []
+                for col in model.weights.keys():
+                    if "Random Walk" in model.name:
+                        continue
+                    if col == "ALPHA":
+                        continue
+                    stationary = is_stationary(df[col])
+                    if not stationary:
+                        all_stationary = False
+                        not_stationary.append(col)
+                model.results["test3-by-interval"][f"{start_date}-{end_date}"]["Stationary"] = all_stationary
+                model.results["test3-by-interval"][f"{start_date}-{end_date}"]["Non-stationary variables"] = not_stationary
+
+
+
     # Save results
     if True:
         all_test_1 = []
@@ -311,58 +339,6 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
             with open("results/all_test_3_by_interval.json", "w+") as outfile:
                 json.dump(all_test_3_by_interval, outfile, indent=4)
 
-        # make a plot of Adjusted R2 test3-by-interval for each model
-        if runTest3:
-            for model in all_models:
-                df = pd.DataFrame(model.results["test3"])
-                df = df.set_index("Prediction interval")
-                df = df.drop(
-                    columns=["Model", "R2", "Top Coefficient", "Standard error of residuals"])
-                df.plot.bar()
-                plt.title(model.name)
-                # Increase canvas size
-                fig = plt.gcf()
-                fig.set_size_inches(18.5, 10.5)
-
-                fig.tight_layout()
-                fig.savefig(
-                    f"results/r2-intervals/{model.name}_test3_by_interval.png")
-                plt.close()
-
-        # make a plot of Standard error of residuals test3-by-interval for each model
-        if runTest3:
-            for model in all_models:
-                df = pd.DataFrame(model.results["test3"])
-                df = df.set_index("Prediction interval")
-                df = df.drop(
-                    columns=["Model", "R2", "Top Coefficient", "Adjusted R2"])
-                df.plot.bar()
-                plt.title(model.name)
-                # Increase canvas size
-                fig = plt.gcf()
-                fig.set_size_inches(18.5, 10.5)
-
-                fig.tight_layout()
-                fig.savefig(
-                    f"results/std-err-intervals/{model.name}_test3_by_interval.png")
-                plt.close()
-
-        # make a plot of the stand error of residuals for each time interval
-        if runTest3:
-            df = pd.DataFrame(all_test_3)
-            df = df.set_index("Prediction interval")
-            df = df.drop(
-                columns=["Model", "R2", "Top Coefficient", "Adjusted R2"])
-            df.plot.bar()
-            plt.title("All Models")
-            # Increase canvas size
-            fig = plt.gcf()
-            fig.set_size_inches(18.5, 10.5)
-
-            fig.tight_layout()
-            fig.savefig(
-                f"results/std-err-intervals/all_test3_by_interval.png")
-            plt.close()
 
             # Plot the adjusted r2 for all long models for each time interval
             for time_interval, time_results in all_test_3_by_interval.items():
@@ -504,24 +480,203 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                     f"results/std-err-intervals/{time_interval}_short.png")
                 plt.close()
 
-            # df = pd.DataFrame(data=model.results, index=[0])
-            # df = (df.T)
-            # print(df)
+            # make a plot of count of non-stationary variables for all short model for for each time interval
+            for time_interval, time_results in all_test_3_by_interval.items():
+                df = pd.DataFrame(time_results)
+                df = df.set_index("Model")
+                df = df.drop(
+                    columns=["Prediction interval", "R2", "Top Coefficient", "Adjusted R2", "Standard error of residuals"])
+                # transform list to count
+                df["Non-stationary variables"] = df["Non-stationary variables"].apply(
+                    lambda x: len(x))
 
-            # df = pd.concat([results, normalized_coefficients])
+                # drop long models
+                df = df.drop(
+                    [model.name for model in all_long_models], errors="ignore")
+                    
+                # order by count
+                df = df.sort_values(by="Non-stationary variables")
 
-            # df.to_excel(f'results-{model.name}.xlsx')
-            # with pd.ExcelWriter("results.xlsx", sheet_name=self.name, engine="openpyxl", mode="a", on_sheet_exists="replace") as writer:
-            # df.to_excel(writer, sheet_name=self.name, index=False)
-            # pd.write_excel(writer, df)
+                df.plot.bar()
 
-            # print(self)
+                # color bars of models containing "Benchmark" in the name
+                for i, label in enumerate(df.index):
+                    if "Benchmark" in label:
+                        plt.gca().get_children()[i].set_color("red")
 
-            # save dict to file and format it nicely
-            # with open("results/" + self.name + ".json", "w+") as outfile:
-            #     json.dump(self.results, outfile, indent=4)
+                # add data labels
+                for i, v in enumerate(df["Non-stationary variables"]):
+                    plt.text(i, v, str(round(v, 0)), color='black',
+                             fontweight='bold', ha="center")
 
-            # get key of dict with max value
+                plt.title(time_interval+" All Short Models")
+                # Increase canvas size
+                fig = plt.gcf()
+                fig.set_size_inches(18.5, 10.5)
+
+                fig.tight_layout()
+                fig.savefig(
+                    f"results/stationarity/{time_interval}_short.png")
+                plt.close()
+
+            # make a plot of count of non-stationary variables for all long model for for each time interval
+            for time_interval, time_results in all_test_3_by_interval.items():
+                df = pd.DataFrame(time_results)
+                df = df.set_index("Model")
+                df = df.drop(
+                    columns=["Prediction interval", "R2", "Top Coefficient", "Adjusted R2", "Standard error of residuals"])
+                # transform list to count
+                df["Non-stationary variables"] = df["Non-stationary variables"].apply(
+                    lambda x: len(x))
+
+                # drop short models
+                df = df.drop(
+                    [model.name for model in all_short_models], errors="ignore")
+                    
+                # order by count
+                df = df.sort_values(by="Non-stationary variables")
+
+                df.plot.bar()
+
+                # color bars of models containing "Benchmark" in the name
+                for i, label in enumerate(df.index):
+                    if "Benchmark" in label:
+                        plt.gca().get_children()[i].set_color("red")
+
+                # add data labels
+                for i, v in enumerate(df["Non-stationary variables"]):
+                    plt.text(i, v, str(round(v, 0)), color='black',
+                             fontweight='bold', ha="center")
+
+                plt.title(time_interval+" All Long Models")
+                # Increase canvas size
+                fig = plt.gcf()
+                fig.set_size_inches(18.5, 10.5)
+
+                fig.tight_layout()
+                fig.savefig(
+                    f"results/stationarity/{time_interval}_long.png")
+                plt.close()
+        
+
+            # make a line plot of the stand error for all short models with time intervals as x asis
+            df = pd.DataFrame(all_test_3)
+            
+            #pivot the data
+            df = df.pivot(index="Prediction interval", columns="Model", values="Standard error of residuals")
+
+            # remove first interval
+            df = df.drop(df.index[0])
+
+            # remove long models
+            df = df.drop(
+                [model.name for model in all_long_models], axis=1, errors="ignore")
+
+            # remove all benchmark models
+            df = df.drop(
+                [model.name for model in all_short_models if "Benchmark" in model.name], axis=1, errors="ignore")
+
+            df.plot.line()
+
+            plt.title("All Short Models")
+            # Increase canvas size
+            fig = plt.gcf()
+            fig.set_size_inches(18.5, 10.5)
+
+            fig.tight_layout()
+            fig.savefig(
+                f"results/std-err-intervals/all_short.png")
+            plt.close()
+
+            # make a line plot of the stand error for all short benchmark models with time intervals as x asis
+            df = pd.DataFrame(all_test_3)
+            
+            #pivot the data
+            df = df.pivot(index="Prediction interval", columns="Model", values="Standard error of residuals")
+
+            # remove first interval
+            df = df.drop(df.index[0])
+
+            # remove long models
+            df = df.drop(
+                [model.name for model in all_long_models], axis=1, errors="ignore")
+
+            # remove all benchmark models
+            df = df.drop(
+                [model.name for model in all_short_models if "Benchmark" not in model.name], axis=1, errors="ignore")
+
+            df.plot.line()
+
+            plt.title("All Short Models")
+            # Increase canvas size
+            fig = plt.gcf()
+            fig.set_size_inches(18.5, 10.5)
+
+            fig.tight_layout()
+            fig.savefig(
+                f"results/std-err-intervals/all_short_bench.png")
+            plt.close()
+
+
+            # make a line plot of the adjusted r2 for all short models with time intervals as x asis
+            df = pd.DataFrame(all_test_3)
+            
+            #pivot the data
+            df = df.pivot(index="Prediction interval", columns="Model", values="Adjusted R2")
+
+            # remove first interval
+            df = df.drop(df.index[0])
+
+            # remove long models
+            df = df.drop(
+                [model.name for model in all_long_models], axis=1, errors="ignore")
+
+            # remove all benchmark models
+            df = df.drop(
+                [model.name for model in all_short_models if "Benchmark" in model.name], axis=1, errors="ignore")
+
+            df.plot.line()
+
+            plt.title("All Short Models")
+            # Increase canvas size
+            fig = plt.gcf()
+            fig.set_size_inches(18.5, 10.5)
+
+            fig.tight_layout()
+            fig.savefig(
+                f"results/r2-intervals/all_short.png")
+            plt.close()
+
+            # make a line plot of the adjusted r2 for all short becnhmark models with time intervals as x asis
+            df = pd.DataFrame(all_test_3)
+            
+            #pivot the data
+            df = df.pivot(index="Prediction interval", columns="Model", values="Adjusted R2")
+
+            # remove first interval
+            df = df.drop(df.index[0])
+
+            # remove long models
+            df = df.drop(
+                [model.name for model in all_long_models], axis=1, errors="ignore")
+
+            # remove all benchmark models
+            df = df.drop(
+                [model.name for model in all_short_models if "Benchmark" not in model.name], axis=1, errors="ignore")
+
+            df.plot.line()
+
+            plt.title("All Short Models")
+            # Increase canvas size
+            fig = plt.gcf()
+            fig.set_size_inches(18.5, 10.5)
+
+            fig.tight_layout()
+            fig.savefig(
+                f"results/r2-intervals/all_short_bench.png")
+            plt.close()
 
 
 load_json()
+
+
