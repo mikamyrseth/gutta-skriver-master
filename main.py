@@ -134,7 +134,7 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 coeff_deviance = model.weights.copy()
                 for key in coeff_deviance:
                     delta = coeff_deviance[key] - old_coeffs_dict[key]
-                    deviance = delta/old_coeffs_dict[key]
+                    deviance = abs(delta)/abs(old_coeffs_dict[key])
                     deviance = deviance.round(3)
                     coeff_deviance[key] = deviance
 
