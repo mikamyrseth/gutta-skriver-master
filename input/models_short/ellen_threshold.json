@@ -1,5 +1,5 @@
 {
-  "name": "Ellen linear model short",
+  "name": "Ellen oil price threshold short",
   "authors": "Saskia Ter Ellen",
   "publish_year": 2016,
   "page": "3",
@@ -10,9 +10,11 @@
   "lags": 2,
   "weights": {
     "ALPHA": 0.0018,
-    "DELTA-LOG-ICE-BRENT": -0.0661,
+    "DELTA-LOG-ICE-BRENT": -0.0623,
+    "CUSTOM-ELLEN-THRESHOLD": -0.0661,
     "DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M": -0.0275,
-    "LAGGED-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M": -0.0015
+    "LAGGED-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M": -0.0015,
+    "CUSTOM-ELLEN-CRISIS-CONTROL": -0.0038
   },
   "stds": {
     "CONSTANT": 1.296,

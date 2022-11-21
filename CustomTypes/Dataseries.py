@@ -64,6 +64,21 @@ class Dataseries(object):
             df = df.set_index('Date')
             return df
 
+        # Generate DUMMY
+        if "DUMMY" in self.name:
+            date_index = pd.date_range(
+                date(1999, 12, 31), date(2022, 10, 21), freq=DataFrequency.DAILY)
+            zeros = np.zeros(len(date_index))
+            df = pd.DataFrame({'Date': date_index, self.name: zeros})
+            df = df.set_index('Date')
+
+            # get dates from string on format "DUMMY-FROM-20080801-TO-20081231"
+            dates = self.name.split("-")
+            from_date = datetime.strptime(dates[2], "%Y%m%d")
+            to_date = datetime.strptime(dates[4], "%Y%m%d")
+            df.loc[from_date:to_date, self.name] = 1
+            return df
+
         # Load
         try:
             if self.bbg_ticker == "NA":

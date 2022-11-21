@@ -92,12 +92,12 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
     runSandbox = False
     runTest1 = True
     runTest2 = False
-    runTest3 = True
+    runTest3 = False
 
     # Sandbox testing
     if runSandbox:
         for model in all_models:
-            if model.name == "Benchmark Random Walk long":
+            if model.name == "Ellen oil price threshold short":
                 base_r2, adjusted_base_r2, base_std_err = model.run_model(
                     model.model_start_date, model.model_end_date)
 
@@ -177,13 +177,10 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                     3)
                 model.results["test1"]["Standard Error of Residuals"] = std_error.round(
                     3)
-                # model.results["test1"]["normalized_coefficients"] = normalized_coefficients.to_dict()
 
-                # model.reestimate(model.model_end_date, date(2021, 12, 31))
-                # model.reestimate(model.model_start_date, date(2021, 12, 31))
-                # model.run_model(model.model_start_date, model.model_end_date)
-                # model.run_model(model.model_end_date, date(2021, 12, 31))
-                # model.run_model(model.model_start_date, date(2021, 12, 31))
+                # save df to xlsx
+                df.to_excel(
+                    f'results/test1/{model.name}.xlsx', index=True)
 
     # test 2 - forward test
     if runTest2:

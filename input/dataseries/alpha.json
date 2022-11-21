@@ -6,5 +6,13 @@
     "publisher": "NA",
     "bbg_ticker": "NA",
     "link": "NA"
+  },
+  {
+    "name": "DUMMY-FROM-20080801-TO-20081231",
+    "description": "DUMMY",
+    "frequency": "DAILY",
+    "publisher": "NA",
+    "bbg_ticker": "NA",
+    "link": "NA"
   }
 ]

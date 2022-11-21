@@ -10,6 +10,7 @@ class Prefixes(Enum):
     DELTA = "DELTA"
     LAGGED = "LAGGED"
     AGGREGATE = "AGGREGATE"
+    THRESHOLDLESS = "THRESHOLDLESS"
 
     def process_prefixes(name: str) -> "tuple[list, str]":
         prefixes_in_name = []
@@ -19,7 +20,7 @@ class Prefixes(Enum):
         for term in term_list:
             if term in [e.value for e in Prefixes]:
                 prefixes_in_name.append(Prefixes[term])
-            if term.isdigit() and int(term) < 10:
+            if term.isdigit() and int(term) < 100:
                 prefixes_in_name.append(term)
 
         # Remove matches from dataseries name
@@ -58,6 +59,8 @@ class Prefixes(Enum):
                 df = df.fillna(0)
             case Prefixes.AGGREGATE:
                 df = df.cumsum()
+            case Prefixes.THRESHOLDLESS:
+                df = df.applymap(lambda x: 1 if x < step else 0)
         # print("After:", df)
         return df
 
