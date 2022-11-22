@@ -9,12 +9,9 @@ from datetime import datetime, timedelta
 from statsmodels.tsa.stattools import adfuller
 
 
-
-
 def is_stationary(df: pd.DataFrame, cutoff=0.05) -> bool:
     pvalue = adfuller(df)[1]
     return pvalue < cutoff
-    
 
 
 def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]] ":
@@ -98,10 +95,15 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
 
     all_models = all_long_models + all_short_models
 
+    # change frequency of all benchmark modeels to monthly
+    for model in all_models:
+        if "Benchmark" in model.name:
+            model.frequency = DataFrequency.QUARTERLY
+
     runSandbox = False
-    runTest1 = True
+    runTest1 = False
     runTest2 = False
-    runTest3 = False
+    runTest3 = True
 
     # Sandbox testing
     if runSandbox:
@@ -146,7 +148,7 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
 
                 # extra -1 adjusts for alpha not being a parameter
                 adjusted_r2 = 1 - \
-                        (1-prediction_r_2)*(len(Y)-1)/(len(Y)-X.shape[1]-1-1)
+                    (1-prediction_r_2)*(len(Y)-1)/(len(Y)-X.shape[1]-1-1)
 
                 # Calculate standard error of residuals
                 residuals = Y - lm.predict(X)
@@ -191,7 +193,6 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 # save df to xlsx with dates on format yyyy-mm-dd
                 df.to_excel(
                     f'results/df/models/{model.name}.xlsx', index=True, index_label="Date")
-
 
     # test 2 - forward test
     if runTest2:
@@ -304,8 +305,6 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 model.results["test3-by-interval"][f"{start_date}-{end_date}"]["Stationary"] = all_stationary
                 model.results["test3-by-interval"][f"{start_date}-{end_date}"]["Non-stationary variables"] = not_stationary
 
-
-
     # Save results
     if True:
         all_test_1 = []
@@ -338,7 +337,6 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 json.dump(all_test_3, outfile, indent=4)
             with open("results/all_test_3_by_interval.json", "w+") as outfile:
                 json.dump(all_test_3_by_interval, outfile, indent=4)
-
 
             # Plot the adjusted r2 for all long models for each time interval
             for time_interval, time_results in all_test_3_by_interval.items():
@@ -493,7 +491,7 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 # drop long models
                 df = df.drop(
                     [model.name for model in all_long_models], errors="ignore")
-                    
+
                 # order by count
                 df = df.sort_values(by="Non-stationary variables")
 
@@ -532,7 +530,7 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 # drop short models
                 df = df.drop(
                     [model.name for model in all_short_models], errors="ignore")
-                    
+
                 # order by count
                 df = df.sort_values(by="Non-stationary variables")
 
@@ -557,13 +555,13 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 fig.savefig(
                     f"results/stationarity/{time_interval}_long.png")
                 plt.close()
-        
 
             # make a line plot of the stand error for all short models with time intervals as x asis
             df = pd.DataFrame(all_test_3)
-            
-            #pivot the data
-            df = df.pivot(index="Prediction interval", columns="Model", values="Standard error of residuals")
+
+            # pivot the data
+            df = df.pivot(index="Prediction interval",
+                          columns="Model", values="Standard error of residuals")
 
             # remove first interval
             df = df.drop(df.index[0])
@@ -590,9 +588,10 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
 
             # make a line plot of the stand error for all short benchmark models with time intervals as x asis
             df = pd.DataFrame(all_test_3)
-            
-            #pivot the data
-            df = df.pivot(index="Prediction interval", columns="Model", values="Standard error of residuals")
+
+            # pivot the data
+            df = df.pivot(index="Prediction interval",
+                          columns="Model", values="Standard error of residuals")
 
             # remove first interval
             df = df.drop(df.index[0])
@@ -617,12 +616,12 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 f"results/std-err-intervals/all_short_bench.png")
             plt.close()
 
-
             # make a line plot of the adjusted r2 for all short models with time intervals as x asis
             df = pd.DataFrame(all_test_3)
-            
-            #pivot the data
-            df = df.pivot(index="Prediction interval", columns="Model", values="Adjusted R2")
+
+            # pivot the data
+            df = df.pivot(index="Prediction interval",
+                          columns="Model", values="Adjusted R2")
 
             # remove first interval
             df = df.drop(df.index[0])
@@ -649,9 +648,10 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
 
             # make a line plot of the adjusted r2 for all short becnhmark models with time intervals as x asis
             df = pd.DataFrame(all_test_3)
-            
-            #pivot the data
-            df = df.pivot(index="Prediction interval", columns="Model", values="Adjusted R2")
+
+            # pivot the data
+            df = df.pivot(index="Prediction interval",
+                          columns="Model", values="Adjusted R2")
 
             # remove first interval
             df = df.drop(df.index[0])
@@ -678,5 +678,3 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
 
 
 load_json()
-
-

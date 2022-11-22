@@ -1,5 +1,5 @@
 {
-  "name": "Benchmark Interest Difference 12M long",
+  "name": "Benchmark Interest Difference 3M long",
   "authors": "Myrseth, Røstum, Vestrum",
   "publish_year": 2022,
   "page": "NA",
@@ -9,7 +9,7 @@
   "frequency": "WEEKLY",
   "weights": {
     "ALPHA": 1,
-    "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": 1
+    "CUSTOM-JOHANSEN-INTEREST-DIFFERENCE-3M": 1
   },
   "stds": {},
   "stats": {}
