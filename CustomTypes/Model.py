@@ -114,7 +114,7 @@ class Model(object):
         # print(df["OUTPUT"].tolist())
         r2 = r2_score(df[self.dependent_variable].tolist(),
                       df["OUTPUT"].tolist())
-        print("R2", r2)
+        # print("Running model ", self.name, "with R2: ", r2, "from ", from_date, "to ", to_date)
 
         # calculate standard error of residuals
         residuals = df[self.dependent_variable] - df["OUTPUT"]
@@ -124,7 +124,7 @@ class Model(object):
         adjusted_r2 = 1 - (1-r2)*(len(df)-1)/(len(df)-len(self.weights)-1-1)
         # pd.set_option('display.max_columns', None)
         # pd.reset_option(“max_columns”)
-        print(df.head())
+        # print(df.head())
 
         # remove key in dict
         self.weights.pop(self.dependent_variable, None)
@@ -159,7 +159,7 @@ class Model(object):
                     source_series_name)
             else:
                 dataseries = Dataseries.get_dataseries(source_series_name)
-            print("reestimating ", source_series_name)
+            # print("reestimating ", source_series_name)
             dataseries.reestimate(from_date, to_date, self.frequency)
 
         df = self.get_source_df(self.frequency, from_date, to_date)
@@ -176,8 +176,8 @@ class Model(object):
         # Remove lagged rows
         df = df.iloc[self.lags:, :]
 
-        print(df)
-        print(list(self.weights.keys()))
+        # print(df)
+        # print(list(self.weights.keys()))
         if df.isnull().values.any():
             print(f"WARNING: df has NAN")
             print(df[df.isna().any(axis=1)])
@@ -188,7 +188,7 @@ class Model(object):
         for index, key in enumerate(self.weights.keys()):
             self.weights[key] = lm.coef_[index]
         self.weights["ALPHA"] = lm.intercept_
-        print(f"Reestimated model {self.name}")
+        # print(f"Reestimated model {self.name}")
 
 
         return lm, df
@@ -199,8 +199,8 @@ def regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str) -> LinearReg
     X = df[X_names]
     Y = df[Y_name]
 
-    print(X)
-    print(Y)
+    # print(X)
+    # print(Y)
 
     # X_train, X_test, Y_train, Y_test = train_test_split(
     #     X, Y, test_size=0.01, random_state=101)

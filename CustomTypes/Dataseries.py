@@ -220,8 +220,8 @@ class CustomDataseries(object):
 
                 df.loc[index, self.name] = prediction
 
-        print("PROCESSED MODEL!: ")
-        print(df)
+        # print("PROCESSED MODEL!: ")
+        # print(df)
 
         # save to xlsx
         df.to_excel(
@@ -254,7 +254,7 @@ class CustomDataseries(object):
         return df
 
     def reestimate(self, from_date: datetime, to_date: datetime, frequency: DataFrequency):
-        print("reestimating ", self.name)
+        # print("reestimating ", self.name)
 
         # recalculate relevant dataseries
         for series, weight in self.weights.items():
@@ -267,10 +267,10 @@ class CustomDataseries(object):
             dataseries.reestimate(from_date, to_date, frequency)
 
         if self.recalculate == False:
-            print("Skipped reestimating", self.name)
+            # print("Skipped reestimating", self.name)
             return
 
-        df = self.get_source_df(DataFrequency.MONTHLY, from_date, to_date)
+        df = self.get_source_df(frequency, from_date, to_date)
 
         dep_prefix, dep_name = Prefixes.process_prefixes(
             self.dependent_variable)
@@ -280,8 +280,8 @@ class CustomDataseries(object):
             dep_prefix, dep_series_df, dep_name)
 
         df[self.dependent_variable] = dep_series_df
-        print(df)
-        print(list(self.weights.keys()))
+        # print(df)
+        # print(list(self.weights.keys()))
         if df.isnull().values.any():
             print(f"WARNING: df has NAN")
             print(df[df.isna().any(axis=1)])
@@ -292,17 +292,17 @@ class CustomDataseries(object):
         for index, key in enumerate(self.weights.keys()):
             self.weights[key] = lm.coef_[index]
         self.weights["ALPHA"] = lm.intercept_
-        print(f"Reestimated dataseries {self.name} to: ")
+        # print(f"Reestimated dataseries {self.name} to: ")
 
         new_coeffs = list(self.weights.values())
-        print("comparing")
-        print(old_coeffs)
-        print(new_coeffs)
+        # print("comparing")
+        # print(old_coeffs)
+        # print(new_coeffs)
         mse = mean_squared_error(old_coeffs, new_coeffs)
         r2 = r2_score(old_coeffs, new_coeffs)
-        print("dataseries deviance is (MSE)", mse)
-        print("R2", r2)
-        print(self)
+        # print("dataseries deviance is (MSE)", mse)
+        # print("R2", r2)
+        # print(self)
 
 
 def regression(df: pd.DataFrame, X_names: list[str], Y_name: str):
@@ -310,8 +310,8 @@ def regression(df: pd.DataFrame, X_names: list[str], Y_name: str):
     X = df[X_names]
     Y = df[Y_name]
 
-    print(X)
-    print(Y)
+    # print(X)
+    # print(Y)
 
     X_train, X_test, Y_train, Y_test = train_test_split(
         X, Y, test_size=0.01, random_state=101)

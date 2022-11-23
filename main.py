@@ -96,23 +96,22 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
 
     all_models = all_long_models + all_short_models
 
-    # change frequency of all benchmark modeels to monthly
-    for model in all_models:
-        if "Benchmark" in model.name:
-            model.frequency = DataFrequency.QUARTERLY
-
     runSandbox = False
-    runTest1 = True
+    runTest1 = False
     runTest2 = False
-    runTest3 = False
+    runTest3 = True
 
     # Sandbox testing
     if runSandbox:
         for model in all_models:
-            if model.name == "Bjornstad&Jansen 2007 korttidsmodell short":
+            if model.name == "Benchmark Random Walk long":
+
+                print(model)
+
                 base_r2, adjusted_base_r2, base_std_err = model.run_model(
                     model.model_start_date, model.model_end_date)
 
+                print(f"interval: {model.model_start_date} - {model.model_end_date}")
                 print(f"Base R2: {base_r2}")
                 print(f"Adjusted Base R2: {adjusted_base_r2}")
                 print(f"Base Std Err: {base_std_err}")
@@ -290,60 +289,72 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                           (date(2002, 12, 31), date(2016, 12, 30)),
                           ]
 
+        
+        model.results
         for model in all_models:
             model.results["test3"] = []
             model.results["test3-by-interval"] = {}
-            for start_date, end_date in time_intervals:
 
-                if "Random Walk" in model.name:
-                    prediction_r_2, adjusted_prediction_r_2, std_error = model.run_model(
-                        start_date, end_date)
-                else:
-                    lm, df = model.reestimate(start_date, end_date)
-                    X = df[list(model.weights.keys())]
-                    Y = df[model.dependent_variable]
-                    prediction_r_2 = lm.score(X, Y)
+            frequencies = [DataFrequency.WEEKLY, DataFrequency.MONTHLY, DataFrequency.QUARTERLY]
+            for frequency in frequencies:
+                model.frequency = frequency
+                print("Running test 3 for model: ", model.name)
+                for start_date, end_date in time_intervals:
+                    print("Running test 3 for model: ", model.name, " and interval: ", start_date, end_date)
 
-                    # extra -1 adjusts for alpha not being a parameter
-                    adjusted_prediction_r_2 = 1 - \
-                        (1-prediction_r_2)*(len(Y)-1)/(len(Y)-X.shape[1]-1-1)
-
-                    # Calculate stanbdard error of residuals
-                    residuals = Y-lm.predict(X)
-                    std_error = residuals.std()
-
-                # print(df)
-                # print(list(model.weights.keys()))
-                # print(X)
-                normalized_coefficients = lm.coef_ * X.std(axis=0)
-                normalized_coefficients = normalized_coefficients.abs()
-                time_result = {}
-                time_result["Model"] = model.name
-                time_result["Prediction interval"] = f"{start_date}-{end_date}"
-                time_result[f"R2"] = prediction_r_2.round(3)
-                time_result[f"Adjusted R2"] = adjusted_prediction_r_2.round(3)
-                time_result[f"Standard error of residuals"] = std_error.round(
-                    4)
-                # model.results[f"test3:{start_date}-{end_date}_coeffs"] = normalized_coefficients.to_dict()
-                time_result[f"Top Coefficient"] = normalized_coefficients.idxmax(
-                    axis=0)
-                model.results["test3"].append(time_result)
-                model.results["test3-by-interval"][f"{start_date}-{end_date}"] = time_result
-
-                # test_stationarity
-                all_stationary = True
-                not_stationary = []
-                for col in model.weights.keys():
                     if "Random Walk" in model.name:
-                        continue
-                    if col == "ALPHA":
-                        continue
-                    stationary = is_stationary(df[col])
-                    if not stationary:
-                        all_stationary = False
-                        not_stationary.append(col)
-                model.results["test3-by-interval"][f"{start_date}-{end_date}"]["Stationary"] = all_stationary
-                model.results["test3-by-interval"][f"{start_date}-{end_date}"]["Non-stationary variables"] = not_stationary
+                        prediction_r_2, adjusted_prediction_r_2, std_error = model.run_model(
+                            start_date, end_date)
+                    else:
+                        lm, df = model.reestimate(start_date, end_date)
+                        X = df[list(model.weights.keys())]
+                        Y = df[model.dependent_variable]
+                        prediction_r_2 = lm.score(X, Y)
+
+                        # extra -1 adjusts for alpha not being a parameter
+                        adjusted_prediction_r_2 = 1 - \
+                            (1-prediction_r_2)*(len(Y)-1)/(len(Y)-X.shape[1]-1-1)
+
+                        # Calculate stanbdard error of residuals
+                        residuals = Y-lm.predict(X)
+                        std_error = residuals.std()
+
+
+                    print("\tfound std error: ", std_error, "Adj. r2 " , adjusted_prediction_r_2)
+
+                    # print(df)
+                    # print(list(model.weights.keys()))
+                    # print(X)
+                    normalized_coefficients = lm.coef_ * X.std(axis=0)
+                    normalized_coefficients = normalized_coefficients.abs()
+                    time_result = {}
+                    time_result["Frequency"] = frequency.name
+                    time_result["Model"] = model.name
+                    time_result["Prediction interval"] = f"{start_date}-{end_date}"
+                    time_result[f"R2"] = prediction_r_2.round(3)
+                    time_result[f"Adjusted R2"] = adjusted_prediction_r_2.round(3)
+                    time_result[f"Standard error of residuals"] = std_error.round(
+                        4)
+                    # model.results[f"test3:{start_date}-{end_date}_coeffs"] = normalized_coefficients.to_dict()
+                    time_result[f"Top Coefficient"] = normalized_coefficients.idxmax(
+                        axis=0)
+                    model.results["test3"].append(time_result)
+                    model.results["test3-by-interval"][f"{start_date}-{end_date}"] = time_result
+
+                    # test_stationarity
+                    all_stationary = True
+                    not_stationary = []
+                    for col in model.weights.keys():
+                        if "Random Walk" in model.name:
+                            continue
+                        if col == "ALPHA":
+                            continue
+                        stationary = is_stationary(df[col])
+                        if not stationary:
+                            all_stationary = False
+                            not_stationary.append(col)
+                    model.results["test3-by-interval"][f"{start_date}-{end_date}"]["Stationary"] = all_stationary
+                    model.results["test3-by-interval"][f"{start_date}-{end_date}"]["Non-stationary variables"] = not_stationary
 
     # Save results
     if True:
@@ -352,6 +363,7 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
         all_test_3 = []
         table_model_time_intervals = []
         table_recreation_performance = []
+        table_frequency = []
         all_test_3_by_interval = {}
         for model in all_models:
             with open("results/" + model.name + ".json", "w+") as outfile:
@@ -370,7 +382,12 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                         {"Model": model.name, 
                         "Original interval": f"{model.original_start_date.strftime('%Y-%m-%d')}-{model.original_end_date.strftime('%Y-%m-%d')}",
                         "Recreation interval": f"{model.model_start_date.strftime('%Y-%m-%d')}-{model.model_end_date.strftime('%Y-%m-%d')}",
-                        "Interval overlap %": interval_overlap
+                        "Overlap %": interval_overlap
+                        })
+                    table_frequency.append(
+                        {"Model": model.name, 
+                        "Frequency": model.frequency.name,
+                        "Sample size": test_1["Sample size"]
                         })
             if runTest2:
                 all_test_2.append(model.results["test2"])
@@ -389,6 +406,8 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 json.dump(table_recreation_performance, outfile, indent=4)
             with open("results/tables/table_model_info.json", "w+") as outfile:
                 json.dump(table_model_time_intervals, outfile, indent=4)
+            with open("results/tables/table_frequency.json", "w+") as outfile:
+                json.dump(table_frequency, outfile, indent=4)
         if runTest2:
             with open("results/all_test_2.json", "w+") as outfile:
                 json.dump(all_test_2, outfile, indent=4)
@@ -397,6 +416,49 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 json.dump(all_test_3, outfile, indent=4)
             with open("results/all_test_3_by_interval.json", "w+") as outfile:
                 json.dump(all_test_3_by_interval, outfile, indent=4)
+
+            # dump all test_3_by_interval where frequency is MONTHLY
+            big_interval = [res for res in all_test_3 if res["Prediction interval"] == "2002-12-31-2016-12-30"]
+            results_w = [result for result in big_interval if result["Frequency"] == "WEEKLY"]
+            results_m = [result for result in big_interval if result["Frequency"] == "MONTHLY"]
+            results_q = [result for result in big_interval if result["Frequency"] == "QUARTERLY"]
+            print("WEEKLY", results_w)
+            print("MONTHLY", results_m)
+            print("QUARTERLY", results_q)
+            table_results = []
+            for result_m, result_q, result_w in zip(results_m, results_q, results_w):
+                if result_m["Model"] != result_q["Model"]:
+                    print(1/0)
+                table_results.append(
+                    {"Model": result_m["Model"], 
+                    "adj R2_W": result_w["Adjusted R2"],
+                    "adj R2_M": result_m["Adjusted R2"],
+                    "adj R2_Q": result_q["Adjusted R2"],
+                    "std_W": result_w["Standard error of residuals"],
+                    "std_M": result_m["Standard error of residuals"],
+                    "std_Q": result_q["Standard error of residuals"],
+                    })
+            print("table_results", table_results)
+
+            with open("results/tables/table_results.json", "w+") as outfile:
+                json.dump(table_results, outfile, indent=4)
+
+            table_results_short = [res for res in table_results if "Benchmark" not in res["Model"] and "short" in res["Model"]]
+            table_result_short_benchmark = [res for res in table_results if "Benchmark" in res["Model"] and "short" in res["Model"]]
+            table_result_long = [res for res in table_results if "Benchmark" not in res["Model"] and "long" in res["Model"]]
+            table_result_long_benchmark = [res for res in table_results if "Benchmark" in res["Model"] and "long" in res["Model"]]
+
+            with open("results/tables/table_results_short.json", "w+") as outfile:
+                json.dump(table_results_short, outfile, indent=4)
+            with open("results/tables/table_result_short_benchmark.json", "w+") as outfile:
+                json.dump(table_result_short_benchmark, outfile, indent=4)
+            with open("results/tables/table_result_long.json", "w+") as outfile:
+                json.dump(table_result_long, outfile, indent=4)
+            with open("results/tables/table_result_long_benchmark.json", "w+") as outfile:
+                json.dump(table_result_long_benchmark, outfile, indent=4)
+            
+            
+            
 
             # Plot the adjusted r2 for all long models for each time interval
             for time_interval, time_results in all_test_3_by_interval.items():
