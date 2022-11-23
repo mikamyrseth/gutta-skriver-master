@@ -1,19 +1,21 @@
 {
-  "name": "Myrstuen korttidsmodell short",
+  "name": "Myrstuen2020 short",
   "authors": ["Lars Myrstuen, Didrik Sylte, Jan Tore Klovland"],
   "publish_year": 2021,
   "page": "69 (5.5)",
-  "model_start_date": "2001-12-31",
-  "model_end_date": "2019-04-30",
+  "original_start_date": "2001-04-01",
+  "original_end_date": "2020-01-01",
+  "model_start_date": "2002-01-01",
+  "model_end_date": "2020-01-01",
   "dependent_variable": "DELTA-LOG-NB-KKI",
   "frequency": "MONTHLY",
-  "lags": 1,
+  "lags": 2,
   "weights": {
     "ALPHA": 0.0002,
     "LAGGED-DELTA-LOG-NB-KKI": 0.1985,
     "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": -2.7891,
     "DELTA-LOG-ICE-BRENT": -0.0574,
-    "CUSTOM-MYRSTUEN-EQULIBIRUM": -0.1556
+    "LAGGED-CUSTOM-MYRSTUEN-EQULIBIRUM": -0.1556
   },
   "stds": {
     "DELTA-ICE-BRENT": 0.0089

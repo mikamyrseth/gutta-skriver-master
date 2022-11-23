@@ -1,10 +1,12 @@
 {
-  "name": "Ellen oil price threshold short",
+  "name": "Ellen2016 oil price threshold short",
   "authors": "Saskia Ter Ellen",
   "publish_year": 2016,
   "page": "3",
   "model_start_date": "2001-01-01",
-  "model_end_date": "2015-08-01",
+  "model_end_date": "2015-08-31",
+  "original_start_date": "2001-01-01",
+  "original_end_date": "2015-08-31",
   "dependent_variable": "DELTA-LOG-NB-I44",
   "frequency": "MONTHLY",
   "lags": 2,
@@ -13,8 +15,7 @@
     "DELTA-LOG-ICE-BRENT": -0.0623,
     "CUSTOM-ELLEN-THRESHOLD": -0.0661,
     "DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M": -0.0275,
-    "LAGGED-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M": -0.0015,
-    "CUSTOM-ELLEN-CRISIS-CONTROL": -0.0038
+    "LAGGED-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M": -0.0015
   },
   "stds": {
     "CONSTANT": 1.296,

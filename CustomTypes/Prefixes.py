@@ -60,7 +60,10 @@ class Prefixes(Enum):
             case Prefixes.AGGREGATE:
                 df = df.cumsum()
             case Prefixes.THRESHOLDLESS:
-                df = df.applymap(lambda x: 1 if x < step else 0)
+                # set to 1 if current value is below step and previous value is above step¨
+                df[column_name] = np.where(
+                    (df[column_name] < step) & (df[column_name].shift(1) > step), 1, 0)
+
         # print("After:", df)
         return df
 

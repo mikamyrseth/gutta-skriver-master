@@ -30,12 +30,18 @@ class Model(object):
                  stds: dict,
                  stats: dict,
                  lags: int = 0,
+                 original_start_date: str = "1900-01-01",
+                 original_end_date: str = "1901-01-01",
                  ):
         self.name = name
         self.authors = authors
         self.publish_year = publish_year
         self.page = page
         self.weights = weights
+        self.original_start_date = datetime.datetime.fromisoformat(
+            original_start_date)
+        self.original_end_date = datetime.datetime.fromisoformat(
+            original_end_date)
         self.model_start_date = datetime.datetime.fromisoformat(
             model_start_date)
         self.model_end_date = datetime.datetime.fromisoformat(model_end_date)

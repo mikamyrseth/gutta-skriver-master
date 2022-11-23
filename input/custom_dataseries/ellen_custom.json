@@ -14,7 +14,7 @@
     "type": "MULTIPLY",
     "weights": {
       "DELTA-LOG-ICE-BRENT": 1,
-      "DUMMY-FROM-20080801-TO-20081231": 1
+      "DUMMY-FROM-20080801-TO-20081130": 1
     }
   }
 ]

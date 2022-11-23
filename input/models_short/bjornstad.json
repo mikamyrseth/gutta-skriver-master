@@ -1,10 +1,12 @@
 {
-  "name": "Bjornstad&Jansen 2007 korttidsmodell short",
+  "name": "Bjornstad&Jansen2007  short",
   "authors": "Roger Bjørnstad, Eilev Jansen",
   "publish_year": 2006,
   "page": "46",
   "model_start_date": "2002-12-31",
   "model_end_date": "2006-09-30",
+  "original_start_date": "1983-01-01",
+  "original_end_date": "2006-09-30",
   "dependent_variable": "DELTA-LOG-EURNOK",
   "frequency": "QUARTERLY",
   "lags": 4,

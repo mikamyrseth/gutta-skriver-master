@@ -7,6 +7,7 @@ import json
 import os
 from datetime import datetime, timedelta
 from statsmodels.tsa.stattools import adfuller
+import statsmodels.api as sm
 
 
 def is_stationary(df: pd.DataFrame, cutoff=0.05) -> bool:
@@ -101,9 +102,9 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
             model.frequency = DataFrequency.QUARTERLY
 
     runSandbox = False
-    runTest1 = False
+    runTest1 = True
     runTest2 = False
-    runTest3 = True
+    runTest3 = False
 
     # Sandbox testing
     if runSandbox:
@@ -122,15 +123,20 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
             if True:  # model.name == "Akram (2022) Aggregate oil prices":
                 # reestimate
                 print("Running model:", model.name)
-                old_coeffs = list(model.weights.values()).copy()
+                old_coeffs = list(model.weights.values()).copy()[1:]
                 old_coeffs_dict = model.weights.copy()
                 lm, df = model.reestimate(
                     model.model_start_date, model.model_end_date)
 
                 # calculate statistics
-                new_coeffs = list(model.weights.values())
-                r2 = r2_score(old_coeffs, new_coeffs)
-                error = mean_absolute_percentage_error(old_coeffs, new_coeffs)
+                new_coeffs = list(model.weights.values())[1:]
+                
+                if "Benchmark" in model.name:
+                    error = 0
+                    r2 = 1
+                else:
+                    error = mean_absolute_percentage_error(old_coeffs, new_coeffs)
+                    r2 = r2_score(old_coeffs, new_coeffs)
 
                 # calculate new dict with deviance from old to new coeffs
                 coeff_deviance = model.weights.copy()
@@ -180,8 +186,7 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 model.results["test1"]["new coefficients"] = model.weights
                 model.results["test1"]["coefficient deviance"] = coeff_deviance
                 model.results["test1"]["Model Similarity (R2)"] = round(r2, 3)
-                model.results["test1"]["Model Deviance (MAPE)"] = error.round(
-                    3)
+                model.results["test1"]["Model Deviance (MAPE)"] = round(error, 3)
                 model.results["test1"]["Prediction Strength (R2)"] = prediction_r_2.round(
                     3)
                 model.results["test1"]["Adjusted Prediction Strength (Adjusted R2)"] = adjusted_r2.round(
@@ -189,6 +194,41 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 model.results["test1"]["Standard Error of Residuals"] = std_error.round(
                     3)
                 model.results["test1"]["Sample size"] = len(Y)
+
+                # test_stationarity
+                all_stationary = True
+                not_stationary = []
+                for col in model.weights.keys():
+                    if "Random Walk" in model.name:
+                        continue
+                    if col == "ALPHA":
+                        continue
+                    stationary = is_stationary(df[col])
+                    if not stationary:
+                        all_stationary = False
+                        not_stationary.append(col)
+                model.results["test1"]["Stationary"] = all_stationary
+                model.results["test1"]["Non-stationary variables"] = not_stationary
+
+                # test coefficient significance
+                all_significant = True
+                not_significant = {}
+                for col in model.weights.keys():
+                    if "Random Walk" in model.name:
+                        continue
+                    if col == "ALPHA":
+                        continue
+                    # calculate p-value
+                    est = sm.OLS(Y, X).fit()
+                    p_value = est.pvalues[col]
+                    print(est.summary())
+                    print(f"{col} p-value: {p_value}")
+                    significant = p_value < 0.05
+                    if not significant:
+                        all_significant = False
+                        not_significant[col] = p_value
+                model.results["test1"]["Significant"] = all_significant
+                model.results["test1"]["Non-significant variables"] = not_significant
 
                 # save df to xlsx with dates on format yyyy-mm-dd
                 df.to_excel(
@@ -310,12 +350,28 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
         all_test_1 = []
         all_test_2 = []
         all_test_3 = []
+        table_model_time_intervals = []
+        table_recreation_performance = []
         all_test_3_by_interval = {}
         for model in all_models:
             with open("results/" + model.name + ".json", "w+") as outfile:
                 json.dump(model.results, outfile, indent=4)
             if runTest1:
-                all_test_1.append(model.results["test1"])
+                if "Benchmark" not in model.name:
+                    test_1 = model.results["test1"]
+                    all_test_1.append(test_1)
+                    interval_overlap = (model.model_end_date - model.model_start_date).days / (model.original_end_date - model.original_start_date).days
+                    interval_overlap = int(round(interval_overlap*100, 0))
+                    table_recreation_performance.append(
+                        {"Model": model.name, 
+                        "Model Deviance (MAPE)": test_1["Model Deviance (MAPE)"]
+                        })
+                    table_model_time_intervals.append(
+                        {"Model": model.name, 
+                        "Original interval": f"{model.original_start_date.strftime('%Y-%m-%d')}-{model.original_end_date.strftime('%Y-%m-%d')}",
+                        "Recreation interval": f"{model.model_start_date.strftime('%Y-%m-%d')}-{model.model_end_date.strftime('%Y-%m-%d')}",
+                        "Interval overlap %": interval_overlap
+                        })
             if runTest2:
                 all_test_2.append(model.results["test2"])
             if runTest3:
@@ -329,6 +385,10 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
         if runTest1:
             with open("results/all_test_1.json", "w+") as outfile:
                 json.dump(all_test_1, outfile, indent=4)
+            with open("results/tables/table_recreation_performance.json", "w+") as outfile:
+                json.dump(table_recreation_performance, outfile, indent=4)
+            with open("results/tables/table_model_info.json", "w+") as outfile:
+                json.dump(table_model_time_intervals, outfile, indent=4)
         if runTest2:
             with open("results/all_test_2.json", "w+") as outfile:
                 json.dump(all_test_2, outfile, indent=4)

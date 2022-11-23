@@ -1,10 +1,12 @@
 {
-  "name": "Johansen&Pedersen short",
+  "name": "Johansen&Pedersen2017 short",
   "authors": ["Christoffer Sten Mørseth Johansen og André Trønnes Pedersen"],
   "publish_year": 1000,
   "page": "65 (38)",
   "model_start_date": "2001-12-31",
   "model_end_date": "2016-12-31",
+  "original_start_date": "2001-04-01",
+  "original_end_date": "2016-12-31",
   "dependent_variable": "DELTA-LOG-NB-KKI",
   "frequency": "MONTHLY",
   "weights": {
@@ -14,9 +16,9 @@
     "DELTA-CUSTOM-JOHANSEN-INTEREST-DIFFERENCE-3M": -3.3175,
     "DELTA-LOG-ICE-BRENT": -0.0652,
     "LAGGED-5-DELTA-CUSTOM-JOHANSEN-PRICE-DIFFERENCE": 0.4304,
-    "DELTA-LOG-GRI": 0.1121,
+    "DELTA-GRI": 0.1121,
     "DELTA-LOG-SSB-INDUSTRIAL-PRODUCTION": 0.1061,
-    "CUSTOM-JOHANSEN-EQULIBRIUM": -0.1763
+    "LAGGED-CUSTOM-JOHANSEN-EQULIBRIUM": -0.1763
   },
   "stds": {
     "DELTA-ICE-BRENT": 0.0089
