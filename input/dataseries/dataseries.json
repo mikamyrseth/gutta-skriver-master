@@ -175,5 +175,21 @@
     "publisher": "Statistics Norway",
     "bbg_ticker": "NA",
     "link": "https://www.ssb.no/statbank/table/08792/tableViewLayout1/"
+  },
+  {
+    "name": "SSB-M2",
+    "description": "Monetary aggregates Norway",
+    "frequency": "MONTHLY",
+    "publisher": "Statistics Norway",
+    "bbg_ticker": "NA",
+    "link": "https://www.ssb.no/en/statbank/table/10945/tableViewLayout1/"
+  },
+  {
+    "name": "SSB-GDP",
+    "description": "GDP Norway",
+    "frequency": "YEARLY",
+    "publisher": "Statistics Norway",
+    "bbg_ticker": "NA",
+    "link": "https://www.ssb.no/en/statbank/table/09189/tableViewLayout1/"
   }
 ]
