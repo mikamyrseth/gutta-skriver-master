@@ -96,10 +96,10 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
 
     all_models = all_long_models + all_short_models
 
-    runSandbox = True
+    runSandbox = False
     runTest1 = False
     runTest2 = False
-    runTest3 = False
+    runTest3 = True
 
     # Sandbox testing
     if runSandbox:
@@ -230,8 +230,8 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                     # calculate p-value
                     est = sm.OLS(Y, X).fit()
                     p_value = est.pvalues[col]
-                    print(est.summary())
-                    print(f"{col} p-value: {p_value}")
+                    # print(est.summary())
+                    # print(f"{col} p-value: {p_value}")
                     significant = p_value < 0.05
                     if not significant:
                         all_significant = False
@@ -295,8 +295,8 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
         time_intervals = [(date(2003, 1, 1), date(2007, 1, 1)),
                           (date(2007, 1, 1), date(2011, 1, 1)),
                           (date(2011, 1, 1), date(2016, 1, 1)),
-                          #(date(2016, 1, 1), date(2021, 12, 30)),
-                          (date(2002, 12, 31), date(2016, 12, 30)),
+                          (date(2016, 1, 1), date(2021, 12, 30)),
+                          (date(2003, 1, 1), date(2021, 12, 30)),
                           ]
 
         model.results
@@ -369,6 +369,26 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                     model.results["test3-by-interval"][f"{start_date}-{end_date}"]["Stationary"] = all_stationary
                     model.results["test3-by-interval"][f"{start_date}-{end_date}"]["Non-stationary variables"] = not_stationary
 
+                    # test coefficient significance
+                    all_significant = True
+                    not_significant = {}
+                    for col in model.weights.keys():
+                        if "Random Walk" in model.name:
+                            continue
+                        if col == "ALPHA":
+                            continue
+                        # calculate p-value
+                        est = sm.OLS(Y, X).fit()
+                        p_value = est.pvalues[col]
+                        # print(est.summary())
+                        # print(f"{col} p-value: {p_value}")
+                        significant = p_value < 0.05
+                        if not significant:
+                            all_significant = False
+                            not_significant[col] = p_value
+                    model.results["test3-by-interval"][f"{start_date}-{end_date}"]["Significant"] = all_significant
+                    model.results["test3-by-interval"][f"{start_date}-{end_date}"]["Non-significant variables"] = not_significant
+
     # Save results
     if True:
         all_test_1 = []
@@ -433,7 +453,7 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
 
             # dump all test_3_by_interval where frequency is MONTHLY
             big_interval = [
-                res for res in all_test_3 if res["Prediction interval"] == "2002-12-31-2016-12-30"]
+                res for res in all_test_3 if res["Prediction interval"] == "2003-01-01-2021-12-30"]
             results_w = [
                 result for result in big_interval if result["Frequency"] == "WEEKLY"]
             results_m = [

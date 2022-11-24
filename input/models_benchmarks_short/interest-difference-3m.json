@@ -1,0 +1,16 @@
+{
+  "name": "Benchmark Interest Difference 3M short",
+  "authors": "Myrseth, Røstum, Vestrum",
+  "publish_year": 2022,
+  "page": "NA",
+  "model_start_date": "2003-01-01",
+  "model_end_date": "2021-12-31",
+  "dependent_variable": "DELTA-LOG-NB-I44",
+  "frequency": "WEEKLY",
+  "weights": {
+    "ALPHA": 1,
+    "DELTA-CUSTOM-JOHANSEN-INTEREST-DIFFERENCE-3M": 1
+  },
+  "stds": {},
+  "stats": {}
+}

@@ -1,5 +1,5 @@
 {
-  "name": "Myrstuen&Sylte2020 short",
+  "name": "Mika short",
   "authors": ["Lars Myrstuen, Didrik Sylte, Jan Tore Klovland"],
   "publish_year": 2021,
   "page": "69 (5.5)",
@@ -15,7 +15,7 @@
     "LAGGED-DELTA-LOG-NB-KKI": 0.1985,
     "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": -2.7891,
     "DELTA-LOG-ICE-BRENT": -0.0574,
-    "LAGGED-CUSTOM-MYRSTUEN-EQULIBIRUM": -0.1556
+    "LAGGED-CUSTOM-MIKA-EQULIBRIUM": -0.1556
   },
   "stds": {
     "DELTA-ICE-BRENT": 0.0089

@@ -5,7 +5,23 @@
         "type": "ADD",
         "weights": {
           "LOG-NB-KKI": 1,
-          "LAGGED-LOG-NB-KKI": -1
+          "CUSTOM-MIKA-LONG-TERM-MODEL": -1
         }
+    },
+    {
+      "name": "CUSTOM-MIKA-LONG-TERM-MODEL",
+      "page": "59 (37)",
+      "type": "ADD",
+      "recalculate": true,
+      "dependent_variable": "LOG-NB-KKI",
+      "weights": {
+        "ALPHA": 2.0813,
+        "CUSTOM-JOHANSEN-INTEREST-DIFFERENCE-3M": -3.0706,
+        "CUSTOM-JOHANSEN-PRICE-DIFFERENCE": 1.0379,
+        "LOG-ICE-BRENT": -0.1243,
+        "LOG-S&P-500": 0.3259,
+        "LOG-SSB-INDUSTRIAL-PRODUCTION": 0.6562,
+        "NB-INTEREST-FORECAST-3Y": -1.2828
+      }
     }
 ]
