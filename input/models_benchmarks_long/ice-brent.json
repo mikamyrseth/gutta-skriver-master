@@ -4,7 +4,7 @@
   "publish_year": 2022,
   "page": "NA",
   "model_start_date": "2002-12-31",
-  "model_end_date": "2015-08-01",
+  "model_end_date": "2016-12-30",
   "dependent_variable": "LOG-NB-I44",
   "frequency": "WEEKLY",
   "weights": {

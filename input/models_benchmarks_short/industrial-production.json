@@ -1,18 +1,17 @@
 {
-    "name": "Benchmark Industrail Production short",
-    "authors": "Myrseth, Røstum, Vestrum",
-    "publish_year": 2022,
-    "page": "NA",
-    "model_start_date": "2001-12-31",
-    "model_end_date": "2021-12-30",
-    "dependent_variable": "DELTA-LOG-NB-I44",
-    "frequency": "WEEKLY",
-    "lags": 1,
-    "weights": {
-      "ALPHA": 1,
-      "DELTA-LOG-SSB-INDUSTRIAL-PRODUCTION": 1
-    },
-    "stds": {},
-    "stats": {}
-  }
-  
+  "name": "Benchmark Industrial Production short",
+  "authors": "Myrseth, Røstum, Vestrum",
+  "publish_year": 2022,
+  "page": "NA",
+  "model_start_date": "2001-12-31",
+  "model_end_date": "2021-12-30",
+  "dependent_variable": "DELTA-LOG-NB-I44",
+  "frequency": "WEEKLY",
+  "lags": 1,
+  "weights": {
+    "ALPHA": 1,
+    "DELTA-LOG-SSB-INDUSTRIAL-PRODUCTION": 1
+  },
+  "stds": {},
+  "stats": {}
+}

@@ -96,22 +96,30 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
 
     all_models = all_long_models + all_short_models
 
-    runSandbox = False
+    runSandbox = True
     runTest1 = False
     runTest2 = False
-    runTest3 = True
+    runTest3 = False
 
     # Sandbox testing
     if runSandbox:
         for model in all_models:
-            if model.name == "Benchmark Random Walk long":
+            if model.name == "Benchmark ICE-BRENT long":
+                model.frequency = DataFrequency.QUARTERLY
+                print(model)
+
+                _ = model.reestimate(
+                    from_date=model.model_start_date,
+                    to_date=model.model_end_date,
+                )
 
                 print(model)
 
                 base_r2, adjusted_base_r2, base_std_err = model.run_model(
                     model.model_start_date, model.model_end_date)
 
-                print(f"interval: {model.model_start_date} - {model.model_end_date}")
+                print(
+                    f"interval: {model.model_start_date} - {model.model_end_date}")
                 print(f"Base R2: {base_r2}")
                 print(f"Adjusted Base R2: {adjusted_base_r2}")
                 print(f"Base Std Err: {base_std_err}")
@@ -129,12 +137,13 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
 
                 # calculate statistics
                 new_coeffs = list(model.weights.values())[1:]
-                
+
                 if "Benchmark" in model.name:
                     error = 0
                     r2 = 1
                 else:
-                    error = mean_absolute_percentage_error(old_coeffs, new_coeffs)
+                    error = mean_absolute_percentage_error(
+                        old_coeffs, new_coeffs)
                     r2 = r2_score(old_coeffs, new_coeffs)
 
                 # calculate new dict with deviance from old to new coeffs
@@ -185,7 +194,8 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 model.results["test1"]["new coefficients"] = model.weights
                 model.results["test1"]["coefficient deviance"] = coeff_deviance
                 model.results["test1"]["Model Similarity (R2)"] = round(r2, 3)
-                model.results["test1"]["Model Deviance (MAPE)"] = round(error, 3)
+                model.results["test1"]["Model Deviance (MAPE)"] = round(
+                    error, 3)
                 model.results["test1"]["Prediction Strength (R2)"] = prediction_r_2.round(
                     3)
                 model.results["test1"]["Adjusted Prediction Strength (Adjusted R2)"] = adjusted_r2.round(
@@ -289,18 +299,19 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                           (date(2002, 12, 31), date(2016, 12, 30)),
                           ]
 
-        
         model.results
         for model in all_models:
             model.results["test3"] = []
             model.results["test3-by-interval"] = {}
 
-            frequencies = [DataFrequency.WEEKLY, DataFrequency.MONTHLY, DataFrequency.QUARTERLY]
+            frequencies = [DataFrequency.WEEKLY,
+                           DataFrequency.MONTHLY, DataFrequency.QUARTERLY]
             for frequency in frequencies:
                 model.frequency = frequency
                 print("Running test 3 for model: ", model.name)
                 for start_date, end_date in time_intervals:
-                    print("Running test 3 for model: ", model.name, " and interval: ", start_date, end_date)
+                    print("Running test 3 for model: ", model.name,
+                          " and interval: ", start_date, end_date)
 
                     if "Random Walk" in model.name:
                         prediction_r_2, adjusted_prediction_r_2, std_error = model.run_model(
@@ -313,14 +324,15 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
 
                         # extra -1 adjusts for alpha not being a parameter
                         adjusted_prediction_r_2 = 1 - \
-                            (1-prediction_r_2)*(len(Y)-1)/(len(Y)-X.shape[1]-1-1)
+                            (1-prediction_r_2)*(len(Y)-1) / \
+                            (len(Y)-X.shape[1]-1-1)
 
                         # Calculate stanbdard error of residuals
                         residuals = Y-lm.predict(X)
                         std_error = residuals.std()
 
-
-                    print("\tfound std error: ", std_error, "Adj. r2 " , adjusted_prediction_r_2)
+                    print("\tfound std error: ", std_error,
+                          "Adj. r2 ", adjusted_prediction_r_2)
 
                     # print(df)
                     # print(list(model.weights.keys()))
@@ -332,7 +344,8 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                     time_result["Model"] = model.name
                     time_result["Prediction interval"] = f"{start_date}-{end_date}"
                     time_result[f"R2"] = prediction_r_2.round(3)
-                    time_result[f"Adjusted R2"] = adjusted_prediction_r_2.round(3)
+                    time_result[f"Adjusted R2"] = adjusted_prediction_r_2.round(
+                        3)
                     time_result[f"Standard error of residuals"] = std_error.round(
                         4)
                     # model.results[f"test3:{start_date}-{end_date}_coeffs"] = normalized_coefficients.to_dict()
@@ -372,23 +385,24 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 if "Benchmark" not in model.name:
                     test_1 = model.results["test1"]
                     all_test_1.append(test_1)
-                    interval_overlap = (model.model_end_date - model.model_start_date).days / (model.original_end_date - model.original_start_date).days
+                    interval_overlap = (model.model_end_date - model.model_start_date).days / (
+                        model.original_end_date - model.original_start_date).days
                     interval_overlap = int(round(interval_overlap*100, 0))
                     table_recreation_performance.append(
-                        {"Model": model.name, 
-                        "Model Deviance (MAPE)": test_1["Model Deviance (MAPE)"]
-                        })
+                        {"Model": model.name,
+                         "Model Deviance (MAPE)": test_1["Model Deviance (MAPE)"]
+                         })
                     table_model_time_intervals.append(
-                        {"Model": model.name, 
-                        "Original interval": f"{model.original_start_date.strftime('%Y-%m-%d')}-{model.original_end_date.strftime('%Y-%m-%d')}",
-                        "Recreation interval": f"{model.model_start_date.strftime('%Y-%m-%d')}-{model.model_end_date.strftime('%Y-%m-%d')}",
-                        "Overlap %": interval_overlap
-                        })
+                        {"Model": model.name,
+                         "Original interval": f"{model.original_start_date.strftime('%Y-%m-%d')}-{model.original_end_date.strftime('%Y-%m-%d')}",
+                         "Recreation interval": f"{model.model_start_date.strftime('%Y-%m-%d')}-{model.model_end_date.strftime('%Y-%m-%d')}",
+                         "Overlap %": interval_overlap
+                         })
                     table_frequency.append(
-                        {"Model": model.name, 
-                        "Frequency": model.frequency.name,
-                        "Sample size": test_1["Sample size"]
-                        })
+                        {"Model": model.name,
+                         "Frequency": model.frequency.name,
+                         "Sample size": test_1["Sample size"]
+                         })
             if runTest2:
                 all_test_2.append(model.results["test2"])
             if runTest3:
@@ -418,47 +432,73 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 json.dump(all_test_3_by_interval, outfile, indent=4)
 
             # dump all test_3_by_interval where frequency is MONTHLY
-            big_interval = [res for res in all_test_3 if res["Prediction interval"] == "2002-12-31-2016-12-30"]
-            results_w = [result for result in big_interval if result["Frequency"] == "WEEKLY"]
-            results_m = [result for result in big_interval if result["Frequency"] == "MONTHLY"]
-            results_q = [result for result in big_interval if result["Frequency"] == "QUARTERLY"]
+            big_interval = [
+                res for res in all_test_3 if res["Prediction interval"] == "2002-12-31-2016-12-30"]
+            results_w = [
+                result for result in big_interval if result["Frequency"] == "WEEKLY"]
+            results_m = [
+                result for result in big_interval if result["Frequency"] == "MONTHLY"]
+            results_q = [
+                result for result in big_interval if result["Frequency"] == "QUARTERLY"]
             print("WEEKLY", results_w)
             print("MONTHLY", results_m)
             print("QUARTERLY", results_q)
-            table_results = []
+            table_results_r2 = []
+            table_results_std = []
             for result_m, result_q, result_w in zip(results_m, results_q, results_w):
                 if result_m["Model"] != result_q["Model"]:
                     print(1/0)
-                table_results.append(
-                    {"Model": result_m["Model"], 
-                    "adj R2_W": result_w["Adjusted R2"],
-                    "adj R2_M": result_m["Adjusted R2"],
-                    "adj R2_Q": result_q["Adjusted R2"],
-                    "std_W": result_w["Standard error of residuals"],
-                    "std_M": result_m["Standard error of residuals"],
-                    "std_Q": result_q["Standard error of residuals"],
-                    })
-            print("table_results", table_results)
+                table_results_r2.append(
+                    {"Model": result_m["Model"],
+                     "adj R2_W": result_w["Adjusted R2"],
+                     "adj R2_M": result_m["Adjusted R2"],
+                     "adj R2_Q": result_q["Adjusted R2"],
+                     })
+                table_results_std.append(
+                    {"Model": result_m["Model"],
+                     "std_W": result_w["Standard error of residuals"],
+                     "std_M": result_m["Standard error of residuals"],
+                     "std_Q": result_q["Standard error of residuals"],
+                     })
 
             with open("results/tables/table_results.json", "w+") as outfile:
-                json.dump(table_results, outfile, indent=4)
+                json.dump(table_results_r2, outfile, indent=4)
 
-            table_results_short = [res for res in table_results if "Benchmark" not in res["Model"] and "short" in res["Model"]]
-            table_result_short_benchmark = [res for res in table_results if "Benchmark" in res["Model"] and "short" in res["Model"]]
-            table_result_long = [res for res in table_results if "Benchmark" not in res["Model"] and "long" in res["Model"]]
-            table_result_long_benchmark = [res for res in table_results if "Benchmark" in res["Model"] and "long" in res["Model"]]
+            table_results_r2_short = [
+                res for res in table_results_r2 if "Benchmark" not in res["Model"] and "short" in res["Model"]]
+            table_result_r2_short_benchmark = [
+                res for res in table_results_r2 if "Benchmark" in res["Model"] and "short" in res["Model"]]
+            table_result_r2_long = [
+                res for res in table_results_r2 if "Benchmark" not in res["Model"] and "long" in res["Model"]]
+            table_result_r2_long_benchmark = [
+                res for res in table_results_r2 if "Benchmark" in res["Model"] and "long" in res["Model"]]
 
-            with open("results/tables/table_results_short.json", "w+") as outfile:
-                json.dump(table_results_short, outfile, indent=4)
-            with open("results/tables/table_result_short_benchmark.json", "w+") as outfile:
-                json.dump(table_result_short_benchmark, outfile, indent=4)
-            with open("results/tables/table_result_long.json", "w+") as outfile:
-                json.dump(table_result_long, outfile, indent=4)
-            with open("results/tables/table_result_long_benchmark.json", "w+") as outfile:
-                json.dump(table_result_long_benchmark, outfile, indent=4)
-            
-            
-            
+            table_results_std_short = [
+                res for res in table_results_std if "Benchmark" not in res["Model"] and "short" in res["Model"]]
+            table_result_std_short_benchmark = [
+                res for res in table_results_std if "Benchmark" in res["Model"] and "short" in res["Model"]]
+            table_result_std_long = [
+                res for res in table_results_std if "Benchmark" not in res["Model"] and "long" in res["Model"]]
+            table_result_std_long_benchmark = [
+                res for res in table_results_std if "Benchmark" in res["Model"] and "long" in res["Model"]]
+
+            with open("results/tables/table_results_r2_short.json", "w+") as outfile:
+                json.dump(table_results_r2_short, outfile, indent=4)
+            with open("results/tables/table_result_r2_short_benchmark.json", "w+") as outfile:
+                json.dump(table_result_r2_short_benchmark, outfile, indent=4)
+            with open("results/tables/table_result_r2_long.json", "w+") as outfile:
+                json.dump(table_result_r2_long, outfile, indent=4)
+            with open("results/tables/table_result_r2_long_benchmark.json", "w+") as outfile:
+                json.dump(table_result_r2_long_benchmark, outfile, indent=4)
+
+            with open("results/tables/table_results_std_short.json", "w+") as outfile:
+                json.dump(table_results_std_short, outfile, indent=4)
+            with open("results/tables/table_result_std_short_benchmark.json", "w+") as outfile:
+                json.dump(table_result_std_short_benchmark, outfile, indent=4)
+            with open("results/tables/table_result_std_long.json", "w+") as outfile:
+                json.dump(table_result_std_long, outfile, indent=4)
+            with open("results/tables/table_result_std_long_benchmark.json", "w+") as outfile:
+                json.dump(table_result_std_long_benchmark, outfile, indent=4)
 
             # Plot the adjusted r2 for all long models for each time interval
             for time_interval, time_results in all_test_3_by_interval.items():
