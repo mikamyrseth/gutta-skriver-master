@@ -1,0 +1,39 @@
+{
+  "name": "Symbolic regression",
+  "authors": ["Oss"],
+  "publish_year": 2022,
+  "page": "69 (5.5)",
+  "original_start_date": "2001-04-01",
+  "original_end_date": "2020-01-01",
+  "model_start_date": "2002-01-01",
+  "model_end_date": "2020-01-01",
+  "dependent_variable": "DELTA-LOG-NB-KKI",
+  "frequency": "WEEKLY",
+  "lags": 2,
+  "weights": {
+    "ALPHA": 0.0002,
+    "LAGGED-DELTA-LOG-NB-KKI": 0.1985,
+    "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": -2.7891,
+    "DELTA-LOG-ICE-BRENT": -0.0574,
+    "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": -1.5347,
+    "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE": 1.0238,
+    "LOG-ICE-BRENT": -0.059,
+    "LOG-DB-CVIX": 0.0878,
+    "LOG-S&P-500": 0.1637,
+    "DELTA-CUSTOM-MYRSTUEN-PRICE-DIFFERENCE": 1,
+    "DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M": 1,
+    "CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR": 1,
+    "DELTA-CUSTOM-AGGREGATE-BASIC-BALANCE": 1,
+    "CUSTOM-JOHANSEN-INTEREST-DIFFERENCE-3M": -3.0706,
+    "CUSTOM-JOHANSEN-PRICE-DIFFERENCE": 1.0379,
+    "CUSTOM-JOHANSEN-GRI": 0.3259,
+    "LOG-SSB-INDUSTRIAL-PRODUCTION": 0.6562,
+    "NB-INTEREST-FORECAST-3Y": -0.012828
+  },
+  "stds": {
+    "DELTA-ICE-BRENT": 0.0089
+  },
+  "stats": {
+    "adjustedR2": 0.358
+  }
+}
