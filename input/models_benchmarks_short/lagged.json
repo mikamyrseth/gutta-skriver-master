@@ -10,7 +10,7 @@
   "lags": 1,
   "weights": {
     "ALPHA": 0,
-    "DELTA-LAGGED-LOG-NB-I44": 1
+    "LAGGED-DELTA-LOG-NB-I44": 1
   },
   "stds": {},
   "stats": {}
