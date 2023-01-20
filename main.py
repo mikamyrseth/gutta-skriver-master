@@ -1,4 +1,5 @@
 from datetime import datetime
+import itertools
 from pandas import DatetimeIndex
 from CustomTypes.Dataseries import *
 from CustomTypes.Model import *
@@ -8,6 +9,7 @@ import os
 from datetime import datetime, timedelta
 from statsmodels.tsa.stattools import adfuller
 import statsmodels.api as sm
+from scipy.stats.mstats import zscore
 
 
 def is_stationary(df: pd.DataFrame, cutoff=0.05) -> bool:
@@ -97,9 +99,9 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
     all_models = all_long_models + all_short_models
 
     runSandbox = False
-    runTest1 = False
+    runTest1 = True
     runTest2 = False
-    runTest3 = True
+    runTest3 = False
 
     # Sandbox testing
     if runSandbox:
@@ -167,20 +169,6 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 # Calculate standard error of residuals
                 residuals = Y - lm.predict(X)
                 std_error = residuals.std()
-
-                # Plot coefficients
-                normalized_coefficients.plot(kind="barh")
-
-                # Increase canvas size
-                fig = plt.gcf()
-                fig.set_size_inches(18.5, 10.5)
-
-                # ensure plot labels are showing
-                plt.tight_layout()
-
-                # save plot
-                fig.savefig(
-                    f'results/normalized-coefficients/{model.name}.png')
 
                 # save stats
                 model.results["test1"] = {}
@@ -303,12 +291,21 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
         for model in all_models:
             model.results["test3"] = []
             model.results["test3-by-interval"] = {}
+            print("Running test 3 for model: ", model.name)
+
+            if "short" in model.name:
+                model.dependent_variable = "DELTA-NB-KKI"
+            elif "long" in model.name:
+                model.dependent_variable = "NB-KKI"
+            else:
+                print("neither long or short")
+                print(1/0)
 
             frequencies = [DataFrequency.WEEKLY,
                            DataFrequency.MONTHLY, DataFrequency.QUARTERLY]
             for frequency in frequencies:
                 model.frequency = frequency
-                print("Running test 3 for model: ", model.name)
+
                 for start_date, end_date in time_intervals:
                     print("Running test 3 for model: ", model.name,
                           " and interval: ", start_date, end_date)
@@ -338,19 +335,26 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                     # print(list(model.weights.keys()))
                     # print(X)
                     normalized_coefficients = lm.coef_ * X.std(axis=0)
+                    # normalized_coefficients = normalized_coefficients*100
                     normalized_coefficients = normalized_coefficients.abs()
+                    normalized_coefficients = normalized_coefficients.round(3)
+                    normalized_coefficients = normalized_coefficients.drop(
+                        "ALPHA")
                     time_result = {}
                     time_result["Frequency"] = frequency.name
                     time_result["Model"] = model.name
-                    time_result["Prediction interval"] = f"{start_date}-{end_date}"
+                    # convert date to two digit year
+                    time_result["Start Date"] = start_date.strftime(
+                        '%Y-%m-%d')
+                    time_result["Prediction interval"] = f"{start_date.strftime('%y')}-{end_date.strftime('%y')}"
                     time_result[f"R2"] = prediction_r_2.round(3)
                     time_result[f"Adjusted R2"] = adjusted_prediction_r_2.round(
                         3)
                     time_result[f"Standard error of residuals"] = std_error.round(
                         4)
                     # model.results[f"test3:{start_date}-{end_date}_coeffs"] = normalized_coefficients.to_dict()
-                    time_result[f"Top Coefficient"] = normalized_coefficients.idxmax(
-                        axis=0)
+                    time_result[f"Standardized coefficients"] = normalized_coefficients.to_dict(
+                    )
                     model.results["test3"].append(time_result)
                     model.results["test3-by-interval"][f"{start_date}-{end_date}"] = time_result
 
@@ -389,7 +393,38 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                     model.results["test3-by-interval"][f"{start_date}-{end_date}"]["Significant"] = all_significant
                     model.results["test3-by-interval"][f"{start_date}-{end_date}"]["Non-significant variables"] = not_significant
 
-    # Save results
+                    # if on last interval
+                    # if start_date == time_intervals[-1][0] and end_date == time_intervals[-1][1] and "Benchmark" not in model.name and frequency == DataFrequency.MONTHLY:
+                    # X = zscore(X).drop("ALPHA", axis=1)
+                    # Y = zscore(Y)
+                    # print(X)
+                    # print(Y)
+                    # print(sm.OLS(Y, X).fit().summary())
+                    # normalized_coefficients = abs(est.params.drop("ALPHA"))
+                    # Plot coefficients
+                    # normalized_coefficients.plot(kind="barh")
+
+                    # round to 3 decimal places
+                    # normalized_coefficients = normalized_coefficients.round(
+                    #     3)
+
+                    # Increase canvas size
+                    # fig = plt.gcf()
+                    # fig.set_size_inches(18.5, 10.5)
+
+                    # ensure plot labels are showing
+                    # plt.tight_layout()
+
+                    # save plot
+                    # fig.savefig(
+                    #     f'results/normalized-coefficients/{model.name}.png')
+
+                    # save nornalized coefficients to json
+                    # with open(f'results/tables/coeffs_{model.name}.json', 'w') as fp:
+                    #     json.dump(
+                    #         normalized_coefficients.to_dict(), fp, indent=4)
+
+                    # Save results
     if True:
         all_test_1 = []
         all_test_2 = []
@@ -397,6 +432,7 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
         table_model_time_intervals = []
         table_recreation_performance = []
         table_frequency = []
+        table_standardized_coefficients = {}
         all_test_3_by_interval = {}
         for model in all_models:
             with open("results/" + model.name + ".json", "w+") as outfile:
@@ -426,8 +462,21 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
             if runTest2:
                 all_test_2.append(model.results["test2"])
             if runTest3:
+                stand_coeffs_model = []
                 for time_result in model.results["test3"]:
                     all_test_3.append(time_result)
+                    if "Benchmark" in model.name:
+                        continue
+                    if time_result["Frequency"] != DataFrequency.MONTHLY.name:
+                        continue
+                    coeffs = time_result["Standardized coefficients"]
+                    coeffs["Interval"] = time_result["Prediction interval"]
+                    # parse prediction interval
+                    stand_coeffs_model.append(
+                        coeffs)
+                if "Benchmark" in model.name:
+                    continue
+                table_standardized_coefficients[model.name] = stand_coeffs_model
                 for interval, time_result in model.results["test3-by-interval"].items():
                     if interval not in all_test_3_by_interval:
                         all_test_3_by_interval[interval] = []
@@ -453,7 +502,7 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
 
             # dump all test_3_by_interval where frequency is MONTHLY
             big_interval = [
-                res for res in all_test_3 if res["Prediction interval"] == "2003-01-01-2021-12-30"]
+                res for res in all_test_3 if res["Prediction interval"] == "03-21"]
             results_w = [
                 result for result in big_interval if result["Frequency"] == "WEEKLY"]
             results_m = [
@@ -519,6 +568,31 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 json.dump(table_result_std_long, outfile, indent=4)
             with open("results/tables/table_result_std_long_benchmark.json", "w+") as outfile:
                 json.dump(table_result_std_long_benchmark, outfile, indent=4)
+
+            for model, coeffs in table_standardized_coefficients.items():
+                with open(f"results/tables/coeffs_standardized_{model}.json", "w+") as outfile:
+                    json.dump(coeffs, outfile, indent=4)
+
+            # table for bechmarks over time
+            table_short_benchmark_over_time = [
+                res for res in all_test_3 if "Benchmark" in res["Model"] and "short" in res["Model"]]
+            table_short_benchmark_over_time = [
+                res for res in table_short_benchmark_over_time if res["Frequency"] == "MONTHLY"]
+            table_short_benchmark_over_time = [
+                {
+                    "Model": dict_["Model"],
+                    dict_["Prediction interval"]: dict_["Adjusted R2"]
+                } for dict_ in table_short_benchmark_over_time
+            ]
+            # combine all dicts in table_short_benchmark_over_time with same value of "Model"
+            grouped = itertools.groupby(
+                table_short_benchmark_over_time, key=lambda x: x["Model"])
+            print(grouped)
+            table_short_benchmark_over_time = [
+                {k: v for d in g for k, v in d.items()} for _, g in grouped]
+            print(table_short_benchmark_over_time)
+            with open("results/tables/table_short_benchmark_over_time.json", "w+") as outfile:
+                json.dump(table_short_benchmark_over_time, outfile, indent=4)
 
             # Plot the adjusted r2 for all long models for each time interval
             for time_interval, time_results in all_test_3_by_interval.items():
