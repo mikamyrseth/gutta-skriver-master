@@ -226,17 +226,17 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
 
     # Create model
     model = PySRRegressor(
-    niterations=50000,  # < Increase me for better results
-    binary_operators=["+","-", "*", "/"],
+    niterations=500,  # < Increase me for better results
+    binary_operators=["+","-", "*"],
     unary_operators=[
-        "sqrt",
+        # "sqrt",
         # "log",
-        "abs",
-        "cube",
+        # "abs",
+        # "cube",
         # "pow"
-        "square",
+        # "square",
         # "cos",
-        "exp",
+        # "exp",
         # "sin",
         # "inv(x) = 1/x",
         # ^ Custom operator (julia syntax)
@@ -249,14 +249,31 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     )
 
     model.fit(X_train, Y_train)
+    # model = PySRRegressor.from_file("hall_of_fame_2023-01-20_084138.261.pkl")
 
     print(model)
+
+    # TODO: Choose equation with best out of sample performance
+
+    best_equation = 0
+    best_equation_eq = 0
+    best_r2 = 0
+    for i, eq in enumerate(model.equations_):
+        Y_pred_oos = model.predict(X_test, i)
+        r2_score_oos = r2_score(Y_test, Y_pred_oos)
+        if r2_score_oos > best_r2:
+            best_r2 = r2_score_oos
+            best_equation = i
+            best_equation_eq = eq
+    
+    print("Best equation: ", best_equation)
+
 
     # Make predictions
     # X_test = scaler_x.transform(X_test)
     # Y_test = scaler_y.transform(Y_test)
-    Y_pred_is = model.predict(X_train)
-    Y_pred_oos = model.predict(X_test)
+    Y_pred_is = model.predict(X_train, best_equation)
+    Y_pred_oos = model.predict(X_test, best_equation)
 
     # Evaluate model
     print("Symbolic In sample")
