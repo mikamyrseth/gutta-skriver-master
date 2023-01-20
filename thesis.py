@@ -179,7 +179,7 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 model.results["test1"]["Top Coefficient"] = normalized_coefficients.idxmax(
                     axis=0)
                 model.results["test1"]["old coefficients"] = old_coeffs_dict
-                model.results["test1"]["new coefficients"] = model.weights
+                model.results["test1"]["new coefficients"] = model.weights.copy()
                 model.results["test1"]["coefficient deviance"] = coeff_deviance
                 model.results["test1"]["Model Similarity (R2)"] = round(r2, 3)
                 model.results["test1"]["Model Deviance (MAPE)"] = round(
@@ -195,6 +195,7 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                 # test_stationarity
                 all_stationary = True
                 not_stationary = []
+                stationary_p_values = {}
                 for col in model.weights.keys():
                     if "Random Walk" in model.name:
                         continue
@@ -204,12 +205,16 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                     if not stationary:
                         all_stationary = False
                         not_stationary.append(col)
+                    stationary_p_values[col] = round(adfuller(df[col])[1], 3)
+                model.results["test1"]["all stationary p values"] = stationary_p_values
                 model.results["test1"]["Stationary"] = all_stationary
                 model.results["test1"]["Non-stationary variables"] = not_stationary
 
                 # test coefficient significance
                 all_significant = True
                 not_significant = {}
+                significance_p_values = {}
+                significance_t_values = {}
                 for col in model.weights.keys():
                     if "Random Walk" in model.name:
                         continue
@@ -218,12 +223,17 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                     # calculate p-value
                     est = sm.OLS(Y, X).fit()
                     p_value = est.pvalues[col]
+                    t_value = est.tvalues[col]
                     # print(est.summary())
                     # print(f"{col} p-value: {p_value}")
                     significant = p_value < 0.05
                     if not significant:
                         all_significant = False
                         not_significant[col] = p_value
+                    significance_p_values[col] = round(p_value, 3)
+                    significance_t_values[col] = round(t_value, 3)
+                model.results["test1"]["all significance p values"] = significance_p_values
+                model.results["test1"]["all significance t values"] = significance_t_values
                 model.results["test1"]["Significant"] = all_significant
                 model.results["test1"]["Non-significant variables"] = not_significant
 
@@ -280,11 +290,11 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
 
     # test 3 - time intervals
     if runTest3:
-        time_intervals = [(date(2003, 1, 1), date(2007, 1, 1)),
+        time_intervals = [(date(2003, 1, 31), date(2007, 1, 1)),
                           (date(2007, 1, 1), date(2011, 1, 1)),
                           (date(2011, 1, 1), date(2016, 1, 1)),
                           (date(2016, 1, 1), date(2021, 12, 30)),
-                          (date(2003, 1, 1), date(2021, 12, 30)),
+                          (date(2003, 1, 31), date(2021, 12, 30)),
                           ]
 
         model.results
@@ -361,21 +371,27 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                     # test_stationarity
                     all_stationary = True
                     not_stationary = []
+                    stationary_p_values = {}
                     for col in model.weights.keys():
                         if "Random Walk" in model.name:
                             continue
                         if col == "ALPHA":
                             continue
                         stationary = is_stationary(df[col])
+                        p_value = round(adfuller(df[col])[1], 3)
                         if not stationary:
                             all_stationary = False
                             not_stationary.append(col)
+                        stationary_p_values[col] = p_value
+                    model.results["test3-by-interval"][f"{start_date}-{end_date}"]["all stationary p values"] = stationary_p_values
                     model.results["test3-by-interval"][f"{start_date}-{end_date}"]["Stationary"] = all_stationary
                     model.results["test3-by-interval"][f"{start_date}-{end_date}"]["Non-stationary variables"] = not_stationary
 
                     # test coefficient significance
                     all_significant = True
                     not_significant = {}
+                    significance_p_values = {}
+                    significance_t_values = {}
                     for col in model.weights.keys():
                         if "Random Walk" in model.name:
                             continue
@@ -384,14 +400,21 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                         # calculate p-value
                         est = sm.OLS(Y, X).fit()
                         p_value = est.pvalues[col]
+                        t_value = est.tvalues[col]
+                        significance_p_values[col] = round(p_value, 3)
+                        significance_t_values[col] = round(t_value, 3)
                         # print(est.summary())
                         # print(f"{col} p-value: {p_value}")
                         significant = p_value < 0.05
                         if not significant:
                             all_significant = False
                             not_significant[col] = p_value
+                    model.results["test3-by-interval"][f"{start_date}-{end_date}"]["all significance p values"] = significance_p_values
+                    model.results["test3-by-interval"][f"{start_date}-{end_date}"]["all significance t values"] = significance_t_values
                     model.results["test3-by-interval"][f"{start_date}-{end_date}"]["Significant"] = all_significant
                     model.results["test3-by-interval"][f"{start_date}-{end_date}"]["Non-significant variables"] = not_significant
+                    model.results["test3-by-interval"][f"{start_date}-{end_date}"]["new coefficients"] = model.weights.copy(
+                    )
 
                     # if on last interval
                     # if start_date == time_intervals[-1][0] and end_date == time_intervals[-1][1] and "Benchmark" not in model.name and frequency == DataFrequency.MONTHLY:
@@ -459,6 +482,24 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
                          "Frequency": model.frequency.name,
                          "Sample size": test_1["Sample size"]
                          })
+
+            table_test_1_p_and_t = []
+            for coeff in model.weights.keys():
+                if "Random Walk" in model.name:
+                    continue
+                if coeff == "ALPHA":
+                    continue
+                table_test_1_p_and_t.append(
+                    {"Coefficient": coeff,
+                     "value": round(model.results["test1"]["new coefficients"][coeff], 3),
+                     "p-value-stationary": model.results["test1"]["all stationary p values"][coeff],
+                     "p-value": model.results["test1"]["all significance p values"][coeff],
+                     "t-value": model.results["test1"]["all significance t values"][coeff]
+                     })
+
+            with open(f"results/tables/p-and-t/table_test_1_p_and_t{model.name}.json", "w+") as outfile:
+                json.dump(table_test_1_p_and_t, outfile, indent=4)
+
             if runTest2:
                 all_test_2.append(model.results["test2"])
             if runTest3:
@@ -502,7 +543,30 @@ def load_json() -> "tuple[ list[Dataseries], list[CustomDataseries], list[Model]
 
             # dump all test_3_by_interval where frequency is MONTHLY
             big_interval = [
-                res for res in all_test_3 if res["Prediction interval"] == "03-21"]
+                res for res in all_test_3 if res["Prediction interval"] == "2003-01-01-2021-12-30"]
+
+            for model in all_models:
+                res_model = [
+                    res for res in big_interval if res["Model"] == model.name]
+                table_test_3_p_and_t = []
+                for res in res_model:
+                    for coeff in model.weights.keys():
+                        if "Random Walk" in model.name:
+                            continue
+                        if coeff == "ALPHA":
+                            continue
+                        table_test_3_p_and_t.append(
+                            {"Coefficient": coeff,
+                             "Frequency": res["Frequency"],
+                             "value": round(res["new coefficients"][coeff], 3),
+                             "p-value, stationarity": res["all stationary p values"][coeff],
+                             "p-value": res["all significance p values"][coeff],
+                             "t-value": res["all significance t values"][coeff]
+                             })
+
+                with open(f"results/tables/p-and-t/table_test_3_p_and_t_{model.name}.json", "w+") as outfile:
+                    json.dump(table_test_3_p_and_t, outfile, indent=4)
+
             results_w = [
                 result for result in big_interval if result["Frequency"] == "WEEKLY"]
             results_m = [

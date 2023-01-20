@@ -191,5 +191,13 @@
     "publisher": "Statistics Norway",
     "bbg_ticker": "NA",
     "link": "https://www.ssb.no/en/statbank/table/09189/tableViewLayout1/"
+  },
+  {
+    "name": "NB-FCI",
+    "description": "Financial Conditions Index",
+    "frequency": "DAILY",
+    "publisher": "Norges Bank",
+    "bbg_ticker": "NA",
+    "link": "https://www.norges-bank.no/aktuelt/nyheter-og-hendelser/Publikasjoner/Pengepolitisk-rapport-med-vurdering-av-finansiell-stabilitet/2022/ppr-42022/"
   }
 ]
