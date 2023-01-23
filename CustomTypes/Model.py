@@ -103,7 +103,8 @@ class Model(object):
 
         print("mika var her")
         print(list(self.weights.keys()))
-        model, prediction = symbolic_regression(df, list(self.weights.keys()), self.dependent_variable)
+        model, prediction = symbolic_regression(
+            df, list(self.weights.keys()), self.dependent_variable)
         return model, prediction
 
         for index, row in df.iterrows():
@@ -112,7 +113,6 @@ class Model(object):
                 prediction += row[series]*weight
 
             df.loc[index, 'OUTPUT'] = prediction
-
 
         r2 = r2_score(df[self.dependent_variable].tolist(),
                       df["OUTPUT"].tolist())
@@ -188,8 +188,8 @@ class Model(object):
         self.weights["ALPHA"] = lm.intercept_
         # print(f"Reestimated model {self.name}")
 
-
         return lm, df
+
 
 def create_windows(df, window_size=10):
     X = []
@@ -197,6 +197,7 @@ def create_windows(df, window_size=10):
         X.append(df[i:i + window_size])
     X = np.array(X)
     return X
+
 
 def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     # df.drop("ALPHA", axis=1, inplace=True)
@@ -207,10 +208,9 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     X.drop("ALPHA", axis=1, inplace=True)
     X.drop(Y_name, axis=1, inplace=True)
 
-    #Remove dashes from column names
+    # Remove dashes from column names
     X.columns = [x.replace("-", "_") for x in X.columns]
     X.columns = [x.replace("&", "") for x in X.columns]
-
 
     print("names")
     print(X_names)
@@ -227,71 +227,73 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
 
     # Create model
     model = PySRRegressor(
-    # populations=8,
-    # ^ 2 populations per core, so one is always running.
-    population_size=50,
-    # ^ Custom complexity of particular operators.
-    # ^ Punish constants more than variables
-    # ^ Slightly larger populations, for greater diversity.
-    niterations=1000,  # < Increase me for better results
-    binary_operators=[
-        "+", 
-        "-", 
-        "mult",
-        "coeff(x, y) = x*y"
+        # populations=8,
+        # ^ 2 populations per core, so one is always running.
+        population_size=50,
+        # ^ Custom complexity of particular operators.
+        # ^ Punish constants more than variables
+        # ^ Slightly larger populations, for greater diversity.
+        niterations=200,  # < Increase me for better results
+        maxsize=40,  # default 20
+        binary_operators=[
+            "+",
+            "-",
+            "mult",
+            "coeff(x, y) = x*y"
         ],
-    complexity_of_constants = 1,
-    complexity_of_variables = 2,
-    constraints={
-        'mult': (3, 3),
-        'coeff': (1,3),
-        'cube': 2,
-        # 'square': 2,
-        'squaresign': 2,
-        'abs': 2,
-        'exp': 2,
-        'isnegative': 2,
-    },
-    parsimony = 0.0004, # 0.0032
-    turbo=True,
-    unary_operators=[
-        # "sqrt",
-        # "log",
-        "abs",
-        "cube",
-        # "pow"
-        # "square",
-        "squaresign(x) = x*abs(x)",
-        # "cos",
-        # "exp",
-        "isnegative(x) = x-abs(x)",
-        # "sin",
-        # "inv(x) = 1/x",
-        # ^ Custom operator (julia syntax)
-    ],
-    complexity_of_operators={
-        "mult": 1,
-        "coeff": 0,
-        "+": 0,
-        "-": 0,
-        # "sqrt": 0.1,
-        "cube": 1,
-        # "square": 1,
-        "squaresign": 1,
-        "abs": 1,
-        "exp": 1,
-        "isnegative": 1,
-    },
-    extra_sympy_mappings={
-        "inv": lambda x: 1 / x,
-        "coeff": lambda x, y: x * y,
-        "isnegative": lambda x: x - abs(x),
-        "squaresign": lambda x: x * abs(x),
-    },
-    # ^ Define operator for SymPy as well
-    # loss="loss(x, y) = abs(x - y)",
-    # ^ Custom loss function (julia syntax)
-    model_selection = 'best'
+        complexity_of_constants=1,
+        complexity_of_variables=2,
+        constraints={
+            'mult': (3, 3),
+            'coeff': (1, 3),
+            'cube': 2,
+            # 'square': 2,
+            'squaresign': 2,
+            'abs': 2,
+            'exp': 2,
+            'isnegative': 2,
+        },
+        parsimony=0.0004,  # 0.0032
+        turbo=True,
+        unary_operators=[
+            # "sqrt",
+            # "log",
+            "abs",
+            "cube",
+            # "pow"
+            # "square",
+            "squaresign(x) = x*abs(x)",
+            # "cos",
+            # "exp",
+            "isnegative(x) = x-abs(x)",
+            # "sin",
+            # "inv(x) = 1/x",
+            # ^ Custom operator (julia syntax)
+        ],
+        complexity_of_operators={
+            "mult": 1,
+            "coeff": 0,
+            "+": 0,
+            "-": 0,
+            # "sqrt": 0.1,
+            "cube": 1,
+            # "square": 1,
+            "squaresign": 1,
+            "abs": 1,
+            "exp": 1,
+            "isnegative": 1,
+        },
+        extra_sympy_mappings={
+            "inv": lambda x: 1 / x,
+            "coeff": lambda x, y: x * y,
+            "isnegative": lambda x: x - abs(x),
+            "squaresign": lambda x: x * abs(x),
+        },
+        # ^ Define operator for SymPy as well
+        loss="L1DistLoss()",
+        # loss="loss(x, y) = abs(x - y)",
+        # ^ Custom loss function (julia syntax)
+        model_selection='best'
     )
 
     model.fit(X_train, Y_train)
@@ -319,9 +321,8 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
             best_r2 = r2_score_oos
             best_equation = i
             best_equation_eq = eq
-    
-    print(f"Best equation: {best_equation}: {best_equation_eq}")
 
+    print(f"Best equation: {best_equation}: {best_equation_eq}")
 
     # Make predictions
     # X_test = scaler_x.transform(X_test)
@@ -335,8 +336,6 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     print("MSE: ", mean_squared_error(Y_train, Y_pred_is))
     print("MAE: ", mean_absolute_error(Y_train, Y_pred_is))
 
-
-    
     print("Symbolic Out of Sample")
     print("R2: ", r2_score(Y_test, Y_pred_oos))
     print("MSE: ", mean_squared_error(Y_test, Y_pred_oos))
@@ -383,7 +382,8 @@ def random_forrest_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: st
     # Y_train = scaler_y.fit_transform(Y_train)
 
     # Create model
-    model = RandomForestRegressor(n_estimators=100, n_jobs=-1, verbose=1, max_depth=5)
+    model = RandomForestRegressor(
+        n_estimators=100, n_jobs=-1, verbose=1, max_depth=5)
     model.fit(X_train, Y_train)
 
     # Make predictions
@@ -398,8 +398,6 @@ def random_forrest_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: st
     print("MSE: ", mean_squared_error(Y_train, Y_pred_is))
     print("MAE: ", mean_absolute_error(Y_train, Y_pred_is))
 
-
-    
     print("Forrest Out of Sample")
     print("R2: ", r2_score(Y_test, Y_pred_oos))
     print("MSE: ", mean_squared_error(Y_test, Y_pred_oos))
@@ -426,7 +424,6 @@ def random_forrest_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: st
 def xgboost_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     # df.drop("ALPHA", axis=1, inplace=True)
 
-    
     X = df[X_names]
     Y = df[Y_name]
 
@@ -459,7 +456,6 @@ def xgboost_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     print("MSE: ", mean_squared_error(Y_train, Y_pred_is))
     print("MAE: ", mean_absolute_error(Y_train, Y_pred_is))
 
-
     Y_pred_oos = model.predict(X_test)
     print("XGBoost OOS")
     print("R2: ", r2_score(Y_test, Y_pred_oos))
@@ -487,7 +483,6 @@ def xgboost_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
 def lstm_regression2(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     # df.drop("ALPHA", axis=1, inplace=True)
 
-    
     X = df[X_names]
     Y = df[Y_name]
 
@@ -527,17 +522,19 @@ def lstm_regression2(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     print(Y_train)
 
     model = keras.Sequential([
-            # keras.layers.Input(batch_shape=(None, None, 1)),
-            # keras.layers.LSTM(5, return_sequences=True),
-            keras.layers.LSTM(50, input_shape=(window_size, 1)),
-            # keras.layers.LSTM(10),
-            # keras.layers.Dense(8),
-            keras.layers.Dense(1),
-        ])
-    model.compile(loss='mean_squared_error', optimizer='adam', metrics=['mean_squared_error'])
-    
+        # keras.layers.Input(batch_shape=(None, None, 1)),
+        # keras.layers.LSTM(5, return_sequences=True),
+        keras.layers.LSTM(50, input_shape=(window_size, 1)),
+        # keras.layers.LSTM(10),
+        # keras.layers.Dense(8),
+        keras.layers.Dense(1),
+    ])
+    model.compile(loss='mean_squared_error', optimizer='adam',
+                  metrics=['mean_squared_error'])
+
     # train_data = keras.preprocessing.sequence.TimeseriesGenerator(X_train, Y_train, length=1, batch_size=1)
-    histroy = model.fit(X_train_window, Y_train_window, epochs=20, verbose=1, validation_data=(X_test_window, Y_test_window))
+    histroy = model.fit(X_train_window, Y_train_window, epochs=20,
+                        verbose=1, validation_data=(X_test_window, Y_test_window))
 
     # Predict on test data
     predictions = model.predict(X_train_window)
@@ -550,7 +547,7 @@ def lstm_regression2(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     # compare with linear regression
     from sklearn.linear_model import LinearRegression
     lr_model = LinearRegression()
-    #reshape X
+    # reshape X
     # X_train = np.array(X_train).reshape(-1, 1)
     # print(X_train)
     # print(Y_train)
@@ -586,6 +583,7 @@ def lstm_regression2(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
 
     return
 
+
 def lstm_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     # df.drop("ALPHA", axis=1, inplace=True)
 
@@ -616,15 +614,16 @@ def lstm_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     print(Y_train)
 
     model = keras.Sequential([
-            # keras.layers.Input(batch_shape=(None, None, 1)),
-            # keras.layers.LSTM(5, return_sequences=True),
-            keras.layers.Dense(8, input_dim=4),
-            keras.layers.Dense(4),
-            keras.layers.Dense(2),
-            keras.layers.Dense(1),
-        ])
-    model.compile(loss='mean_squared_error', optimizer='adam', metrics=['mean_squared_error'])
-    
+        # keras.layers.Input(batch_shape=(None, None, 1)),
+        # keras.layers.LSTM(5, return_sequences=True),
+        keras.layers.Dense(8, input_dim=4),
+        keras.layers.Dense(4),
+        keras.layers.Dense(2),
+        keras.layers.Dense(1),
+    ])
+    model.compile(loss='mean_squared_error', optimizer='adam',
+                  metrics=['mean_squared_error'])
+
     # train_data = keras.preprocessing.sequence.TimeseriesGenerator(X_train, Y_train, length=1, batch_size=1)
     histroy = model.fit(X_train, Y_train, epochs=10000)
 
@@ -637,7 +636,7 @@ def lstm_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     # compare with linear regression
     from sklearn.linear_model import LinearRegression
     lr_model = LinearRegression()
-    #reshape X
+    # reshape X
     # X_train = np.array(X_train).reshape(-1, 1)
     # print(X_train)
     # print(Y_train)
