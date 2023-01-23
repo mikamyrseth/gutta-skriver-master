@@ -209,6 +209,7 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
 
     #Remove dashes from column names
     X.columns = [x.replace("-", "_") for x in X.columns]
+    X.columns = [x.replace("&", "") for x in X.columns]
 
 
     print("names")
@@ -216,7 +217,7 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     print(Y_name)
 
     X_train, X_test, Y_train, Y_test = train_test_split(
-        X, Y, test_size=0.7, shuffle=False)
+        X, Y, test_size=0.5, shuffle=False)
 
     # Scale data
     # scaler_x = StandardScaler()
@@ -226,47 +227,100 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
 
     # Create model
     model = PySRRegressor(
-    niterations=500,  # < Increase me for better results
-    binary_operators=["+","-", "*"],
+    # populations=8,
+    # ^ 2 populations per core, so one is always running.
+    population_size=50,
+    # ^ Custom complexity of particular operators.
+    # ^ Punish constants more than variables
+    # ^ Slightly larger populations, for greater diversity.
+    niterations=1000,  # < Increase me for better results
+    binary_operators=[
+        "+", 
+        "-", 
+        "mult",
+        "coeff(x, y) = x*y"
+        ],
+    complexity_of_constants = 1,
+    complexity_of_variables = 2,
+    constraints={
+        'mult': (3, 3),
+        'coeff': (1,3),
+        'cube': 2,
+        # 'square': 2,
+        'squaresign': 2,
+        'abs': 2,
+        'exp': 2,
+        'isnegative': 2,
+    },
+    parsimony = 0.0004, # 0.0032
+    turbo=True,
     unary_operators=[
         # "sqrt",
         # "log",
-        # "abs",
-        # "cube",
+        "abs",
+        "cube",
         # "pow"
         # "square",
+        "squaresign(x) = x*abs(x)",
         # "cos",
         # "exp",
+        "isnegative(x) = x-abs(x)",
         # "sin",
         # "inv(x) = 1/x",
         # ^ Custom operator (julia syntax)
     ],
-    extra_sympy_mappings={"inv": lambda x: 1 / x},
+    complexity_of_operators={
+        "mult": 1,
+        "coeff": 0,
+        "+": 0,
+        "-": 0,
+        # "sqrt": 0.1,
+        "cube": 1,
+        # "square": 1,
+        "squaresign": 1,
+        "abs": 1,
+        "exp": 1,
+        "isnegative": 1,
+    },
+    extra_sympy_mappings={
+        "inv": lambda x: 1 / x,
+        "coeff": lambda x, y: x * y,
+        "isnegative": lambda x: x - abs(x),
+        "squaresign": lambda x: x * abs(x),
+    },
     # ^ Define operator for SymPy as well
-    loss="loss(x, y) = (x - y)^2",
+    # loss="loss(x, y) = abs(x - y)",
     # ^ Custom loss function (julia syntax)
     model_selection = 'best'
     )
 
     model.fit(X_train, Y_train)
-    # model = PySRRegressor.from_file("hall_of_fame_2023-01-20_084138.261.pkl")
+    # model = PySRRegressor.from_file("hall_of_fame_2023-01-22_164704.857.pkl")
 
     print(model)
+
+    print("Equations:")
+    print(model.equations_)
+    for index, row in model.equations_.iterrows():
+        eq = row["equation"]
+        print(f"Equation {index}: {eq}")
 
     # TODO: Choose equation with best out of sample performance
 
     best_equation = 0
     best_equation_eq = 0
     best_r2 = 0
-    for i, eq in enumerate(model.equations_):
+    for i, row in model.equations_.iterrows():
+        eq = row["equation"]
         Y_pred_oos = model.predict(X_test, i)
         r2_score_oos = r2_score(Y_test, Y_pred_oos)
+        print(f"Equation {i}: R2 oos: {r2_score_oos}")
         if r2_score_oos > best_r2:
             best_r2 = r2_score_oos
             best_equation = i
             best_equation_eq = eq
     
-    print("Best equation: ", best_equation)
+    print(f"Best equation: {best_equation}: {best_equation_eq}")
 
 
     # Make predictions
