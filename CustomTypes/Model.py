@@ -321,22 +321,40 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
         eq = row["equation"]
         print(f"Equation {index}: {eq}")
 
-    # TODO: Choose equation with best out of sample performance
+    # calculate linear r2 vaidation
+    lr = LinearRegression()
+    lr.fit(X_train, Y_train)
+    Y_pred_lr = lr.predict(X_validate)
+    r2_score_lr = r2_score(Y_validate, Y_pred_lr)
+    print(f"Linear Regression: R2 validation: {r2_score_lr}")
 
     best_equation = 0
     best_equation_eq = 0
     best_r2 = 0
+    alt_best_equation = 0
+    alt_best_equation_eq = 0
+    alt_best_r2 = 0
     for i, row in model.equations_.iterrows():
         eq = row["equation"]
         Y_pred_oos = model.predict(X_validate, i)
+        y_pred_super_oos = model.predict(X_test, i)
         r2_score_oos = r2_score(Y_validate, Y_pred_oos)
-        print(f"Equation {i}: R2 oos: {r2_score_oos}")
+        r2_score_super_oos = r2_score(Y_test, y_pred_super_oos)
+        print(
+            f"Equation {i}: R2 validation: {r2_score_oos}, ({r2_score_super_oos}))")
         if r2_score_oos > best_r2:
             best_r2 = r2_score_oos
             best_equation = i
             best_equation_eq = eq
-
+        if r2_score_oos > r2_score_lr:
+            alt_best_r2 = r2_score_oos
+            alt_best_equation = i
+            alt_best_equation_eq = eq
     print(f"Best equation: {best_equation}: {best_equation_eq}")
+    print(f"Alt best equation: {alt_best_equation}: {alt_best_equation_eq}")
+    print("Using, best")
+
+    # best_equation = alt_best_equation
 
     # Make predictions
     # X_test = scaler_x.transform(X_test)
