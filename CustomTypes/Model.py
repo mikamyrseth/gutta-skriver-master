@@ -208,22 +208,31 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     X.drop("ALPHA", axis=1, inplace=True)
     X.drop(Y_name, axis=1, inplace=True)
 
+    names = {"LAGGED-DELTA-LOG-NB-KKI": "LAG-KKI",
+    "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": "INTEREST-DIFF",
+    "DELTA-LOG-ICE-BRENT": "OIL",
+    "LAGGED-CUSTOM-MYRSTUEN-EQULIBIRUM": "EQULIBIRUM",
+    }
+
+    # replace column names
+    X.columns = [names.get(x, x) for x in X.columns]
+
     # Add time column
-    # X["time"] = range(0, len(X))
+    X["TIME"] = range(0, len(X))
 
     # Remove dashes from column names
     X.columns = [x.replace("-", "_") for x in X.columns]
     X.columns = [x.replace("&", "") for x in X.columns]
 
-    print("names")
-    print(X_names)
-    print(Y_name)
-
     X_train, X_test, Y_train, Y_test = train_test_split(
-        X, Y, test_size=0.5, shuffle=False)
+        X, Y, test_size=0.6, shuffle=False)
 
     X_validate, X_test, Y_validate, Y_test = train_test_split(
         X_test, Y_test, test_size=0.5, shuffle=False)
+
+    print(X_train)
+    print(X_validate)
+    print(X_test)
 
     # Scale data
     # scaler_x = StandardScaler()
@@ -239,27 +248,29 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
         # ^ Custom complexity of particular operators.
         # ^ Punish constants more than variables
         # ^ Slightly larger populations, for greater diversity.
-        niterations=100000,  # < Increase me for better results
+        niterations=200,  # < Increase me for better results
         maxsize=40,  # default 20
         binary_operators=[
             "+",
             "-",
+            "/",
             "mult",
-            "coeff(x, y) = x*y"
+            # "coeff(x, y) = x*y"
         ],
         complexity_of_constants=1,
         complexity_of_variables=2,
         constraints={
-            'mult': (3, 3),
-            'coeff': (1, 3),
+            'mult': (6, 6),
+            #'coeff': (1, 3),
             'cube': 2,
             # 'square': 2,
             'squaresign': 2,
             'abs': 2,
             'exp': 2,
             'isnegative': 2,
+            'ispositive': 2,
         },
-        parsimony=0.0004,  # 0.0032
+        parsimony=0.0002,  # 0.0032
         turbo=True,
         warm_start=True,
         unary_operators=[
@@ -272,16 +283,18 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
             "squaresign(x) = x*abs(x)",
             # "cos",
             # "exp",
-            "isnegative(x) = x-abs(x)",
+            "isnegative(x) = (1-abs(x)/x)/2",
+            "ispositive(x) = (abs(x)/x+1)/2",
             # "sin",
             # "inv(x) = 1/x",
             # ^ Custom operator (julia syntax)
         ],
         complexity_of_operators={
             "mult": 1,
-            "coeff": 0,
-            "+": 0,
-            "-": 0,
+            "/": 1,
+            # "coeff": 0,
+            "+": 1,
+            "-": 1,
             # "sqrt": 0.1,
             "cube": 1,
             # "square": 1,
@@ -289,20 +302,23 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
             "abs": 1,
             "exp": 1,
             "isnegative": 1,
+            "ispositive": 1,
         },
         extra_sympy_mappings={
             "inv": lambda x: 1 / x,
             "coeff": lambda x, y: x * y,
-            "isnegative": lambda x: x - abs(x),
+            "isnegative": lambda x: (1 - abs(x) / x) / 2,
+            "ispositive": lambda x: (abs(x) / x + 1) / 2,
             "squaresign": lambda x: x * abs(x),
         },
         # ^ Define operator for SymPy as well
-        loss="L1DistLoss()",
+        loss="L2DistLoss()",
         # loss="loss(x, y) = abs(x - y)",
         # ^ Custom loss function (julia syntax)
         model_selection='best'
     )
 
+    """
     model = PySRRegressor.from_file("hall_of_fame_2023-01-23_171146.178.pkl")
     model.set_params(extra_sympy_mappings={
         "inv": lambda x: 1 / x,
@@ -311,6 +327,7 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
         "squaresign": lambda x: x * abs(x),
     },)
     model.warm_start = True
+    """
     model.fit(X_train, Y_train)
 
     print(model)
@@ -373,7 +390,14 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     print("MSE: ", mean_squared_error(Y_test, Y_pred_oos))
     print("MAE: ", mean_absolute_error(Y_test, Y_pred_oos))
 
+
+
     # Linear regression
+
+    # Remove Time
+    X_train = X_train.drop(columns=["TIME"])
+    X_test = X_test.drop(columns=["TIME"])
+
     lm = LinearRegression()
     lm.fit(X_train, Y_train)
     Y_pred_is_lm = lm.predict(X_train)
