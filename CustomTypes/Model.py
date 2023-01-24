@@ -208,6 +208,9 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     X.drop("ALPHA", axis=1, inplace=True)
     X.drop(Y_name, axis=1, inplace=True)
 
+    # Add time column
+    # X["time"] = range(0, len(X))
+
     # Remove dashes from column names
     X.columns = [x.replace("-", "_") for x in X.columns]
     X.columns = [x.replace("&", "") for x in X.columns]
@@ -218,6 +221,9 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
 
     X_train, X_test, Y_train, Y_test = train_test_split(
         X, Y, test_size=0.5, shuffle=False)
+
+    X_validate, X_test, Y_validate, Y_test = train_test_split(
+        X_test, Y_test, test_size=0.5, shuffle=False)
 
     # Scale data
     # scaler_x = StandardScaler()
@@ -233,7 +239,7 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
         # ^ Custom complexity of particular operators.
         # ^ Punish constants more than variables
         # ^ Slightly larger populations, for greater diversity.
-        niterations=200,  # < Increase me for better results
+        niterations=100000,  # < Increase me for better results
         maxsize=40,  # default 20
         binary_operators=[
             "+",
@@ -255,6 +261,7 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
         },
         parsimony=0.0004,  # 0.0032
         turbo=True,
+        warm_start=True,
         unary_operators=[
             # "sqrt",
             # "log",
@@ -296,8 +303,15 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
         model_selection='best'
     )
 
+    model = PySRRegressor.from_file("hall_of_fame_2023-01-23_171146.178.pkl")
+    model.set_params(extra_sympy_mappings={
+        "inv": lambda x: 1 / x,
+        "coeff": lambda x, y: x * y,
+        "isnegative": lambda x: x - abs(x),
+        "squaresign": lambda x: x * abs(x),
+    },)
+    model.warm_start = True
     model.fit(X_train, Y_train)
-    # model = PySRRegressor.from_file("hall_of_fame_2023-01-22_164704.857.pkl")
 
     print(model)
 
@@ -314,8 +328,8 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     best_r2 = 0
     for i, row in model.equations_.iterrows():
         eq = row["equation"]
-        Y_pred_oos = model.predict(X_test, i)
-        r2_score_oos = r2_score(Y_test, Y_pred_oos)
+        Y_pred_oos = model.predict(X_validate, i)
+        r2_score_oos = r2_score(Y_validate, Y_pred_oos)
         print(f"Equation {i}: R2 oos: {r2_score_oos}")
         if r2_score_oos > best_r2:
             best_r2 = r2_score_oos

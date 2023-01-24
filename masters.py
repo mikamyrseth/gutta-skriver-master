@@ -9,7 +9,7 @@ def main():
 
     # Get model where name is "Benchmark ICE-BRENT short"
     model = next(
-        model for model in all_models if model.name == "Symbolic regression")
+        model for model in all_models if model.name == "Myrstuen&Sylte2020 short")
     model.run_model(
         model.model_start_date, model.model_end_date)
 
