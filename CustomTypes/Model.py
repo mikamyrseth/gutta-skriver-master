@@ -19,6 +19,11 @@ from sklearn.metrics import mean_absolute_error
 from xgboost import XGBRegressor
 from sklearn.ensemble import RandomForestRegressor
 from pysr import PySRRegressor
+import sympy as sp
+import symfit
+import jax
+import jax.numpy as jnp
+import jax.scipy.optimize as jopt
 
 from pandas import DataFrame
 from CustomTypes.Dataseries import CustomDataseries, DataFrequency, Dataseries
@@ -209,16 +214,16 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     X.drop(Y_name, axis=1, inplace=True)
 
     names = {"LAGGED-DELTA-LOG-NB-KKI": "LAG-KKI",
-    "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": "INTEREST-DIFF",
-    "DELTA-LOG-ICE-BRENT": "OIL",
-    "LAGGED-CUSTOM-MYRSTUEN-EQULIBIRUM": "EQULIBIRUM",
-    }
+             "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": "INTEREST-DIFF",
+             "DELTA-LOG-ICE-BRENT": "OIL",
+             "LAGGED-CUSTOM-MYRSTUEN-EQULIBIRUM": "EQULIBIRUM",
+             }
 
     # replace column names
     X.columns = [names.get(x, x) for x in X.columns]
 
     # Add time column
-    X["TIME"] = range(0, len(X))
+    # X["TIME"] = range(0, len(X))
 
     # Remove dashes from column names
     X.columns = [x.replace("-", "_") for x in X.columns]
@@ -230,6 +235,9 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     X_validate, X_test, Y_validate, Y_test = train_test_split(
         X_test, Y_test, test_size=0.5, shuffle=False)
 
+    X_train_con = pd.concat([X_train, X_validate])
+    Y_train_con = pd.concat([Y_train, Y_validate])
+
     print(X_train)
     print(X_validate)
     print(X_test)
@@ -240,94 +248,113 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     # X_train = scaler_x.fit_transform(X_train)
     # Y_train = scaler_y.fit_transform(Y_train)
 
+    # calculate linear r2 vaidation
+    lr = LinearRegression()
+    lr.fit(X_train, Y_train)
+    linear_mse = mean_squared_error(Y_train, lr.predict(X_train))
+    stopping_criteria = linear_mse*0.95
+    print("Linear MSE: ", linear_mse)
+    print("Stopping criteria: ", stopping_criteria)
+
     # Create model
+    """
     model = PySRRegressor(
         # populations=8,
         # ^ 2 populations per core, so one is always running.
-        population_size=50,
-        # ^ Custom complexity of particular operators.
-        # ^ Punish constants more than variables
-        # ^ Slightly larger populations, for greater diversity.
-        niterations=200,  # < Increase me for better results
-        maxsize=40,  # default 20
+        # population_size=20,
+        niterations=100000,  # < Increase me for better results
+        # maxsize=25,  # default 20
+        # adaptive_parsimony_scaling=60,  # default 20
+        # ncyclesperiteration=1000,  # dedfault 550
         binary_operators=[
             "+",
-            "-",
+            # "-",
             "/",
-            "mult",
+            "*",
             # "coeff(x, y) = x*y"
         ],
         complexity_of_constants=1,
         complexity_of_variables=2,
+        precision=64,
         constraints={
             'mult': (6, 6),
-            #'coeff': (1, 3),
+            # 'coeff': (1, 3),
             'cube': 2,
             # 'square': 2,
             'squaresign': 2,
-            'abs': 2,
-            'exp': 2,
-            'isnegative': 2,
-            'ispositive': 2,
+            # 'abs': 2,
+            # 'exp': 2,
+            # 'isnegative': 2,
+            # 'ispositive': 2,
         },
-        parsimony=0.0002,  # 0.0032
-        turbo=True,
+        # parsimony=0.0002,  # 0.0032
+        # turbo=True,
         warm_start=True,
         unary_operators=[
             # "sqrt",
             # "log",
-            "abs",
+            # "abs",
             "cube",
             # "pow"
             # "square",
             "squaresign(x) = x*abs(x)",
             # "cos",
             # "exp",
-            "isnegative(x) = (1-abs(x)/x)/2",
-            "ispositive(x) = (abs(x)/x+1)/2",
+            # "isnegative(x) = (1-abs(x)/x)/2",
+            # "ispositive(x) = (abs(x)/x+1)/2",
             # "sin",
             # "inv(x) = 1/x",
             # ^ Custom operator (julia syntax)
         ],
         complexity_of_operators={
-            "mult": 1,
-            "/": 1,
+            # "mult": 1,
+            # "/": 1,
             # "coeff": 0,
-            "+": 1,
-            "-": 1,
+            # "+": 1,
+            # "-": 1,
             # "sqrt": 0.1,
             "cube": 1,
             # "square": 1,
             "squaresign": 1,
-            "abs": 1,
-            "exp": 1,
-            "isnegative": 1,
-            "ispositive": 1,
+            # "abs": 1,
+            # "exp": 1,
+            # "isnegative": 1,
+            # "ispositive": 1,
         },
         extra_sympy_mappings={
-            "inv": lambda x: 1 / x,
-            "coeff": lambda x, y: x * y,
-            "isnegative": lambda x: (1 - abs(x) / x) / 2,
-            "ispositive": lambda x: (abs(x) / x + 1) / 2,
+            # "inv": lambda x: 1 / x,
+            # "coeff": lambda x, y: x * y,
+            # "isnegative": lambda x: (1 - abs(x) / x) / 2,
+            # "ispositive": lambda x: (abs(x) / x + 1) / 2,
             "squaresign": lambda x: x * abs(x),
         },
         # ^ Define operator for SymPy as well
         loss="L2DistLoss()",
+        early_stop_condition=f"f(loss, complexity) = (loss < {stopping_criteria}) && (complexity < 15)",
         # loss="loss(x, y) = abs(x - y)",
         # ^ Custom loss function (julia syntax)
         model_selection='best'
     )
+    """
 
     """
-    model = PySRRegressor.from_file("hall_of_fame_2023-01-23_171146.178.pkl")
+
+    model = PySRRegressor.from_file("hall_of_fame_2023-01-28_190607.087.pkl")
     model.set_params(extra_sympy_mappings={
-        "inv": lambda x: 1 / x,
-        "coeff": lambda x, y: x * y,
-        "isnegative": lambda x: x - abs(x),
+        # "inv": lambda x: 1 / x,
+        # "coeff": lambda x, y: x * y,
+        # "isnegative": lambda x: x - abs(x),
+        # "ispositive": lambda x: (abs(x) / x + 1) / 2,
         "squaresign": lambda x: x * abs(x),
     },)
     model.warm_start = True
+    model.precission = 64
+    model.adaptive_parsimony_scaling = 30
+    model.niterations = 1000000
     """
+
+    model = PySRRegressor(niterations=1000000)
+
     model.fit(X_train, Y_train)
 
     print(model)
@@ -338,9 +365,6 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
         eq = row["equation"]
         print(f"Equation {index}: {eq}")
 
-    # calculate linear r2 vaidation
-    lr = LinearRegression()
-    lr.fit(X_train, Y_train)
     Y_pred_lr = lr.predict(X_validate)
     r2_score_lr = r2_score(Y_validate, Y_pred_lr)
     print(f"Linear Regression: R2 validation: {r2_score_lr}")
@@ -371,7 +395,42 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     print(f"Alt best equation: {alt_best_equation}: {alt_best_equation_eq}")
     print("Using, best")
 
-    # best_equation = alt_best_equation
+    # recalculate constants of best equation
+    X_train = pd.concat([X_train, X_validate])
+    Y_train = pd.concat([Y_train, Y_validate])
+    best_equation_eq_sympy = model.equations_.loc[best_equation,
+                                                  "sympy_format"]
+    best_equation_eq_lambda = model.equations_.loc[best_equation,
+                                                   "lambda_format"]
+
+    print("Best equation sympy")
+    print(best_equation_eq_sympy)
+    print("Best equation lambda")
+    print(best_equation_eq_lambda)
+
+    jax_moddel = model.jax(best_equation)
+    print("Jax")
+    print(jax_moddel)
+    jax_callablle = jax_moddel['callable']
+    jax_params = jax_moddel['parameters']
+    print("Jax callable")
+    print(jax_callablle)
+    print("Jax params")
+    print(jax_params)
+
+    # convert to numpy
+    def loss(params, x, y):
+        return jnp.mean((jax_callablle(x, params) - y) ** 2)
+    jax_params = jopt.minimize(
+        fun=loss,
+        x0=jax_params,
+        args=(X_train_con.to_numpy(), Y_train_con.to_numpy()),
+        method="BFGS",
+        tol=0.000001
+    ).x
+
+    print("Reestimate Jax params")
+    print(jax_params)
 
     # Make predictions
     # X_test = scaler_x.transform(X_test)
@@ -380,25 +439,38 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     Y_pred_oos = model.predict(X_test, best_equation)
 
     # Evaluate model
-    print("Symbolic In sample")
-    print("R2: ", r2_score(Y_train, Y_pred_is))
+    print("Symbolic In sample train only")
+    print("R2:  ", r2_score(Y_train, Y_pred_is))
     print("MSE: ", mean_squared_error(Y_train, Y_pred_is))
     print("MAE: ", mean_absolute_error(Y_train, Y_pred_is))
 
     print("Symbolic Out of Sample")
-    print("R2: ", r2_score(Y_test, Y_pred_oos))
+    print("R2:  ", r2_score(Y_test, Y_pred_oos))
     print("MSE: ", mean_squared_error(Y_test, Y_pred_oos))
     print("MAE: ", mean_absolute_error(Y_test, Y_pred_oos))
 
+    prediction = jax_callablle(X_train_con.to_numpy(), jax_params)
+    print("Symbolic+JAX In sample train with validate")
+    print("R2: ", r2_score(Y_train_con, prediction))
+    print("MSE: ", mean_squared_error(Y_train_con, prediction))
+    print("MAE: ", mean_absolute_error(Y_train_con, prediction))
 
+    prediction = jax_callablle(X_test.to_numpy(), jax_params)
+    print("Symbolic+JAX Out of Sample")
+    print("R2  ", r2_score(Y_test, prediction))
+    print("MSE: ", mean_squared_error(Y_test, prediction))
+    print("MAE: ", mean_absolute_error(Y_test, prediction))
 
     # Linear regression
 
     # Remove Time
-    X_train = X_train.drop(columns=["TIME"])
-    X_test = X_test.drop(columns=["TIME"])
+    # X_train = X_train.drop(columns=["TIME"])
+    # X_test = X_test.drop(columns=["TIME"])
 
     lm = LinearRegression()
+    # combine train and validation
+    # X_train = X_train_con
+    # Y_train = Y_train_con
     lm.fit(X_train, Y_train)
     Y_pred_is_lm = lm.predict(X_train)
     print("Linear Regression In sample")
