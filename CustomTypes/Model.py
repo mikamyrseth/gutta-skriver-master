@@ -223,7 +223,7 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     X.columns = [names.get(x, x) for x in X.columns]
 
     # Add time column
-    # X["TIME"] = range(0, len(X))
+    X["TIME"] = range(0, len(X))
 
     # Remove dashes from column names
     X.columns = [x.replace("-", "_") for x in X.columns]
@@ -339,7 +339,7 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
 
     """
 
-    model = PySRRegressor.from_file("hall_of_fame_2023-01-28_190607.087.pkl")
+    model = PySRRegressor.from_file("hall_of_fame_2023-01-31_072010.474.pkl")
     model.set_params(extra_sympy_mappings={
         # "inv": lambda x: 1 / x,
         # "coeff": lambda x, y: x * y,
@@ -349,11 +349,25 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     },)
     model.warm_start = True
     model.precission = 64
-    model.adaptive_parsimony_scaling = 30
+    # model.adaptive_parsimony_scaling = 30
     model.niterations = 1000000
-
-    model = PySRRegressor(niterations=1000000)
     """
+
+    # model = PySRRegressor(niterations=1000000)
+
+    model.set_params(
+        population_size=75,  # default 33
+        tournament_selection_n=23,  # default 10
+        tournament_selection_p=0.8,  # default 0.86
+        ncyclesperiteration=100,  # default 550
+        parsimony=1e-3,  # default 0.0032
+        fraction_replaced_hof=0.08,  # default 0.035
+        optimizer_iterations=25,  # default 8
+        crossover_probability=0.12,  # default 0.066
+        weight_optimize=0.06,  # default 0.0
+        populations=50,  # default 15
+        adaptive_parsimony_scaling=100.0,  # default 20
+    )
 
     model.fit(X_train, Y_train)
 
@@ -464,8 +478,8 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     # Linear regression
 
     # Remove Time
-    # X_train = X_train.drop(columns=["TIME"])
-    # X_test = X_test.drop(columns=["TIME"])
+    X_train = X_train.drop(columns=["TIME"])
+    X_test = X_test.drop(columns=["TIME"])
 
     lm = LinearRegression()
     # combine train and validation
