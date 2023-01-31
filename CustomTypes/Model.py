@@ -261,7 +261,7 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
         # populations=8,
         # ^ 2 populations per core, so one is always running.
         # population_size=20,
-        niterations=100000,  # < Increase me for better results
+        niterations=10000000,  # < Increase me for better results
         # maxsize=25,  # default 20
         # adaptive_parsimony_scaling=60,  # default 20
         # ncyclesperiteration=1000,  # dedfault 550
