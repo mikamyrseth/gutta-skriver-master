@@ -252,16 +252,17 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     lr = LinearRegression()
     lr.fit(X_train, Y_train)
     linear_mse = mean_squared_error(Y_train, lr.predict(X_train))
-    stopping_criteria = linear_mse*0.95
+    stopping_criteria = linear_mse*0.20
     print("Linear MSE: ", linear_mse)
     print("Stopping criteria: ", stopping_criteria)
-
     # Create model
+    
+
     model = PySRRegressor(
         # populations=8,
         # ^ 2 populations per core, so one is always running.
         # population_size=20,
-        niterations=100000,  # < Increase me for better results
+        niterations=1000000,  # < Increase me for better results
         # maxsize=25,  # default 20
         # adaptive_parsimony_scaling=60,  # default 20
         # ncyclesperiteration=1000,  # dedfault 550
@@ -339,21 +340,23 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
 
     """
 
-    model = PySRRegressor.from_file("hall_of_fame_2023-01-31_072010.474.pkl")
+    model = PySRRegressor.from_file("hall_of_fame_2023-01-31_115951.627.pkl")
     model.set_params(extra_sympy_mappings={
         # "inv": lambda x: 1 / x,
         # "coeff": lambda x, y: x * y,
         # "isnegative": lambda x: x - abs(x),
         # "ispositive": lambda x: (abs(x) / x + 1) / 2,
-        "squaresign": lambda x: x * abs(x),
+        # "squaresign": lambda x: x * abs(x),
     },)
     model.warm_start = True
     model.precission = 64
+    # model.early_stop_condition=f"f(loss, complexity) = (loss < {stopping_criteria}) && (complexity < 15)",
     # model.adaptive_parsimony_scaling = 30
-    model.niterations = 1000000
-    """
+    # model.niterations = 1000000
 
     # model = PySRRegressor(niterations=1000000)
+    """
+
 
     model.set_params(
         population_size=75,  # default 33
