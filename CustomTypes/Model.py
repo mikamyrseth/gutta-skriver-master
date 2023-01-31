@@ -257,7 +257,6 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     print("Stopping criteria: ", stopping_criteria)
 
     # Create model
-    """
     model = PySRRegressor(
         # populations=8,
         # ^ 2 populations per core, so one is always running.
@@ -268,9 +267,10 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
         # ncyclesperiteration=1000,  # dedfault 550
         binary_operators=[
             "+",
-            # "-",
+            "-",
             "/",
             "*",
+            "pow",
             # "coeff(x, y) = x*y"
         ],
         complexity_of_constants=1,
@@ -278,10 +278,11 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
         precision=64,
         constraints={
             'mult': (6, 6),
+            "pow": (2, 2)
             # 'coeff': (1, 3),
-            'cube': 2,
+            # 'cube': 2,
             # 'square': 2,
-            'squaresign': 2,
+            # 'squaresign': 2,
             # 'abs': 2,
             # 'exp': 2,
             # 'isnegative': 2,
@@ -293,11 +294,11 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
         unary_operators=[
             # "sqrt",
             # "log",
-            # "abs",
-            "cube",
+            "abs",
+            # "cube",
             # "pow"
             # "square",
-            "squaresign(x) = x*abs(x)",
+            # "squaresign(x) = x*abs(x)",
             # "cos",
             # "exp",
             # "isnegative(x) = (1-abs(x)/x)/2",
@@ -313,9 +314,9 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
             # "+": 1,
             # "-": 1,
             # "sqrt": 0.1,
-            "cube": 1,
+            # "cube": 1,
             # "square": 1,
-            "squaresign": 1,
+            # "squaresign": 1,
             # "abs": 1,
             # "exp": 1,
             # "isnegative": 1,
@@ -326,7 +327,7 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
             # "coeff": lambda x, y: x * y,
             # "isnegative": lambda x: (1 - abs(x) / x) / 2,
             # "ispositive": lambda x: (abs(x) / x + 1) / 2,
-            "squaresign": lambda x: x * abs(x),
+            # "squaresign": lambda x: x * abs(x),
         },
         # ^ Define operator for SymPy as well
         loss="L2DistLoss()",
@@ -335,7 +336,6 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
         # ^ Custom loss function (julia syntax)
         model_selection='best'
     )
-    """
 
     """
 
@@ -351,9 +351,9 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     model.precission = 64
     model.adaptive_parsimony_scaling = 30
     model.niterations = 1000000
-    """
 
     model = PySRRegressor(niterations=1000000)
+    """
 
     model.fit(X_train, Y_train)
 
