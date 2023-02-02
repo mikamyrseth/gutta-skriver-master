@@ -7,11 +7,35 @@ from CustomTypes.Model import Model
 def main():
     all_models = load_data()
 
+    # get model where
+    # model = next(
+    # model for model in all_models if model.name == "Myrstuen&Sylte2020 long")
+
+    # for all models where "benchmark not in name"
+    run_models = [
+        model for model in all_models if "benchmark" not in model.name.lower()]
+
+    for model in run_models:
+        # estimate from 2002-03-31 to 2014-08-31
+        lm, df = model.reestimate(from_date="2002-03-31", to_date="2014-08-31")
+        X = df[list(model.weights.keys())]
+        Y = df[model.dependent_variable]
+        prediction_r_2 = lm.score(X, Y)
+        print(f"{model.name} IS R2: \t\t{prediction_r_2}")
+
+        base_r2, adjusted_base_r2, base_std_err = model.run_model(
+            from_date="2014-08-31", to_date="2020-01-31")
+
+        # print results
+        print(f"{model.name}  OOS R2: \t\t{base_r2}")
+
+    """
     # Get model where name is "Benchmark ICE-BRENT short"
     model = next(
         model for model in all_models if model.name == "Symbolic regression selected")
     model.run_model(
         model.model_start_date, model.model_end_date)
+    """
 
 
 def load_data():
