@@ -16,6 +16,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import mean_absolute_error
+from sklearn.model_selection import TimeSeriesSplit
 from xgboost import XGBRegressor
 from sklearn.ensemble import RandomForestRegressor
 from pysr import PySRRegressor
@@ -230,17 +231,14 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     X.columns = [x.replace("&", "") for x in X.columns]
 
     X_train, X_test, Y_train, Y_test = train_test_split(
-        X, Y, test_size=0.6, shuffle=False)
+        X, Y, test_size=0.2, shuffle=False)
 
-    X_validate, X_test, Y_validate, Y_test = train_test_split(
-        X_test, Y_test, test_size=0.5, shuffle=False)
 
-    X_train_con = pd.concat([X_train, X_validate])
-    Y_train_con = pd.concat([Y_train, Y_validate])
+    # X_validate, X_test, Y_validate, Y_test = train_test_split(
+        # X_test, Y_test, test_size=0.5, shuffle=False)
 
-    print(X_train)
-    print(X_validate)
-    print(X_test)
+    # X_train_con = pd.concat([X_train, X_validate])
+    # Y_train_con = pd.concat([Y_train, Y_validate])
 
     # Scale data
     # scaler_x = StandardScaler()
@@ -258,35 +256,53 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     # Create model
 
     model = PySRRegressor(
+
         # populations=8,
         # ^ 2 populations per core, so one is always running.
-        # population_size=20,
+        # population_size=200,
         niterations=1000000,  # < Increase me for better results
-        # maxsize=25,  # default 20
-        # adaptive_parsimony_scaling=60,  # default 20
-        # ncyclesperiteration=1000,  # dedfault 550
+        maxsize=30,  # default 20
+        # adaptive_parsimony_scaling=100,  # default 20
+        ncyclesperiteration=1000,  # dedfault 550
+        # procs=20,
+        multithreading=True,
+        # populations=40*2,
+        turbo=True,
         binary_operators=[
             "+",
             "-",
             "/",
             "*",
-            "pow",
+            # "pow",
             # "coeff(x, y) = x*y"
         ],
         complexity_of_constants=1,
-        complexity_of_variables=2,
+        complexity_of_variables=1,
+        # select_k_features=10,
         precision=64,
         constraints={
             'mult': (6, 6),
-            "pow": (2, 2)
+            "/": (4, 4),
+            # "pow": (2, 2),
             # 'coeff': (1, 3),
             # 'cube': 2,
             # 'square': 2,
-            # 'squaresign': 2,
+            'square_abs': 2,
+            # 'sqrt': 2,
             # 'abs': 2,
             # 'exp': 2,
             # 'isnegative': 2,
             # 'ispositive': 2,
+        },
+        nested_constraints={
+            "mult": {
+                "+": 0,
+                "-": 0,
+            },
+            "/": {
+                "+": 0,
+                "-": 0,
+            }
         },
         # parsimony=0.0002,  # 0.0032
         # turbo=True,
@@ -294,17 +310,18 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
         unary_operators=[
             # "sqrt",
             # "log",
-            "abs",
+            # "abs",
             # "cube",
-            # "pow"
+            # "pow",
             # "square",
-            # "squaresign(x) = x*abs(x)",
+            "square_abs(x) = x*abs(x)",
+            # sqrt_abs = sqrt(x)"
             # "cos",
             # "exp",
             # "isnegative(x) = (1-abs(x)/x)/2",
             # "ispositive(x) = (abs(x)/x+1)/2",
             # "sin",
-            # "inv(x) = 1/x",
+            "inv(x) = 1/x",
             # ^ Custom operator (julia syntax)
         ],
         complexity_of_operators={
@@ -323,23 +340,25 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
             # "ispositive": 1,
         },
         extra_sympy_mappings={
-            # "inv": lambda x: 1 / x,
+            "inv": lambda x: 1 / x,
             # "coeff": lambda x, y: x * y,
             # "isnegative": lambda x: (1 - abs(x) / x) / 2,
             # "ispositive": lambda x: (abs(x) / x + 1) / 2,
-            # "squaresign": lambda x: x * abs(x),
+            "square_abs": lambda x: x * abs(x),
         },
         # ^ Define operator for SymPy as well
-        loss="L2DistLoss()",
+        loss="L1DistLoss()",
         early_stop_condition=f"f(loss, complexity) = (loss < {stopping_criteria}) && (complexity < 15)",
         # loss="loss(x, y) = abs(x - y)",
         # ^ Custom loss function (julia syntax)
-        model_selection='best'
+        model_selection='best',
+        # temp_equation_file=False,
+        # tempdir= "/storage/users/mikam/",
+        # equation_file="/storage/users/mikam/"
     )
 
     """
-
-    model = PySRRegressor.from_file("hall_of_fame_2023-01-31_115951.627.pkl")
+    model = PySRRegressor.from_file("hall_of_fame_2023-01-31_212025.384.pkl")
     model.set_params(extra_sympy_mappings={
         # "inv": lambda x: 1 / x,
         # "coeff": lambda x, y: x * y,
@@ -348,38 +367,113 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
         # "squaresign": lambda x: x * abs(x),
     },)
     model.warm_start = True
-    model.precission = 64
     # model.early_stop_condition=f"f(loss, complexity) = (loss < {stopping_criteria}) && (complexity < 15)",
     # model.adaptive_parsimony_scaling = 30
     # model.niterations = 1000000
 
-    # model = PySRRegressor(niterations=1000000)
     """
+    
 
     model.set_params(
-        population_size=75,  # default 33
+        population_size=100,  # default 33
         tournament_selection_n=23,  # default 10
         tournament_selection_p=0.8,  # default 0.86
         ncyclesperiteration=100,  # default 550
-        parsimony=1e-3,  # default 0.0032
+        parsimony=3.2e-3,  # default 0.0032
         fraction_replaced_hof=0.08,  # default 0.035
         optimizer_iterations=25,  # default 8
         crossover_probability=0.12,  # default 0.066
         weight_optimize=0.06,  # default 0.0
         populations=50,  # default 15
-        adaptive_parsimony_scaling=100.0,  # default 20
+        adaptive_parsimony_scaling=20000.0,  # default 20
     )
 
+    # model = PySRRegressor(niterations=1000000)
     model.fit(X_train, Y_train)
 
-    print(model)
+
+
+    # fill dict with equation indexes and 0
+    equation_dict = {}
+    for index, row in model.equations_.iterrows():
+        equation_dict[index] = []
+
+    #Cross validation
+
+
+    tscv = TimeSeriesSplit(n_splits=3)
+    for train_index, test_index in tscv.split(df):
+        # print(f"Cross validation from {train_index} to {test_index}")
+        X_train_cv, X_validate_cv = X.iloc[train_index, :], X.iloc[test_index,:]
+        Y_train_cv, Y_validate_cv = Y.iloc[train_index], Y.iloc[test_index]
+
+        # print("Training")
+        # print(X_train)
+        # print(Y_train)
+        # print("Validating")
+        # print(Y_train)
+        # print(Y_validate)
+
+        for index, row in model.equations_.iterrows():
+            jax_moddel = model.jax(index)
+            jax_callable = jax_moddel['callable']
+            # print("Jax callable")
+            # print(jax_callable)
+            jax_params = jax_moddel['parameters']
+            # print("jax params")
+            # print(jax_params)
+            if index == 0:
+                continue
+            if len(jax_params) == 0:
+                continue
+            def loss(params, x, y):
+                return jnp.mean((jax_callable(x, params) - y) ** 2)
+            jax_params = jopt.minimize(
+                fun=loss,
+                x0=jax_params,
+                args=(X_train_cv.to_numpy(), Y_train_cv.to_numpy()),
+                method="BFGS",
+                tol=0.0001
+            ).x
+
+            # print("new params")
+            # print(jax_params)
+
+            # print("Numpy format")
+            # print(X_validate.to_numpy())
+
+            prediction = jax_callable(X_validate_cv.to_numpy(), jax_params) 
+            # print("Prediction")
+            # print(prediction)
+            r2 = r2_score(Y_validate_cv, prediction)
+            print("Processed equation: ", index, " with score: ", r2)
+            # append result
+            equation_dict[index].append(r2)
+            
+
 
     print("Equations:")
-    print(model.equations_)
     for index, row in model.equations_.iterrows():
         eq = row["equation"]
-        print(f"Equation {index}: {eq}")
+        prediction_os = model.predict(X_test, index)
+        r2_os = r2_score(Y_test, prediction_os)
+        prediction_is = model.predict(X_train, index)
+        r2_is = r2_score(Y_train, prediction_is)
+        print(f"Equation {index} total score: {equation_dict[index]} is score: {r2_is} and OOS score: {r2_os}")
+    
+    # get equation with highest average score
+    for key, value in equation_dict.items():
+        equation_dict[key] = sum(value) / len(value)
+    best_equation = max(equation_dict, key=equation_dict.get)
+    best_equation_eq = model.equations_.loc[best_equation]["equation"]
+    best_score = equation_dict[best_equation]
+    print(f"Best equation: {best_equation} with score: {best_score}")
 
+    prediction = model.predict(X_test, best_equation)
+    r2 = r2_score(Y_test, prediction)
+    print(f"Best equation R2 in test sample: {r2}")
+
+    """
     Y_pred_lr = lr.predict(X_validate)
     r2_score_lr = r2_score(Y_validate, Y_pred_lr)
     print(f"Linear Regression: R2 validation: {r2_score_lr}")
@@ -499,7 +593,10 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     print("MSE: ", mean_squared_error(Y_test, Y_pred_oos_lm))
     print("MAE: ", mean_absolute_error(Y_test, Y_pred_oos_lm))
 
-    return model, Y_pred_oos_lm
+    print("HIHIHI")
+    """
+
+    return model, best_equation
 
 
 def random_forrest_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):

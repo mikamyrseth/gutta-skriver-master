@@ -1,0 +1,36 @@
+{
+    "name": "Symbolic long",
+    "authors": ["Lars Myrstuen, Didrik Sylte, Jan Tore Klovland"],
+    "publish_year": 2021,
+    "page": "62 (5.3)",
+    "original_start_date": "2001-04-01",
+    "original_end_date": "2020-01-01",
+    "model_start_date": "2001-12-31",
+    "model_end_date": "2020-01-01",
+    "dependent_variable": "LOG-NB-KKI",
+    "frequency": "MONTHLY",
+    "weights": {
+      "ALPHA": 3.4869,
+      "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE": 1.0238,
+      "LOG-ICE-BRENT": -0.059,
+      "LOG-DB-CVIX": 0.0878,
+      "LOG-S&P-500": 0.1637,
+      "LOG-MSCI-WORLD": 0.1637,
+      "AGGREGATE-NYFED-OIL-DEMAND": -0.116,
+      "AGGREGATE-NYFED-OIL-SUPPLY": -0.116,
+      "AGGREGATE-NYFED-OIL-RESIDUAL": 0.094,
+      "CUSTOM-JOHANSEN-INTEREST-DIFFERENCE-3M": 1,
+      "CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR": 1,
+      "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": 1,
+      "LOG-SSB-INDUSTRIAL-PRODUCTION": 0.6562,
+      "NB-INTEREST-FORECAST-3Y": -0.012828,
+      "THRESHOLDLESS-75-ICE-BRENT": 1
+    },
+    "stds": {
+      "DELTA-ICE-BRENT": 0.0089
+    },
+    "stats": {
+      "adjustedR2": 0.358
+    }
+  }
+  
