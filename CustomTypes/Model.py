@@ -16,6 +16,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import mean_absolute_error
+from sklearn.model_selection import TimeSeriesSplit
 from xgboost import XGBRegressor
 from sklearn.ensemble import RandomForestRegressor
 from pysr import PySRRegressor
@@ -230,17 +231,14 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     X.columns = [x.replace("&", "") for x in X.columns]
 
     X_train, X_test, Y_train, Y_test = train_test_split(
-        X, Y, test_size=0.6, shuffle=False)
+        X, Y, test_size=0.2, shuffle=False)
 
-    X_validate, X_test, Y_validate, Y_test = train_test_split(
-        X_test, Y_test, test_size=0.5, shuffle=False)
 
-    X_train_con = pd.concat([X_train, X_validate])
-    Y_train_con = pd.concat([Y_train, Y_validate])
+    # X_validate, X_test, Y_validate, Y_test = train_test_split(
+        # X_test, Y_test, test_size=0.5, shuffle=False)
 
-    print(X_train)
-    print(X_validate)
-    print(X_test)
+    # X_train_con = pd.concat([X_train, X_validate])
+    # Y_train_con = pd.concat([Y_train, Y_validate])
 
     # Scale data
     # scaler_x = StandardScaler()
@@ -266,10 +264,10 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
         maxsize=30,  # default 20
         # adaptive_parsimony_scaling=100,  # default 20
         ncyclesperiteration=1000,  # dedfault 550
-        # procs=40,
+        # procs=20,
         multithreading=True,
         # populations=40*2,
-        turbo=False,
+        turbo=True,
         binary_operators=[
             "+",
             "-",
@@ -349,7 +347,7 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
             "square_abs": lambda x: x * abs(x),
         },
         # ^ Define operator for SymPy as well
-        loss="L2DistLoss()",
+        loss="L1DistLoss()",
         early_stop_condition=f"f(loss, complexity) = (loss < {stopping_criteria}) && (complexity < 15)",
         # loss="loss(x, y) = abs(x - y)",
         # ^ Custom loss function (julia syntax)
@@ -358,9 +356,8 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
         # tempdir= "/storage/users/mikam/",
         # equation_file="/storage/users/mikam/"
     )
+
     """
-
-
     model = PySRRegressor.from_file("hall_of_fame_2023-01-31_212025.384.pkl")
     model.set_params(extra_sympy_mappings={
         # "inv": lambda x: 1 / x,
@@ -394,14 +391,89 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     # model = PySRRegressor(niterations=1000000)
     model.fit(X_train, Y_train)
 
-    print(model)
+
+
+    # fill dict with equation indexes and 0
+    equation_dict = {}
+    for index, row in model.equations_.iterrows():
+        equation_dict[index] = []
+
+    #Cross validation
+
+
+    tscv = TimeSeriesSplit(n_splits=3)
+    for train_index, test_index in tscv.split(df):
+        # print(f"Cross validation from {train_index} to {test_index}")
+        X_train_cv, X_validate_cv = X.iloc[train_index, :], X.iloc[test_index,:]
+        Y_train_cv, Y_validate_cv = Y.iloc[train_index], Y.iloc[test_index]
+
+        # print("Training")
+        # print(X_train)
+        # print(Y_train)
+        # print("Validating")
+        # print(Y_train)
+        # print(Y_validate)
+
+        for index, row in model.equations_.iterrows():
+            jax_moddel = model.jax(index)
+            jax_callable = jax_moddel['callable']
+            # print("Jax callable")
+            # print(jax_callable)
+            jax_params = jax_moddel['parameters']
+            # print("jax params")
+            # print(jax_params)
+            if index == 0:
+                continue
+            if len(jax_params) == 0:
+                continue
+            def loss(params, x, y):
+                return jnp.mean((jax_callable(x, params) - y) ** 2)
+            jax_params = jopt.minimize(
+                fun=loss,
+                x0=jax_params,
+                args=(X_train_cv.to_numpy(), Y_train_cv.to_numpy()),
+                method="BFGS",
+                tol=0.0001
+            ).x
+
+            # print("new params")
+            # print(jax_params)
+
+            # print("Numpy format")
+            # print(X_validate.to_numpy())
+
+            prediction = jax_callable(X_validate_cv.to_numpy(), jax_params) 
+            # print("Prediction")
+            # print(prediction)
+            r2 = r2_score(Y_validate_cv, prediction)
+            print("Processed equation: ", index, " with score: ", r2)
+            # append result
+            equation_dict[index].append(r2)
+            
+
 
     print("Equations:")
-    print(model.equations_)
     for index, row in model.equations_.iterrows():
         eq = row["equation"]
-        print(f"Equation {index}: {eq}")
+        prediction_os = model.predict(X_test, index)
+        r2_os = r2_score(Y_test, prediction_os)
+        prediction_is = model.predict(X_train, index)
+        r2_is = r2_score(Y_train, prediction_is)
+        print(f"Equation {index} total score: {equation_dict[index]} is score: {r2_is} and OOS score: {r2_os}")
+    
+    # get equation with highest average score
+    for key, value in equation_dict.items():
+        equation_dict[key] = sum(value) / len(value)
+    best_equation = max(equation_dict, key=equation_dict.get)
+    best_equation_eq = model.equations_.loc[best_equation]["equation"]
+    best_score = equation_dict[best_equation]
+    print(f"Best equation: {best_equation} with score: {best_score}")
 
+    prediction = model.predict(X_test, best_equation)
+    r2 = r2_score(Y_test, prediction)
+    print(f"Best equation R2 in test sample: {r2}")
+
+    """
     Y_pred_lr = lr.predict(X_validate)
     r2_score_lr = r2_score(Y_validate, Y_pred_lr)
     print(f"Linear Regression: R2 validation: {r2_score_lr}")
@@ -522,8 +594,9 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     print("MAE: ", mean_absolute_error(Y_test, Y_pred_oos_lm))
 
     print("HIHIHI")
+    """
 
-    return model, Y_pred_oos_lm
+    return model, best_equation
 
 
 def random_forrest_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
