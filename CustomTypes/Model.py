@@ -256,7 +256,6 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     print("Linear MSE: ", linear_mse)
     print("Stopping criteria: ", stopping_criteria)
     # Create model
-    
 
     model = PySRRegressor(
 
