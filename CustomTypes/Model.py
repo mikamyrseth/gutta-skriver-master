@@ -22,7 +22,6 @@ from xgboost import XGBRegressor
 from sklearn.ensemble import RandomForestRegressor
 from pysr import PySRRegressor
 import sympy as sp
-import symfit
 import jax
 import jax.numpy as jnp
 import jax.scipy.optimize as jopt
@@ -215,14 +214,39 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     X.drop("ALPHA", axis=1, inplace=True)
     X.drop(Y_name, axis=1, inplace=True)
 
-    names = {"LAGGED-DELTA-LOG-NB-KKI": "LAG-KKI",
-             "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": "INTEREST-DIFF",
-             "DELTA-LOG-ICE-BRENT": "OIL",
-             "LAGGED-CUSTOM-MYRSTUEN-EQULIBIRUM": "EQULIBIRUM",
-             }
+    new_names:dict = {
+        "LAGGED-LOG-NB-KKI": "Y_LAG",
+        "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE": "P_DIFF",
+        "LOG-DB-CVIX": "CVIX",
+        "LOG-S&P-500": "SP500",
+        "LOG-ICE-BRENT": "OIL",
+        "LOG-MSCI-WORLD": "MSCIW",
+        "CUSTOM-JOHANSEN-GRI": "GRI",
+        "LOG-SSB-INDUSTRIAL-PRODUCTION": "IP",
+        "NB-INTEREST-FORECAST-3Y": "I3Y_FORECAST",
+        "CUSTOM-JOHANSEN-INTEREST-DIFFERENCE-3M": "I3M_DIFF",
+        "CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR": "I10YR_DIFF",
+        "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": "I12M_DIFF",
+        "DELTA-CUSTOM-MYRSTUEN-PRICE-DIFFERENCE": "d_P_DIFF",
+        "DELTA-AGGREGATE-NYFED-OIL-DEMAND": "d_OIL_DEMAND",
+        "DELTA-AGGREGATE-NYFED-OIL-SUPPLY": "d_OIL_SUPPLY",
+        "DELTA-AGGREGATE-NYFED-OIL-RESIDUAL": "d_OIL_RESIDUAL",
+        "DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M": "d_I12M_DIFF",
+        "DELTA-LOG-MSCI-WORLD": "d_MSCIW",
+        "DELTA-LOG-ICE-BRENT": "d_OIL",
+        "DELTA-CUSTOM-JOHANSEN-GRI": "d_GRI",
+        "DELTA-LOG-SSB-INDUSTRIAL-PRODUCTION": "d_IP",
+        "DELTA-LOG-DB-CVIX": "d_CVIX",
+        "DELTA-CUSTOM-JOHANSEN-INTEREST-DIFFERENCE-3M": "d_I3M_DIFF",
+        "DELTA-CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR": "d_I10YR_DIFF",
+        "DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": "d_I12M_DIFF",
+        "DELTA-NB-INTEREST-FORECAST-3Y": "d_I3Y_FORECAST",
+        "DELTA-LOG-S&P-500": "d_SP500",
+        "LAGGED-DELTA-LOG-NB-KKI": "d_Y_LAG",
+    }
 
     # replace column names
-    X.columns = [names.get(x, x) for x in X.columns]
+    X.columns = [new_names.get(x, x) for x in X.columns]
 
     # Add time column
     X["TIME"] = range(0, len(X))
@@ -232,11 +256,8 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     X.columns = [x.replace("&", "") for x in X.columns]
 
     variable_names = X.columns
+    variable_names = variable_names.tolist()
     print(variable_names)
-
-    # X = PCA(n_components=4).fit_transform(X)
-    X = X.to_numpy()
-    Y = Y.to_numpy()
 
     X_train, X_test, Y_train, Y_test = train_test_split(
         X, Y, test_size=0.3, shuffle=False)
@@ -245,6 +266,10 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     print(X_train)
     print("Test")
     print(X_test)
+
+    # X = PCA(n_components=4).fit_transform(X)
+    X = X.to_numpy()
+    Y = Y.to_numpy()
 
     # X_validate, X_test, Y_validate, Y_test = train_test_split(
     # X_test, Y_test, test_size=0.5, shuffle=False)
@@ -287,7 +312,7 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
             "*",
             # "pow",
             # "mod",
-            "greater",
+            # "greater",
             # "pow",
             # "coeff(x, y) = x*y"
         ],
@@ -298,7 +323,7 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
         constraints={
             'mult': (6, 6),
             "/": (4, 4),
-            "greater": (2, 2),
+            # "greater": (2, 2),
             # "pow": (2, 2),
             # 'coeff': (1, 3),
             # 'cube': 4,
@@ -379,11 +404,11 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
             # "isnegative": lambda x: (1 - abs(x) / x) / 2,
             # "ispositive": lambda x: (abs(x) / x + 1) / 2,
             "square_abs": lambda x: x * abs(x),
-            "greater": lambda x, y: x > y,
+            # "greater": lambda x, y: x > y,
         },
         extra_jax_mappings={
             # "greater": 'jnp.greater',
-            "sympy.greater": 'jnp.greater',
+            # "sympy.greater": 'jnp.greater',
         },
         # ^ Define operator for SymPy as well
         loss="L2DistLoss()",
@@ -427,7 +452,7 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     )
 
     # model = PySRRegressor(niterations=1000000)
-    model.fit(X_train, Y_train)
+    model.fit(X=X_train, y=Y_train, variable_names=variable_names)
 
     # fill dict with equation indexes and 0
     equation_dict = {}
@@ -774,7 +799,7 @@ def lstm_regression2(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     print(Y_name)
 
     X_train, X_test, Y_train, Y_test = train_test_split(
-        X, Y, test_size=0.7, shuffle=False)
+        X, Y, test_size=0.3, shuffle=False)
 
     # Scale data
     scaler_x = StandardScaler()
@@ -785,7 +810,7 @@ def lstm_regression2(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     Y_test = scaler_y.transform(Y_test.values.reshape(-1, 1))
 
     # Create windows
-    window_size = 52
+    window_size = 12
     X_train_window = create_windows(X_train, window_size)
     Y_train_window = Y_train[window_size:]
     X_test_window = create_windows(X_test, window_size)
@@ -878,7 +903,7 @@ def lstm_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     print(Y_name)
 
     X_train, X_test, Y_train, Y_test = train_test_split(
-        X, Y, test_size=0.5, random_state=101)
+        X, Y, test_size=0.3, random_state=101)
 
     # Scale data
     scaler_x = StandardScaler()
@@ -905,7 +930,7 @@ def lstm_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
                   metrics=['mean_squared_error'])
 
     # train_data = keras.preprocessing.sequence.TimeseriesGenerator(X_train, Y_train, length=1, batch_size=1)
-    histroy = model.fit(X_train, Y_train, epochs=10000)
+    histroy = model.fit(X_train, Y_train, epochs=500)
 
     # Predict on test data
     predictions = model.predict(X_train)
