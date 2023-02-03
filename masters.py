@@ -33,7 +33,7 @@ def main():
     """
     # Get model where name is "Benchmark ICE-BRENT short"
     model = next(
-        model for model in all_models if model.name == "Symbolic regression selected")
+        model for model in all_models if model.name == "Symbolic long")
     model.run_model(
         model.model_start_date, model.model_end_date)
 

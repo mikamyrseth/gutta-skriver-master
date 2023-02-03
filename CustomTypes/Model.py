@@ -231,6 +231,9 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     X.columns = [x.replace("-", "_") for x in X.columns]
     X.columns = [x.replace("&", "") for x in X.columns]
 
+    variable_names = X.columns
+    print(variable_names)
+
     # X = PCA(n_components=4).fit_transform(X)
     X = X.to_numpy()
     Y = Y.to_numpy()
@@ -276,7 +279,7 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
         # procs=20,
         multithreading=True,
         # populations=40*2,
-        turbo=True,
+        turbo=False,
         binary_operators=[
             "+",
             "-",
@@ -485,7 +488,7 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
             # print("Numpy format")
             # print(X_validate.to_numpy())
 
-            prediction = jax_callable(X_validate_cv, jax_params)
+            prediction = np.nan_to_num(jax_callable(X_validate_cv, jax_params))
             # print("Prediction")
             # print(prediction)
             r2 = r2_score(Y_validate_cv, prediction)
@@ -503,9 +506,9 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     print("Equations:")
     for index, row in model.equations_.iterrows():
         eq = row["equation"]
-        prediction_os = model.predict(X_test, index)
+        prediction_os = np.nan_to_num(model.predict(X_test, index))
         r2_os = r2_score(Y_test, prediction_os)
-        prediction_is = model.predict(X_train, index)
+        prediction_is = np.nan_to_num(model.predict(X_train, index))
         r2_is = r2_score(Y_train, prediction_is)
         print(
             f"Equation {index} total score: {equation_dict[index]} is score: {r2_is} and OOS score: {r2_os}: {eq}")
@@ -515,7 +518,7 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     best_score = equation_dict[best_equation]
     print(f"Best equation: {best_equation} with score: {best_score}")
 
-    prediction = model.predict(X_test, best_equation)
+    prediction = np.nan_to_num(model.predict(X_test, best_equation))
     r2 = r2_score(Y_test, prediction)
     print(f"Best equation R2 in test sample: {r2}")
 
