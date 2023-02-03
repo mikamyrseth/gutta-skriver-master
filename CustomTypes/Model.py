@@ -214,7 +214,7 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     X.drop("ALPHA", axis=1, inplace=True)
     X.drop(Y_name, axis=1, inplace=True)
 
-    new_names:dict = {
+    new_names: dict = {
         "LAGGED-LOG-NB-KKI": "Y_LAG",
         "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE": "P_DIFF",
         "LOG-DB-CVIX": "CVIX",
@@ -264,7 +264,6 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
 
     # X = PCA(n_components=4).fit_transform(X)
 
-
     # X_validate, X_test, Y_validate, Y_test = train_test_split(
     # X_test, Y_test, test_size=0.5, shuffle=False)
 
@@ -306,7 +305,7 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
         constraints={
             'mult': (6, 6),
             "/": (4, 4),
-            # "greater": (2, 2),
+            "greater": (2, 2),
             # "pow": (2, 2),
             # 'coeff': (1, 3),
             # 'cube': 4,
@@ -341,7 +340,7 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
             "*",
             # "pow",
             # "mod",
-            # "greater",
+            "greater",
             # "pow",
             # "coeff(x, y) = x*y"
         ],
@@ -402,7 +401,7 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
         },
         extra_jax_mappings={
             # "greater": 'jnp.greater',
-            # "sympy.greater": 'jnp.greater',
+            "sympy.greater": 'jnp.greater',
         },
         # ^ Define operator for SymPy as well
         loss="L2DistLoss()",
@@ -447,8 +446,6 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
 
     # model = PySRRegressor(niterations=1000000)
     model.fit(X=X_train, y=Y_train)
-
-
 
     # fill dict with equation indexes and 0
     equation_dict = {}
