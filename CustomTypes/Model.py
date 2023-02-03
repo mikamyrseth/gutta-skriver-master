@@ -252,12 +252,8 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     X["TIME"] = range(0, len(X))
 
     # Remove dashes from column names
-    X.columns = [x.replace("-", "_") for x in X.columns]
-    X.columns = [x.replace("&", "") for x in X.columns]
-
-    variable_names = X.columns
-    variable_names = variable_names.tolist()
-    print(variable_names)
+    # X.columns = [x.replace("-", "_") for x in X.columns]
+    # X.columns = [x.replace("&", "") for x in X.columns]
 
     X_train, X_test, Y_train, Y_test = train_test_split(
         X, Y, test_size=0.3, shuffle=False)
@@ -268,8 +264,7 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     print(X_test)
 
     # X = PCA(n_components=4).fit_transform(X)
-    X = X.to_numpy()
-    Y = Y.to_numpy()
+
 
     # X_validate, X_test, Y_validate, Y_test = train_test_split(
     # X_test, Y_test, test_size=0.5, shuffle=False)
@@ -299,26 +294,15 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
         # population_size=200,
         niterations=1000000,  # < Increase me for better results
         maxsize=30,  # default 20
+        select_k_features=40,
         # adaptive_parsimony_scaling=100,  # default 20
         ncyclesperiteration=1000,  # dedfault 550
         # procs=20,
         multithreading=True,
         # populations=40*2,
         turbo=False,
-        binary_operators=[
-            "+",
-            "-",
-            "/",
-            "*",
-            # "pow",
-            # "mod",
-            # "greater",
-            # "pow",
-            # "coeff(x, y) = x*y"
-        ],
         complexity_of_constants=1,
         complexity_of_variables=1,
-        select_k_features=18,
         # precision=64,
         constraints={
             'mult': (6, 6),
@@ -351,6 +335,17 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
         # parsimony=0.0002,  # 0.0032
         # turbo=True,
         warm_start=False,
+        binary_operators=[
+            "+",
+            "-",
+            "/",
+            "*",
+            # "pow",
+            # "mod",
+            # "greater",
+            # "pow",
+            # "coeff(x, y) = x*y"
+        ],
         unary_operators=[
             # "neg",
             # "square",
@@ -452,17 +447,22 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     )
 
     # model = PySRRegressor(niterations=1000000)
-    model.fit(X=X_train, y=Y_train, variable_names=variable_names)
+    model.fit(X=X_train, y=Y_train)
+
+
 
     # fill dict with equation indexes and 0
     equation_dict = {}
     for index, row in model.equations_.iterrows():
         equation_dict[index] = []
 
-    # Cross validation
+    X_train = X_train.to_numpy()
+    Y_train = Y_train.to_numpy()
+    X_test = X_test.to_numpy()
+    Y_test = Y_test.to_numpy()
 
     tscv = TimeSeriesSplit(n_splits=3)
-    for train_index, test_index in tscv.split(df):
+    for train_index, test_index in tscv.split(X_train):
         # print(f"Cross validation from {train_index} to {test_index}")
         X_train_cv, X_validate_cv = X[train_index,
                                       :], X[test_index, :]
@@ -538,7 +538,8 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
         # r2_is = r2_score(Y_train, prediction_is)
         r2_jax_is = r2_score(Y_train, prediction_jax_is)
         print(
-            f"Equation {index} total score: {equation_dict[index]} is score: {r2_jax_is} and OOS score: {r2_jax_os}: {eq}")
+            f"Equation {index} total score: {equation_dict[index]} is score: {r2_jax_is} and OOS score: {r2_jax_os}")
+        print(f"\t{eq}")
 
     best_equation = max(equation_dict, key=equation_dict.get)
     best_equation_eq = model.equations_.loc[best_equation]["equation"]
