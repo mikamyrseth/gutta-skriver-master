@@ -398,8 +398,8 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
         # ^ Custom loss function (julia syntax)
         model_selection='best',
         temp_equation_file=False,
-        tempdir="/storage/users/mikam/",
-        equation_file="/storage/users/mikam/eqs.csv",
+        tempdir="storage/users/mikam/",
+        equation_file="storage/users/mikam/eqs.csv",
     )
 
     """
