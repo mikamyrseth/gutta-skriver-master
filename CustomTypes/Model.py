@@ -4,6 +4,7 @@ import datetime
 from typing import Dict
 from numpy import inner
 import pandas as pd
+from sklearn.decomposition import PCA
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 import scipy
@@ -230,12 +231,20 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     X.columns = [x.replace("-", "_") for x in X.columns]
     X.columns = [x.replace("&", "") for x in X.columns]
 
-    X_train, X_test, Y_train, Y_test = train_test_split(
-        X, Y, test_size=0.2, shuffle=False)
+    # X = PCA(n_components=4).fit_transform(X)
+    X = X.to_numpy()
+    Y = Y.to_numpy()
 
+    X_train, X_test, Y_train, Y_test = train_test_split(
+        X, Y, test_size=0.3, shuffle=False)
+
+    print("Train")
+    print(X_train)
+    print("Test")
+    print(X_test)
 
     # X_validate, X_test, Y_validate, Y_test = train_test_split(
-        # X_test, Y_test, test_size=0.5, shuffle=False)
+    # X_test, Y_test, test_size=0.5, shuffle=False)
 
     # X_train_con = pd.concat([X_train, X_validate])
     # Y_train_con = pd.concat([Y_train, Y_validate])
@@ -273,24 +282,30 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
             "-",
             "/",
             "*",
+            "pow",
+            # "mod",
+            # "greater",
             # "pow",
             # "coeff(x, y) = x*y"
         ],
         complexity_of_constants=1,
         complexity_of_variables=1,
-        # select_k_features=10,
-        precision=64,
+        select_k_features=18,
+        # precision=64,
         constraints={
-            'mult': (6, 6),
+            'mult': (4, 4),
             "/": (4, 4),
             # "pow": (2, 2),
             # 'coeff': (1, 3),
-            # 'cube': 2,
-            # 'square': 2,
-            'square_abs': 2,
-            # 'sqrt': 2,
-            # 'abs': 2,
-            # 'exp': 2,
+            'cube': 4,
+            'square': 4,
+            'square_abs': 4,
+            'sqrt': 4,
+            'abs': 4,
+            'exp': 4,
+            'erf': 4,
+            'cerf': 4,
+            'log': 4,
             # 'isnegative': 2,
             # 'ispositive': 2,
         },
@@ -302,12 +317,42 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
             "/": {
                 "+": 0,
                 "-": 0,
-            }
+            },
+            "sqrt": {
+                "sqrt": 0,
+                "square": 0,
+                "square_abs": 0,
+            },
+            "square": {
+                "sqrt": 0,
+                "square": 0,
+                "square_abs": 0,
+            },
+            "square_abs": {
+                "sqrt": 0,
+                "square": 0,
+                "square_abs": 0,
+            },
         },
         # parsimony=0.0002,  # 0.0032
         # turbo=True,
         warm_start=True,
         unary_operators=[
+            "neg",
+            "square",
+            "cube",
+            "exp",
+            "abs",
+            "sqrt",
+            "log",
+            "erf",
+            "erfc",
+            # "relu",
+            # "round",
+            # "floor",
+            # "ceil",
+            # "gamma",
+            # "sign",
             # "sqrt",
             # "log",
             # "abs",
@@ -347,14 +392,14 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
             "square_abs": lambda x: x * abs(x),
         },
         # ^ Define operator for SymPy as well
-        loss="L1DistLoss()",
+        loss="L2DistLoss()",
         early_stop_condition=f"f(loss, complexity) = (loss < {stopping_criteria}) && (complexity < 15)",
         # loss="loss(x, y) = abs(x - y)",
         # ^ Custom loss function (julia syntax)
         model_selection='best',
-        # temp_equation_file=False,
-        # tempdir= "/storage/users/mikam/",
-        # equation_file="/storage/users/mikam/"
+        temp_equation_file=False,
+        tempdir="/storage/users/mikam/",
+        equation_file="/storage/users/mikam/eqs.csv",
     )
 
     """
@@ -372,10 +417,9 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     # model.niterations = 1000000
 
     """
-    
 
     model.set_params(
-        population_size=100,  # default 33
+        population_size=75,  # default 33
         tournament_selection_n=23,  # default 10
         tournament_selection_p=0.8,  # default 0.86
         ncyclesperiteration=100,  # default 550
@@ -391,21 +435,19 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     # model = PySRRegressor(niterations=1000000)
     model.fit(X_train, Y_train)
 
-
-
     # fill dict with equation indexes and 0
     equation_dict = {}
     for index, row in model.equations_.iterrows():
         equation_dict[index] = []
 
-    #Cross validation
-
+    # Cross validation
 
     tscv = TimeSeriesSplit(n_splits=3)
     for train_index, test_index in tscv.split(df):
         # print(f"Cross validation from {train_index} to {test_index}")
-        X_train_cv, X_validate_cv = X.iloc[train_index, :], X.iloc[test_index,:]
-        Y_train_cv, Y_validate_cv = Y.iloc[train_index], Y.iloc[test_index]
+        X_train_cv, X_validate_cv = X[train_index,
+                                      :], X[test_index, :]
+        Y_train_cv, Y_validate_cv = Y[train_index], Y[test_index]
 
         # print("Training")
         # print(X_train)
@@ -426,14 +468,15 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
                 continue
             if len(jax_params) == 0:
                 continue
+
             def loss(params, x, y):
                 return jnp.mean((jax_callable(x, params) - y) ** 2)
             jax_params = jopt.minimize(
                 fun=loss,
                 x0=jax_params,
-                args=(X_train_cv.to_numpy(), Y_train_cv.to_numpy()),
+                args=(X_train_cv, Y_train_cv),
                 method="BFGS",
-                tol=0.0001
+                tol=0.001,
             ).x
 
             # print("new params")
@@ -442,15 +485,20 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
             # print("Numpy format")
             # print(X_validate.to_numpy())
 
-            prediction = jax_callable(X_validate_cv.to_numpy(), jax_params) 
+            prediction = jax_callable(X_validate_cv, jax_params)
             # print("Prediction")
             # print(prediction)
             r2 = r2_score(Y_validate_cv, prediction)
             print("Processed equation: ", index, " with score: ", r2)
             # append result
             equation_dict[index].append(r2)
-            
 
+    # convert scores into averages
+    for key, value in equation_dict.items():
+        if len(value) == 0:
+            equation_dict[key] = 0
+            continue
+        equation_dict[key] = sum(value) / len(value)
 
     print("Equations:")
     for index, row in model.equations_.iterrows():
@@ -459,11 +507,9 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
         r2_os = r2_score(Y_test, prediction_os)
         prediction_is = model.predict(X_train, index)
         r2_is = r2_score(Y_train, prediction_is)
-        print(f"Equation {index} total score: {equation_dict[index]} is score: {r2_is} and OOS score: {r2_os}")
-    
-    # get equation with highest average score
-    for key, value in equation_dict.items():
-        equation_dict[key] = sum(value) / len(value)
+        print(
+            f"Equation {index} total score: {equation_dict[index]} is score: {r2_is} and OOS score: {r2_os}: {eq}")
+
     best_equation = max(equation_dict, key=equation_dict.get)
     best_equation_eq = model.equations_.loc[best_equation]["equation"]
     best_score = equation_dict[best_equation]

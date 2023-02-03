@@ -11,6 +11,7 @@ def main():
     # model = next(
     # model for model in all_models if model.name == "Myrstuen&Sylte2020 long")
 
+    """
     # for all models where "benchmark not in name"
     run_models = [
         model for model in all_models if "benchmark" not in model.name.lower()]
@@ -35,7 +36,6 @@ def main():
         model for model in all_models if model.name == "Symbolic regression selected")
     model.run_model(
         model.model_start_date, model.model_end_date)
-    """
 
 
 def load_data():
