@@ -404,7 +404,7 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
             # "isnegative": lambda x: (1 - abs(x) / x) / 2,
             # "ispositive": lambda x: (abs(x) / x + 1) / 2,
             "square_abs": lambda x: x * abs(x),
-            # "greater": lambda x, y: x > y,
+            "greater": lambda x, y: 1,
         },
         extra_jax_mappings={
             # "greater": 'jnp.greater',
@@ -522,12 +522,23 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     print("Equations:")
     for index, row in model.equations_.iterrows():
         eq = row["equation"]
-        prediction_os = np.nan_to_num(model.predict(X_test, index))
-        r2_os = r2_score(Y_test, prediction_os)
-        prediction_is = np.nan_to_num(model.predict(X_train, index))
-        r2_is = r2_score(Y_train, prediction_is)
+        jax_moddel = model.jax(index)
+        if index == 0:
+            continue
+        if len(jax_params) == 0:
+            continue
+        jax_callable = jax_moddel['callable']
+        jax_params = jax_moddel['parameters']
+        prediction_jax_os = np.nan_to_num(jax_callable(X_test, jax_params))
+        # prediction_os = np.nan_to_num(model.predict(X_test, index))
+        # r2_os = r2_score(Y_test, prediction_os)
+        r2_jax_os = r2_score(Y_test, prediction_jax_os)
+        # prediction_is = np.nan_to_num(model.predict(X_train, index))
+        prediction_jax_is = np.nan_to_num(jax_callable(X_train, jax_params))
+        # r2_is = r2_score(Y_train, prediction_is)
+        r2_jax_is = r2_score(Y_train, prediction_jax_is)
         print(
-            f"Equation {index} total score: {equation_dict[index]} is score: {r2_is} and OOS score: {r2_os}: {eq}")
+            f"Equation {index} total score: {equation_dict[index]} is score: {r2_jax_is} and OOS score: {r2_jax_os}: {eq}")
 
     best_equation = max(equation_dict, key=equation_dict.get)
     best_equation_eq = model.equations_.loc[best_equation]["equation"]
