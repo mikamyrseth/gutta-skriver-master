@@ -462,7 +462,7 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     for train_index, test_index in tscv.split(X_train):
         # print(f"Cross validation from {train_index} to {test_index}")
         X_train_cv, X_validate_cv = X_train[train_index,
-                                      :], X_train[test_index, :]
+                                            :], X_train[test_index, :]
         Y_train_cv, Y_validate_cv = Y_train[train_index], Y_train[test_index]
 
         # print("Training")
