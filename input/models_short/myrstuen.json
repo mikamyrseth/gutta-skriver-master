@@ -8,7 +8,7 @@
   "model_start_date": "2002-01-01",
   "model_end_date": "2020-01-01",
   "dependent_variable": "DELTA-LOG-NB-KKI",
-  "frequency": "MONTHLY",
+  "frequency": "DAILY",
   "lags": 2,
   "weights": {
     "ALPHA": 0.0002,

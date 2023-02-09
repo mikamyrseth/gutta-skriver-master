@@ -1,22 +1,26 @@
 import json
 import os
-from CustomTypes.Dataseries import CustomDataseries, Dataseries
+from CustomTypes.Dataseries import CustomDataseries, DataFrequency, Dataseries
 from CustomTypes.Model import Model
 
 
 def main():
     all_models = load_data()
+    """
 
     # get model where
     # model = next(
     # model for model in all_models if model.name == "Myrstuen&Sylte2020 long")
 
-    """
     # for all models where "benchmark not in name"
     run_models = [
         model for model in all_models if "benchmark" not in model.name.lower()]
 
+    run_models = [
+        model for model in all_models if "long" not in model.name.lower()]
+
     for model in run_models:
+        model.frequency = DataFrequency.DAILY
         # estimate from 2002-03-31 to 2014-08-31
         lm, df = model.reestimate(from_date="2002-03-31", to_date="2014-08-31")
         X = df[list(model.weights.keys())]

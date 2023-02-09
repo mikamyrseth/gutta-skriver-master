@@ -5,6 +5,7 @@ from typing import Dict
 from numpy import inner
 import pandas as pd
 from sklearn.decomposition import PCA
+from sklearn.gaussian_process import GaussianProcessClassifier, GaussianProcessRegressor
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 import scipy
@@ -25,6 +26,10 @@ import sympy as sp
 import jax
 import jax.numpy as jnp
 import jax.scipy.optimize as jopt
+
+import seaborn as sns
+from statsmodels.tsa.stattools import adfuller
+from sklearn.gaussian_process.kernels import RBF, WhiteKernel, ConstantKernel
 
 from pandas import DataFrame
 from CustomTypes.Dataseries import CustomDataseries, DataFrequency, Dataseries
@@ -211,12 +216,18 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     X = df[X_names]
     Y = df[Y_name]
 
+    # Change from y_t-1 to y_t
+    # Y = Y.shift(-1)
+    # Y.fillna(method="ffill", inplace=True)
+    # Y.dropna(inplace=True)
+
     X.drop("ALPHA", axis=1, inplace=True)
     X.drop(Y_name, axis=1, inplace=True)
 
     new_names: dict = {
         "LAGGED-LOG-NB-KKI": "Y_LAG",
         "CUSTOM-MYRSTUEN-PRICE-DIFFERENCE": "P_DIFF",
+        "LAGGED-CUSTOM-MYRSTUEN-EQULIBIRUM": "EQ_LAG",
         "LOG-DB-CVIX": "CVIX",
         "LOG-S&P-500": "SP500",
         "LOG-ICE-BRENT": "OIL",
@@ -228,9 +239,15 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
         "CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR": "I10YR_DIFF",
         "CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": "I12M_DIFF",
         "DELTA-CUSTOM-MYRSTUEN-PRICE-DIFFERENCE": "d_P_DIFF",
+        "AGGREGATE-NYFED-OIL-DEMAND": "OIL_DEMAND",
+        "AGGREGATE-NYFED-OIL-SUPPLY": "OIL_SUPPLY",
+        "AGGREGATE-NYFED-OIL-RESIDUAL": "OIL_RESIDUAL",
         "DELTA-AGGREGATE-NYFED-OIL-DEMAND": "d_OIL_DEMAND",
         "DELTA-AGGREGATE-NYFED-OIL-SUPPLY": "d_OIL_SUPPLY",
         "DELTA-AGGREGATE-NYFED-OIL-RESIDUAL": "d_OIL_RESIDUAL",
+        "CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M": "SW12M_DIFF",
+        "LOG-GPR": "GPR",
+        "LOG-FVX-EM": "FVX_EM",
         "DELTA-LOG-MSCI-WORLD": "d_MSCIW",
         "DELTA-LOG-ICE-BRENT": "d_OIL",
         "DELTA-CUSTOM-JOHANSEN-GRI": "d_GRI",
@@ -242,13 +259,61 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
         "DELTA-NB-INTEREST-FORECAST-3Y": "d_I3Y_FORECAST",
         "DELTA-LOG-S&P-500": "d_SP500",
         "LAGGED-DELTA-LOG-NB-KKI": "d_Y_LAG",
+        "DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M": "d_SW12M_DIFF",
+        "DELTA-LOG-GPR": "d_GPR",
+        "DELTA-LOG-FVX-EM": "d_FVX_EM",
+        "LAGGED-DELTA-LOG-MSCI-WORLD": "d_MSCIW_LAG",
+        "LAGGED-DELTA-LOG-ICE-BRENT": "d_OIL_LAG",
+        "LAGGED-DELTA-CUSTOM-JOHANSEN-INTEREST-DIFFERENCE-3M": "d_I3M_DIFF_LAG",
+        "LAGGED-DELTA-CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR": "d_I10YR_DIFF_LAG",
+        "LAGGED-DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": "d_I12M_DIFF_LAG",
+        "LAGGED-DELTA-LOG-DB-CVIX": "d_CVIX_LAG",
+        "LAGGED-DELTA-LOG-S&P-500": "d_SP500_LAG",
+        "LAGGED-DELTA-CUSTOM-JOHANSEN-GRI": "d_GRI_LAG",
+        "LAGGED-DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M": "d_SW12M_DIFF_LAG",
+        "LAGGED-DELTA-LOG-GPR": "d_GPR_LAG",
+        "LAGGED-DELTA-LOG-FVX-EM": "d_FVX_EM_LAG",
+        "LAGGED-DELTA-AGGREGATE-NYFED-OIL-DEMAND": "d_OIL_DEMAND_LAG",
+        "LAGGED-DELTA-AGGREGATE-NYFED-OIL-SUPPLY": "d_OIL_SUPPLY_LAG",
+        "LAGGED-DELTA-AGGREGATE-NYFED-OIL-RESIDUAL": "d_OIL_RESIDUAL_LAG",
+        "LAGGED-2-DELTA-LOG-NB-KKI": "d_Y_LAG2",
+        "LAGGED-2-DELTA-LOG-MSCI-WORLD": "d_MSCIW_LAG2",
+        "LAGGED-2-DELTA-LOG-ICE-BRENT": "d_OIL_LAG2",
+        "LAGGED-2-DELTA-CUSTOM-JOHANSEN-INTEREST-DIFFERENCE-3M": "d_I3M_DIFF_LAG2",
+        "LAGGED-2-DELTA-CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR": "d_I10YR_DIFF_LAG2",
+        "LAGGED-2-DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": "d_I12M_DIFF_LAG2",
+        "LAGGED-2-DELTA-LOG-DB-CVIX": "d_CVIX_LAG2",
+        "LAGGED-2-DELTA-LOG-S&P-500": "d_SP500_LAG2",
+        "LAGGED-2-DELTA-CUSTOM-JOHANSEN-GRI": "d_GRI_LAG2",
+        "LAGGED-2-DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M": "d_SW12M_DIFF_LAG2",
+        "LAGGED-2-DELTA-LOG-GPR": "d_GPR_LAG2",
+        "LAGGED-2-DELTA-LOG-FVX-EM": "d_FVX_EM_LAG2",
+        "LAGGED-2-DELTA-AGGREGATE-NYFED-OIL-DEMAND": "d_OIL_DEMAND_LAG2",
+        "LAGGED-2-DELTA-AGGREGATE-NYFED-OIL-SUPPLY": "d_OIL_SUPPLY_LAG2",
+        "LAGGED-2-DELTA-AGGREGATE-NYFED-OIL-RESIDUAL": "d_OIL_RESIDUAL_LAG2",
+        "LAGGED-3-DELTA-LOG-NB-KKI": "d_Y_LAG3",
+        "LAGGED-3-DELTA-LOG-MSCI-WORLD": "d_MSCIW_LAG3",
+        "LAGGED-3-DELTA-LOG-ICE-BRENT": "d_OIL_LAG3",
+        "LAGGED-3-DELTA-CUSTOM-JOHANSEN-INTEREST-DIFFERENCE-3M": "d_I3M_DIFF_LAG3",
+        "LAGGED-3-DELTA-CUSTOM-AKRAM2020-GOVERNMENT-BONDS-YIELDS-DIFFERENCE-10YR": "d_I10YR_DIFF_LAG3",
+        "LAGGED-3-DELTA-CUSTOM-MYRSTUEN-INTEREST-DIFFERENCE-12M": "d_I12M_DIFF_LAG3",
+        "LAGGED-3-DELTA-LOG-DB-CVIX": "d_CVIX_LAG3",
+        "LAGGED-3-DELTA-LOG-S&P-500": "d_SP500_LAG3",
+        "LAGGED-3-DELTA-CUSTOM-JOHANSEN-GRI": "d_GRI_LAG3",
+        "LAGGED-3-DELTA-CUSTOM-AKRAM2020-MONEY-MARKET-SWAP-INTEREST-RATES-DIFFERENCE-12M": "d_SW12M_DIFF_LAG3",
+        "LAGGED-3-DELTA-LOG-GPR": "d_GPR_LAG3",
+        "LAGGED-3-DELTA-LOG-FVX-EM": "d_FVX_EM_LAG3",
+        "LAGGED-3-DELTA-AGGREGATE-NYFED-OIL-DEMAND": "d_OIL_DEMAND_LAG3",
+        "LAGGED-3-DELTA-AGGREGATE-NYFED-OIL-SUPPLY": "d_OIL_SUPPLY_LAG3",
+        "LAGGED-3-DELTA-AGGREGATE-NYFED-OIL-RESIDUAL": "d_OIL_RESIDUAL_LAG3",
     }
 
     # replace column names
     X.columns = [new_names.get(x, x) for x in X.columns]
 
     # Add time column
-    X["TIME"] = range(0, len(X))
+    # X["TIME"] = range(0, len(X))
+    # X = PCA(n_components=5).fit_transform(X)
 
     # Remove dashes from column names
     # X.columns = [x.replace("-", "_") for x in X.columns]
@@ -257,24 +322,51 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     X_train, X_test, Y_train, Y_test = train_test_split(
         X, Y, test_size=0.3, shuffle=False)
 
+    X_train_, X_validate, Y_train_, Y_validate = train_test_split(
+        X_train, Y_train, test_size=0.25, shuffle=False)
+
     print("Train")
     print(X_train)
     print("Test")
     print(X_test)
 
-    # X = PCA(n_components=4).fit_transform(X)
+    # denoice X data using a gaussian process
+    def denoise(X, y):
+        gp_kernel = RBF(np.ones(X.shape[1])) + \
+            WhiteKernel(1e-1) + ConstantKernel()
+        print("A")
+        gp = GaussianProcessRegressor(
+            kernel=gp_kernel, n_restarts_optimizer=10)
+        print("B")
+        gp.fit(X, y)
+        print("C")
+        return gp.predict(X)
 
-    # X_validate, X_test, Y_validate, Y_test = train_test_split(
-    # X_test, Y_test, test_size=0.5, shuffle=False)
+    Y_train = denoise(X_train, Y_train)
 
-    # X_train_con = pd.concat([X_train, X_validate])
-    # Y_train_con = pd.concat([Y_train, Y_validate])
+    """
+    # Create a covariance matrix heatmap figure
+    fig, ax = plt.subplots(figsize=(10, 10))
+    sns.heatmap(X_train.corr(), annot=True, ax=ax)
+    # fix labels
+    ax.set_xticklabels(ax.get_xticklabels(), rotation=45,
+                       horizontalalignment='right')
+    ax.set_yticklabels(ax.get_yticklabels(), rotation=45,
+                       horizontalalignment='right')
+    # plt.show()
+    # save plot
+    fig.savefig("covariance_matrix.png")
 
-    # Scale data
-    # scaler_x = StandardScaler()
-    # scaler_y = StandardScaler()
-    # X_train = scaler_x.fit_transform(X_train)
-    # Y_train = scaler_y.fit_transform(Y_train)
+    def is_stationary(X):
+        # Perform Dickey-Fuller test:
+        dftest = adfuller(X, autolag='AIC')
+        # print("p-value: ", dftest[1])
+        return dftest[1] < 0.05
+    # warn if any columns are non stationary
+    for col in X_train.columns:
+        if not is_stationary(X_train[col]):
+            print("Warning: ", col, " is not stationary")
+    """
 
     # calculate linear r2 vaidation
     lr = LinearRegression()
@@ -284,6 +376,10 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     print("Linear MSE: ", linear_mse)
     print("Stopping criteria: ", stopping_criteria)
     # Create model
+    loss = "loss(x, y) = abs( abs(x)/x - abs(y)/y )"
+
+    # Create GARCH model
+    garch = "garch(x) = 0.1 + 0.9 * x^2"
 
     model = PySRRegressor(
 
@@ -291,10 +387,11 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
         # ^ 2 populations per core, so one is always running.
         # population_size=200,
         niterations=1000000,  # < Increase me for better results
-        maxsize=30,  # default 20
-        select_k_features=40,
+        maxsize=40,  # default 20
+        select_k_features=50,
+        denoise=False,
         # adaptive_parsimony_scaling=100,  # default 20
-        ncyclesperiteration=1000,  # dedfault 550
+        ncyclesperiteration=100,  # dedfault 550
         # procs=20,
         multithreading=True,
         # populations=40*2,
@@ -305,17 +402,19 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
         constraints={
             'mult': (6, 6),
             "/": (4, 4),
-            "greater": (2, 2),
-            # "pow": (2, 2),
+            "gt": (2, 2),
+            # "inv(x)": 4,
+            "pow": (2, 2),
             # 'coeff': (1, 3),
-            # 'cube': 4,
-            # 'square': 4,
+            'cube': 4,
+            'square': 4,
+            # "round": 4,
             # 'square_abs': 4,
             # 'sqrt': 4,
             # 'abs': 4,
             # 'exp': 4,
             # 'erf': 4,
-            # 'cerf': 4,
+            # 'erfc': 4,
             # 'log': 4,
             # 'isnegative': 2,
             # 'ispositive': 2,
@@ -323,11 +422,13 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
         nested_constraints={
             "mult": {
                 "+": 0,
-                "-": 0,
+                "-": 1,
             },
             "/": {"+": 0, "-": 0, },
-            # "sqrt": {"sqrt": 0,"square": 0,"square_abs": 0,},
-            # "square": {"sqrt": 0,"square": 0,"square_abs": 0,},
+            # "inv(x)": {"inv(x):": 0},
+            #  "sqrt": {"sqrt": 0, "square": 0, },
+            "square": {"square": 0, "cube": 0, },
+            "cube": {"square": 0, "cube": 0, },
             # "square_abs": {"sqrt": 0,"square": 0,"square_abs": 0,},
         },
         # parsimony=0.0002,  # 0.0032
@@ -338,16 +439,17 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
             "-",
             "/",
             "*",
-            # "pow",
+            "pow",
             # "mod",
-            "greater",
+            # "greater",
+            "gt(x,y) = (abs(x-y) / (x-y) + 1) / 2"
             # "pow",
             # "coeff(x, y) = x*y"
         ],
         unary_operators=[
             # "neg",
-            # "square",
-            # "cube",
+            "square",
+            "cube",
             # "exp",
             # "abs",
             # "sqrt",
@@ -397,15 +499,17 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
             # "isnegative": lambda x: (1 - abs(x) / x) / 2,
             # "ispositive": lambda x: (abs(x) / x + 1) / 2,
             "square_abs": lambda x: x * abs(x),
-            "greater": lambda x, y: 1,
+            # "greater": lambda x, y: x > y
+            "gt": lambda x, y: (abs(x-y) / (x-y) + 1) / 2,
         },
         extra_jax_mappings={
-            # "greater": 'jnp.greater',
-            "sympy.greater": 'jnp.greater',
+            # "sympy.gt": lambda x, y: (abs(x-y) / (x-y) + 1) / 2,
+            # "jax.gt": lambda x, y: (abs(x-y) / (x-y) + 1) / 2,
+            # "sympy.greater": 'jnp.greater',
         },
         # ^ Define operator for SymPy as well
         loss="L2DistLoss()",
-        early_stop_condition=f"f(loss, complexity) = (loss < {stopping_criteria}) && (complexity < 15)",
+        # early_stop_condition=f"f(loss, complexity) = (loss < {stopping_criteria}) && (complexity < 15)",
         # loss="loss(x, y) = abs(x - y)",
         # ^ Custom loss function (julia syntax)
         model_selection='best',
@@ -413,6 +517,8 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
         tempdir="storage/users/mikam/",
         equation_file="storage/users/mikam/eqs.csv",
     )
+
+    # direction of change loss
 
     """
     model = PySRRegressor.from_file("hall_of_fame_2023-01-31_212025.384.pkl")
@@ -434,7 +540,7 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
         population_size=75,  # default 33
         tournament_selection_n=23,  # default 10
         tournament_selection_p=0.8,  # default 0.86
-        ncyclesperiteration=100,  # default 550
+        # ncyclesperiteration=300,  # default 550
         parsimony=3.2e-3,  # default 0.0032
         fraction_replaced_hof=0.08,  # default 0.035
         optimizer_iterations=25,  # default 8
@@ -452,10 +558,13 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     for index, row in model.equations_.iterrows():
         equation_dict[index] = []
 
+    # ENABLE IF NOT doing PCA
     X_train = X_train.to_numpy()
-    Y_train = Y_train.to_numpy()
+    # Y_train = Y_train.to_numpy()
     X_test = X_test.to_numpy()
     Y_test = Y_test.to_numpy()
+
+    """
 
     tscv = TimeSeriesSplit(n_splits=3)
     for train_index, test_index in tscv.split(X_train):
@@ -514,29 +623,80 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
             equation_dict[key] = 0
             continue
         equation_dict[key] = sum(value) / len(value)
+    """
+
+    validation_scores = {}
 
     print("Equations:")
+    print(model.equations_)
     for index, row in model.equations_.iterrows():
         eq = row["equation"]
+        complexity = row["complexity"]
         jax_moddel = model.jax(index)
+
+        jax_callable = jax_moddel['callable']
+        jax_params = jax_moddel['parameters']
         if index == 0:
             continue
         if len(jax_params) == 0:
             continue
-        jax_callable = jax_moddel['callable']
-        jax_params = jax_moddel['parameters']
-        prediction_jax_os = np.nan_to_num(jax_callable(X_test, jax_params))
-        # prediction_os = np.nan_to_num(model.predict(X_test, index))
-        # r2_os = r2_score(Y_test, prediction_os)
-        r2_jax_os = r2_score(Y_test, prediction_jax_os)
-        # prediction_is = np.nan_to_num(model.predict(X_train, index))
-        prediction_jax_is = np.nan_to_num(jax_callable(X_train, jax_params))
-        # r2_is = r2_score(Y_train, prediction_is)
-        r2_jax_is = r2_score(Y_train, prediction_jax_is)
-        print(
-            f"Equation {index} total score: {equation_dict[index]} is score: {r2_jax_is} and OOS score: {r2_jax_os}")
-        print(f"\t{eq}")
 
+        # combine train and validate
+        # X_train_cv = np.concatenate((X_train_, X_validate))
+        # Y_train_cv = np.concatenate((Y_train_, Y_validate))
+
+        def loss(params, x, y):
+            return jnp.mean((jax_callable(x, params) - y) ** 2)
+        jax_params = jopt.minimize(
+            fun=loss,
+            x0=jax_params,
+            args=(X_train, Y_train),
+            method="BFGS",
+            tol=0.001,
+        ).x
+
+        prediction_jax_os = np.nan_to_num(jax_callable(X_test, jax_params))
+        prediction_os = np.nan_to_num(model.predict(X_test, index))
+        r2_os = r2_score(Y_test, prediction_os)
+        r2_jax_os = r2_score(Y_test, prediction_jax_os)
+
+        # Calculate % of predictions that are in the right direction
+        prediction_direction = np.sign(prediction_os)
+        actual_direction = np.sign(Y_test)
+        correct_direction = np.sum(prediction_direction == actual_direction)
+        correct_direction = correct_direction / len(prediction_direction)
+
+        prediction_vl = np.nan_to_num(model.predict(X_validate, index))
+        r2_vl = r2_score(Y_validate, prediction_vl)
+        validation_scores[index] = r2_vl
+        prediction_is = np.nan_to_num(model.predict(X_train, index))
+        # prediction_jax_is = np.nan_to_num(jax_callable(X_train, jax_params))
+        r2_is = r2_score(Y_train, prediction_is)
+        # r2_jax_is = r2_score(Y_train, prediction_jax_is)
+        print(
+            f"Equation {index}:{complexity} is score: {r2_is}, vl score {r2_vl} and OOS score: {r2_os}({r2_jax_os}), and oos direction: {correct_direction}")
+
+    best_model = max(validation_scores, key=validation_scores.get)
+    prediction_os = np.nan_to_num(model.predict(X_test, best_model))
+    r2_os = r2_score(Y_test, prediction_os)
+    print(
+        f"Best model is {best_model} with OOS score {r2_os}")
+
+    # Use SHAP to explain the model
+    import shap
+    shap.initjs()
+    explainer = shap.KernelExplainer(model.predict, X_train)
+    shap_values = explainer.shap_values(X_test)
+    # save plots
+    shap.summary_plot(shap_values, X_test, show=False)
+    plt.savefig("shap_summary.png")
+    shap.dependence_plot("x1", shap_values, X_test, show=False)
+    plt.savefig("shap_dependence.png")
+    shap.force_plot(explainer.expected_value,
+                    shap_values[0, :], X_test.iloc[0, :], show=False)
+    plt.savefig("shap_force.png")
+
+    """
     best_equation = max(equation_dict, key=equation_dict.get)
     best_equation_eq = model.equations_.loc[best_equation]["equation"]
     best_score = equation_dict[best_equation]
@@ -545,6 +705,7 @@ def symbolic_regression(df: pd.DataFrame, X_names: "list[str]", Y_name: str):
     prediction = np.nan_to_num(model.predict(X_test, best_equation))
     r2 = r2_score(Y_test, prediction)
     print(f"Best equation R2 in test sample: {r2}")
+    """
 
     """
     Y_pred_lr = lr.predict(X_validate)
